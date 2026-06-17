@@ -31,14 +31,19 @@ public class WaveManager : MonoBehaviour
     }
 
 
-
+    public void SetupStageWaves(List<WaveData> newstageWaves)
+    {
+        this.stageWaves = newstageWaves;
+    }
     public void StartStage()
     {
         stageTime = 0f;
-        currentWaveIndex = 0;
+        
         isWaveActive = true;
 
-        StartWave(currentWaveIndex);
+        int listIndex = currentWaveIndex % stageWaves.Count;
+
+        StartWave(listIndex);
     }
     private void Update()
     {
@@ -50,30 +55,40 @@ public class WaveManager : MonoBehaviour
     }
     public void CheckWaveTimeLine()
     {
-        if(currentWaveIndex<0 || currentWaveIndex >= stageWaves.Count) return;
+        int listIndex = currentWaveIndex%stageWaves.Count;
         WaveData currentWave = stageWaves[currentWaveIndex];
         if(stageTime>=currentWave.waveDuration)
         {
             
             currentWaveIndex++;
-            if(currentWaveIndex < stageWaves.Count)
+            if(currentWaveIndex % stageWaves.Count == 0)
             {
-                stageTime = 0f;
-                StartWave(currentWaveIndex);
+                isWaveActive=false;
+                Debug.Log($"스테이지 끝남 확인용");
+                //상점 켜기
             }
             else
             {
-                isWaveActive = false;
+                stageTime = 0;
+                int nextListIndex = currentWaveIndex%stageWaves.Count;
+                StartWave(nextListIndex);
             }
         }
     }
-    private void StartWave(int index)
+    private void StartWave(int targetIndex)
     {
-        if(stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
+        if(stageWaves==null ||  stageWaves.Count==0)
         {
             return;
         }
         
-        EnemySpawner.Instance.SetupNextWave(stageWaves[index]);
+        
+        EnemySpawner.Instance.SetupNextWave(stageWaves[targetIndex]);
+    }
+    private void CloseShopToNextStage()
+    {
+        if (isWaveActive) return;
+        //상점끄기
+        StartStage();
     }
 }
