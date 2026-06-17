@@ -16,8 +16,8 @@ MonoBehaviour:
   weaponName: asd
   weaponId: 0
   weaponDes: 
-  weaponIcon: {fileID: 0}
-  weaponDamage: 0
+  weaponIcon: {fileID: 3060291918595649585, guid: 06d25675c742ec243b68f648bd316fb9, type: 3}
+  weaponDamage: 10
   weaponArmorPiercing: 0
   weaponAttackSpeed: 1.2
   weaponRange: 3

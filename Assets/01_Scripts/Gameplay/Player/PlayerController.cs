@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(nowHp);
         PlayerMove();
         if (jumpia.WasPressedThisFrame())
         {
@@ -109,12 +110,12 @@ public class PlayerController : MonoBehaviour
     {
         invincible = true;
         EnemyAttackData enemyAttackData = collision.collider.GetComponent<EnemyAttackData>();
-        nowHp = enemyAttackData.attackDamage;
+        nowHp -= enemyAttackData.attackDamage;
         yield return new WaitForSecondsRealtime(invincibleTime);
         invincible = false;
         co = null;
     }
-    public void OnWeaponArm()
+    public void OnWeaponArm() //이곳 무기 획득 UI완성시 최우선으로 바꿀것
     {
         playerWeapon.Add(weaponManager.GetWeapon("Sword"));
         Instantiate(arm, transform.position, Quaternion.identity, transform);
