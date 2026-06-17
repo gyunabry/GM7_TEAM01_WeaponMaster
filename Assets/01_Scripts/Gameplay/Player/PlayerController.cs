@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private InputAction moveia;
+    private InputAction jumpia;
     private Rigidbody2D rb;
+    [SerializeField] GameObject arm;
+    [SerializeField] PlayerWeaponManager weaponManager;
 
     [Header("Tag")]
     [SerializeField] private string enemyTagName;
@@ -31,15 +35,23 @@ public class PlayerController : MonoBehaviour
     [Header("Player default")]
     [SerializeField] private float baseSpeed = 500;
 
+    [Header("Player Weapon")]
+    [SerializeField] private List<PlayerWeaponSO> playerWeapon;
     private void Awake()
     {
         moveia = InputSystem.actions.FindAction("Move");
+        jumpia = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         PlayerMove();
+        if (jumpia.WasPressedThisFrame())
+        {
+            playerWeapon.Add(weaponManager.GetWeapon("Sword"));
+            Instantiate(arm, transform.position, Quaternion.identity, transform);
+        }
     }
     public void PlayerMove()
     {
@@ -75,5 +87,28 @@ public class PlayerController : MonoBehaviour
 
         return playerStat;
          
+    }
+    public PlayerWeaponSO GetWeapon()
+    {
+        if (playerWeapon == null) return null;
+        int a = playerWeapon.Count;
+        return playerWeapon[a - 1];
+    }
+    public void OnWeaponArm()
+    {
+        playerWeapon.Add(weaponManager.GetWeapon("Sword"));
+        Instantiate(arm, transform.position, Quaternion.identity, transform);
+        GameObject[] childArm = GetComponentInChildren<GameObject[]>();
+        float angleStep = 360f / childArm.Length;
+        Debug.Log(childArm.Length);
+        for(int i = 0; i < childArm.Length; i++)
+        {
+            float angle = i * angleStep;
+            float x = Mathf.Sin(angle * Mathf.Deg2Rad) * 5f;
+            float y = Mathf.Cos(angle * Mathf.Deg2Rad) * 5f;
+
+            Vector2 pos = transform.position + new Vector3(x, y, 0);
+            childArm[i].transform.position = pos;
+        }
     }
 }
