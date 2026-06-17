@@ -8,18 +8,16 @@ using UnityEngine.AI;
 - 플레이어 추적 기능
  */
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("기본 설정")]
-    [SerializeField] private int maxHp;
+    [SerializeField] private float maxHp;
     [SerializeField] private int armor;
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask targetLayer;
-
-    private int currentHp;
-
-    // 현재 적 오브젝트에 주입된 몬스터 데이터
     [SerializeField] private EnemyData currentEnemy;
+
+    private float currentHp;
     public Transform target;
 
     private Rigidbody2D rb;
@@ -28,6 +26,9 @@ public class EnemyController : MonoBehaviour
     private Coroutine chaseCoroutine;
     // 코루틴 내에서 SetDestination 호출 딜레이
     private WaitForSeconds chaseInterval = new WaitForSeconds(0.5f);
+
+    // 현재 체력이 0보다 작거나 같다면 true 반환
+    public bool IsDead => currentHp <= 0;
 
     private void Awake()
     {
@@ -55,9 +56,20 @@ public class EnemyController : MonoBehaviour
         DetectTarget();
 
         // 타겟을 찾았다면 추적 코루틴 실행
-        if (target != null || chaseCoroutine == null)
+        if (target != null && chaseCoroutine == null)
         {
             chaseCoroutine = StartCoroutine(ChaseTargetCo());
+        }
+    }
+
+    // 비활성화시 남아있는 코루틴과 타겟 초기화
+    private void OnDisable()
+    {
+        target = null;
+        if (chaseCoroutine != null)
+        {
+            StopCoroutine(chaseCoroutine);
+            chaseCoroutine = null;
         }
     }
 
@@ -88,6 +100,25 @@ public class EnemyController : MonoBehaviour
             yield return chaseInterval;
         }
         chaseCoroutine = null;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (IsDead) return; // 이미 죽은 상태면 추가 데미지 연산 무시
+
+        currentHp -= damage;
+
+        // 피해를 입은 직후 체력을 검사하여 사망 처리
+        if (IsDead)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // TODO: 사망 애니메이션 재생, 이펙트 출력, 자원 드랍 등은 이곳에서 집중 처리
+        ReturnToPool();
     }
 
     private void ReturnToPool()
