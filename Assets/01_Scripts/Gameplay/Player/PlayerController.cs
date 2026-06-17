@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Hierarchy;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -98,17 +99,14 @@ public class PlayerController : MonoBehaviour
     {
         playerWeapon.Add(weaponManager.GetWeapon("Sword"));
         Instantiate(arm, transform.position, Quaternion.identity, transform);
-        GameObject[] childArm = GetComponentInChildren<GameObject[]>();
-        float angleStep = 360f / childArm.Length;
-        Debug.Log(childArm.Length);
-        for(int i = 0; i < childArm.Length; i++)
-        {
-            float angle = i * angleStep;
-            float x = Mathf.Sin(angle * Mathf.Deg2Rad) * 5f;
-            float y = Mathf.Cos(angle * Mathf.Deg2Rad) * 5f;
 
-            Vector2 pos = transform.position + new Vector3(x, y, 0);
-            childArm[i].transform.position = pos;
+        float radius = 1.0f;
+        int childNum = transform.childCount;
+        for(int i = 0; i < childNum; i++)
+        {
+            float angle = i * (Mathf.PI * 2f) / childNum;
+            GameObject child = transform.GetChild(i).gameObject;
+            child.transform.position = transform.position + (new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0)) * radius;
         }
     }
 }
