@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(BoxCollider2D))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     private InputAction moveia;
     private InputAction jumpia;
@@ -45,8 +45,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Weapon")]
     [SerializeField] private List<PlayerWeaponSO> playerWeapon;
-    private float nowHp = 100f;
-    private bool invincible = false;
+    private float nowHp { get; set; } = 100f;
+    private bool invincible { get; set; } = false;
 
     private void Awake()
     {
@@ -68,18 +68,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = moveia.ReadValue<Vector2>().normalized;
         rb.linearVelocity = move * (moveSpeed / 100) * baseSpeed * Time.deltaTime;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (invincible == true) return;
-        if (collision.collider.CompareTag(enemyTagName))
-        {
-            co = StartCoroutine(OnEnemyAttack(collision));
-        }
-        else if (collision.collider.CompareTag(enemyAttackTagName))
-        {
-            
-        }
     }
 
     public Dictionary<string, float> PlayerStat()
@@ -106,11 +94,15 @@ public class PlayerController : MonoBehaviour
         int a = playerWeapon.Count;
         return playerWeapon[a - 1];
     }
-    IEnumerator OnEnemyAttack(Collision2D collision)
+    public void TakeDamage(float damage)
+    {
+        if (invincible == true) return;
+        co = StartCoroutine(OnEnemyAttack(damage));
+    }
+    IEnumerator OnEnemyAttack(float damage)
     {
         invincible = true;
-        EnemyAttackData enemyAttackData = collision.collider.GetComponent<EnemyAttackData>();
-        nowHp -= enemyAttackData.attackDamage;
+        nowHp -= damage;
         yield return new WaitForSecondsRealtime(invincibleTime);
         invincible = false;
         co = null;
