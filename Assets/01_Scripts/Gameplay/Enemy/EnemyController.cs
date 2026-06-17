@@ -19,14 +19,15 @@ public class EnemyController : MonoBehaviour
     private int currentHp;
 
     // 현재 적 오브젝트에 주입된 몬스터 데이터
-    private EnemyData currentEnemy;
+    [SerializeField] private EnemyData currentEnemy;
     public Transform target;
 
     private Rigidbody2D rb;
     private NavMeshAgent agent;
 
+    private Coroutine chaseCoroutine;
     // 코루틴 내에서 SetDestination 호출 딜레이
-    private WaitForSeconds chaseInterval = new WaitForSeconds(0.2f);
+    private WaitForSeconds chaseInterval = new WaitForSeconds(0.5f);
 
     private void Awake()
     {
@@ -43,14 +44,20 @@ public class EnemyController : MonoBehaviour
         currentHp = maxHp;
     }
 
+    // 임시 초기화
+    private void Start()
+    {
+        Initialize(currentEnemy);
+    }
+
     private void Update()
     {
         DetectTarget();
 
         // 타겟을 찾았다면 추적 코루틴 실행
-        if (target != null)
+        if (target != null || chaseCoroutine == null)
         {
-            StartCoroutine(SetDestinationToTarget());
+            chaseCoroutine = StartCoroutine(ChaseTargetCo());
         }
     }
 
@@ -91,9 +98,13 @@ public class EnemyController : MonoBehaviour
 
     // NavMeshAgent의 이동 목적지로 타겟의 위치를 설정
     // 최적화를 위해 코루틴에서 SetDestination 호출에 딜레이
-    private IEnumerator SetDestinationToTarget()
+    private IEnumerator ChaseTargetCo()
     {
-        agent.SetDestination(target.position);
-        yield return chaseInterval;
+        while (target != null)
+        {
+            agent.SetDestination(target.position);
+            yield return chaseInterval;
+        }
+        chaseCoroutine = null;
     }
 }
