@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7509945072357289850}
   - component: {fileID: 4963869679104968554}
   m_Layer: 5
-  m_Name: EXPShows
+  m_Name: ExpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 123
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -545,7 +545,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3758262178458202817}
   - component: {fileID: 4471550282632265741}
-  - component: {fileID: 2015446746954164455}
   m_Layer: 5
   m_Name: PlayerHpBar
   m_TagString: Untagged
@@ -626,21 +625,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2015446746954164455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253144916233870325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55be29a3b9d90434cbeb06dd430bea6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HpBarController
-  player: {fileID: 0}
-  hpSlider: {fileID: 4471550282632265741}
-  hpText: {fileID: 9066983105357210670}
 --- !u!1 &2769706706308998225
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8625229872424754066}
   - component: {fileID: 184016596825758770}
-  - component: {fileID: 5658549965774884095}
   m_Layer: 5
   m_Name: PlayerEXPBar
   m_TagString: Untagged
@@ -732,21 +715,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5658549965774884095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2769706706308998225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d64db4d96fb9374a8e7a7d4dae49e0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EXPBarController
-  player: {fileID: 0}
-  expSlider: {fileID: 184016596825758770}
-  expText: {fileID: 4963869679104968554}
 --- !u!1 &3884350109296098782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9188950240699937794}
-  - component: {fileID: 3310467443236882445}
   m_Layer: 5
   m_Name: WaveInfoText
   m_TagString: Untagged
@@ -1213,20 +1180,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -509}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &3310467443236882445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408170318023012004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc67a15e1452c2647893b342f9f817f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaveRoundsAndTimer
-  waveCount: {fileID: 50344952824612215}
-  timer: {fileID: 2098893169916695622}
 --- !u!1 &6067521403117052414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1192,7 @@ GameObject:
   - component: {fileID: 1277766850590640438}
   - component: {fileID: 9066983105357210670}
   m_Layer: 5
-  m_Name: HpShows
+  m_Name: HpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,7 +1245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1326,8 +1279,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -1510,7 +1463,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2605790909041443617}
-  - component: {fileID: 6721395974461772806}
   m_Layer: 5
   m_Name: GoldInfoText
   m_TagString: Untagged
@@ -1539,17 +1491,3 @@ RectTransform:
   m_AnchoredPosition: {x: -977, y: -488}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &6721395974461772806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8099484626054269883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78dddce3547a348498f23c110db2c909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoldText
-  player: {fileID: 0}
-  goldAmount: {fileID: 8059657690429251403}

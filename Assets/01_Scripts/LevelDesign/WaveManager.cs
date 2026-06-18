@@ -36,19 +36,14 @@ public class WaveManager : MonoBehaviour
     }
 
 
-    public void SetupStageWaves(List<WaveData> newstageWaves)
-    {
-        this.stageWaves = newstageWaves;
-    }
+
     public void StartStage()
     {
         stageTime = 0f;
-        
+        currentWaveIndex = 0;
         isWaveActive = true;
 
-        int listIndex = currentWaveIndex % stageWaves.Count;
-
-        StartWave(listIndex);
+        StartWave(currentWaveIndex);
     }
     private void Update()
     {
@@ -60,40 +55,30 @@ public class WaveManager : MonoBehaviour
     }
     public void CheckWaveTimeLine()
     {
-        int listIndex = currentWaveIndex%stageWaves.Count;
+        if(currentWaveIndex<0 || currentWaveIndex >= stageWaves.Count) return;
         WaveData currentWave = stageWaves[currentWaveIndex];
         if(stageTime>=currentWave.waveDuration)
         {
             
             currentWaveIndex++;
-            if(currentWaveIndex % stageWaves.Count == 0)
+            if(currentWaveIndex < stageWaves.Count)
             {
-                isWaveActive=false;
-                Debug.Log($"스테이지 끝남 확인용");
-                //상점 켜기
+                stageTime = 0f;
+                StartWave(currentWaveIndex);
             }
             else
             {
-                stageTime = 0;
-                int nextListIndex = currentWaveIndex%stageWaves.Count;
-                StartWave(nextListIndex);
+                isWaveActive = false;
             }
         }
     }
-    private void StartWave(int targetIndex)
+    private void StartWave(int index)
     {
-        if(stageWaves==null ||  stageWaves.Count==0)
+        if(stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
         {
             return;
         }
         
-        
-        EnemySpawner.Instance.SetupNextWave(stageWaves[targetIndex]);
-    }
-    private void CloseShopToNextStage()
-    {
-        if (isWaveActive) return;
-        //상점끄기
-        StartStage();
+        EnemySpawner.Instance.SetupNextWave(stageWaves[index]);
     }
 }

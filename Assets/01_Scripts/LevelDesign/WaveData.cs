@@ -4,7 +4,7 @@ using System;
 [System.Serializable]
 public struct SpawnInfo
 {
-    public EnemyController enemyPrefab; // 적 프리팹
+    public EnemyData enemyData; // 적 프리팹
     public int spawnCount; //스폰되는 적 수
     public float spawnInterval; //스폰 간격
 

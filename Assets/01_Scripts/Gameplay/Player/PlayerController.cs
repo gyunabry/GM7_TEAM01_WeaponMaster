@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(BoxCollider2D))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     private InputAction moveia;
     private InputAction jumpia;
@@ -39,15 +39,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float evasion = 0f;
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private float invincibleTime = 1.0f;
+    [SerializeField] private float nowExp = 0;
+    [SerializeField] private float reqExp = 50;
+    [SerializeField] private float gold = 0;
 
     [Header("Player default")]
     [SerializeField] private float baseSpeed = 500f;
 
     [Header("Player Weapon")]
     [SerializeField] private List<PlayerWeaponSO> playerWeapon;
-    private float nowHp = 100f;
-    private bool invincible = false;
-
+    private float nowHp { get; set; } = 100f;
+    private bool invincible { get; set; } = false;
+    private int ijk = 1; //임시 변수 (삭제할것)
     private void Awake()
     {
         moveia = InputSystem.actions.FindAction("Move");
@@ -57,7 +60,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(nowHp);
         PlayerMove();
         if (jumpia.WasPressedThisFrame())
         {
@@ -68,18 +70,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = moveia.ReadValue<Vector2>().normalized;
         rb.linearVelocity = move * (moveSpeed / 100) * baseSpeed * Time.deltaTime;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (invincible == true) return;
-        if (collision.collider.CompareTag(enemyTagName))
-        {
-            co = StartCoroutine(OnEnemyAttack(collision));
-        }
-        else if (collision.collider.CompareTag(enemyAttackTagName))
-        {
-            
-        }
     }
 
     public Dictionary<string, float> PlayerStat()
@@ -106,22 +96,55 @@ public class PlayerController : MonoBehaviour
         int a = playerWeapon.Count;
         return playerWeapon[a - 1];
     }
-    IEnumerator OnEnemyAttack(Collision2D collision)
+    public void TakeDamage(float damage)
+    {
+        if (invincible == true) return;
+        co = StartCoroutine(OnEnemyAttack(damage));
+    }
+    public float GetMaxHp()
+    {
+        return this.maxHp;
+    }
+    public float GetNowHp()
+    {
+        return this.nowHp;
+    }
+    public float GetNowExp()
+    {
+        return this.nowExp;
+    }
+    public float GetReqExp()
+    {
+        return this.reqExp;
+    }
+    public float GetNowGold()
+    {
+        return this.gold;
+    }
+    IEnumerator OnEnemyAttack(float damage)
     {
         invincible = true;
-        EnemyAttackData enemyAttackData = collision.collider.GetComponent<EnemyAttackData>();
-        nowHp -= enemyAttackData.attackDamage;
+        nowHp -= damage;
         yield return new WaitForSecondsRealtime(invincibleTime);
         invincible = false;
         co = null;
     }
     public void OnWeaponArm() //이곳 무기 획득 UI완성시 최우선으로 바꿀것
     {
-        playerWeapon.Add(weaponManager.GetWeapon("Sword"));
-        Instantiate(arm, transform.position, Quaternion.identity, transform);
+        if(ijk % 2 == 0)
+        {
+            playerWeapon.Add(weaponManager.GetWeapon("Bow"));
+            ijk++;
+        }
+        else
+        {
+            playerWeapon.Add(weaponManager.GetWeapon("Sword"));
+            ijk++;
+        }
+            Instantiate(arm, transform.position, Quaternion.identity, transform);
 
         float radius = 1f;
-        int childNum = transform.childCount;
+        int childNum = transform.childCount - 1;
         if (childNum == 2) 
         {
             childNum++;

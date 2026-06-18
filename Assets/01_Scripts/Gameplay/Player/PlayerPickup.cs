@@ -5,8 +5,8 @@ public class PlayerPickup : MonoBehaviour
 {
     private CircleCollider2D cc;
     [Header("Tag")]
-    [SerializeField] private string expTagName;
-    [SerializeField] private string itemTagName;
+    [SerializeField] private LayerMask expLayerName;
+    [SerializeField] private LayerMask itemLayerName;
     private void Awake()
     {
         cc = GetComponent<CircleCollider2D>();
@@ -14,11 +14,11 @@ public class PlayerPickup : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(expTagName))
+        if ((expLayerName.value & (1 << collision.gameObject.layer)) !=0)
         {
 
         }
-        else if (collision.CompareTag(itemTagName))
+        else if ((itemLayerName.value & (1 << collision.gameObject.layer)) != 0)
         {
 
         }
