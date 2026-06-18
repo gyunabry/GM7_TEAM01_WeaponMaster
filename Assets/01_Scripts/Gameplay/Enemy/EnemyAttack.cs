@@ -1,10 +1,14 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private EnemyAttackData attackData;
+    // 몬스터가 가질 수 있는 패턴 목록을 받음
+    [SerializeField] private List<EnemyPatternData> enemyPattern;
+    //[SerializeField] private EnemyAttackData attackData;
     private EnemyController enemyController;
     private NavMeshAgent agent;
 
@@ -19,41 +23,57 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnEnable()
     {
-        // 풀에서 꺼내어질 때 스스로 기본 데이터 초기화
-        attackTimer = attackData.attackCooltime;
+        // 첫 공격 전 대기 시간
+        attackTimer = 2f;
     }
 
     private void Update()
     {
-        if (attackData == null || enemyController.target == null || isAttacking) return;
+        // 패턴이 없거나, 타겟이 없거나, 이미 공격 중이라면 리턴
+        if (enemyPattern == null || enemyPattern.Count == 0 || enemyController.target == null || isAttacking) return;
 
         attackTimer += Time.deltaTime;
 
-        float currentAttackRange = (attackData.attackType == AttackType.Dash) ? attackData.dashRange : 4f;
+        // 첫 번째 패턴 조건을 검사
+        EnemyPatternData currentPattern = enemyPattern[0];
         float distanceToTarget = Vector2.Distance(transform.position, enemyController.target.position);
 
-        if (distanceToTarget <= currentAttackRange && attackTimer >= attackData.attackCooltime)
+        if (distanceToTarget <= currentPattern.triggerRange && attackTimer >= currentPattern.patternCooltime)
         {
-            ExecuteAttack();
+            StartCoroutine(ExecutePatternSequenceCo(currentPattern));
         }
     }
 
-    // AttackType에 따라 공격 방식 스위칭
-    private void ExecuteAttack()
+    // 복합적인 패턴을 순차적으로 실행하는 코루틴
+    private IEnumerator ExecutePatternSequenceCo(EnemyPatternData pattern)
     {
         isAttacking = true;
         attackTimer = 0f;
 
-        switch (attackData.attackType)
+        // 패턴 안에 등록된 공격을 순서대로 실행
+        foreach (EnemyAttackData actionData in pattern.attackSequence)
+        {
+            yield return StartCoroutine(ExecuteSingleActionCo(actionData));
+
+            yield return new WaitForSeconds(pattern.actionDelay);
+        }
+
+        isAttacking = false;
+    }
+
+    // 복합패턴 내 단일 공격을 실행하는 코루틴
+    private IEnumerator ExecuteSingleActionCo(EnemyAttackData actionData)
+    {
+        switch (actionData.attackType) //
         {
             case AttackType.Melee:
-                StartCoroutine(MeleeAttackCo());
+                yield return StartCoroutine(MeleeAttackCo());
                 break;
             case AttackType.Dash:
-                StartCoroutine(DashAttackCo());
+                yield return StartCoroutine(DashAttackCo(actionData));
                 break;
             case AttackType.Range:
-                StartCoroutine(RangeAttackCo());
+                yield return StartCoroutine(RangeAttackCo(actionData));
                 break;
         }
     }
@@ -61,20 +81,22 @@ public class EnemyAttack : MonoBehaviour
     #region 공격타입 코루틴
     private IEnumerator MeleeAttackCo()
     {
+        
         yield return null;
     }
 
-    private IEnumerator DashAttackCo()
+    private IEnumerator DashAttackCo(EnemyAttackData data)
     {
         // 대쉬 전 대기 동작
         agent.isStopped = true;
         Vector3 lastPosition = enemyController.target.position; // 대쉬 직전 타겟 위치 저장
         Vector3 dashDirection = (lastPosition - transform.position).normalized;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         // 대쉬 실행
-        float dashSpeed = 10f;
-        float dashDuration = 0.2f;
+        float dashSpeed = data.dashSpeed;
+        float dashRange = data.dashRange;
+        float dashDuration = dashRange / dashSpeed;
         float time = 0;
 
         while (time < dashDuration)
@@ -86,40 +108,57 @@ public class EnemyAttack : MonoBehaviour
 
         // 추적 재개
         agent.isStopped = false;
-        isAttacking = false;
     }
 
-    private IEnumerator RangeAttackCo()
+    private IEnumerator RangeAttackCo(EnemyAttackData data)
     {
         agent.isStopped = true; // 원거리 공격 시 추적 일시정지
+        yield return new WaitForSeconds(1f); // 발사 전 딜레이
 
-        switch (attackData.bulletPattern)
+        switch (data.bulletPattern)
         {
             case BulletPattern.Straight:
-                FireStraight();
+                FireStraight(data);
+                break;
+            case BulletPattern.Cone:
+                FireCone(data); 
                 break;
             case BulletPattern.Circle:
-                FireCircle();
+                FireCircle(data);
                 break;
-                // TODO: 원뿔, 궤도형 공격 추가 구현
+            case BulletPattern.Orbit:
+                FireOrbit(data);
+                break;
         }
 
         yield return new WaitForSeconds(0.5f); // 발사 후 딜레이
-
         agent.isStopped = false;
-        isAttacking = false;
     }
     #endregion
 
     #region 탄막 패턴
-    private void FireStraight()
+    private void FireStraight(EnemyAttackData attackData)
     {
         // 타겟 방향으로 발사
         Vector2 direction = (enemyController.target.position - transform.position).normalized;
-        SpawnProjectile(direction);
+        SpawnProjectile(attackData, direction);
     }
 
-    private void FireCircle()
+    private void FireCone(EnemyAttackData attackData)
+    {
+        float angleRange = attackData.spreadAngle; // 데이터 상 발사각
+        float startAngle = -angleRange * 0.5f; // 시작 각도
+        float angleStep = angleRange / (attackData.projectileCount - 1); // 투사체 간 간격
+        
+        for (int i = 0; i < attackData.projectileCount; i++)
+        {
+            float angle = startAngle + angleStep * i;
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * transform.right;
+            SpawnProjectile(attackData, direction);
+        }
+    }
+
+    private void FireCircle(EnemyAttackData attackData)
     {
         // 360도를 투사체 개수만큼 나누어 전방위로 발사
         float angleStep = 360f / attackData.projectileCount;
@@ -133,12 +172,18 @@ public class EnemyAttack : MonoBehaviour
             Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
             Vector2 projectileMoveDirection = (projectileVector - (Vector2)transform.position).normalized;
 
-            SpawnProjectile(projectileMoveDirection);
+            SpawnProjectile(attackData, projectileMoveDirection);
             angle += angleStep;
         }
     }
 
-    private void SpawnProjectile(Vector2 direction)
+    // 보스 전용 패턴
+    private void FireOrbit(EnemyAttackData attackData)
+    {
+        
+    }
+
+    private void SpawnProjectile(EnemyAttackData attackData, Vector2 direction)
     {
         EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
         // 투사체의 현재 위치를 몬스터의 위치로 설정
