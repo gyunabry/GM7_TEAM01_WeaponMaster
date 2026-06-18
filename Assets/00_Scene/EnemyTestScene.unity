@@ -4342,6 +4342,7 @@ MonoBehaviour:
   maxX: 10
   minY: -7.9
   maxY: 6.3
+  genericEnemyPrefab: {fileID: 0}
 --- !u!1 &1095555431
 GameObject:
   m_ObjectHideFlags: 0

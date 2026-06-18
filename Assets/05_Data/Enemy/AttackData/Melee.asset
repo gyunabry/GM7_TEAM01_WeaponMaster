@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeed7f86e8fa8814db2ed9b4aa9ecd81, type: 3}
-  m_Name: RangeStraight
+  m_Name: Melee
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackData
-  attackType: 2
-  attackDamage: 5
-  attackCooltime: 2
+  attackType: 0
+  attackDamage: 10
+  attackCooltime: 0
   dashSpeed: 0
   dashRange: 0
   bulletPattern: 0
-  projectilePrefab: {fileID: 3417943345609019291, guid: 4fd4728aaea86a446be250ad4aefecf3, type: 3}
-  projectileSpeed: 5
-  projectileCount: 1
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0
+  projectileCount: 0
   spreadAngle: 0
   orbitRadius: 0
   orbitSpeed: 0

@@ -7,8 +7,7 @@ using UnityEngine.AI;
 public class EnemyAttack : MonoBehaviour
 {
     // 몬스터가 가질 수 있는 패턴 목록을 받음
-    [SerializeField] private List<EnemyPatternData> enemyPattern;
-    //[SerializeField] private EnemyAttackData attackData;
+    private List<EnemyPatternData> enemyPattern;
     private EnemyController enemyController;
     private NavMeshAgent agent;
 
@@ -19,12 +18,6 @@ public class EnemyAttack : MonoBehaviour
     {
         enemyController = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    private void OnEnable()
-    {
-        // 첫 공격 전 대기 시간
-        attackTimer = 2f;
     }
 
     private void Update()
@@ -42,6 +35,14 @@ public class EnemyAttack : MonoBehaviour
         {
             StartCoroutine(ExecutePatternSequenceCo(currentPattern));
         }
+    }
+
+    public void Initialize(List<EnemyPatternData> patterns)
+    {
+        enemyPattern = patterns;
+
+        attackTimer = 2f;
+        isAttacking = false;
     }
 
     // 복합적인 패턴을 순차적으로 실행하는 코루틴

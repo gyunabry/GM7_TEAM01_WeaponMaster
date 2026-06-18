@@ -15,6 +15,12 @@ MonoBehaviour:
   waveStartTiming: 30
   waveDuration: 30
   spawnList:
-  - enemyPrefab: {fileID: 7085451030641730648, guid: ead5f00e5285a2749af527468e022cf1, type: 3}
-    spawnCount: 4
+  - enemyData: {fileID: 11400000, guid: 2155c55d6e3c3db48930be475764228b, type: 2}
+    spawnCount: 2
     spawnInterval: 2.5
+  - enemyData: {fileID: 11400000, guid: 83c96bf1491e72b43a6eb58a97d36658, type: 2}
+    spawnCount: 1
+    spawnInterval: 2.5
+  - enemyData: {fileID: 11400000, guid: 770947e3fc2c38947b8d93c23a6e14fd, type: 2}
+    spawnCount: 1
+    spawnInterval: 7
