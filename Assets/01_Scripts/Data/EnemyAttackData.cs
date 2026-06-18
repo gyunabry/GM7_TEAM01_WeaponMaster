@@ -24,17 +24,19 @@ public class EnemyAttackData : ScriptableObject
     public float attackCooltime;
 
     [Header("대쉬 공격 설정")]
+    public float dashSpeed;
     public float dashRange;
 
     [Header("원거리 공격 설정")]
     public BulletPattern bulletPattern;
     public EnemyBullet projectilePrefab;
     public float projectileSpeed;
-
     [Tooltip("투사체 개수")]
     public int projectileCount;
     [Tooltip("투사체 발사 각도")]
     public float spreadAngle;
+
+    [Header("궤도 공격")]
     [Tooltip("궤도 반지름")]
     public float orbitRadius;
     [Tooltip("궤도 회전 속도")]

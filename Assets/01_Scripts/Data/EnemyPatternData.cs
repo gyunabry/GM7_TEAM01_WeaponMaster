@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyPatternData : ScriptableObject
 {
     [Header("패턴 기본 설정")]
-    public float patternRange = 5f;
+    public float triggerRange = 5f;
     public float patternCooltime = 5f;
 
     [Header("공격 시퀀스")]
