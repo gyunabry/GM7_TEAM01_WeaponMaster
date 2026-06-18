@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour
     public float arrowSpeed;
     private PlayerAttack playerAttack;
     private PlayerWeaponSO playerWeapon;
+<<<<<<< HEAD
     private PlayerController playerController;
 
 
@@ -14,6 +15,21 @@ public class Arrow : MonoBehaviour
     {
         Vector2 dir = new Vector2(1f, 1f);
         transform.Translate(dir * arrowSpeed * Time.deltaTime);
+=======
+    private void Awake()
+    {
+        playerWeapon = GetComponentInParent<PlayerWeaponSO>();
+    }
+    public void SetPool(ObjectPool<Arrow> pool)
+    {
+        this.pool = pool;
+    }
+
+    void Update()
+    {
+        transform.Translate(Vector2.up * arrowSpeed * Time.deltaTime);
+        co = StartCoroutine(ReleaseTime());
+>>>>>>> parent of c78d4e96 (feat: bow & stat)
     }
     private void OnEnable()
     {
@@ -31,6 +47,7 @@ public class Arrow : MonoBehaviour
         CancelInvoke(nameof(ReturnToPool));
         PoolManager.Instance.ReturnPool(this);
     }
+<<<<<<< HEAD
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
@@ -42,4 +59,6 @@ public class Arrow : MonoBehaviour
             }
         }
     }
+=======
+>>>>>>> parent of c78d4e96 (feat: bow & stat)
 }

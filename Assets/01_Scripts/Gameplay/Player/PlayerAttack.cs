@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
         playerWeapon = playerController.GetWeapon();
         Vector3 srPosition = transform.position;
         srPosition.x += 0.3f;
-        GetPlayerStat();
+        
         GameObject go = Instantiate(weaponSprite, srPosition, Quaternion.Euler(0f, 0f, -45f), transform);
         SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
         sr.sprite = playerWeapon.weaponIcon;
@@ -38,15 +38,12 @@ public class PlayerAttack : MonoBehaviour
     }
     void Update()
     {
+        playerStat = playerController.PlayerStat();
         if (isCo == false)
         {
             isCo = true;
             co = StartCoroutine(Weapon());
         }
-    }
-    public void GetPlayerStat()
-    {
-        playerStat = playerController.PlayerStat();
     }
     IEnumerator Weapon()
     {
@@ -82,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
         {
             isAttackCo = true;
             Vector2 nowTrans = transform.localPosition;
-            Vector2 direction = other.transform.position - transform.position;
+            Vector2 direction = other.transform.position - transform.position.normalized;
             Vector2 targetPosition = (Vector2)other.transform.position - (direction *0.3f);
             transform.position = targetPosition;
             yield return new WaitForSecondsRealtime(0.2f);
@@ -90,15 +87,21 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitForSecondsRealtime(playerWeapon.weaponAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;
+
+            
         }
         else if(playerWeapon.weaponType.ToString() == "Bow")
         {
             isAttackCo = true;
+<<<<<<< HEAD
             Vector2 direction = (other.transform.position - transform.position).normalized;
             SpawnProjectile(direction);
             yield return new WaitForSecondsRealtime(playerWeapon.weaponAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;
+=======
+
+>>>>>>> parent of c78d4e96 (feat: bow & stat)
         }
     }
     private void SpawnProjectile(Vector2 direction)

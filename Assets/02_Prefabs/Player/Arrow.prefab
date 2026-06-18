@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1088688658188734609}
   - component: {fileID: -5691132380141013013}
   - component: {fileID: -918723293895279433}
-  - component: {fileID: -2419884316531287467}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -65,7 +64,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,16 +151,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11705e8a14b507418ee863d8e33db9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackPoint
---- !u!114 &-2419884316531287467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3771597096462802541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be96da7c761563478602e656dbfdb8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  arrowSpeed: 2

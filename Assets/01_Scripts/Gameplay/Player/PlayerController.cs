@@ -39,9 +39,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private float evasion = 0f;
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private float invincibleTime = 1.0f;
-    [SerializeField] private float nowExp = 0;
-    [SerializeField] private float reqExp = 50;
-    [SerializeField] private float gold = 0;
 
     [Header("Player default")]
     [SerializeField] private float baseSpeed = 500f;
@@ -60,6 +57,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Update()
     {
+        Debug.Log(nowHp);
         PlayerMove();
         if (jumpia.WasPressedThisFrame())
         {
@@ -101,26 +99,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (invincible == true) return;
         co = StartCoroutine(OnEnemyAttack(damage));
     }
-    public float GetMaxHp()
-    {
-        return this.maxHp;
-    }
-    public float GetNowHp()
-    {
-        return this.nowHp;
-    }
-    public float GetNowExp()
-    {
-        return this.nowExp;
-    }
-    public float GetReqExp()
-    {
-        return this.reqExp;
-    }
-    public float GetNowGold()
-    {
-        return this.gold;
-    }
     IEnumerator OnEnemyAttack(float damage)
     {
         invincible = true;
@@ -131,7 +109,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     public void OnWeaponArm() //이곳 무기 획득 UI완성시 최우선으로 바꿀것
     {
-        playerWeapon.Add(weaponManager.GetWeapon("Bow"));
+        playerWeapon.Add(weaponManager.GetWeapon("Sword"));
         Instantiate(arm, transform.position, Quaternion.identity, transform);
 
         float radius = 1f;

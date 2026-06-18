@@ -5,10 +5,10 @@ public class ArrowPooling : MonoBehaviour
 {
     [SerializeField] private Arrow arrowPrefab;
 
-    [SerializeField] private int defalutCapacity = 20;
-    [SerializeField] private int maxSize = 50;
+    [SerializeField] private int defalutCapacity = 100;
+    [SerializeField] private int maxSize = 500;
 
-    public ObjectPool<Arrow> pool;
+    private ObjectPool<Arrow> pool;
     private void Awake()
     {
         pool = new ObjectPool<Arrow>(
@@ -20,10 +20,6 @@ public class ArrowPooling : MonoBehaviour
             defalutCapacity,
             maxSize
             );
-    }
-    public Arrow ArrowPool()
-    {
-        return pool.Get();
     }
     private Arrow CreatePool()
     {
