@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public enum Difficulty { Normal, Hard, Hell}
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
+
+    public event Action<int> OnWaveStarted;
+    public event Action<float> OnTimeChanged;
+    public event Action OnShopOpened;
 
     [Header("난이도 설정")]
     [SerializeField] private Difficulty currentDifficulty = Difficulty.Normal;
@@ -19,6 +24,11 @@ public class WaveManager : MonoBehaviour
     public float SpawnCountMultiplier => currentDifficulty == Difficulty.Hard ? 1.2f : (currentDifficulty == Difficulty.Hell ? 1.5f : 1.0f);
     public float EnemyHpMultiplier => currentDifficulty == Difficulty.Hard ? 1.2f : (currentDifficulty == Difficulty.Hell ? 1.5f : 1.0f);
     public float EnemyMoveSpeedMultiplier => currentDifficulty == Difficulty.Hard?1.2f : (currentDifficulty == Difficulty.Hell?1.5f : 1.0f);
+
+    public int CurrentWave => currentWaveIndex + 1;
+    public float WaveTime => stageTime;
+
+    public bool WaveActive => isWaveActive;
 
     private void Awake()
     {
@@ -44,7 +54,9 @@ public class WaveManager : MonoBehaviour
     {
         if (!isWaveActive) return;
         stageTime += Time.deltaTime;
-        
+
+        OnTimeChanged?.Invoke(stageTime);
+
         CheckWaveTimeLine();
 
     }
@@ -64,6 +76,8 @@ public class WaveManager : MonoBehaviour
             else
             {
                 isWaveActive = false;
+
+                OnShopOpened?.Invoke();
             }
         }
     }
@@ -75,5 +89,7 @@ public class WaveManager : MonoBehaviour
         }
         
         EnemySpawner.Instance.SetupNextWave(stageWaves[index]);
+
+        OnWaveStarted?.Invoke(CurrentWave);
     }
 }
