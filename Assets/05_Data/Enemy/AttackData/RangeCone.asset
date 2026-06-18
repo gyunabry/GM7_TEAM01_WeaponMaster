@@ -19,7 +19,7 @@ MonoBehaviour:
   dashRange: 0
   bulletPattern: 1
   projectilePrefab: {fileID: 3417943345609019291, guid: 4fd4728aaea86a446be250ad4aefecf3, type: 3}
-  projectileSpeed: 7
+  projectileSpeed: 5
   projectileCount: 3
   spreadAngle: 60
   orbitRadius: 0

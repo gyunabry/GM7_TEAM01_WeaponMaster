@@ -12,7 +12,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float maxX = 10f;
     [SerializeField] private float minY = -7.9f;
     [SerializeField] private float maxY = 6.3f;
-    
+
+    [SerializeField] private EnemyController genericEnemyPrefab;
 
     private List<Coroutine> activeSpawnCoroutines = new List<Coroutine>();
 
@@ -44,7 +45,8 @@ public class EnemySpawner : MonoBehaviour
             for(int i = 0; i<theSpawnCount; i++)
             {
                 //GameObject enemy = Instantiate(info.enemyPrefab);
-                EnemyController enemy = PoolManager.Instance.GetPool(info.enemyPrefab);
+                EnemyController enemy = PoolManager.Instance.GetPool(genericEnemyPrefab);
+                enemy.Initialize(info.enemyData);
 
                 float randomX = Random.Range(minX, maxX);
                 float randomY = Random.Range(minY, maxY);

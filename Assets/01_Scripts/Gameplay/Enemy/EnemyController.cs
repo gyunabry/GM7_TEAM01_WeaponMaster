@@ -15,13 +15,15 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private int armor;
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private EnemyData currentEnemy;
+    
+    private EnemyData currentEnemy;
 
     private float currentHp;
     public Transform target;
 
     private Rigidbody2D rb;
     private NavMeshAgent agent;
+    private EnemyAttack enemyAttack;
 
     private Coroutine chaseCoroutine;
     // 코루틴 내에서 SetDestination 호출 딜레이
@@ -34,21 +36,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
+        enemyAttack = GetComponent<EnemyAttack>();
 
         // Z축 회전 방지
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-    }
-
-    private void OnEnable()
-    {
-        // 풀에서 꺼내어질 때 스스로 기본 데이터 초기화
-        maxHp = currentEnemy.maxHp;
-        armor = currentEnemy.armor;
-        moveSpeed = currentEnemy.moveSpeed;
-
-        currentHp = maxHp;
-        ApplyStatusAgent();
     }
 
     private void Update()
@@ -76,6 +68,27 @@ public class EnemyController : MonoBehaviour, IDamageable
             StopCoroutine(chaseCoroutine);
             chaseCoroutine = null;
         }
+    }
+
+    public void Initialize(EnemyData data)
+    {
+        currentEnemy = data;
+
+        // 주입 확인용
+        gameObject.name = data.enemyName;
+
+        maxHp = data.maxHp;
+        armor = data.armor;
+        moveSpeed = data.moveSpeed;
+        currentHp = maxHp;
+
+        // enemyAttack이 있다면 현재 몬스터의 공격 패턴 주입
+        if (enemyAttack != null)
+        {
+            enemyAttack.Initialize(currentEnemy.enemyPattern);
+        }
+
+        ApplyStatusAgent();
     }
 
     private void DetectTarget()
