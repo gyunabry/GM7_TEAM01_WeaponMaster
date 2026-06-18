@@ -4200,15 +4200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2bf3d41c5693f42ba5f0304cedab81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  spawnPoints:
-  - {fileID: 478332621}
-  - {fileID: 1395166254}
-  - {fileID: 625230014}
-  - {fileID: 1266214167}
-  - {fileID: 562146699}
-  - {fileID: 973705851}
-  - {fileID: 1403498171}
-  - {fileID: 1166005364}
+  minX: -10
+  maxX: 10
+  minY: -7.9
+  maxY: 6.3
 --- !u!1 &1095555431
 GameObject:
   m_ObjectHideFlags: 0

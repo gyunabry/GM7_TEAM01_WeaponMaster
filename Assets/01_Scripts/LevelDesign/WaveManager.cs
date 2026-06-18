@@ -20,6 +20,11 @@ public class WaveManager : MonoBehaviour
     public float EnemyHpMultiplier => currentDifficulty == Difficulty.Hard ? 1.2f : (currentDifficulty == Difficulty.Hell ? 1.5f : 1.0f);
     public float EnemyMoveSpeedMultiplier => currentDifficulty == Difficulty.Hard?1.2f : (currentDifficulty == Difficulty.Hell?1.5f : 1.0f);
 
+    public int CurrentWave => currentWaveIndex + 1;
+    public float WaveTime => stageTime;
+
+    public bool WaveActive => isWaveActive;
+
     private void Awake()
     {
         Instance = this;
