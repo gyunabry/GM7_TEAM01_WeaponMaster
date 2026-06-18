@@ -12,6 +12,7 @@ public class Arrow : MonoBehaviour
     private PlayerController playerController;
 
 
+<<<<<<< Updated upstream
     void Update()
     {
         Vector2 dir = new Vector2(1f, 1f);
@@ -34,9 +35,13 @@ public class Arrow : MonoBehaviour
         co = StartCoroutine(ReleaseTime());
 >>>>>>> parent of c78d4e96 (feat: bow & stat)
     }
+=======
+    
+>>>>>>> Stashed changes
     private void OnEnable()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        playerAttack = FindAnyObjectByType<PlayerAttack>();
         playerWeapon = playerController.GetWeapon();
         Vector2 direction = playerAttack.colliderA.transform.position - transform.position;
         float rotz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

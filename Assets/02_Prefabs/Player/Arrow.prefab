@@ -12,6 +12,11 @@ GameObject:
   - component: {fileID: 1088688658188734609}
   - component: {fileID: -5691132380141013013}
   - component: {fileID: -918723293895279433}
+<<<<<<< Updated upstream
+=======
+  - component: {fileID: -2419884316531287467}
+  - component: {fileID: 8067616326036642366}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -151,3 +156,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11705e8a14b507418ee863d8e33db9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackPoint
+<<<<<<< Updated upstream
+=======
+--- !u!114 &-2419884316531287467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771597096462802541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be96da7c761563478602e656dbfdb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arrow
+  arrowSpeed: 2
+--- !u!50 &8067616326036642366
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771597096462802541}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+>>>>>>> Stashed changes
