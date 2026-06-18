@@ -128,7 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fd3b40bb1faf42b9e9b4cdf3bb9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  attackData: {fileID: 11400000, guid: c80215d73d7535d478ae37d2e3517269, type: 2}
+  enemyPattern:
+  - {fileID: 11400000, guid: 9018baa0a6ec97d41994a52743ddcf2c, type: 2}
 --- !u!50 &309963622050813361
 Rigidbody2D:
   serializedVersion: 5

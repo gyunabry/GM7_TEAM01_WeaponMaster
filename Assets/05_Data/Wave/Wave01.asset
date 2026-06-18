@@ -16,5 +16,5 @@ MonoBehaviour:
   waveDuration: 25
   spawnList:
   - enemyPrefab: {fileID: 7085451030641730648, guid: ead5f00e5285a2749af527468e022cf1, type: 3}
-    spawnCount: 2
-    spawnInterval: 2.5
+    spawnCount: 1
+    spawnInterval: 5
