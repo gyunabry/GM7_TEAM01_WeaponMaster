@@ -136,7 +136,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        // TODO: 사망 애니메이션 재생, 이펙트 출력, 자원 드랍 등은 이곳에서 집중 처리
+        // TODO: 사망 애니메이션 재생, 이펙트 출력, 자원 드랍 등은 이곳에서 처리
+        GameManager.Instance.AddKillCount();
         ReturnToPool();
     }
 
