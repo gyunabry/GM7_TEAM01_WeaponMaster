@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,20 +19,36 @@ public class PlayerAttackPoint : MonoBehaviour
     {
         playerAttack = GetComponentInParent<PlayerAttack>();
         playerController = FindAnyObjectByType<PlayerController>();
+        SetWeaponType();
+
+    }
+    public void SetWeaponType()
+    {
         if (transform.parent != null)
         {
-        weaponType = playerAttack.GetParentType();
+            weaponType = playerAttack.GetParentType();
         }
         weaponStat = playerController.GetWeaponStat(weaponType);
     }
-
+    public void SetWeaponStat()
+    {
+        weaponStat = playerController.GetWeaponStat(weaponType);
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             float damage = weaponStat.weaponDamage;
-            ue?.Invoke();
-            
+            EnemyController enemy;
+            collision.TryGetComponent<EnemyController>(out enemy);
+            if(enemy != null)
+            {
+            enemy.TakeDamage(damage);
+            }
         }
     }
+    
+        
+       
+    
 }

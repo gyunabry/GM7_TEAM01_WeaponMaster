@@ -34,7 +34,6 @@ public class PlayerAttack : MonoBehaviour
     {
         arrowPooling = FindFirstObjectByType<ArrowPooling>();
         playerController = GetComponentInParent<PlayerController>();
-        parentTrans = GetComponentInParent<Transform>();
         GetPlayerStat();
     }
     public void OnPrefabLoaded(AsyncOperationHandle<GameObject> handle)
@@ -53,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-
+            Debug.Log("무기 프리팹이 없거나 이름이 다름");
         }
     }
     private void Start()
@@ -61,9 +60,7 @@ public class PlayerAttack : MonoBehaviour
         playerWeapon = playerController.GetWeapon();
         weaponType = playerWeapon.weaponType;
         weaponName = weaponType.ToString();
-
         Addressables.InstantiateAsync(weaponType.ToString()).Completed += OnPrefabLoaded;
-        
     }
     // GameObject go = Instantiate(weaponSprite, srPosition, Quaternion.Euler(0f, 0f, -45f), transform);
 
@@ -137,9 +134,9 @@ public class PlayerAttack : MonoBehaviour
             Vector2 direction = other.transform.position - transform.position;
             float rotz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -90f;
             Arrow arrow = arrowPooling.ArrowPool();
+            arrow.transform.SetParent(transform);
             arrow.transform.position = transform.position;
             arrow.transform.Rotate(0f, 0f, rotz + 45f);
-            Debug.Log("asd");
             yield return new WaitForSecondsRealtime(playerWeapon.weaponAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;

@@ -7,17 +7,13 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float arrowSpeed;
     private ObjectPool<Arrow> pool;
     private Coroutine co;
-    
 
-    private void Awake()
-    {
-        
-    }
     
     public void SetPool(ObjectPool<Arrow> pool)
     {
         this.pool = pool;
     }
+    
 
     void Update()
     {
@@ -27,6 +23,8 @@ public class Arrow : MonoBehaviour
     }
     IEnumerator ReleaseTime()
     {
+        yield return null;
+        gameObject.transform.SetParent(null);
         yield return new WaitForSecondsRealtime(5.0f);
         pool.Release(this);
         co = null;

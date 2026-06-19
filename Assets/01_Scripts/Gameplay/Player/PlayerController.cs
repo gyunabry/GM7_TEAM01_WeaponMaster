@@ -144,6 +144,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         invincible = true;
         nowHp -= damage;
+        if (nowHp < 0) 
+        {
+            nowHp = 0;
+        }
+        //죽었을때 사용할 명령어
+        Debug.Log("죽었다!"); //임시 명령어
         yield return new WaitForSecondsRealtime(invincibleTime);
         invincible = false;
         co = null;
@@ -153,17 +159,26 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if(playerWeapon.Count == 0)
         {
-            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Sword);
+            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Bow);
         }
         else if (playerWeapon.Count == 1)
         {
-            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Bow);
+            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Sword);
+        }
+        else if(playerWeapon.Count == 2)
+        {
+            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Sword);
         }
         else
         {
             return;
         }
-            PlayerWeaponSO.WeaponType imWeaponType = weaponManager.GetWeaponType(reWeaponType);
+        PlayerWeaponSO pws;
+        if(playerWeapon.TryGetValue(reWeaponType, out pws))
+        {
+            return;
+        }
+        PlayerWeaponSO.WeaponType imWeaponType = weaponManager.GetWeaponType(reWeaponType);
         PlayerWeaponSO imWeapon = weaponManager.GetWeapon(reWeaponType);
         playerWeapon.Add(imWeaponType, imWeapon);
         
