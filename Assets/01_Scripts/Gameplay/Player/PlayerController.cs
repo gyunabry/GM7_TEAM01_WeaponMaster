@@ -213,14 +213,14 @@ public class PlayerController : MonoBehaviour, IDamageable
                 if (i == 1) {
                     i++;
                     float angle2 = Mathf.PI * 1.83f + i * (Mathf.PI * 2f) / childNum;
-                    GameObject child2 = transform.GetChild(i).gameObject;
+                    GameObject child2 = transform.GetChild(i+1).gameObject;
                     float x2 = Mathf.Cos(angle2);
                     float y2 = Mathf.Sin(angle2);
                     child2.transform.position = transform.position + new Vector3(x2, y2, 0) * radius;
                     break;
                 }
                 float angle = Mathf.PI * 1.83f + i * (Mathf.PI * 2f) / childNum;
-                GameObject child = transform.GetChild(i+1).gameObject;
+                GameObject child = transform.GetChild(i+2).gameObject;
                 float x = Mathf.Cos(angle);
                 float y = Mathf.Sin(angle);
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             for (int i = 0; i < childNum; i++)
             {
                 float angle = Mathf.PI * 1.75f + i * (Mathf.PI * 2f) / childNum;
-                GameObject child = transform.GetChild(i+1).gameObject;
+                GameObject child = transform.GetChild(i+2).gameObject;
                 float x = Mathf.Cos(angle);
                 float y = Mathf.Sin(angle);
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             for (int i = 0; i < childNum; i++)
             {
                 float angle = Mathf.PI * 1.7f + i * (Mathf.PI * 2f) / childNum;
-                GameObject child = transform.GetChild(i+1).gameObject;
+                GameObject child = transform.GetChild(i+2).gameObject;
                 float x = Mathf.Cos(angle);
                 float y = Mathf.Sin(angle);
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             for (int i = 0; i < childNum; i++)
             {
                 float angle = Mathf.PI * 1.67f + i * (Mathf.PI * 2f) / childNum;
-                GameObject child = transform.GetChild(i+1).gameObject;
+                GameObject child = transform.GetChild(i+2).gameObject;
                 float x = Mathf.Cos(angle);
                 float y = Mathf.Sin(angle);
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
@@ -265,7 +265,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             for (int i = 0; i < childNum; i++)
             {
                 float angle = Mathf.PI * 1.83f + i * (Mathf.PI * 2f) / childNum;
-                GameObject child = transform.GetChild(i+1).gameObject;
+                GameObject child = transform.GetChild(i+2).gameObject;
                 float x = Mathf.Cos(angle);
                 float y = Mathf.Sin(angle);
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
