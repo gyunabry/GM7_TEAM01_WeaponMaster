@@ -19,6 +19,14 @@ MonoBehaviour:
   weaponIcon: {fileID: -8362143969541133440, guid: 350d121f81e7ad74c9915cab1546ead4, type: 3}
   weaponDamage: 5
   weaponArmorPiercing: 0
-  weaponAttackSpeed: 1.2
+  weaponAttackSpeed: 1.4
   weaponRange: 6
   weaponCri: 0
+  skill1: 0
+  skill2: 0
+  skill3: 0
+  skill4: 0
+  route1: 0
+  route2: 0
+  route3: 0
+  route4: 0

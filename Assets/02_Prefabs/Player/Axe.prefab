@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 694613651672668638}
   - component: {fileID: -7562383334318746433}
   m_Layer: 0
-  m_Name: Bow
+  m_Name: Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

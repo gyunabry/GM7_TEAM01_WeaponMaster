@@ -10,25 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a6322d1badf9f44ab5be088e10fcd3, type: 3}
-  m_Name: Sword
+  m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponSO
-  weaponType: 0
-  weaponName: Sword
+  weaponType: 4
+  weaponName: Axe
   weaponId: 0
   weaponDes: 
-  weaponIcon: {fileID: 3060291918595649585, guid: 06d25675c742ec243b68f648bd316fb9, type: 3}
-  weaponDamage: 10
-  weaponArmorPiercing: 0
-  weaponAttackSpeed: 1.2
-  weaponRange: 3
+  weaponIcon: {fileID: -2508016695669320440, guid: 050be8d41f10e4f41bd9f8d419060008, type: 3}
+  weaponDamage: 20
+  weaponArmorPiercing: 10
+  weaponAttackSpeed: 2.4
+  weaponRange: 4
   weaponCri: 0
-  upgrades:
-  - upgradeName: "\uB2E8\uAC80"
-    upgradeDamage: -1
-    upgradeArmorPiercing: 0
-    upgradeAttackSpeed: -0.3
-    upgradeRange: -1
-    upgradeCri: 5
+  upgrades: []
   skill1: 0
   skill2: 0
   skill3: 0

@@ -10,7 +10,8 @@ public class PlayerAttackPoint : MonoBehaviour
     private PlayerController playerController;
     private PlayerWeaponSO.WeaponType weaponType;
     private PlayerWeaponSO weaponStat;
-
+    
+    private float damage;
     private void Awake()
     {
         ue = new UnityEvent();
@@ -20,7 +21,6 @@ public class PlayerAttackPoint : MonoBehaviour
         playerAttack = GetComponentInParent<PlayerAttack>();
         playerController = FindAnyObjectByType<PlayerController>();
         SetWeaponType();
-
     }
     public void SetWeaponType()
     {
@@ -30,22 +30,22 @@ public class PlayerAttackPoint : MonoBehaviour
         }
         weaponStat = playerController.GetWeaponStat(weaponType);
     }
-    public void SetWeaponStat()
-    {
-        weaponStat = playerController.GetWeaponStat(weaponType);
-    }
+    //public void SetWeaponStat()
+    //{
+    //    weaponStat = playerController.GetWeaponStat(weaponType);
+    //}
+    
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            float damage = weaponStat.weaponDamage;
+            damage = playerAttack.GetDamage();
             EnemyController enemy;
             collision.TryGetComponent<EnemyController>(out enemy);
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
             }
-            Debug.Log(damage);
         }
     }
 }

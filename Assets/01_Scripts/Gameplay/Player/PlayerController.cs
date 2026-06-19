@@ -118,6 +118,15 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (invincible == true) return;
         co = StartCoroutine(OnEnemyAttack(damage));
     }
+    //경험치와 골드 수치 추가하는 메서드
+    public void SetExp(float value)
+    {
+        nowExp += value;
+    }
+    public void SetGold(float value)
+    {
+        gold += value;
+    }
     //플레이어 스탯 수치 가져오기
     public float GetMaxHp()
     {
@@ -167,8 +176,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         else if(playerWeapon.Count == 2)
         {
-            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Sword);
+            reWeaponType = OnWeaponTypeName(PlayerWeaponSO.WeaponType.Axe);
         }
+
+
         else
         {
             return;

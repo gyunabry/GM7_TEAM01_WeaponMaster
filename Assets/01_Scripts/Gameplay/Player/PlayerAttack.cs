@@ -30,13 +30,23 @@ public class PlayerAttack : MonoBehaviour
     private string weaponName;
     private Collider2D[] enemyTamgi = new Collider2D[50];
     private Collider2D enemyTrans;
-   
+    private float nowDamage;
+    private float nowArmorPiercing;
+    private float nowAttackSpeed;
+    private float nowRange;
+    private float nowCri;
+    private int ijk = 0;
+
 
     private void Awake() //무기 생성 부분 UI완성시 바꿀것
     {
         arrowPooling = FindFirstObjectByType<ArrowPooling>();
         playerController = GetComponentInParent<PlayerController>();
         GetPlayerStat();
+    }
+    public float GetDamage()
+    {
+        return nowDamage;
     }
     public void OnPrefabLoaded(AsyncOperationHandle<GameObject> handle)
     {
@@ -82,8 +92,33 @@ public class PlayerAttack : MonoBehaviour
     {
         playerStat = playerController.PlayerStat();
     }
+    public void GetUpgrade(int j)
+    {
+        ijk = j;
+        SetWeaponStat(ijk);
+    }
+    public void SetWeaponStat(int i)
+    {
+        if (playerWeapon.upgrades.Count == 0)
+        {
+            nowDamage = playerWeapon.weaponDamage;
+            nowArmorPiercing = playerWeapon.weaponArmorPiercing;
+            nowAttackSpeed = playerWeapon.weaponAttackSpeed;
+            nowRange = playerWeapon.weaponRange;
+            nowCri = playerWeapon.weaponCri;
+        }
+        else
+        {
+            nowDamage = playerWeapon.weaponDamage + playerWeapon.GetUpgradeDamage(i);
+            nowArmorPiercing = playerWeapon.weaponArmorPiercing + playerWeapon.GetUpgradeArmorPiercing(i);
+            nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(i);
+            nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(i);
+            nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(i);
+        }
+    }
     IEnumerator Weapon()
     {
+        GetUpgrade(0);
         yield return new WaitForSecondsRealtime(1.0f);
 
         while (true)
@@ -106,7 +141,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public Collider2D FindEnemy()
     {
-        enemyTamgi = Physics2D.OverlapCircleAll(transform.position, playerWeapon.weaponRange + (playerStat["range"] / 100), enemyLayer);
+        enemyTamgi = Physics2D.OverlapCircleAll(transform.position, nowRange + (playerStat["range"] / 100), enemyLayer);
         Collider2D nearEnemy = null;
         float minDis = Mathf.Infinity;
 
@@ -127,10 +162,10 @@ public class PlayerAttack : MonoBehaviour
         float rotz = Mathf.Atan2(newrot.y, newrot.x) * Mathf.Rad2Deg;
         return rotz;
     }
-
+    
     IEnumerator Attack(Collider2D other)
     {
-        if(playerWeapon.weaponType.ToString() == "Sword")
+        if(playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe")
         {
             isAttackCo = true;
             childBox.enabled = true;
@@ -138,10 +173,10 @@ public class PlayerAttack : MonoBehaviour
             Vector2 direction = other.transform.position - transform.position;
             Vector2 targetPosition = (Vector2)other.transform.position - (direction * 0.05f); 
             transform.position = targetPosition;
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(0.1f);
             childBox.enabled = false;
             transform.localPosition = nowTrans;
-            yield return new WaitForSecondsRealtime(playerWeapon.weaponAttackSpeed / ((playerStat["attackSpeed"]) / 100));
+            yield return new WaitForSecondsRealtime(nowAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;
         }
@@ -155,7 +190,7 @@ public class PlayerAttack : MonoBehaviour
             arrow.transform.SetParent(transform);
             arrow.transform.position = transform.position;
             arrow.transform.Rotate(0f, 0f, rotz + 45f);
-            yield return new WaitForSecondsRealtime(playerWeapon.weaponAttackSpeed / ((playerStat["attackSpeed"]) / 100));
+            yield return new WaitForSecondsRealtime(nowAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;
         }
