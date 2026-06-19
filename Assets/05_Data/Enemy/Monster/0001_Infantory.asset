@@ -19,3 +19,5 @@ MonoBehaviour:
   moveSpeed: 2.5
   enemyPattern:
   - {fileID: 11400000, guid: ee69e06baf0a3dd48904ef02631bc802, type: 2}
+  dropItem:
+  - {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}

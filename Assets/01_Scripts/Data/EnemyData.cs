@@ -13,4 +13,17 @@ public class EnemyData : ScriptableObject
 
     [Header("공격 패턴")]
     public List<EnemyPatternData> enemyPattern;
+
+    [Header("드랍 아이템")]
+    public List<DropItemBase> dropItem;
+
+    // 추후 드랍 확률 반영
+    public void DropItem(Vector3 dropPosition)
+    {
+        foreach (DropItemBase item in dropItem)
+        {
+            if (item == null) continue;
+            item.SpawnFromPool(dropPosition);
+        }
+    }
 }

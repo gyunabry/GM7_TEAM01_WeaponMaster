@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExpGem : MonoBehaviour, ICollectable
+public class ExpGem : DropItemBase, ICollectable
 {
     [SerializeField] private float expAmount = 10f;
     private bool isPulled = false;
@@ -15,7 +15,7 @@ public class ExpGem : MonoBehaviour, ICollectable
         }
     }
 
-    public void Collect(PlayerController player)
+    public override void Collect(PlayerController player)
     {
         // 플레이어 경험치 지급 로직
         // SFX 재생
@@ -23,14 +23,22 @@ public class ExpGem : MonoBehaviour, ICollectable
         ReturnToPool();
     }
 
-    public void Pull(Transform target, float pullSpeed)
+    public override void Pull(Transform target, float pullSpeed)
     {
         isPulled = true;
         pullTarget = target;
         currentPullSpeed = pullSpeed;
     }
 
-    private void ReturnToPool()
+    public override DropItemBase SpawnFromPool(Vector3 position)
+    {
+        DropItemBase spawnedItem = PoolManager.Instance.GetPool(this);
+        spawnedItem.transform.position = position;
+
+        return spawnedItem;
+    }
+
+    public override void ReturnToPool()
     {
         PoolManager.Instance.ReturnPool(this);
     }
