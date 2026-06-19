@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponSO
   weaponType: 1
-  weaponName: fsa
+  weaponName: Bow
   weaponId: 0
   weaponDes: 
   weaponIcon: {fileID: -8362143969541133440, guid: 350d121f81e7ad74c9915cab1546ead4, type: 3}
-  weaponDamage: 10
+  weaponDamage: 5
   weaponArmorPiercing: 0
   weaponAttackSpeed: 1.2
   weaponRange: 6

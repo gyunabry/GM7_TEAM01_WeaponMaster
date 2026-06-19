@@ -1,25 +1,49 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAttackPoint : MonoBehaviour
 {
-    private PlayerWeaponSO playerWeapon;
-    private PlayerController playerController;
     
+    private UnityEvent ue;
+    private PlayerAttack playerAttack;
+    private PlayerController playerController;
+    private PlayerWeaponSO.WeaponType weaponType;
+    private PlayerWeaponSO weaponStat;
+
     private void Awake()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
-        playerWeapon = playerController.GetWeapon();
+        ue = new UnityEvent();
     }
+    private void Start()
+    {
+        playerAttack = GetComponentInParent<PlayerAttack>();
+        playerController = FindAnyObjectByType<PlayerController>();
+        SetWeaponType();
 
+    }
+    public void SetWeaponType()
+    {
+        if (transform.parent != null)
+        {
+            weaponType = playerAttack.GetParentType();
+        }
+        weaponStat = playerController.GetWeaponStat(weaponType);
+    }
+    public void SetWeaponStat()
+    {
+        weaponStat = playerController.GetWeaponStat(weaponType);
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerWeapon.weaponType.ToString() == "Bow") return;
         if (collision.CompareTag("Enemy"))
         {
-            IDamageable go = collision.gameObject.GetComponent<IDamageable>(); //IDamageable 로 안되면 바꾸기
-            if (go != null)
+            float damage = weaponStat.weaponDamage;
+            EnemyController enemy;
+            collision.TryGetComponent<EnemyController>(out enemy);
+            if(enemy != null)
             {
-                go.TakeDamage(playerWeapon.weaponDamage);
+            enemy.TakeDamage(damage);
             }
         }
     }

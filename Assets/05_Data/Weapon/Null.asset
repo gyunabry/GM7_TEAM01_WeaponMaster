@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5a6322d1badf9f44ab5be088e10fcd3, type: 3}
-  m_Name: Sword
+  m_Name: Null
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponSO
-  weaponType: 0
-  weaponName: Sword
+  weaponType: -1
+  weaponName: Null
   weaponId: 0
   weaponDes: 
-  weaponIcon: {fileID: 3060291918595649585, guid: 06d25675c742ec243b68f648bd316fb9, type: 3}
-  weaponDamage: 10
+  weaponIcon: {fileID: 0}
+  weaponDamage: 0
   weaponArmorPiercing: 0
-  weaponAttackSpeed: 1.2
-  weaponRange: 3
+  weaponAttackSpeed: 0
+  weaponRange: 0
   weaponCri: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName ="scriptableObject/WeaponData")]
 public class PlayerWeaponSO : ScriptableObject
 {
-    public enum WeaponType {Sword, Bow, CrossBow, Shield, Axe, Whip, Spear, Halberd, Hammer}
+    public enum WeaponType {Null = -1, Sword, Bow, CrossBow, Shield, Axe, Whip, Spear, Halberd, Hammer}
 
     [Header("info")]
     public WeaponType weaponType;
