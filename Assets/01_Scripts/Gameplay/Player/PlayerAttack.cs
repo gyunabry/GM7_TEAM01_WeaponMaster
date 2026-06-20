@@ -26,9 +26,11 @@ public class PlayerAttack : MonoBehaviour
 
     private AssetBundle assetBundle;
     private GameObject instant;
+    SpriteRenderer sr;
 
     private bool isCo = false;
     private bool isAttackCo = false;
+    private bool nowAttack = false;
     private string weaponName;
     private Collider2D[] enemyTamgi = new Collider2D[50];
     private Collider2D enemyTrans;
@@ -37,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
     private float nowAttackSpeed;
     private float nowRange;
     private float nowCri;
+    private float nowSize;
+    private Sprite nowSprite;
     private int ijk = 0;
 
     private void Awake() //무기 생성 부분 UI완성시 바꿀것
@@ -56,10 +60,10 @@ public class PlayerAttack : MonoBehaviour
             instant = handle.Result;
             if(instant.name == "Shield(Clone)")
             {
-                SpriteRenderer sr = instant.GetComponent<SpriteRenderer>();
+                sr = instant.GetComponent<SpriteRenderer>();
                 sr.sprite = playerWeapon.weaponIcon;
                 instant.transform.SetParent(this.transform);
-                instant.transform.localScale = new Vector3(4f, 4f, 4f);
+                instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
                 Vector3 srPosition = transform.position;
                 instant.transform.position = srPosition;
                 childBox = GetComponentInChildren<BoxCollider2D>();
@@ -67,9 +71,10 @@ public class PlayerAttack : MonoBehaviour
             else
             {
                 instant.transform.Rotate(0f, 0f, -45f);
-                SpriteRenderer sr = instant.GetComponent<SpriteRenderer>();
+                sr = instant.GetComponent<SpriteRenderer>();
                 sr.sprite = playerWeapon.weaponIcon;
                 instant.transform.SetParent(this.transform);
+                instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
                 Vector3 srPosition = transform.position;
                 srPosition.x += 0.3f;
                 instant.transform.position = srPosition;
@@ -123,6 +128,8 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed;
             nowRange = playerWeapon.weaponRange;
             nowCri = playerWeapon.weaponCri;
+            nowSize = playerWeapon.weaponSize;
+            nowSprite = playerWeapon.weaponIcon;
         }
         else
         {
@@ -131,12 +138,39 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(i);
             nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(i);
             nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(i);
+            nowSize = playerWeapon.GetUpgradeSize(i);
+            nowSprite = playerWeapon.GetUpgradeSprite(i);
         }
+    }
+    public float GetUpgradeDamage()
+    {
+        return nowDamage;
+    }
+    public float GetUpgradeArmorPiercing()
+    {
+        return nowArmorPiercing;
+    }
+    public float GetUpgradeAttackSpeed()
+    {
+        return nowAttackSpeed;
+    }
+    public float GetUpgradeRange()
+    {
+        return nowRange;
+    }
+    public float GetUpgradeCri()
+    {
+        return nowCri;
+    }
+    public float GetUpgradeSize()
+    {
+        return nowSize;
     }
     IEnumerator Weapon()
     {
         GetUpgrade(0);
         yield return new WaitForSecondsRealtime(1.0f);
+        sr.sprite = nowSprite;
 
         while (true)
         {
@@ -144,7 +178,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 enemyTrans = FindEnemy();
                 if (enemyTrans != null) {
+                    if(nowAttack == false)
+                    {
                     transform.rotation = Quaternion.Euler(0, 0, LookEnemy(enemyTrans));
+                    }
                     if (isAttackCo == false)
                     {
                         attackco = StartCoroutine(Attack(enemyTrans));
@@ -181,6 +218,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void AttackMotion(Transform targetPosi)
     {
+        nowAttack = true;
         DG.Tweening.Sequence motion = DOTween.Sequence();
         Vector2 nowTrans = transform.localPosition;
         Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
@@ -200,7 +238,7 @@ public class PlayerAttack : MonoBehaviour
         motion.Append(transform.DOMove(pullMainPosi, 0.1f));
         motion.Append(transform.DOMove(rightPosi, 0.1f));
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
-
+        nowAttack = false;
     }
     IEnumerator Attack(Collider2D other)
     {

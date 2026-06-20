@@ -22,7 +22,24 @@ MonoBehaviour:
   weaponAttackSpeed: 3
   weaponRange: 6
   weaponCri: 10
-  upgrades: []
+  weaponSize: 4
+  upgrades:
+  - upgradeName: "\uC5F0\uC0AC \uD06C\uB85C\uC2A4 \uBCF4\uC6B0"
+    upgradeDamage: -10
+    upgradeArmorPiercing: 0
+    upgradeAttackSpeed: -2.2
+    upgradeRange: 0
+    upgradeCri: 0
+    upgradeSize: 4
+    upgradeSprite: {fileID: 4938632579457392512, guid: c287719c08b34e746902f91e4f70b0a7, type: 3}
+  - upgradeName: "\uAC15\uD654 \uD06C\uB85C\uC2A4 \uBCF4\uC6B0"
+    upgradeDamage: 5
+    upgradeArmorPiercing: 15
+    upgradeAttackSpeed: 0
+    upgradeRange: 2
+    upgradeCri: 20
+    upgradeSize: 4
+    upgradeSprite: {fileID: 5450094789475882396, guid: 513272fdf44e12d41b2ac90a58fa8e01, type: 3}
   skill1: 0
   skill2: 0
   skill3: 0

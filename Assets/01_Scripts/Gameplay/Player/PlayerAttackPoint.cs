@@ -10,7 +10,15 @@ public class PlayerAttackPoint : MonoBehaviour
     private PlayerController playerController;
     private PlayerWeaponSO.WeaponType weaponType;
     private PlayerWeaponSO weaponStat;
-    
+
+    private float nowDamage;
+    private float nowArmorPiercing;
+    private float nowAttackSpeed;
+    private float nowRange;
+    private float nowCri;
+    private float nowSize;
+    private Sprite nowSprite;
+
     private float damage;
     private void Awake()
     {
@@ -29,22 +37,26 @@ public class PlayerAttackPoint : MonoBehaviour
             weaponType = playerAttack.GetParentType();
         }
         weaponStat = playerController.GetWeaponStat(weaponType);
+        nowDamage = playerAttack.GetUpgradeDamage();
+        nowArmorPiercing = playerAttack.GetUpgradeArmorPiercing();
+        nowAttackSpeed = playerAttack.GetUpgradeAttackSpeed();
+        nowRange = playerAttack.GetUpgradeRange();
+        nowCri = playerAttack.GetUpgradeCri();
+        nowSize = playerAttack.GetUpgradeSize();
     }
-    //public void SetWeaponStat()
-    //{
-    //    weaponStat = playerController.GetWeaponStat(weaponType);
-    //}
+    
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            damage = playerAttack.GetDamage();
+            nowDamage = playerAttack.GetDamage();
+            Debug.Log(nowDamage);
             EnemyController enemy;
             collision.TryGetComponent<EnemyController>(out enemy);
             if(enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(nowDamage);
             }
         }
     }
