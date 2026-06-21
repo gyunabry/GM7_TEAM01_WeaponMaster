@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -24,9 +26,11 @@ public class PlayerAttack : MonoBehaviour
 
     private AssetBundle assetBundle;
     private GameObject instant;
+    SpriteRenderer sr;
 
     private bool isCo = false;
     private bool isAttackCo = false;
+    private bool nowAttack = false;
     private string weaponName;
     private Collider2D[] enemyTamgi = new Collider2D[50];
     private Collider2D enemyTrans;
@@ -35,8 +39,9 @@ public class PlayerAttack : MonoBehaviour
     private float nowAttackSpeed;
     private float nowRange;
     private float nowCri;
+    private float nowSize;
+    private Sprite nowSprite;
     private int ijk = 0;
-
 
     private void Awake() //무기 생성 부분 UI완성시 바꿀것
     {
@@ -53,14 +58,28 @@ public class PlayerAttack : MonoBehaviour
         if(handle.Status == AsyncOperationStatus.Succeeded)
         {
             instant = handle.Result;
-            instant.transform.Rotate(0f, 0f, -45f);
-            SpriteRenderer sr = instant.GetComponent<SpriteRenderer>();
-            sr.sprite = playerWeapon.weaponIcon;
-            instant.transform.SetParent(this.transform);
-            Vector3 srPosition = transform.position;
-            srPosition.x += 0.3f;
-            instant.transform.position = srPosition;
-            childBox = GetComponentInChildren<BoxCollider2D>();
+            if(instant.name == "Shield(Clone)")
+            {
+                sr = instant.GetComponent<SpriteRenderer>();
+                sr.sprite = playerWeapon.weaponIcon;
+                instant.transform.SetParent(this.transform);
+                instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
+                Vector3 srPosition = transform.position;
+                instant.transform.position = srPosition;
+                childBox = GetComponentInChildren<BoxCollider2D>();
+            }
+            else
+            {
+                instant.transform.Rotate(0f, 0f, -45f);
+                sr = instant.GetComponent<SpriteRenderer>();
+                sr.sprite = playerWeapon.weaponIcon;
+                instant.transform.SetParent(this.transform);
+                instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
+                Vector3 srPosition = transform.position;
+                srPosition.x += 0.3f;
+                instant.transform.position = srPosition;
+                childBox = GetComponentInChildren<BoxCollider2D>();
+            }
         }
         else
         {
@@ -69,15 +88,18 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Start()
     {
-        playerWeapon = playerController.GetWeapon();
+        playerWeapon = playerController.GetWeapon(); 
         weaponType = playerWeapon.weaponType;
         weaponName = weaponType.ToString();
         Addressables.InstantiateAsync(weaponType.ToString()).Completed += OnPrefabLoaded;
+        parentTrans = playerController.transform;
     }
     // GameObject go = Instantiate(weaponSprite, srPosition, Quaternion.Euler(0f, 0f, -45f), transform);
     
     void Update()
     {
+        
+        
         if (isCo == false)
         {
             isCo = true;
@@ -106,6 +128,8 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed;
             nowRange = playerWeapon.weaponRange;
             nowCri = playerWeapon.weaponCri;
+            nowSize = playerWeapon.weaponSize;
+            nowSprite = playerWeapon.weaponIcon;
         }
         else
         {
@@ -114,12 +138,39 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(i);
             nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(i);
             nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(i);
+            nowSize = playerWeapon.GetUpgradeSize(i);
+            nowSprite = playerWeapon.GetUpgradeSprite(i);
         }
+    }
+    public float GetUpgradeDamage()
+    {
+        return nowDamage;
+    }
+    public float GetUpgradeArmorPiercing()
+    {
+        return nowArmorPiercing;
+    }
+    public float GetUpgradeAttackSpeed()
+    {
+        return nowAttackSpeed;
+    }
+    public float GetUpgradeRange()
+    {
+        return nowRange;
+    }
+    public float GetUpgradeCri()
+    {
+        return nowCri;
+    }
+    public float GetUpgradeSize()
+    {
+        return nowSize;
     }
     IEnumerator Weapon()
     {
         GetUpgrade(0);
         yield return new WaitForSecondsRealtime(1.0f);
+        sr.sprite = nowSprite;
 
         while (true)
         {
@@ -127,7 +178,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 enemyTrans = FindEnemy();
                 if (enemyTrans != null) {
+                    if(nowAttack == false)
+                    {
                     transform.rotation = Quaternion.Euler(0, 0, LookEnemy(enemyTrans));
+                    }
                     if (isAttackCo == false)
                     {
                         attackco = StartCoroutine(Attack(enemyTrans));
@@ -162,25 +216,44 @@ public class PlayerAttack : MonoBehaviour
         float rotz = Mathf.Atan2(newrot.y, newrot.x) * Mathf.Rad2Deg;
         return rotz;
     }
-    
+    public void AttackMotion(Transform targetPosi)
+    {
+        nowAttack = true;
+        DG.Tweening.Sequence motion = DOTween.Sequence();
+        Vector2 nowTrans = transform.localPosition;
+        Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
+        Vector2 basePosi = direction.normalized;
+        Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
+
+        Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 0.6f);
+        Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.4f);
+
+        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * 1.6f);
+        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * 1.6f);
+
+
+
+
+        motion.Append(transform.DOMove(leftPosi, 0.05f));
+        motion.Append(transform.DOMove(pullMainPosi, 0.1f));
+        motion.Append(transform.DOMove(rightPosi, 0.1f));
+        motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
+        nowAttack = false;
+    }
     IEnumerator Attack(Collider2D other)
     {
-        if(playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe")
+        if(playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe" || playerWeapon.weaponType.ToString() == "Shield")
         {
             isAttackCo = true;
             childBox.enabled = true;
-            Vector2 nowTrans = transform.localPosition;
-            Vector2 direction = other.transform.position - transform.position;
-            Vector2 targetPosition = (Vector2)other.transform.position - (direction * 0.05f); 
-            transform.position = targetPosition;
-            yield return new WaitForSecondsRealtime(0.1f);
+            AttackMotion(other.transform);
+            yield return new WaitForSecondsRealtime(0.3f);
             childBox.enabled = false;
-            transform.localPosition = nowTrans;
             yield return new WaitForSecondsRealtime(nowAttackSpeed / ((playerStat["attackSpeed"]) / 100));
             isAttackCo = false;
             attackco = null;
         }
-        else if(playerWeapon.weaponType.ToString() == "Bow")
+        else if(playerWeapon.weaponType.ToString() == "Bow" || playerWeapon.weaponType.ToString() == "CrossBow")
         {
             isAttackCo = true;
             childBox.enabled = false;

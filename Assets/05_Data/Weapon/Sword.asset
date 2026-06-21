@@ -22,13 +22,24 @@ MonoBehaviour:
   weaponAttackSpeed: 1.2
   weaponRange: 3
   weaponCri: 0
+  weaponSize: 3
   upgrades:
+  - upgradeName: "\uB300\uAC80"
+    upgradeDamage: 10
+    upgradeArmorPiercing: 10
+    upgradeAttackSpeed: 0.3
+    upgradeRange: 2
+    upgradeCri: 0
+    upgradeSize: 6
+    upgradeSprite: {fileID: -8601833956312487032, guid: 74c7a773443c45145a3ecaf0b33003c8, type: 3}
   - upgradeName: "\uB2E8\uAC80"
     upgradeDamage: -1
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -0.3
     upgradeRange: -1
     upgradeCri: 5
+    upgradeSize: 2
+    upgradeSprite: {fileID: -8070790144581709556, guid: 55c02a3d1fbcac549802c0a671ded235, type: 3}
   skill1: 0
   skill2: 0
   skill3: 0

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon", menuName ="scriptableObject/WeaponData")]
@@ -22,6 +23,7 @@ public class PlayerWeaponSO : ScriptableObject
     public float weaponAttackSpeed;
     public float weaponRange;
     public float weaponCri;
+    public float weaponSize;
 
     [Header("UpgradeList")]
     public List<WeaponStat> upgrades;
@@ -58,6 +60,14 @@ public class PlayerWeaponSO : ScriptableObject
     {
         return upgrades[i].upgradeCri;
     }
+    public float GetUpgradeSize(int i)
+    {
+        return upgrades[i].upgradeSize;
+    }
+    public Sprite GetUpgradeSprite(int i)
+    {
+        return upgrades[i].upgradeSprite;
+    }
 }
 [Serializable]
 public class WeaponStat
@@ -68,14 +78,6 @@ public class WeaponStat
     public float upgradeAttackSpeed;
     public float upgradeRange;
     public float upgradeCri;
-
-    public WeaponStat(string uN, float uD, float uAP, float uAS, float uR, float uC)
-    {
-        upgradeDamage = uD;
-        upgradeArmorPiercing = uAP;
-        upgradeAttackSpeed = uAS;
-        upgradeRange = uR;
-        upgradeCri = uC;
-    }
-
+    public float upgradeSize;
+    public Sprite upgradeSprite;
 }

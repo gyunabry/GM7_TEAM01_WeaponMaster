@@ -47,3 +47,6 @@ MonoBehaviour:
   playerWeapon:
   - {fileID: 11400000, guid: 5899794f4b505e0488a879076aecd623, type: 2}
   - {fileID: 11400000, guid: 6a762b6405597df4bb77f298887e7b67, type: 2}
+  - {fileID: 11400000, guid: 5d342a0fb2cd9bf409c05660e4f47914, type: 2}
+  - {fileID: 11400000, guid: f3b44339d23603e4cbe189205272b49f, type: 2}
+  - {fileID: 11400000, guid: bf2788991f6b18e4d953e3d385d16065, type: 2}

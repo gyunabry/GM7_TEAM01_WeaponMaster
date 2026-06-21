@@ -1,23 +1,23 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
-public class PlayerPickup : MonoBehaviour
+public class PickUp : MonoBehaviour
 {
-    
+    private PlayerController parentPC;
     [Header("Layer")]
     [SerializeField] private LayerMask expLayerName;
     [SerializeField] private LayerMask itemLayerName;
-    [SerializeField] float pullSpeed;
-   
-    
+    private void Awake()
+    {
+        parentPC = FindAnyObjectByType<PlayerController>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((expLayerName.value & (1 << collision.gameObject.layer)) !=0)
+        if ((expLayerName.value & (1 << collision.gameObject.layer)) != 0)
         {
             ExpGem expValue = collision.GetComponent<ExpGem>();
-            if (expValue != null) 
+            if (expValue != null)
             {
-                expValue.Pull(transform, pullSpeed);
+                expValue.Collect(parentPC);
             }
 
         }
@@ -26,7 +26,7 @@ public class PlayerPickup : MonoBehaviour
             Meal mealValue = collision.GetComponent<Meal>();
             if(mealValue != null)
             {
-                mealValue.Pull(transform, pullSpeed);
+                mealValue.Collect(parentPC);
             }
         }
     }
