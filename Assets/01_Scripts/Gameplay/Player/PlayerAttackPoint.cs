@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,16 +20,32 @@ public class PlayerAttackPoint : MonoBehaviour
     private float nowSize;
     private Sprite nowSprite;
 
+    private List<GameObject> enemyGO = new List<GameObject>();
+    private BoxCollider2D box;
+    private Arrow arrow;
+    private bool criHit = false;
+    
+
     private float damage;
     private void Awake()
     {
         ue = new UnityEvent();
+        box = GetComponent<BoxCollider2D>();
+        arrow = GetComponent<Arrow>();
+        
     }
     private void Start()
     {
         playerAttack = GetComponentInParent<PlayerAttack>();
         playerController = FindAnyObjectByType<PlayerController>();
         SetWeaponType();
+    }
+    private void Update()
+    {
+        if(box.enabled == false && enemyGO.Count > 0)
+        {
+            enemyGO.Clear();
+        }
     }
     public void SetWeaponType()
     {
@@ -50,13 +67,35 @@ public class PlayerAttackPoint : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            nowDamage = playerAttack.GetDamage();
-            Debug.Log(nowDamage);
-            EnemyController enemy;
-            collision.TryGetComponent<EnemyController>(out enemy);
-            if(enemy != null)
+            if (enemyGO.Contains(collision.gameObject) && arrow == null)
             {
-                enemy.TakeDamage(nowDamage);
+                
+            }
+            else
+            {
+                enemyGO.Add(collision.gameObject);
+                int critical = Random.Range(1, 101);
+                if(nowCri >= critical)
+                {
+                    criHit = true;
+                }
+                if(criHit == true)
+                {
+                    nowDamage = playerAttack.GetDamage() * 2;
+                }
+                else
+                {
+                    nowDamage = playerAttack.GetDamage();
+                }
+                    Debug.Log(nowDamage);
+                EnemyController enemy;
+                collision.TryGetComponent<EnemyController>(out enemy);
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(nowDamage);
+                    playerController.HpAbs();
+                }
+                criHit = false;
             }
         }
     }

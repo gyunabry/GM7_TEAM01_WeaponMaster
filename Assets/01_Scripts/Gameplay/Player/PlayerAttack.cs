@@ -141,6 +141,11 @@ public class PlayerAttack : MonoBehaviour
             nowSize = playerWeapon.GetUpgradeSize(i);
             nowSprite = playerWeapon.GetUpgradeSprite(i);
         }
+        nowDamage = nowDamage * ((playerStat["damage"] + 100f) / 100f);
+        nowArmorPiercing = nowArmorPiercing + playerStat["armorPiercing"];
+        nowAttackSpeed = nowAttackSpeed / ((playerStat["attackSpeed"] + 100f) / 100f);
+        nowRange = nowRange + (playerStat["range"] / 100);
+        nowCri = nowCri + playerStat["cri"];
     }
     public float GetUpgradeDamage()
     {
@@ -218,7 +223,6 @@ public class PlayerAttack : MonoBehaviour
     }
     public void AttackMotion(Transform targetPosi)
     {
-        nowAttack = true;
         DG.Tweening.Sequence motion = DOTween.Sequence();
         Vector2 nowTrans = transform.localPosition;
         Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
@@ -226,30 +230,36 @@ public class PlayerAttack : MonoBehaviour
         Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
 
         Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 0.6f);
-        Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.4f);
+        Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.2f);
 
         Vector3 leftPosi = pullPosi + (Vector3)(rightDir * 1.6f);
         Vector3 rightPosi = pullPosi - (Vector3)(rightDir * 1.6f);
 
+        Quaternion rotate = transform.rotation;
+        Quaternion leftRotate = rotate * Quaternion.Euler(0, 0, 30.6f);
+        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -20.6f);
 
 
-
+        motion.Append(transform.DOLocalRotateQuaternion(leftRotate, 0f));
         motion.Append(transform.DOMove(leftPosi, 0.05f));
+        motion.Append(transform.DOLocalRotateQuaternion(rotate, 0f));
         motion.Append(transform.DOMove(pullMainPosi, 0.1f));
+        motion.Append(transform.DOLocalRotateQuaternion(rightRotate, 0f));
         motion.Append(transform.DOMove(rightPosi, 0.1f));
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
-        nowAttack = false;
     }
     IEnumerator Attack(Collider2D other)
     {
         if(playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe" || playerWeapon.weaponType.ToString() == "Shield")
         {
             isAttackCo = true;
-            childBox.enabled = true;
+            nowAttack = true;
             AttackMotion(other.transform);
+            childBox.enabled = true;
             yield return new WaitForSecondsRealtime(0.3f);
             childBox.enabled = false;
-            yield return new WaitForSecondsRealtime(nowAttackSpeed / ((playerStat["attackSpeed"]) / 100));
+            nowAttack = false;
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
             isAttackCo = false;
             attackco = null;
         }
@@ -263,7 +273,7 @@ public class PlayerAttack : MonoBehaviour
             arrow.transform.SetParent(transform);
             arrow.transform.position = transform.position;
             arrow.transform.Rotate(0f, 0f, rotz + 45f);
-            yield return new WaitForSecondsRealtime(nowAttackSpeed / ((playerStat["attackSpeed"]) / 100));
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
             isAttackCo = false;
             attackco = null;
         }

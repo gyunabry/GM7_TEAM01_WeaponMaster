@@ -345,7 +345,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 5
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -372,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 1784387814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.18, y: -0.02173, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,6 +441,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: attackSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: weaponManager
       value: 
