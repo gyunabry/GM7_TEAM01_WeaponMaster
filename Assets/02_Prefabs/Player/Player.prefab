@@ -93,10 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickUp
   expLayerName:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33554432
   itemLayerName:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 67108864
 --- !u!1 &4632700160186018904
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,9 +111,9 @@ GameObject:
   - component: {fileID: 5959769542027020136}
   - component: {fileID: 1493961109511499000}
   - component: {fileID: 4626836144241479772}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,7 +182,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -291,7 +291,7 @@ MonoBehaviour:
   range: 0
   armor: 0
   evasion: 0
-  moveSpeed: 100
+  moveSpeed: 5
   invincibleTime: 1
   nowExp: 0
   reqExp: 50
@@ -395,8 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
   expLayerName:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33554432
   itemLayerName:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 67108864
   pullSpeed: 0

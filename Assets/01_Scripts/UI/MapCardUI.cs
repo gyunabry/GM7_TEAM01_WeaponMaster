@@ -1,0 +1,122 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+using System.Collections.Generic;
+
+public class MapCardUI : MonoBehaviour, ICardPanel
+{
+    [Header("패널")]
+    [SerializeField] private GameObject mapSelectPanel;
+    [Header("투명도")]
+    [SerializeField] private CanvasGroup panelCanvasGroup;
+    [Header("맵 카드")]
+    [SerializeField] private SelectMapCardUI[] mapCards;
+
+    [Header("다음 단계 UI")]
+    [SerializeField] private DifficultySelectUI difficultySelectUI;
+
+    [Header("이 맵의 웨이브 데이터들")]
+    [SerializeField] private List<WaveData> mapWaveDataList;
+
+    private bool isOpen;
+    private bool isSelected;
+
+    private void Awake()
+    {
+        for (int i = 0; i < mapCards.Length; i++)
+        {
+            if (mapCards[i] != null)
+            {
+                mapCards[i].InitPanel(this);
+            }
+        }
+    }
+
+    void Start()
+    {
+        Open();
+    }
+
+    public void Open()
+    {
+        if (isOpen) return;
+        isOpen = true;
+        isSelected = false;
+        mapSelectPanel.SetActive(true);
+
+        panelCanvasGroup.alpha = 0.0f;
+        panelCanvasGroup.blocksRaycasts = true;
+        panelCanvasGroup.interactable = true;
+
+        
+        panelCanvasGroup.DOFade(1.0f, 0.25f).OnComplete(() =>
+        {
+            panelCanvasGroup.interactable = true;
+            PlayCardOpenTween();
+        });
+    }
+
+   
+    private void PlayCardOpenTween()
+    {
+        for (int i = 0; i < mapCards.Length; i++)
+        {
+            if (mapCards[i] != null)
+            {
+                
+                float delay = i * 0.12f;
+                int index = i;
+
+                DOVirtual.DelayedCall(delay, () => {
+                    if (mapCards[index] != null)
+                    {
+                        mapCards[index].PlayOpenTween();
+                    }
+                }, false);
+            }
+        }
+    }
+
+    public void SelectCard(SelectMapCardUI selectCard)
+    {
+       
+        if (isSelected) return;
+        isSelected = true;
+        panelCanvasGroup.interactable = false;
+
+       
+
+        for (int i = 0; i < mapCards.Length; i++)
+        {
+            SelectMapCardUI card = mapCards[i];
+            if (card == selectCard) card.PlaySelectTween();
+            else if (card != null) card.PlayHideTween();
+        }
+
+        DOVirtual.DelayedCall(0.26f, () =>
+        {
+            
+            GameSceneData.SelectedMapWaves = this.mapWaveDataList;
+            GameSceneData.SelectedSceneName = selectCard.MapSceneName;
+
+            CloseInstant();
+
+            if (difficultySelectUI != null)
+            {
+               
+                difficultySelectUI.Open();
+            }
+            
+        }, false);
+    }
+
+    private void CloseInstant()
+    {
+        isOpen = false;
+        isSelected = false;
+        mapSelectPanel.SetActive(false);
+        panelCanvasGroup.alpha = 0.0f;
+        panelCanvasGroup.blocksRaycasts = false;
+        panelCanvasGroup.interactable = false;
+    }
+}

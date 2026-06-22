@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     {
         KillCount++;
         OnKillEnemy?.Invoke(KillCount);
-        Debug.Log($"킬 카운트++ {KillCount}");
     }
 
     public int GetKillCount()

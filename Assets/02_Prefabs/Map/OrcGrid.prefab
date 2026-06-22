@@ -62,7 +62,8 @@ GameObject:
   - component: {fileID: 3130842282549804534}
   - component: {fileID: 5655297137007806130}
   - component: {fileID: 5372685869455999295}
-  m_Layer: 21
+  - component: {fileID: 1399654186513699348}
+  m_Layer: 31
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6622,6 +6623,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 2875857646305304479}
+--- !u!114 &1399654186513699348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875857646305304479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3598708448264612126
 GameObject:
   m_ObjectHideFlags: 0
@@ -6633,7 +6650,8 @@ GameObject:
   - component: {fileID: 7192587111636791522}
   - component: {fileID: 365471124963637544}
   - component: {fileID: 2971035822438446707}
-  m_Layer: 0
+  - component: {fileID: 6370901560480152712}
+  m_Layer: 31
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17453,6 +17471,22 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &6370901560480152712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598708448264612126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5598868312719231607
 GameObject:
   m_ObjectHideFlags: 0

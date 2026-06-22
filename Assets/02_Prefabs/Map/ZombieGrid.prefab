@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5788733149912675963}
   - component: {fileID: 4054218582174924200}
   - component: {fileID: 9028493759842842497}
+  - component: {fileID: 4645324566455980702}
   m_Layer: 21
   m_Name: Wall
   m_TagString: Untagged
@@ -6186,6 +6187,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 3344567553621849749}
+--- !u!114 &4645324566455980702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344567553621849749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &6627660564369015015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,7 +6262,7 @@ GameObject:
   - component: {fileID: 2517921660067988791}
   - component: {fileID: 5330285004653211453}
   - component: {fileID: 6091477896568702340}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6424,6 +6441,7 @@ GameObject:
   - component: {fileID: 4650858540636550108}
   - component: {fileID: 8070564900115822340}
   - component: {fileID: 4713260554345460514}
+  - component: {fileID: 8988879774669134426}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -17480,6 +17498,22 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &8988879774669134426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606667721777158730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8657613409237419640
 GameObject:
   m_ObjectHideFlags: 0
@@ -17491,7 +17525,7 @@ GameObject:
   - component: {fileID: 783720416494309996}
   - component: {fileID: 5485223082244411433}
   - component: {fileID: 6500694530371087395}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Deco
   m_TagString: Untagged
   m_Icon: {fileID: 0}

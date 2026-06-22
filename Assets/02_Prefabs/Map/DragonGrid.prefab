@@ -62,7 +62,8 @@ GameObject:
   - component: {fileID: 922840210769176983}
   - component: {fileID: 211321552802032375}
   - component: {fileID: 5810353173202064831}
-  m_Layer: 21
+  - component: {fileID: 3790643232680989232}
+  m_Layer: 31
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3401,6 +3402,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 4877922283146888141}
+--- !u!114 &3790643232680989232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877922283146888141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &6047041782868884907
 GameObject:
   m_ObjectHideFlags: 0
@@ -22810,7 +22827,8 @@ GameObject:
   - component: {fileID: 424692145225341551}
   - component: {fileID: 6179382912278543179}
   - component: {fileID: 8810863734939240871}
-  m_Layer: 0
+  - component: {fileID: 4847866635619755723}
+  m_Layer: 31
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33010,3 +33028,19 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
+--- !u!114 &4847866635619755723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6395475998727054324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NavMeshPlus::NavMeshPlus.Components.NavMeshModifier
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
