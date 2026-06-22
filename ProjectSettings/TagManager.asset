@@ -28,16 +28,16 @@ TagManager:
   - 
   - Player
   - Wall
+  - Enemy
+  - 
+  - 
+  - Exp
+  - Meal
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - NavMesh
   m_SortingLayers:
   - name: Default
     uniqueID: 0

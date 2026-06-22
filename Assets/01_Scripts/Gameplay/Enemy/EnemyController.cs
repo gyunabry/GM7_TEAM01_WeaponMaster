@@ -136,13 +136,22 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        // TODO: 사망 애니메이션 재생, 이펙트 출력, 자원 드랍 등은 이곳에서 집중 처리
+        // 몬스터 데이터에 있는 드랍 아이템을 활성화
+        currentEnemy.DropItem(transform.position);
+        GameManager.Instance.AddKillCount();
         ReturnToPool();
     }
 
     private void ReturnToPool()
     {
         PoolManager.Instance.ReturnPool(this);
+    }
+
+    private void DropItem()
+    {
+        // 확정적으로 경험치 드랍
+        // 확률에 따라 음식 드랍
+        // if ()
     }
 
     private void FaceToTarget()

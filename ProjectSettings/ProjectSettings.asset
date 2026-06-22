@@ -676,24 +676,24 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;DOTWEEN_UITOOLKIT
-    EmbeddedLinux: DOTWEEN;DOTWEEN_UITOOLKIT
-    GameCoreScarlett: DOTWEEN;DOTWEEN_UITOOLKIT
-    GameCoreXboxOne: DOTWEEN;DOTWEEN_UITOOLKIT
-    Kepler: DOTWEEN;DOTWEEN_UITOOLKIT
-    LinuxHeadlessSimulation: DOTWEEN;DOTWEEN_UITOOLKIT
-    Nintendo Switch: DOTWEEN;DOTWEEN_UITOOLKIT
-    Nintendo Switch 2: DOTWEEN;DOTWEEN_UITOOLKIT
-    PS4: DOTWEEN;DOTWEEN_UITOOLKIT
-    PS5: DOTWEEN;DOTWEEN_UITOOLKIT
-    QNX: DOTWEEN;DOTWEEN_UITOOLKIT
-    Standalone: DOTWEEN;DOTWEEN_UITOOLKIT
-    VisionOS: DOTWEEN;DOTWEEN_UITOOLKIT
-    WebGL: DOTWEEN;DOTWEEN_UITOOLKIT
-    Windows Store Apps: DOTWEEN;DOTWEEN_UITOOLKIT
-    XboxOne: DOTWEEN;DOTWEEN_UITOOLKIT
-    iPhone: DOTWEEN;DOTWEEN_UITOOLKIT
-    tvOS: DOTWEEN;DOTWEEN_UITOOLKIT
+    Android: DOTWEEN
+    EmbeddedLinux: DOTWEEN
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: DOTWEEN
+    Kepler: DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN
+    Nintendo Switch: DOTWEEN
+    Nintendo Switch 2: DOTWEEN
+    PS4: DOTWEEN
+    PS5: DOTWEEN
+    QNX: DOTWEEN
+    Standalone: DOTWEEN
+    VisionOS: DOTWEEN
+    WebGL: DOTWEEN
+    Windows Store Apps: DOTWEEN
+    XboxOne: DOTWEEN
+    iPhone: DOTWEEN
+    tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -715,7 +715,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: WeaponMaster
-  metroPackageVersion: 1.0.0.0
+  metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -723,7 +723,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: WeaponMaster
   wsaImages: {}
-  metroTileShortName: WeaponMaster
+  metroTileShortName: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -790,7 +790,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 9320d1c8-db91-4088-be9b-c093f2a3745b
   framebufferDepthMemorylessMode: 0

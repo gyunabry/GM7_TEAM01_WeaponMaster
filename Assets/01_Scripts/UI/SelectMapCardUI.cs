@@ -28,8 +28,13 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         rectTransform = GetComponent<RectTransform>();
         originalPosition = rectTransform.anchoredPosition;
         originalScale = transform.localScale;
-        targetPanel = GetComponentInParent<ICardPanel>();
+        //targetPanel = GetComponentInParent<ICardPanel>();
         HideInstant();
+    }
+
+    public void InitPanel(ICardPanel panel)
+    {
+        targetPanel = panel;
     }
 
     private void HideInstant()

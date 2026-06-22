@@ -6,8 +6,8 @@ public class InGameUIManager : MonoBehaviour
 {
     public static InGameUIManager Instance {  get; private set; }
 
-    [Header("상점 진입하면 끌 UI")]
-    [SerializeField] private GameObject waveUIs;//골드 제외하고 모든 UI 잠시 끄기위해
+    //[Header("상점 진입하면 끌 UI")]
+    //[SerializeField] private GameObject waveUIs;//골드 제외하고 모든 UI 잠시 끄기위해
 
     [Header("플레이어")]
     [SerializeField] private PlayerController player;
@@ -25,30 +25,52 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveCountText;
     [SerializeField] private TextMeshProUGUI waveTimerText;
 
+    [Header("킬 카운트")]
+    [SerializeField] private TMP_Text killCountText;
+
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         
     }
-    private void OnEnable()
+
+    // 모든 오브젝트의 Awake가 끝난 시점인 Start에서 이벤트를 구독
+    private void Start()
     {
-        if(player != null)
+        // 이벤트 구독
+        if (player != null)
         {
             //player.OnHpChanged += UpdateHpUI;
             //player.OnExpChanged += UpdateEXPUI;
             //player.OnGoldChanged += UpdateGoldUI;
         }
-        if(WaveManager.Instance != null)
+        if (WaveManager.Instance != null)
         {
-            WaveManager.Instance.OnWaveStarted += OpenUIwithWaveStart;
+            WaveManager.Instance.OnWaveStarted += UpdateWaveUI;
             WaveManager.Instance.OnTimeChanged += UpdateTimerUI;
-            WaveManager.Instance.OnShopOpened += CloseUIwithWaveEnds;
+            // WaveManager.Instance.OnShopOpened += CloseUIwithWaveEnds;
         }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnKillEnemy += UpdateKillCount;
+        }
+
+        // 게임 첫 시작 시 UI 초기화
+        UpdateKillCount(GameManager.Instance.GetKillCount());
+        UpdateWaveUI(WaveManager.Instance.CurrentWave);
+        UpdateTimerUI(WaveManager.Instance.WaveTime);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        if(player!=null)
+        if (player != null)
         {
             //player.OnHpChanged -= UpdateHpUI;
             //player.OnExpChanged -= UpdateEXPUI;
@@ -56,12 +78,16 @@ public class InGameUIManager : MonoBehaviour
         }
         if (WaveManager.Instance != null)
         {
-            WaveManager.Instance.OnWaveStarted -= OpenUIwithWaveStart;
+            WaveManager.Instance.OnWaveStarted -= UpdateWaveUI;
             WaveManager.Instance.OnTimeChanged -= UpdateTimerUI;
-            WaveManager.Instance.OnShopOpened -= CloseUIwithWaveEnds;
+            // WaveManager.Instance.OnShopOpened -= CloseUIwithWaveEnds;
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnKillEnemy -= UpdateKillCount;
         }
     }
-    
+
     private void UpdateHpUI(float currentHp, float maxHp)
     {
         if(hpSlider != null && maxHp>0)
@@ -102,10 +128,11 @@ public class InGameUIManager : MonoBehaviour
 
     private void OpenUIwithWaveStart(int currentWave)
     {
-        if (waveUIs != null) waveUIs.SetActive(true);
+        // if (waveUIs != null) waveUIs.SetActive(true);
         if (waveCountText != null) waveCountText.text = $"Wave {currentWave}";
         if (waveTimerText != null) waveTimerText.text = "00 : 00";
     }
+
     private void UpdateTimerUI(float playTime)
     {
         if (waveTimerText == null) return;
@@ -114,11 +141,20 @@ public class InGameUIManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(playTime % 60f);
         waveTimerText.text = $"{minutes:D2} : {seconds:D2}";
     }
-    private void CloseUIwithWaveEnds()
+
+    private void UpdateKillCount(int count)
     {
-        if(waveUIs != null)
+        if (killCountText != null)
         {
-            waveUIs.SetActive(false);
+            killCountText.text = count.ToString();
         }
     }
+
+    //private void CloseUIwithWaveEnds()
+    //{
+    //    if(waveUIs != null)
+    //    {
+    //        waveUIs.SetActive(false);
+    //    }
+    //}
 }

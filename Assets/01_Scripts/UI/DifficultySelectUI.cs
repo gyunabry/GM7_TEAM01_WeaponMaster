@@ -16,8 +16,20 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
     private bool isOpen;
     private bool isSelected;
 
+    private void Awake()
+    {
+        for (int i = 0; i < difficultyCards.Length; i++)
+        {
+            if (difficultyCards[i] != null)
+            {
+                difficultyCards[i].InitPanel(this);
+            }
+        }
+    }
+
     void Start()
     {
+        if (isOpen) return;
         CloseInstant();
     }
 

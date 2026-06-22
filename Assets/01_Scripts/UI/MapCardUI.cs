@@ -21,6 +21,17 @@ public class MapCardUI : MonoBehaviour, ICardPanel
     private bool isOpen;
     private bool isSelected;
 
+    private void Awake()
+    {
+        for (int i = 0; i < mapCards.Length; i++)
+        {
+            if (mapCards[i] != null)
+            {
+                mapCards[i].InitPanel(this);
+            }
+        }
+    }
+
     void Start()
     {
         Open();

@@ -47,8 +47,6 @@ public class WaveManager : MonoBehaviour
         
     }
 
-
-
     public void StartStage()
     {
         stageTime = 0f;
@@ -65,15 +63,14 @@ public class WaveManager : MonoBehaviour
         OnTimeChanged?.Invoke(stageTime);
 
         CheckWaveTimeLine();
-
     }
+
     public void CheckWaveTimeLine()
     {
         if(currentWaveIndex<0 || currentWaveIndex >= stageWaves.Count) return;
         WaveData currentWave = stageWaves[currentWaveIndex];
         if(stageTime>=currentWave.waveDuration)
         {
-            
             currentWaveIndex++;
             if(currentWaveIndex < stageWaves.Count)
             {
@@ -88,6 +85,7 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
+
     private void StartWave(int index)
     {
         if(stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
