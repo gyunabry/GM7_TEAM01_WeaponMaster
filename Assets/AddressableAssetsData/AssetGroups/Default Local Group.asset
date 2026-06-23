@@ -15,45 +15,125 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 698190138bb8f754ebf0c5ba3156f4c7
   m_SerializeEntries:
-  - m_GUID: 46752815f153fd748b65e007c7e467f5
-    m_Address: Assets/02_Prefabs/Player/Weapon/Axe.prefab
+  - m_GUID: 00af9d98d4f8db54b80c0e3d48ea9eae
+    m_Address: c5272
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Axe
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 59e60cf26826cf04e83539540663a4be
-    m_Address: Assets/05_Data/Weapon/Null.asset
+  - m_GUID: 050be8d41f10e4f41bd9f8d419060008
+    m_Address: c5305
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06d25675c742ec243b68f648bd316fb9
+    m_Address: c20
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10afc8434f7fb5549b589cbc09daaa05
+    m_Address: c5395
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 177194f743a99954f9ab756304516543
+    m_Address: c5362
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 350d121f81e7ad74c9915cab1546ead4
+    m_Address: c5364
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46752815f153fd748b65e007c7e467f5
+    m_Address: Axe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 513272fdf44e12d41b2ac90a58fa8e01
+    m_Address: c5130
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55c02a3d1fbcac549802c0a671ded235
+    m_Address: c5313
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ef77d314831b804b9111b1934ca3bbd
+    m_Address: c2425
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 66118bee4d5e08543824aa36562919a7
-    m_Address: Assets/02_Prefabs/Player/Weapon/Sword.prefab
+    m_Address: Sword
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Sword
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74c7a773443c45145a3ecaf0b33003c8
+    m_Address: c5341
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76858e80f1ce69349b1fb77fd59ed22b
+    m_Address: c5385
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78185737a4698a042939e49314b57709
+    m_Address: c5488
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a2715f707f9b9d4459a60b3ceb73f16c
-    m_Address: Assets/02_Prefabs/Player/Weapon/CrossBow.prefab
+    m_Address: CrossBow
     m_ReadOnly: 0
     m_SerializedLabels:
-    - CrossBow
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c287719c08b34e746902f91e4f70b0a7
+    m_Address: c4969
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5062b766f247924ca8b77b50dbea671
+    m_Address: c5487
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e56f7443f4e460048b824e8a4ee6b621
-    m_Address: Assets/02_Prefabs/Player/Weapon/Bow.prefab
+    m_Address: Bow
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Bow
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ef05c6671e01e4e4ea097a390597b254
-    m_Address: Assets/02_Prefabs/Player/Weapon/Arrow.prefab
+  - m_GUID: e67479d4aa935c64a9df5327e7512392
+    m_Address: c5437
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef55b555410905b4cac6f244e25f6975
-    m_Address: Assets/02_Prefabs/Player/Weapon/Shield.prefab
+    m_Address: Shield
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Shield
+    - Loding
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 570b37004f7e5974f84a354dd4f3d784, type: 2}

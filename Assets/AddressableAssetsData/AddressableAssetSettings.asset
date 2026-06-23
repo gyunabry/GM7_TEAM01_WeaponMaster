@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 698190138bb8f754ebf0c5ba3156f4c7
   m_currentHash:
     serializedVersion: 2
-    Hash: 56fef8e2c5a8af89f113faf5c31e0a95
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Id: 
   m_RemoteCatalogLoadPath:
     m_Id: 
-  m_ContentStateBuildPathProfileVariableName: <default settings path>
+  m_ContentStateBuildPathProfileVariableName: 
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
@@ -99,12 +99,7 @@ MonoBehaviour:
     m_ProfileVersion: 1
   m_LabelTable:
     m_LabelNames:
-    - default
-    - Sword
-    - Bow
-    - Axe
-    - Shield
-    - CrossBow
+    - Loding
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: d44b655fd11e98d4aaa7b3560d471690, type: 2}

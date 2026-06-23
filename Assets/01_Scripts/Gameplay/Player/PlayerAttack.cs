@@ -41,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
     private float nowCri;
     private float nowSize;
     private Sprite nowSprite;
-    private int ijk = 0;
+    private bool upgrade = false;
 
     private void Awake() //무기 생성 부분 UI완성시 바꿀것
     {
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public void OnPrefabLoaded(AsyncOperationHandle<GameObject> handle)
     {
-        if(handle.Status == AsyncOperationStatus.Succeeded)
+        if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             instant = handle.Result;
             if(instant.name == "Shield(Clone)")
@@ -88,7 +88,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Start()
     {
-        playerWeapon = playerController.GetWeapon(); 
+        playerWeapon = playerController.GetWeapon();
         weaponType = playerWeapon.weaponType;
         weaponName = weaponType.ToString();
         Addressables.InstantiateAsync(weaponType.ToString()).Completed += OnPrefabLoaded;
@@ -98,8 +98,6 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        
-        
         if (isCo == false)
         {
             isCo = true;
@@ -114,38 +112,45 @@ public class PlayerAttack : MonoBehaviour
     {
         playerStat = playerController.PlayerStat();
     }
+    
     public void GetUpgrade(int j)
     {
-        ijk = j;
-        SetWeaponStat(ijk);
+        upgrade = true;
+        playerWeapon.upgradeNum = j;
+        SetWeaponStat(playerWeapon.upgradeNum);
+        sr.sprite = nowSprite;
     }
     public void SetWeaponStat(int i)
     {
-        if (playerWeapon.upgrades.Count == 0)
+        if (upgrade == false)
         {
-            nowDamage = playerWeapon.weaponDamage;
-            nowArmorPiercing = playerWeapon.weaponArmorPiercing;
-            nowAttackSpeed = playerWeapon.weaponAttackSpeed;
-            nowRange = playerWeapon.weaponRange;
-            nowCri = playerWeapon.weaponCri;
-            nowSize = playerWeapon.weaponSize;
+            nowDamage = playerWeapon.weaponDamage + playerWeapon.GetStatUpgradeDamage();
+            nowArmorPiercing = playerWeapon.weaponArmorPiercing + playerWeapon.GetStatUpgradeArmorPiercing();
+            nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetStatUpgradeAttackSpeed();
+            nowRange = playerWeapon.weaponRange + playerWeapon.GetStatUpgradeRange();
+            nowCri = playerWeapon.weaponCri + playerWeapon.GetStatUpgradeCri();
+            nowSize = playerWeapon.weaponSize + playerWeapon.GetStatUpgradeSize();
             nowSprite = playerWeapon.weaponIcon;
         }
         else
         {
-            nowDamage = playerWeapon.weaponDamage + playerWeapon.GetUpgradeDamage(i);
-            nowArmorPiercing = playerWeapon.weaponArmorPiercing + playerWeapon.GetUpgradeArmorPiercing(i);
-            nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(i);
-            nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(i);
-            nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(i);
-            nowSize = playerWeapon.GetUpgradeSize(i);
-            nowSprite = playerWeapon.GetUpgradeSprite(i);
+            nowDamage = playerWeapon.weaponDamage + playerWeapon.GetUpgradeDamage(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeDamage();
+            nowArmorPiercing = playerWeapon.weaponArmorPiercing + playerWeapon.GetUpgradeArmorPiercing(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeArmorPiercing();
+            nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeAttackSpeed();
+            nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeRange();
+            nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeCri();
+            nowSize = playerWeapon.GetUpgradeSize(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeSize();
+            nowSprite = playerWeapon.GetUpgradeSprite(playerWeapon.upgradeNum);
         }
         nowDamage = nowDamage * ((playerStat["damage"] + 100f) / 100f);
         nowArmorPiercing = nowArmorPiercing + playerStat["armorPiercing"];
         nowAttackSpeed = nowAttackSpeed / ((playerStat["attackSpeed"] + 100f) / 100f);
         nowRange = nowRange + (playerStat["range"] / 100);
         nowCri = nowCri + playerStat["cri"];
+        if(instant != null)
+        {
+            instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
+        }
     }
     public float GetUpgradeDamage()
     {
@@ -173,7 +178,7 @@ public class PlayerAttack : MonoBehaviour
     }
     IEnumerator Weapon()
     {
-        GetUpgrade(0);
+        SetWeaponStat(0);
         yield return new WaitForSecondsRealtime(1.0f);
         sr.sprite = nowSprite;
 
@@ -273,6 +278,7 @@ public class PlayerAttack : MonoBehaviour
             arrow.transform.SetParent(transform);
             arrow.transform.position = transform.position;
             arrow.transform.Rotate(0f, 0f, rotz + 45f);
+            arrow.transform.localScale = new Vector3(nowSize / 2, nowSize / 2, nowSize / 2);
             yield return new WaitForSecondsRealtime(nowAttackSpeed);
             isAttackCo = false;
             attackco = null;

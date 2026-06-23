@@ -69,7 +69,7 @@ public class PlayerAttackPoint : MonoBehaviour
         {
             if (enemyGO.Contains(collision.gameObject) && arrow == null)
             {
-                
+                return;
             }
             else
             {
@@ -87,7 +87,7 @@ public class PlayerAttackPoint : MonoBehaviour
                 {
                     nowDamage = playerAttack.GetDamage();
                 }
-                    Debug.Log(nowDamage);
+             // Debug.Log(nowDamage);
                 EnemyController enemy;
                 collision.TryGetComponent<EnemyController>(out enemy);
                 if (enemy != null)

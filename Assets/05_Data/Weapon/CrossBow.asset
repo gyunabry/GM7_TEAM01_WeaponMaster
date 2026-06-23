@@ -15,7 +15,8 @@ MonoBehaviour:
   weaponType: 2
   weaponName: CrossBow
   weaponId: 0
-  weaponDes: 
+  weaponDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC774 \uD2B9\uAE30\uC778 \uC6D0\uAC70\uB9AC
+    \uBB34\uAE30"
   weaponIcon: {fileID: -2653693364168859081, guid: 00af9d98d4f8db54b80c0e3d48ea9eae, type: 3}
   weaponDamage: 15
   weaponArmorPiercing: 15
@@ -31,6 +32,7 @@ MonoBehaviour:
     upgradeRange: 0
     upgradeCri: 0
     upgradeSize: 4
+    upgradeDes: "\uBE60\uB978 \uC5F0\uC0AC\uAC00 \uD2B9\uC9D5\uC778 \uC9C4\uD654"
     upgradeSprite: {fileID: 4938632579457392512, guid: c287719c08b34e746902f91e4f70b0a7, type: 3}
   - upgradeName: "\uAC15\uD654 \uD06C\uB85C\uC2A4 \uBCF4\uC6B0"
     upgradeDamage: 5
@@ -39,7 +41,16 @@ MonoBehaviour:
     upgradeRange: 2
     upgradeCri: 20
     upgradeSize: 4
+    upgradeDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC5D0 \uC9D1\uC911\uB41C \uC9C4\uD654"
     upgradeSprite: {fileID: 5450094789475882396, guid: 513272fdf44e12d41b2ac90a58fa8e01, type: 3}
+  statUpValue:
+    upgradeStatDamage: 4
+    upgradeStatArmorPiercing: 4
+    upgradeStatAttackSpeed: -0.1
+    upgradeStatRange: 1
+    upgradeStatCri: 10
+    upgradeStatSize: 1
+  upgradeCount: 0
   skill1: 0
   skill2: 0
   skill3: 0
