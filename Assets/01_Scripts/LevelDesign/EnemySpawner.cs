@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEditor.Rendering;
 
 
 public class EnemySpawner : MonoBehaviour
@@ -40,6 +41,8 @@ public class EnemySpawner : MonoBehaviour
         float speedMultiplier = WaveManager.Instance.EnemyMoveSpeedMultiplier;
 
         int theSpawnCount = Mathf.RoundToInt(info.spawnCount * countMultiplier);
+
+        yield return new WaitForSeconds(info.spawnDelay);
         while(true)
         {
             for(int i = 0; i<theSpawnCount; i++)

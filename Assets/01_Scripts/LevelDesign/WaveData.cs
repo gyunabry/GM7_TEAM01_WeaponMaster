@@ -7,6 +7,7 @@ public struct SpawnInfo
     public EnemyData enemyData; // 적 프리팹
     public int spawnCount; //스폰되는 적 수
     public float spawnInterval; //스폰 간격
+    public float spawnDelay; //다음 몹 소환 딜레이
 
 }
 [CreateAssetMenu(fileName ="WaveData", menuName = "ScriptableObject/WaveData")]

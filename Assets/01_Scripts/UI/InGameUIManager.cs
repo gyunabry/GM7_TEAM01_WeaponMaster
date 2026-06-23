@@ -125,7 +125,8 @@ public class InGameUIManager : MonoBehaviour
     {
         if(waveCountText!=null)
         {
-            waveCountText.text =$"Wave {curretnWave}";
+            //웨이브 데이터 0으로 대기시간 만들때 웨이브 카운트 오류 개선용
+            waveCountText.text =$"Wave {curretnWave-1}";
         }
     }
 

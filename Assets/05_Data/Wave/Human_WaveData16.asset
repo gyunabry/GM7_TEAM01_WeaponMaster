@@ -10,14 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f345fbc89e2d84b90147dd1b778b5d, type: 3}
-  m_Name: Wave01
+  m_Name: Human_WaveData16
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  waveStartTiming: 5
-  waveDuration: 25
+  waveStartTiming: 0
+  waveDuration: 30
   spawnList:
   - enemyData: {fileID: 11400000, guid: f9a96fcd05cd75a4089edabc868de3d9, type: 2}
-    spawnCount: 1
-    spawnInterval: 4
+    spawnCount: 10
+    spawnInterval: 2
+    spawnDelay: 0
   - enemyData: {fileID: 11400000, guid: 2155c55d6e3c3db48930be475764228b, type: 2}
-    spawnCount: 1
+    spawnCount: 10
     spawnInterval: 4
+    spawnDelay: 5
+  - enemyData: {fileID: 11400000, guid: 83c96bf1491e72b43a6eb58a97d36658, type: 2}
+    spawnCount: 6
+    spawnInterval: 6
+    spawnDelay: 8
+  - enemyData: {fileID: 11400000, guid: ee7bbf8f3ab49be45a81fbb5cdf8ce46, type: 2}
+    spawnCount: 5
+    spawnInterval: 8
+    spawnDelay: 10
+  - enemyData: {fileID: 11400000, guid: 770947e3fc2c38947b8d93c23a6e14fd, type: 2}
+    spawnCount: 8
+    spawnInterval: 5
+    spawnDelay: 13
