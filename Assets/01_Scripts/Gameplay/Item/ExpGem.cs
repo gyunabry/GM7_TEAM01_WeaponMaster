@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ExpGem : DropItemBase, ICollectable
 {
-    [SerializeField] private float expAmount = 10f;
+    [SerializeField] private int expAmount = 10;
     private bool isPulled = false;
     private Transform pullTarget;
     private float currentPullSpeed;
@@ -17,7 +17,8 @@ public class ExpGem : DropItemBase, ICollectable
 
     public override void Collect(PlayerController player)
     {
-        // 플레이어 경험치 지급 로직
+        // 경험치 지급 로직
+        GameManager.Instance.AddExp(expAmount);
         // SFX 재생
         // 오브젝트 풀로 반환
         ReturnToPool();

@@ -9,6 +9,9 @@ public class InGameUIManager : MonoBehaviour
     //[Header("상점 진입하면 끌 UI")]
     //[SerializeField] private GameObject waveUIs;//골드 제외하고 모든 UI 잠시 끄기위해
 
+    [Header("구독할 이벤트")]
+    [SerializeField] private VoidEventChannel playerDeadEvent;
+
     [Header("플레이어")]
     [SerializeField] private PlayerController player;
 
@@ -38,7 +41,6 @@ public class InGameUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 
     // 모든 오브젝트의 Awake가 끝난 시점인 Start에서 이벤트를 구독
@@ -59,6 +61,7 @@ public class InGameUIManager : MonoBehaviour
         }
         if (GameManager.Instance != null)
         {
+            GameManager.Instance.OnExpChanged += UpdateExpUI;
             GameManager.Instance.OnKillEnemy += UpdateKillCount;
         }
 
@@ -84,6 +87,7 @@ public class InGameUIManager : MonoBehaviour
         }
         if (GameManager.Instance != null)
         {
+            GameManager.Instance.OnExpChanged -= UpdateExpUI;
             GameManager.Instance.OnKillEnemy -= UpdateKillCount;
         }
     }
@@ -99,11 +103,15 @@ public class InGameUIManager : MonoBehaviour
             hpText.text = $"{Mathf.RoundToInt(currentHp)}/{Mathf.RoundToInt(maxHp)}";
         }
     }
-    private void UpdateEXPUI(float currentExp, float maxExp)
+    private void UpdateExpUI(int currentExp, int maxExp)
     {
-        if(expSlider != null && maxExp>0)
+        if(expSlider != null && maxExp > 0)
         {
-            expSlider.value = currentExp / maxExp;
+            // 슬라이더의 최대값 설정
+            expSlider.maxValue = maxExp;
+
+            // 슬라이더에 현재값을 적용
+            expSlider.value = currentExp;
         }
         if(expText!=null)
         {
@@ -122,7 +130,8 @@ public class InGameUIManager : MonoBehaviour
     {
         if(waveCountText!=null)
         {
-            waveCountText.text =$"Wave {curretnWave}";
+            //웨이브 데이터 0으로 대기시간 만들때 웨이브 카운트 오류 개선용
+            waveCountText.text =$"Wave {curretnWave-1}";
         }
     }
 
