@@ -10,10 +10,10 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField] private float startOffset = -80.0f;
     [Header("마우스 호버 스케일")]
     [SerializeField] private float hoveScale = 1.09f;
-    [Header("이 카드가 로드할 씬 이름")]
-    [SerializeField] private string mapSceneName;
+    [Header("이 카드가 담을 스테이지 정보")]
+    [SerializeField] private StageData stageData;
 
-    public string MapSceneName => mapSceneName;
+    public StageData MapStageData => stageData;
 
 
     private RectTransform rectTransform;

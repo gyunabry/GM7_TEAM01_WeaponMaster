@@ -95,7 +95,8 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
         sequence.OnComplete(() =>
         {
             GameSceneData.SelectedDifficulty = (Difficulty)chosenDifficultyIndex;
-            SceneManager.LoadScene(GameSceneData.SelectedSceneName);
+            // GameSceneManager를 통해 씬 타입으로 씬 로드
+            GameSceneManager.Instance.LoadScene(SceneType.Game);
         });
     }
 

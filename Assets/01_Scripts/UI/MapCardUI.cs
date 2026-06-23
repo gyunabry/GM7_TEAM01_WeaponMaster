@@ -95,9 +95,8 @@ public class MapCardUI : MonoBehaviour, ICardPanel
 
         DOVirtual.DelayedCall(0.26f, () =>
         {
-            
-            GameSceneData.SelectedMapWaves = this.mapWaveDataList;
-            GameSceneData.SelectedSceneName = selectCard.MapSceneName;
+            // GameSceneData에 선택된 스테이지의 데이터 저장
+            GameSceneData.SelectedStage = selectCard.MapStageData;
 
             CloseInstant();
 

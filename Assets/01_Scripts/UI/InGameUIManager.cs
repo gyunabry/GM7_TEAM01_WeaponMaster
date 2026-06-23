@@ -9,6 +9,9 @@ public class InGameUIManager : MonoBehaviour
     //[Header("상점 진입하면 끌 UI")]
     //[SerializeField] private GameObject waveUIs;//골드 제외하고 모든 UI 잠시 끄기위해
 
+    [Header("구독할 이벤트")]
+    [SerializeField] private VoidEventChannel playerDeadEvent;
+
     [Header("플레이어")]
     [SerializeField] private PlayerController player;
 
