@@ -8,6 +8,10 @@ public class PoolManager : MonoBehaviour
 
     private Dictionary<Type, Queue<Component>> poolDictionary = new Dictionary<Type, Queue<Component>>();
     private Dictionary<Type, Transform> poolParent = new Dictionary<Type, Transform>();
+
+    // 프리팹 원본을 저장하는 딕셔너리
+    private Dictionary<Type, Component> prefabDict = new Dictionary<Type, Component>();
+
     private Transform poolRoot;
 
     private void Awake()
@@ -39,6 +43,12 @@ public class PoolManager : MonoBehaviour
 
         CreatePool(type);
 
+        // 프리팹 원본을 저장
+        if (!prefabDict.ContainsKey(type))
+        {
+            prefabDict.Add(type, prefab);
+        }
+
         for (int i = 0; i < count; i++)
         {
             // T 타입 오브젝트 생성
@@ -51,6 +61,34 @@ public class PoolManager : MonoBehaviour
             // 생성한 오브젝트를 해당하는 타입 큐에 저장
             poolDictionary[type].Enqueue(obj);
         }
+    }
+
+    // 풀 프리로드 시 저장된 프리팹 타입으로 풀에서 꺼내는 메서드
+    public T GetPool<T>() where T : Component
+    {
+        Type type = typeof(T);
+
+        if (!prefabDict.ContainsKey(type))
+        {
+            Debug.LogWarning($"{type.Name} 프리팹이 PoolManager에 등록되지 않음");
+            return null;
+        }
+
+        T obj = null;
+
+        if (poolDictionary[type].Count > 0)
+        {
+            obj = poolDictionary[type].Dequeue() as T;
+        }
+        else
+        {
+            obj = Instantiate(prefabDict[type] as T);
+            obj.transform.SetParent(poolParent[type]);
+        }
+
+        obj.gameObject.SetActive(true);
+
+        return obj;
     }
 
     public T GetPool<T>(T prefab) where T : Component

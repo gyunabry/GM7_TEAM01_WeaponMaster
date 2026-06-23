@@ -127,6 +127,9 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         currentHp -= damage;
 
+        HitText hitText = PoolManager.Instance.GetPool<HitText>();
+        hitText.ShowDamage(damage, transform.position);
+
         // 피해를 입은 직후 체력을 검사하여 사망 처리
         if (IsDead)
         {
