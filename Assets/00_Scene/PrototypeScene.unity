@@ -347,19 +347,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1049738459318947163, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
       propertyPath: maxX
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1049738459318947163, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
       propertyPath: maxY
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1049738459318947163, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
       propertyPath: minX
-      value: -20
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 1049738459318947163, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
       propertyPath: minY
-      value: -20
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1082961109484340099, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
       propertyPath: m_Name
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f1de98b0f413a418b11990bcec302d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  playerDeadEvent: {fileID: 0}
 --- !u!1001 &513757831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1654,6 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74e3dcb92c50c343bb790b82319d163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InGameUIManager
+  playerDeadEvent: {fileID: 0}
   player: {fileID: 0}
   hpSlider: {fileID: 1499540733}
   hpText: {fileID: 1499540732}

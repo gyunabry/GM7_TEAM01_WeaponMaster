@@ -37,9 +37,9 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        if(GameSceneData.SelectedMapWaves != null && GameSceneData.SelectedMapWaves.Count > 0)
+        if(GameSceneData.SelectedStage != null && GameSceneData.SelectedStage.waveDataList != null)
         {
-            this.stageWaves = GameSceneData.SelectedMapWaves;
+            this.stageWaves = GameSceneData.SelectedStage.waveDataList;
         }
         this.currentDifficulty = GameSceneData.SelectedDifficulty;
 

@@ -15,9 +15,13 @@ MonoBehaviour:
   waveStartTiming: 0
   waveDuration: 30
   spawnList:
-  - enemyData: {fileID: 11400000, guid: ee7bbf8f3ab49be45a81fbb5cdf8ce46, type: 2}
+  - enemyPrefab: {fileID: -3333117106503603448, guid: 3aea2c3aa0c97374e9794bb7c6f52bfd, type: 3}
+    enemyData: {fileID: 11400000, guid: ee7bbf8f3ab49be45a81fbb5cdf8ce46, type: 2}
     spawnCount: 15
     spawnInterval: 6
-  - enemyData: {fileID: 11400000, guid: 83c96bf1491e72b43a6eb58a97d36658, type: 2}
+    spawnDelay: 0
+  - enemyPrefab: {fileID: 6522585078857555969, guid: 3a2b42f44f1943d4c8dff8146d515951, type: 3}
+    enemyData: {fileID: 11400000, guid: 83c96bf1491e72b43a6eb58a97d36658, type: 2}
     spawnCount: 15
     spawnInterval: 4
+    spawnDelay: 0
