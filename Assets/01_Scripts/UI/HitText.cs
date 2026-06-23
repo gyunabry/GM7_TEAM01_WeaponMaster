@@ -11,6 +11,7 @@ public class HitText : MonoBehaviour
     [Header("색상 설정")]
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color critColor = Color.yellow;
+    [SerializeField] private Color playerColor = Color.red;
 
     public TMP_Text damageText;
 
@@ -29,15 +30,20 @@ public class HitText : MonoBehaviour
         damageText.alpha = 0.5f;
     }
 
-    public void ShowDamage(float damage, Vector3 spawnPos, bool isCrit)
+    public void ShowDamage(float damage, Vector2 spawnPos, bool isCrit = false, bool isPlayer = false)
     {
         // 오브젝트 풀링 적용을 위해 기본 값으로 초기화
         transform.position = spawnPos;
         transform.localScale = baseScale;
 
-        textColor = isCrit ? critColor : normalColor;
+        // 플레이어라면 빨간색
+        // 아니라면 치명타 여부 확인 후 색 설정
+        if (isPlayer) textColor = playerColor;
+        else textColor = isCrit ? critColor : normalColor;
 
+        // 데미지 표시
         damageText.text = damage.ToString();
+        damageText.color = textColor;
 
         // DOTween 시퀀스 생성
         Sequence sequence = DOTween.Sequence();

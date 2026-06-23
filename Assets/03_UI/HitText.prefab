@@ -84,7 +84,7 @@ MeshRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1217326704523385889
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778609912741a5544aee8dc191f6fab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitText
+  baseHeight: {x: 0, y: 1}
   floatHeight: 1.2
   duration: 0.5
   normalColor: {r: 1, g: 1, b: 1, a: 1}
