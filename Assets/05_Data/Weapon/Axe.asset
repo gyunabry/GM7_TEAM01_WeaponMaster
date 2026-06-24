@@ -18,20 +18,20 @@ MonoBehaviour:
   weaponDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC774 \uD2B9\uAE30\uC778 \uADFC\uAC70\uB9AC
     \uBB34\uAE30"
   weaponIcon: {fileID: -2508016695669320440, guid: 050be8d41f10e4f41bd9f8d419060008, type: 3}
-  weaponDamage: 20
+  weaponDamage: 40
   weaponArmorPiercing: 10
   weaponAttackSpeed: 2.4
   weaponRange: 4
-  weaponCri: 0
-  weaponSize: 4
+  weaponCri: 10
+  weaponSize: 8
   upgrades:
   - upgradeName: "\uBC30\uD2C0\uC561\uC2A4"
-    upgradeDamage: 0
+    upgradeDamage: 10
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -1.2
     upgradeRange: 0
     upgradeCri: 0
-    upgradeSize: 4
+    upgradeSize: 8
     upgradeDes: "\uBE60\uB978 \uACF5\uACA9\uC18D\uB3C4\uAC00 \uD2B9\uC9D5\uC778 \uC9C4\uD654"
     upgradeSprite: {fileID: -4912735078408090665, guid: 10afc8434f7fb5549b589cbc09daaa05, type: 3}
   - upgradeName: "\uCC98\uD615\uB3C4\uB07C"
@@ -40,18 +40,19 @@ MonoBehaviour:
     upgradeAttackSpeed: 2.6
     upgradeRange: 4
     upgradeCri: 50
-    upgradeSize: 6
+    upgradeSize: 12
     upgradeDes: "\uB354\uC6B1 \uB290\uB9AC\uC9C0\uB9CC \uB354\uC6B1 \uAC15\uB825\uD55C
       \uD55C\uBC29\uC774 \uD2B9\uC9D5\uC778 \uC9C4\uD654"
     upgradeSprite: {fileID: -7569139067131880650, guid: 76858e80f1ce69349b1fb77fd59ed22b, type: 3}
   statUpValue:
-    upgradeStatDamage: 5
+    upgradeStatDamage: 15
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 0.5
     upgradeStatCri: 10
-    upgradeStatSize: 0.8
-  upgradeCount: 0
+    upgradeStatSize: 2
+  upgradeNum: 0
+  upgradeCount: 9
   skill1: 0
   skill2: 0
   skill3: 0

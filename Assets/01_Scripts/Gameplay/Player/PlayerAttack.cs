@@ -43,12 +43,13 @@ public class PlayerAttack : MonoBehaviour
     private Sprite nowSprite;
     private bool upgrade = false;
 
-    private void Awake() //무기 생성 부분 UI완성시 바꿀것
+    private void Awake()
     {
         arrowPooling = FindFirstObjectByType<ArrowPooling>();
         playerController = GetComponentInParent<PlayerController>();
         GetPlayerStat();
     }
+    
     public float GetDamage()
     {
         return nowDamage;
@@ -80,6 +81,7 @@ public class PlayerAttack : MonoBehaviour
                 instant.transform.position = srPosition;
                 childBox = GetComponentInChildren<BoxCollider2D>();
             }
+            childBox.enabled = false;
         }
         else
         {
@@ -226,7 +228,7 @@ public class PlayerAttack : MonoBehaviour
         float rotz = Mathf.Atan2(newrot.y, newrot.x) * Mathf.Rad2Deg;
         return rotz;
     }
-    public void AttackMotion(Transform targetPosi)
+    public void AttackSwingMotion(Transform targetPosi)
     {
         DG.Tweening.Sequence motion = DOTween.Sequence();
         Vector2 nowTrans = transform.localPosition;
@@ -234,16 +236,18 @@ public class PlayerAttack : MonoBehaviour
         Vector2 basePosi = direction.normalized;
         Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
 
+        float Posi = playerWeapon.GetStatUpgradeSize();
+        Posi = Posi / 10;
         Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 0.6f);
         Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.2f);
+        
 
-        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * 1.6f);
-        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * 1.6f);
+        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * (1.6f + Posi));
+        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * (1.6f + Posi));
 
         Quaternion rotate = transform.rotation;
         Quaternion leftRotate = rotate * Quaternion.Euler(0, 0, 30.6f);
-        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -20.6f);
-
+        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -30.6f);
 
         motion.Append(transform.DOLocalRotateQuaternion(leftRotate, 0f));
         motion.Append(transform.DOMove(leftPosi, 0.05f));
@@ -252,15 +256,16 @@ public class PlayerAttack : MonoBehaviour
         motion.Append(transform.DOLocalRotateQuaternion(rightRotate, 0f));
         motion.Append(transform.DOMove(rightPosi, 0.1f));
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
+        motion.OnComplete (() => { playerController.SetWeaponArm(); });
     }
     IEnumerator Attack(Collider2D other)
     {
-        if(playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe" || playerWeapon.weaponType.ToString() == "Shield")
+        if (playerWeapon.weaponType.ToString() == "Sword" || playerWeapon.weaponType.ToString() == "Axe" || playerWeapon.weaponType.ToString() == "Shield")
         {
             isAttackCo = true;
             nowAttack = true;
-            AttackMotion(other.transform);
             childBox.enabled = true;
+            AttackSwingMotion(other.transform);
             yield return new WaitForSecondsRealtime(0.3f);
             childBox.enabled = false;
             nowAttack = false;
