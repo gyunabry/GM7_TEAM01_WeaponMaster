@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -46,9 +47,13 @@ public class PlayerController : MonoBehaviour, IDamageable
     private Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO> playerWeapon = new Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO>();
     private float nowHp { get; set; } = 100f;
     private bool invincible { get; set; } = false;
+
     private PlayerWeaponSO.WeaponType reWeaponType;
     private Coroutine coHpRegen;
     private Dictionary<PlayerWeaponSO.WeaponType, GameObject> saveArm = new Dictionary<PlayerWeaponSO.WeaponType, GameObject>();
+
+    public event Action<float, float> OnHpChanged;
+    [SerializeField] private VoidEventChannel onPlayerDead;
 
     Vector2 move;
 
@@ -135,12 +140,17 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         invincible = true;
         nowHp -= damage * (100 / 100 + armor);
+        OnHpChanged?.Invoke(nowHp, maxHp);
         if (nowHp < 0)
         {
             nowHp = 0;
+            OnHpChanged?.Invoke(nowHp, maxHp);
         }
-        //죽었을때 사용할 명령어
-        Debug.Log("맞았다!"); //임시 명령어
+        onPlayerDead.RaiseEvent();
+
+        HitText hitText = PoolManager.Instance.GetPool<HitText>();
+        hitText.ShowDamage(damage, transform.position, false, true);
+
         yield return new WaitForSecondsRealtime(invincibleTime);
         invincible = false;
         co = null;
@@ -192,24 +202,24 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 yield return new WaitForSeconds(1f);
             }
+            OnHpChanged?.Invoke(nowHp, maxHp);
         }
     }
+
     public void HpAbs()
     {
-        int i = Random.Range(1, 101);
+        int i = UnityEngine.Random.Range(1, 101);
         if(hpAbs >= i)
         {
             nowHp += 1;
+            OnHpChanged?.Invoke(nowHp, maxHp);
         }
     }
     
     public void OnWeaponArm(PlayerWeaponSO.WeaponType weaponType) //이곳 무기 획득 UI완성시 최우선으로 바꿀것
     {
-        
-        
         reWeaponType = OnWeaponTypeName(weaponType);
-        
-        
+
         PlayerWeaponSO pws;
         if(playerWeapon.TryGetValue(reWeaponType, out pws))
         {
