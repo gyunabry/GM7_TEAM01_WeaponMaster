@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minY = -7.9f;
     [SerializeField] private float maxY = 6.3f;
 
-    
+    [SerializeField] private EnemyController genericEnemyPrefab;
 
     private List<Coroutine> activeSpawnCoroutines = new List<Coroutine>();
 
@@ -29,36 +29,47 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnInfo currentinfo = waveData.spawnList[i];
 
-            Coroutine co = StartCoroutine(SpawnRoutine(currentinfo));
+            Coroutine co = StartCoroutine(SpawnRoutine(currentinfo,waveData.waveDuration));
             activeSpawnCoroutines.Add(co);
         }
        
     }
-    private IEnumerator SpawnRoutine(SpawnInfo info)
+    private IEnumerator SpawnRoutine(SpawnInfo info, float duration)
     {
         float countMultiplier = WaveManager.Instance.SpawnCountMultiplier;
         float hpMultiplier = WaveManager.Instance.EnemyHpMultiplier;
         float speedMultiplier = WaveManager.Instance.EnemyMoveSpeedMultiplier;
 
-        int theSpawnCount = Mathf.RoundToInt(info.spawnCount * countMultiplier);
+        float elapsed = 0f;
 
-        yield return new WaitForSeconds(info.spawnDelay);
-        while(true)
+        while (elapsed < duration)
         {
-            for(int i = 0; i<theSpawnCount; i++)
+            float progress = elapsed / duration;
+            float curveValue = 1f;
+            if(info.spawnDensityCurve != null && info.spawnDensityCurve.keys.Length>0)
             {
-                //GameObject enemy = Instantiate(info.enemyPrefab);
-                EnemyController enemy = PoolManager.Instance.GetPool(info.enemyPrefab);
+                curveValue = info.spawnDensityCurve.Evaluate(progress);
+            }
+
+            int finalSpawnCount = Mathf.RoundToInt(info.spawnCount * countMultiplier * curveValue);
+
+            for(int i = 0;i< finalSpawnCount;i++)
+            {
+                EnemyController enemy = PoolManager.Instance.GetPool(genericEnemyPrefab);
+
                 enemy.Initialize(info.enemyData);
 
                 float randomX = Random.Range(minX, maxX);
                 float randomY = Random.Range(minY, maxY);
 
-                enemy.transform.position = new Vector3(randomX, randomY, 0.0f);
+                enemy.transform.position = new Vector3(randomX, randomY, 0f);
                 enemy.transform.rotation = Quaternion.identity;
             }
             yield return new WaitForSeconds(info.spawnInterval);
+
+            elapsed += info.spawnInterval;
         }
+        
     }
         
     private void StopAllSpawnCoroutines()

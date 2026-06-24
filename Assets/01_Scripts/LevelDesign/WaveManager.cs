@@ -97,4 +97,15 @@ public class WaveManager : MonoBehaviour
 
         OnWaveStarted?.Invoke(CurrentWave);
     }
+
+    private void UnlockWeapons(int clearedIndex)
+    {
+        if (stageWaves == null || stageWaves.Count == 0 || clearedIndex >= stageWaves.Count) return;
+
+        if(clearedIndex == 4)
+        {
+            //웨폰매니저 가져오기
+        }
+
+    }
 }

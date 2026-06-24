@@ -982,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4663351556205782450, guid: f1c510303bee05949990a18db564fb56, type: 3}
+      propertyPath: stageWaves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7461544033466033393, guid: f1c510303bee05949990a18db564fb56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

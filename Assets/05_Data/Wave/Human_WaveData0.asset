@@ -13,5 +13,145 @@ MonoBehaviour:
   m_Name: Human_WaveData0
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   waveStartTiming: 0
-  waveDuration: 3
-  spawnList: []
+  waveDuration: 600
+  spawnList:
+  - enemyData: {fileID: 11400000, guid: f9a96fcd05cd75a4089edabc868de3d9, type: 2}
+    spawnCount: 4
+    spawnInterval: 5
+    spawnDelay: 0
+    spawnDensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - enemyData: {fileID: 11400000, guid: 2155c55d6e3c3db48930be475764228b, type: 2}
+    spawnCount: 3
+    spawnInterval: 3
+    spawnDelay: 0
+    spawnDensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.1504898
+        value: 0
+        inSlope: 0.9383459
+        outSlope: 0.9383459
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.7971344
+        inSlope: 0.9383459
+        outSlope: 0.9383459
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - enemyData: {fileID: 11400000, guid: 83c96bf1491e72b43a6eb58a97d36658, type: 2}
+    spawnCount: 3
+    spawnInterval: 3
+    spawnDelay: 0
+    spawnDensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.25061035
+        value: 0.000025645131
+        inSlope: 1.2446768
+        outSlope: 1.2446768
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.9327736
+        inSlope: 1.2446768
+        outSlope: 1.2446768
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - enemyData: {fileID: 11400000, guid: 770947e3fc2c38947b8d93c23a6e14fd, type: 2}
+    spawnCount: 1
+    spawnInterval: 5
+    spawnDelay: 0
+    spawnDensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.20293427
+        value: 0.0020751953
+        inSlope: 1.4190993
+        outSlope: 1.4190993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9046631
+        value: 0.9978981
+        inSlope: 1.4190993
+        outSlope: 1.4190993
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - enemyData: {fileID: 11400000, guid: ee7bbf8f3ab49be45a81fbb5cdf8ce46, type: 2}
+    spawnCount: 4
+    spawnInterval: 3
+    spawnDelay: 0
+    spawnDensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.3997574
+        value: 0.004211426
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
