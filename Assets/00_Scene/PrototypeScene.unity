@@ -219,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1843929781002007539, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240178210618358875, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: m_Pivot.x
@@ -310,6 +310,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
+--- !u!1 &133909477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843929781002007539, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
+  m_PrefabInstance: {fileID: 133909476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &138183672
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerDeadEvent: {fileID: 11400000, guid: e5686fe0bbf931243872e0132e23455d, type: 2}
-  levelUpButton: {fileID: 0}
+  levelUpButton: {fileID: 133909477}
 --- !u!1001 &513757831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1388,6 +1393,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 583004831876617680, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 679653576546683304, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 872197026239513052, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1406,6 +1419,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1094225780855786189, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858972715082651770, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
+      propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3935428055251929210, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
@@ -1464,6 +1481,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 619620954}
+    - target: {fileID: 5957962539084838284, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7426462433479571948, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
       propertyPath: m_Pivot.x
       value: 0

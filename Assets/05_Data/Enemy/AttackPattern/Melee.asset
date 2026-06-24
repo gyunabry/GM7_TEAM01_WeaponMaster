@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a13af1adc8f14ea0a3d3393274629, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternData
-  triggerRange: 0
-  patternCooltime: 0
+  triggerRange: 1.5
+  patternCooltime: 1
   attackSequence:
   - {fileID: 11400000, guid: 24225fdb919442e4cb1ebe807791fc88, type: 2}
   actionDelay: 0.5
