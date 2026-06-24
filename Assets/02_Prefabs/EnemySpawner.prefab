@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2bf3d41c5693f42ba5f0304cedab81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  minX: -10
-  maxX: 10
-  minY: -7.9
-  maxY: 6.3
+  minX: -20
+  maxX: 20
+  minY: -20
+  maxY: 20
   genericEnemyPrefab: {fileID: 6522585078857555969, guid: ead5f00e5285a2749af527468e022cf1, type: 3}

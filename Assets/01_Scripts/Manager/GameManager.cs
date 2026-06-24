@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     [Header("구독할 이벤트")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
 
+    [Header("레벨업 시 띄울 오브젝트")]
+    [SerializeField] private GameObject levelUpButton;
+
     public int KillCount { get; private set; }
     public int Gold { get; private set; }
 
@@ -84,11 +87,21 @@ public class GameManager : MonoBehaviour
     {
         if (currentExp < 0) return;
 
-        if (currentExp >= requireExp[level])
+        while (currentExp >= requireExp[level])
         {
+            PauseGame();
+
             // 레벨업 시 현재 경험치를 필요 경험치만큼 삭감
             currentExp -= requireExp[level];
             level++;
+            levelUpButton.SetActive(true);
+
+            // 최고레벨 도달 시 더이상 레벨업 X
+            if (level >= requireExp.Length)
+            {
+                level = requireExp.Length - 1;
+                break;
+            }
             // TODO:레벨업 효과 이벤트
         }
     }
@@ -101,5 +114,15 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log($"You died\n{KillCount} kills");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
     }
 }

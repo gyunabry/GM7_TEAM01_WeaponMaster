@@ -296,8 +296,7 @@ MonoBehaviour:
   nowExp: 0
   reqExp: 50
   gold: 0
-  baseSpeed: 500
-  goButton: {fileID: 1843929781002007539, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
+  baseSpeed: 5
 --- !u!114 &4626836144241479772
 MonoBehaviour:
   m_ObjectHideFlags: 0

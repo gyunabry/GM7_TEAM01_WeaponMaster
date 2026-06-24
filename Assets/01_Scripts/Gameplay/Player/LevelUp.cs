@@ -204,6 +204,8 @@ public class LevelUp : MonoBehaviour
         go[1].onClick.RemoveAllListeners();
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
+
+        GameManager.Instance.ResumeGame();
     }
 
     //스탯업그레이드
@@ -246,6 +248,8 @@ public class LevelUp : MonoBehaviour
         go[1].onClick.RemoveAllListeners();
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
+
+        GameManager.Instance.ResumeGame();
     }
     //무기 진화
     public void GetUpgrade(int jk)
@@ -262,6 +266,8 @@ public class LevelUp : MonoBehaviour
         go[1].onClick.RemoveAllListeners();
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
+
+        GameManager.Instance.ResumeGame();
     }
 }
     

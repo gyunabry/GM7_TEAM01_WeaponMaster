@@ -154,7 +154,6 @@ MonoBehaviour:
   playerWeapon: {fileID: 1831831297}
   playerController: {fileID: 101992005758382045}
   button: {fileID: 5258482894394845611, guid: c0b83421cc4c2694bb58ee91595ac502, type: 3}
-  childImage: {fileID: 0}
 --- !u!114 &479125597
 MonoBehaviour:
   m_ObjectHideFlags: 0

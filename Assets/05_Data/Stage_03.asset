@@ -14,4 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   stageName: "\uC2A4\uCF08\uB808\uD1A4"
   mapPrefab: {fileID: 8203529085821973669, guid: 71a673bc50e2b264584eaf78c209a375, type: 3}
-  waveDataList: []
+  waveDataList:
+  - {fileID: 11400000, guid: 2ae57ca7ee249bc45a28276d5dbab7ab, type: 2}
+  - {fileID: 11400000, guid: 8d623b483fa7bf84faca399418ffe55b, type: 2}
+  - {fileID: 11400000, guid: 154051761480d974ea22b083101ba43b, type: 2}
+  - {fileID: 11400000, guid: e08b066e018b41a44a10b0136a437bff, type: 2}
+  - {fileID: 11400000, guid: 4a44defaa1ceb4446b2ebe22b3d07c3c, type: 2}
+  - {fileID: 11400000, guid: 25350d6c12fcf6f47bb1528257c9f3bf, type: 2}
+  - {fileID: 11400000, guid: c0bfa6e2791ba504c810db45085afdf5, type: 2}
+  - {fileID: 11400000, guid: f646e381f99b09d44bb04e63cf36e1f8, type: 2}
+  - {fileID: 11400000, guid: 6d1f6fac7dcaf0e4cb84100b6ccf2842, type: 2}
+  - {fileID: 11400000, guid: 9a8525458f525e6428c71df06c14aa93, type: 2}
+  - {fileID: 11400000, guid: 2d2b9b03d00006f44aea14e12db79168, type: 2}
+  - {fileID: 11400000, guid: 245abbd3424848940b13d4db79f718a9, type: 2}
+  - {fileID: 11400000, guid: 07d6a25f67fdbcc438cbe06d6463fc0a, type: 2}
+  - {fileID: 11400000, guid: 0d19ff55351432f448ede5e57b5e297f, type: 2}
+  - {fileID: 11400000, guid: 1c335472933f5d143a5c468d69e6b1a3, type: 2}
+  - {fileID: 11400000, guid: 30d3a9f7e3b8e8a41b2ad1874d8a4c25, type: 2}
+  - {fileID: 11400000, guid: 9306f8d4a397f7744875209b2ed88a4d, type: 2}
+  - {fileID: 11400000, guid: b03fa23db401e454f9905297f53bb891, type: 2}
+  - {fileID: 11400000, guid: 6365b55f4154d974b8fd75e312a6a685, type: 2}
+  - {fileID: 11400000, guid: 17f33f4ec441e64459095730b2ebd417, type: 2}
+  - {fileID: 11400000, guid: f928d61b2ad57f4469d2d28dd61a7571, type: 2}
