@@ -144,9 +144,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (nowHp < 0)
         {
             nowHp = 0;
-            OnHpChanged?.Invoke(nowHp, maxHp);
+            onPlayerDead.RaiseEvent();
         }
-        onPlayerDead.RaiseEvent();
 
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, false, true);

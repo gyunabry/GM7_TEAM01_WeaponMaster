@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +12,9 @@ public class EnemyAttack : MonoBehaviour
 
     private float attackTimer;  // 공격 쿨타임 타이머
     private bool isAttacking;   // 중복 공격을 막기 위한 bool 값
+
+    // 현재 실행 중인 단일 공격 데이터
+    private EnemyAttackData currentAttackData;
 
     private void Awake()
     {
@@ -54,18 +56,21 @@ public class EnemyAttack : MonoBehaviour
         // 패턴 안에 등록된 공격을 순서대로 실행
         foreach (EnemyAttackData actionData in pattern.attackSequence)
         {
+            currentAttackData = actionData;
+
             yield return StartCoroutine(ExecuteSingleActionCo(actionData));
 
             yield return new WaitForSeconds(pattern.actionDelay);
         }
 
+        // currentAttackData = null;
         isAttacking = false;
     }
 
     // 복합패턴 내 단일 공격을 실행하는 코루틴
     private IEnumerator ExecuteSingleActionCo(EnemyAttackData actionData)
     {
-        switch (actionData.attackType) //
+        switch (actionData.attackType)
         {
             case AttackType.Melee:
                 yield return StartCoroutine(MeleeAttackCo());
@@ -79,11 +84,38 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        CollisionHandler(collision.gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        CollisionHandler(collision.gameObject);
+    }
+
+    private void CollisionHandler(GameObject target)
+    {
+        if (currentAttackData == null)
+        {
+            return;
+        }
+
+        // 공격 타입이 근접, 돌진인 공격만 충돌 허용
+        if (currentAttackData.attackType == AttackType.Melee || currentAttackData.attackType == AttackType.Dash)
+        {
+            if (target.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+            {
+                player.TakeDamage(currentAttackData.attackDamage);
+            }
+        }
+    }
+
     #region 공격타입 코루틴
     private IEnumerator MeleeAttackCo()
     {
-        
-        yield return null;
+        // 코루틴이 바로 종료되어 공격을 하지 못 하는 현상 방지
+        yield return new WaitForSeconds(1f);
     }
 
     private IEnumerator DashAttackCo(EnemyAttackData data)
@@ -187,6 +219,8 @@ public class EnemyAttack : MonoBehaviour
     private void SpawnProjectile(EnemyAttackData attackData, Vector2 direction)
     {
         EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
+        bullet.InitBullet(attackData.attackDamage);
+
         // 투사체의 현재 위치를 몬스터의 위치로 설정
         bullet.transform.position = transform.position;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
