@@ -49,6 +49,7 @@ public class LevelUp : MonoBehaviour
             while (true)
             {
                 ran[i] = Random.Range(0, weaponList.Length);
+                int upRan = Random.Range(0, 101);
                 if (i == 1)
                 {
                     if (ran[i - 1] == ran[i])
@@ -63,6 +64,17 @@ public class LevelUp : MonoBehaviour
                         continue;
                     }
                 }
+                if (equWeaponList.TryGetValue(weaponList[ran[i]].weaponType, out var value))
+                {
+                    
+                }
+                else
+                {
+                    if (40 <= upRan)
+                    {
+                        continue;
+                    }
+                }
                 break;
             }
             PlayerWeaponSO pws;
@@ -73,6 +85,35 @@ public class LevelUp : MonoBehaviour
                 if (transform.childCount != 3)
                 {
                     go[i] = Instantiate(button);
+                }
+                while (true)
+                {
+                    int randomUpgrade = Random.Range(0, 101);
+                    if(0 <= randomUpgrade && randomUpgrade <= 30)
+                    {
+                        ranUp[i] = 0;
+                    }
+                    else if(31 <= randomUpgrade && randomUpgrade <= 50)
+                    {
+                        ranUp[i] = 2;
+                    }
+                    else if(51 <= randomUpgrade && randomUpgrade <= 70)
+                    {
+                        ranUp[i] = 4;
+                    }
+                    else if(71 <= randomUpgrade && randomUpgrade <= 85)
+                    {
+                        ranUp[i] = 3;
+                    }
+                    else if(86 <= randomUpgrade && randomUpgrade <= 100)
+                    {
+                        ranUp[i] = 5;
+                    }
+                    if (ranUp[i] == 2 && weaponList[ran[i]].GetStatUpgradeAttackSpeed() <= 0.2f)
+                    {
+                        continue;
+                    }
+                    break;
                 }
                 if (weaponList[ran[i]].upgradeCount == 8) //무기 진화 메서드
                 {
@@ -105,7 +146,7 @@ public class LevelUp : MonoBehaviour
                     }
                 }
                 ranAvo[i] = Random.Range(0, weaponList[ran[i]].upgrades.Count);
-                ranUp[i] = Random.Range(0, 6);
+                
                 TextMeshProUGUI text = go[i].GetComponentInChildren<TextMeshProUGUI>();
                 if(weaponList[ran[i]].upgradeCount == 8) // 무기 진화 텍스트
                 {
@@ -181,7 +222,7 @@ public class LevelUp : MonoBehaviour
             }
             if (i == 0)
             {
-                go[i].transform.localPosition = new Vector3(-100f, 0f, 0f);
+                go[i].transform.localPosition = new Vector3(-500f, 0f, 0f);
             }
             else if (i == 1)
             {
@@ -189,7 +230,7 @@ public class LevelUp : MonoBehaviour
             }
             else if (i == 2)
             {
-                go[i].transform.localPosition = new Vector3(100f, 0f, 0f);
+                go[i].transform.localPosition = new Vector3(500f, 0f, 0f);
             }
             go[i].gameObject.SetActive(true);
         }

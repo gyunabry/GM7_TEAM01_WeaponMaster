@@ -289,6 +289,5 @@ public class PlayerController : MonoBehaviour, IDamageable
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
             }
         }
-            
     }
 }

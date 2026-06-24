@@ -226,7 +226,7 @@ public class PlayerAttack : MonoBehaviour
         float rotz = Mathf.Atan2(newrot.y, newrot.x) * Mathf.Rad2Deg;
         return rotz;
     }
-    public void AttackMotion(Transform targetPosi)
+    public void AttackSwingMotion(Transform targetPosi)
     {
         DG.Tweening.Sequence motion = DOTween.Sequence();
         Vector2 nowTrans = transform.localPosition;
@@ -234,16 +234,18 @@ public class PlayerAttack : MonoBehaviour
         Vector2 basePosi = direction.normalized;
         Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
 
+        float Posi = playerWeapon.GetStatUpgradeSize();
+        Posi = Posi / 10;
         Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 0.6f);
         Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.2f);
+        
 
-        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * 1.6f);
-        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * 1.6f);
+        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * (1.6f + Posi));
+        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * (1.6f + Posi));
 
         Quaternion rotate = transform.rotation;
         Quaternion leftRotate = rotate * Quaternion.Euler(0, 0, 30.6f);
-        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -20.6f);
-
+        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -30.6f);
 
         motion.Append(transform.DOLocalRotateQuaternion(leftRotate, 0f));
         motion.Append(transform.DOMove(leftPosi, 0.05f));
@@ -259,7 +261,7 @@ public class PlayerAttack : MonoBehaviour
         {
             isAttackCo = true;
             nowAttack = true;
-            AttackMotion(other.transform);
+            AttackSwingMotion(other.transform);
             childBox.enabled = true;
             yield return new WaitForSecondsRealtime(0.3f);
             childBox.enabled = false;
