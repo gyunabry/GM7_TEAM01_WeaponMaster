@@ -49,8 +49,7 @@ public class InGameUIManager : MonoBehaviour
         // 이벤트 구독
         if (player != null)
         {
-            //player.OnHpChanged += UpdateHpUI;
-            //player.OnExpChanged += UpdateEXPUI;
+            player.OnHpChanged += UpdateHpUI;
             //player.OnGoldChanged += UpdateGoldUI;
         }
         if (WaveManager.Instance != null)
