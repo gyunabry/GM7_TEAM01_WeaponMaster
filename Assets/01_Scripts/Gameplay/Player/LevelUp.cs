@@ -246,6 +246,7 @@ public class LevelUp : MonoBehaviour
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
 
+        playerController.SetWeaponArm();
         GameManager.Instance.ResumeGame();
     }
 
@@ -290,6 +291,7 @@ public class LevelUp : MonoBehaviour
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
 
+        playerController.SetWeaponArm();
         GameManager.Instance.ResumeGame();
     }
     //무기 진화
@@ -308,6 +310,7 @@ public class LevelUp : MonoBehaviour
         go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
 
+        playerController.SetWeaponArm();
         GameManager.Instance.ResumeGame();
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -214,7 +215,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void OnWeaponArm(PlayerWeaponSO.WeaponType weaponType)
     {
         reWeaponType = OnWeaponTypeName(weaponType);
-
         PlayerWeaponSO pws;
         if(playerWeapon.TryGetValue(reWeaponType, out pws))
         {
@@ -241,7 +241,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                     float y2 = Mathf.Sin(angle2);
                     PlayerAttack paChild2 = child2.GetComponent<PlayerAttack>();
                     child2.transform.position = transform.position + new Vector3(x2, y2, 0) * radius;
-                    paChild2.ResetWeaponPosi();
                     break;
                 }
                 float angle = Mathf.PI * 1.83f + i * (Mathf.PI * 2f) / childNum;
@@ -250,7 +249,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                 float y = Mathf.Sin(angle);
                 PlayerAttack paChild = child.GetComponent<PlayerAttack>();
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
-                paChild.ResetWeaponPosi();
             }
             childNum--;
         }
@@ -264,7 +262,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                 float y = Mathf.Sin(angle);
                 PlayerAttack paChild = child.GetComponent<PlayerAttack>();
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
-                paChild.ResetWeaponPosi();
             }
         }
         else if (childNum == 5)
@@ -277,7 +274,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                 float y = Mathf.Sin(angle);
                 PlayerAttack paChild = child.GetComponent<PlayerAttack>();
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
-                paChild.ResetWeaponPosi();
             }
         }
         else if (childNum == 6)
@@ -290,7 +286,6 @@ public class PlayerController : MonoBehaviour, IDamageable
                 float y = Mathf.Sin(angle);
                 PlayerAttack paChild = child.GetComponent<PlayerAttack>();
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
-                paChild.ResetWeaponPosi();
             }
         }
         else
@@ -303,14 +298,20 @@ public class PlayerController : MonoBehaviour, IDamageable
                 float y = Mathf.Sin(angle);
                 PlayerAttack paChild = child.GetComponent<PlayerAttack>();
                 child.transform.position = transform.position + new Vector3(x, y, 0) * radius;
-                paChild.ResetWeaponPosi();
             }
         }
     }
     public void SetWeaponArm()
     {
+
         float radius = 1f;
         int childNum = transform.childCount - 2;
+        for(int i = 0; i < childNum; i++)
+        {
+            GameObject childS = transform.GetChild(i+2).gameObject;
+            childS.transform.DOComplete();
+        }
+
         if (childNum == 2)
         {
             childNum++;
