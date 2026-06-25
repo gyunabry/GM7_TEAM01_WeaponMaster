@@ -10,6 +10,8 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
+    public SPUM_Prefabs spumVisual;
+
     [Header("기본 설정")]
     [SerializeField] private float maxHp;
     [SerializeField] private int armor;
@@ -81,6 +83,13 @@ public class EnemyController : MonoBehaviour, IDamageable
         armor = data.armor;
         moveSpeed = data.moveSpeed;
         currentHp = maxHp;
+
+        // 캐릭터 불러오기
+        spumVisual._code = data.spumCode;
+        spumVisual.UnitType = data.unitType;
+        spumVisual.PopulateAnimationLists();
+        spumVisual.OverrideControllerInit();
+        spumVisual.PlayAnimation(PlayerState.IDLE, 0);
 
         // enemyAttack이 있다면 현재 몬스터의 공격 패턴 주입
         if (enemyAttack != null)

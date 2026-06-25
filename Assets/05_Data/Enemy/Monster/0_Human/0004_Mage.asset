@@ -21,3 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 675682409b3b00a4ebdc61a7be59c4da, type: 2}
   dropItem:
   - {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
+  spumCode: SPUM_20260625141222627
+  unitType: Unit

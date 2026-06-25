@@ -1,13 +1,5 @@
 fileFormatVersion: 2
 guid: e2579aadb18ab4cf1b2461fb9e0f0cdf
-AssetOrigin:
-  serializedVersion: 1
-  productId: 345828
-  packageName: 'SPUM : Ultimate Resource Bundle Pack'
-  packageVersion: "1.0.2 \uC544\uC9C1 \uD328\uD0A4\uC9C0 \uC5C5\uB370\uC774\uD2B8
-    \uC548\uD568(\uD53C\uBC97 \uC774\uBBF8\uC9C0)"
-  assetPath: Assets/08_ThirdParty/SPUM/Resources/Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye0.png
-  uploadId: 884232
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -149,19 +141,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -230,3 +209,11 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 345828
+  packageName: 'SPUM : Ultimate Resource Bundle Pack'
+  packageVersion: "1.0.2 \uC544\uC9C1 \uD328\uD0A4\uC9C0 \uC5C5\uB370\uC774\uD2B8
+    \uC548\uD568(\uD53C\uBC97 \uC774\uBBF8\uC9C0)"
+  assetPath: Assets/08_ThirdParty/SPUM/Resources/Addons/Legacy/0_Unit/0_Sprite/0_Eye/Eye0.png
+  uploadId: 884232

@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        // InitializeStage();
+        InitializeStage();
     }
 
     // GameSceneData에서 현재 스테이지 데이터를 가져와 게임씬 초기화
