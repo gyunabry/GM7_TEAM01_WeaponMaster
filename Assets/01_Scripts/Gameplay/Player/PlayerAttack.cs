@@ -49,6 +49,14 @@ public class PlayerAttack : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         GetPlayerStat();
     }
+    public void Flip()
+    {
+        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+    }
+    public void FlipReset()
+    {
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
     
     public float GetDamage()
     {
