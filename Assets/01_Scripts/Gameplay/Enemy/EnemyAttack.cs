@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
     private List<EnemyPatternData> enemyPattern;
     private EnemyController enemyController;
     private NavMeshAgent agent;
+    private EnemyShooter enemyShooter;
 
     private float attackTimer;  // 공격 쿨타임 타이머
     private bool isAttacking;   // 중복 공격을 막기 위한 bool 값
@@ -20,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
     {
         enemyController = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
+        enemyShooter = GetComponent<EnemyShooter>();
     }
 
     private void Update()
@@ -148,27 +150,14 @@ public class EnemyAttack : MonoBehaviour
         agent.isStopped = true; // 원거리 공격 시 추적 일시정지
         yield return new WaitForSeconds(1f); // 발사 전 딜레이
 
-        switch (data.bulletPattern)
-        {
-            case BulletPattern.Straight:
-                FireStraight(data);
-                break;
-            case BulletPattern.Cone:
-                FireCone(data); 
-                break;
-            case BulletPattern.Circle:
-                FireCircle(data);
-                break;
-            case BulletPattern.Orbit:
-                FireOrbit(data);
-                break;
-        }
+        enemyShooter.Fire(data, enemyController.target);
 
         yield return new WaitForSeconds(0.5f); // 발사 후 딜레이
         agent.isStopped = false;
     }
     #endregion
 
+    // 테스트 후 삭제 예정
     #region 탄막 패턴
     private void FireStraight(EnemyAttackData attackData)
     {

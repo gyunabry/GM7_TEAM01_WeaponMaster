@@ -121,14 +121,14 @@ public class EnemyController : MonoBehaviour, IDamageable
         chaseCoroutine = null;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit = false)
     {
         if (IsDead) return; // 이미 죽은 상태면 추가 데미지 연산 무시
 
         currentHp -= damage;
 
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
-        hitText.ShowDamage(damage, transform.position);
+        hitText.ShowDamage(damage, transform.position, isCrit);
 
         // 피해를 입은 직후 체력을 검사하여 사망 처리
         if (IsDead)
@@ -148,13 +148,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void ReturnToPool()
     {
         PoolManager.Instance.ReturnPool(this);
-    }
-
-    private void DropItem()
-    {
-        // 확정적으로 경험치 드랍
-        // 확률에 따라 음식 드랍
-        // if ()
     }
 
     private void FaceToTarget()

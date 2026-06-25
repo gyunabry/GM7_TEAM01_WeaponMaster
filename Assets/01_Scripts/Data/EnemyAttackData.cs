@@ -12,7 +12,9 @@ public enum BulletPattern
     Straight,
     Cone,
     Circle,
-    Orbit
+    Orbit,
+    Burst,
+    BurstAround
 }
 
 [CreateAssetMenu(fileName = "Enemy Attack Data", menuName = "GamePlay/EnemyAttackData")]
@@ -41,4 +43,9 @@ public class EnemyAttackData : ScriptableObject
     public float orbitRadius;
     [Tooltip("궤도 회전 속도")]
     public float orbitSpeed;
+
+    [Header("연속 발사 설정")]
+    public int burstCount = 1;
+    public float burstInterval = 0.2f;
+    public int fireCount = 1;
 }
