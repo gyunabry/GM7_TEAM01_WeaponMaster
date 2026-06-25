@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public event Action<float, float> OnHpChanged;
     [SerializeField] private VoidEventChannel onPlayerDead;
     private WeaponUnlock weaponUnlock;
+    private GameObject childGo;
+    private Animator childAni;
 
     Vector2 move;
 
@@ -62,6 +65,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         jumpia = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
         weaponUnlock = FindAnyObjectByType<WeaponUnlock>();
+        childGo = transform.GetChild(2).gameObject;
+        childAni = childGo.GetComponent<Animator>();
     }
     private void Start()
     {
@@ -85,6 +90,26 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void PlayerMove()
     {
         rb.linearVelocity = move * ((moveSpeed + 100f) / 100f) * baseSpeed;
+        if(move.x > 0.5f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else if(move.x < -0.5f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        if (Mathf.Abs(move.x) > 0.5f)
+        {
+            childAni.SetBool("1_Move", true);
+        }
+        else if (Mathf.Abs(move.y) > 0.5f)
+        {
+            childAni.SetBool("1_Move", true);
+        }
+        else
+        {
+            childAni.SetBool("1_Move", false);
+        }
     }
 
     public Dictionary<string, float> PlayerStat()
