@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask targetLayer;
     
     private EnemyData currentEnemy;
+    private SpriteRenderer sr;
+    private EnemyAnimationController animationController;
 
     private float currentHp;
     public Transform target;
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private EnemyAttack enemyAttack;
+    private Animator animator;
 
     private Coroutine chaseCoroutine;
     // 코루틴 내에서 SetDestination 호출 딜레이
@@ -37,6 +40,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
+        animationController = GetComponent<EnemyAnimationController>();
+        sr = GetComponentInChildren<SpriteRenderer>();
 
         // Z축 회전 방지
         agent.updateRotation = false;
@@ -50,13 +55,14 @@ public class EnemyController : MonoBehaviour, IDamageable
         // 타겟을 찾았다면 추적 코루틴 실행
         if (target != null)
         {
-            FaceToTarget();
-
             if (chaseCoroutine == null)
             {
                 chaseCoroutine = StartCoroutine(ChaseTargetCo());
             }
         }
+
+        FlipSprite();
+        UpdateAnimation();
     }
 
     // 비활성화시 남아있는 코루틴과 타겟 초기화
@@ -81,6 +87,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         armor = data.armor;
         moveSpeed = data.moveSpeed;
         currentHp = maxHp;
+
+        animationController.SetupAnimator(data.runtimeAnimator);
 
         // enemyAttack이 있다면 현재 몬스터의 공격 패턴 주입
         if (enemyAttack != null)
@@ -130,6 +138,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, isCrit);
 
+        // TODO: 하얗게 반짝이는 효과 추가
+
         // 피해를 입은 직후 체력을 검사하여 사망 처리
         if (IsDead)
         {
@@ -141,7 +151,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         // 몬스터 데이터에 있는 드랍 아이템을 활성화
         currentEnemy.DropItem(transform.position);
+        // 킬카운트 증가
         GameManager.Instance.AddKillCount();
+
         ReturnToPool();
     }
 
@@ -150,20 +162,22 @@ public class EnemyController : MonoBehaviour, IDamageable
         PoolManager.Instance.ReturnPool(this);
     }
 
-    private void FaceToTarget()
+    private void FlipSprite()
     {
-        if (target == null) return;
+        if (sr == null) return;
 
-        // 플레이어 방향 벡터 계산
-        Vector2 direction = (target.position - transform.position).normalized;
+        // 타겟의 위치 x값과 비교해 좌우 전환
+        if (target != null)
+        {
+            sr.flipX = target.position.x > transform.position.x;
+        }
+    }
 
-        // 방향을 각도로 변환
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    private void UpdateAnimation()
+    {
+        if (animationController == null) return;
 
-        // 해당 각도를 향하는 쿼터니언 값 저장
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-
-        // 부드러운 회전 적용
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 360f);
+        bool isMoving = agent.velocity.sqrMagnitude > 0.001f;
+        animationController.PlayMove(isMoving);
     }
 }

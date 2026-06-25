@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
   dropItem:
   - {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
+  runtimeAnimator: {fileID: 22100000, guid: cf632608ddf1cb34f9f2373019c52da8, type: 2}

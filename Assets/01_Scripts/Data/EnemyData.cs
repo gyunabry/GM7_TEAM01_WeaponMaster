@@ -17,6 +17,9 @@ public class EnemyData : ScriptableObject
     [Header("드랍 아이템")]
     public List<DropItemBase> dropItem;
 
+    [Header("애니메이션 설정")]
+    public RuntimeAnimatorController runtimeAnimator;
+
     // 추후 드랍 확률 반영
     public void DropItem(Vector3 dropPosition)
     {

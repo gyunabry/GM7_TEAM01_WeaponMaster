@@ -1,0 +1,426 @@
+fileFormatVersion: 2
+guid: 67c1e81e2c4e3ab4f8782de42652b762
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5646011699851041605
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_0
+  - first:
+      213: 8613664326321290475
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_1
+  - first:
+      213: 5688211260161264085
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_2
+  - first:
+      213: -5534229007302229937
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_3
+  - first:
+      213: -6257083277334497287
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_4
+  - first:
+      213: 354194655091549774
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_5
+  - first:
+      213: 4753634344163220560
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_6
+  - first:
+      213: -6133395047019432260
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_7
+  - first:
+      213: -5008014275045087091
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_8
+  - first:
+      213: -4302085399140595446
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_9
+  - first:
+      213: 5642382284175742987
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_10
+  - first:
+      213: -8277596028999353233
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_11
+  - first:
+      213: 1530950126261291395
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_12
+  - first:
+      213: 7080849185366046007
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_13
+  - first:
+      213: -5086920290762483115
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_14
+  - first:
+      213: -7013655935024419944
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_15
+  - first:
+      213: 6893171146962400105
+    second: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b12572ab9aa5e40800000000000000
+      internalID: 5646011699851041605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: becb5d05112e98770800000000000000
+      internalID: 8613664326321290475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d90a41f00690fe40800000000000000
+      internalID: 5688211260161264085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f40861a1a087233b0800000000000000
+      internalID: -5534229007302229937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7b07429ef5a29a0800000000000000
+      internalID: -6257083277334497287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e46e216892a5ae400800000000000000
+      internalID: 354194655091549774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c12fb004d48f140800000000000000
+      internalID: 4753634344163220560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6344b63bdc1eaa0800000000000000
+      internalID: -6133395047019432260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d882ad9ec85ff7ab0800000000000000
+      internalID: -5008014275045087091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0984d67f1ceb44c0800000000000000
+      internalID: -4302085399140595446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d07c710487413e949a8c184c3999e26a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_0: 5646011699851041605
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_1: 8613664326321290475
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_2: 5688211260161264085
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_3: -5534229007302229937
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_4: -6257083277334497287
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_5: 354194655091549774
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_6: 4753634344163220560
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_7: -6133395047019432260
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_8: -5008014275045087091
+      SPUM_20260625141222627_DAMAGED0_1_Skill_Magic_0_9: -4302085399140595446
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
