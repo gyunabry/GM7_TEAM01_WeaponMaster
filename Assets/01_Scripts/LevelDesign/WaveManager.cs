@@ -7,6 +7,9 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
 
+    [Header("¿Ã∫•∆Æ")]
+    [SerializeField] private VoidEventChannel bossEncounterEvent;
+
     public event Action<int> OnWaveStarted;
     public event Action<float> OnTimeChanged;
     public event Action OnShopOpened;
@@ -44,7 +47,6 @@ public class WaveManager : MonoBehaviour
         this.currentDifficulty = GameSceneData.SelectedDifficulty;
 
         StartStage();
-        
     }
 
     public void StartStage()
@@ -55,6 +57,7 @@ public class WaveManager : MonoBehaviour
 
         StartWave(currentWaveIndex);
     }
+
     private void Update()
     {
         if (!isWaveActive) return;
@@ -67,12 +70,13 @@ public class WaveManager : MonoBehaviour
 
     public void CheckWaveTimeLine()
     {
-        if(currentWaveIndex<0 || currentWaveIndex >= stageWaves.Count) return;
+        if (currentWaveIndex<0 || currentWaveIndex >= stageWaves.Count) return;
+
         WaveData currentWave = stageWaves[currentWaveIndex];
-        if(stageTime>=currentWave.waveDuration)
+        if (stageTime >= currentWave.waveDuration)
         {
             currentWaveIndex++;
-            if(currentWaveIndex < stageWaves.Count)
+            if (currentWaveIndex < stageWaves.Count)
             {
                 stageTime = 0f;
                 StartWave(currentWaveIndex);
@@ -88,7 +92,7 @@ public class WaveManager : MonoBehaviour
 
     private void StartWave(int index)
     {
-        if(stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
+        if (stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
         {
             return;
         }
