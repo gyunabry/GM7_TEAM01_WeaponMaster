@@ -22,7 +22,7 @@ MonoBehaviour:
   weaponAttackSpeed: 1.7
   weaponRange: 3
   weaponCri: 30
-  weaponSize: 6
+  weaponSize: 10
   upgrades:
   - upgradeName: "\uBC14\uB78C\uC758 \uCE74\uD0C0\uB098"
     upgradeDamage: 10
@@ -30,7 +30,7 @@ MonoBehaviour:
     upgradeAttackSpeed: -0.8
     upgradeRange: 0
     upgradeCri: 0
-    upgradeSize: 6
+    upgradeSize: 10
     upgradeDes: "\uBC14\uB78C \uCC98\uB7FC \uBE60\uB974\uAC8C \uACF5\uACA9\uD560
       \uC218 \uC788\uB294 \uC9C4\uD654"
     upgradeSprite: {fileID: 4022362869950292737, guid: 0b31b84e1b5706545acce5d8fc320174, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
     upgradeAttackSpeed: 0
     upgradeRange: 0
     upgradeCri: 30
-    upgradeSize: 6
+    upgradeSize: 10
     upgradeDes: "\uCE74\uD0C0\uB098\uC758 \uC7A5\uC810\uC744 \uADF9\uB300\uD654\uD55C
       \uC9C4\uD654"
     upgradeSprite: {fileID: 4924101769844784665, guid: f697e8432270a164c860d0f27d7968d9, type: 3}
@@ -52,7 +52,7 @@ MonoBehaviour:
     upgradeStatCri: 15
     upgradeStatSize: 2
   upgradeNum: 0
-  upgradeCount: 0
+  upgradeCount: 2
   skill1: 0
   skill2: 0
   skill3: 0

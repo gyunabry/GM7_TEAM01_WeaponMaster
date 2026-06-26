@@ -27,6 +27,10 @@ public class PlayerWeaponManager : MonoBehaviour
         {
             pW.Value.ResetStatUpgrade();
         }
+        foreach (KeyValuePair<PlayerWeaponSO.WeaponType, PlayerWeaponSO> pW in unlockWeapon)
+        {
+            pW.Value.ResetStatUpgrade();
+        }
     }
     private void Update()
     {

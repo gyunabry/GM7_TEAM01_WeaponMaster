@@ -270,12 +270,26 @@ public class PlayerAttack : MonoBehaviour
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
         motion.OnComplete (() => { playerController.SetWeaponArm(); });
     }
+    public void AttackStingMotion(Transform targetPosi)
+    {
+        DG.Tweening.Sequence motion = DOTween.Sequence();
+        Vector2 nowTrans = transform.localPosition;
+        Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
+        Vector2 basePosi = direction.normalized;
+
+        Vector3 pullPosi = targetPosi.position + (Vector3)(direction * 0.6f);
+
+        Quaternion rotate = transform.rotation;
+
+        motion.Append(transform.DOMove(pullPosi, 0.15f));
+        motion.Append(transform.DOLocalMove(nowTrans, 0.15f));
+        motion.OnComplete(() => { playerController.SetWeaponArm(); });
+    }
     IEnumerator Attack(Collider2D other)
     {
         if (playerWeapon.weaponType.ToString() == "Sword" 
             || playerWeapon.weaponType.ToString() == "Axe" 
-            || playerWeapon.weaponType.ToString() == "Shield" 
-            || playerWeapon.weaponType.ToString() == "Spear" 
+            || playerWeapon.weaponType.ToString() == "Shield"  
             || playerWeapon.weaponType.ToString() == "Katana"
             || playerWeapon.weaponType.ToString() == "Hammer")
         {
@@ -290,12 +304,25 @@ public class PlayerAttack : MonoBehaviour
             isAttackCo = false;
             attackco = null;
         }
-        else if(playerWeapon.weaponType.ToString() == "Bow" || playerWeapon.weaponType.ToString() == "CrossBow")
+        else if(playerWeapon.weaponType.ToString() == "Spear")
+        {
+            isAttackCo = true;
+            nowAttack = true;
+            childBox.enabled = true;
+            AttackStingMotion(other.transform);
+            yield return new WaitForSecondsRealtime(0.3f);
+            childBox.enabled = false;
+            nowAttack = false;
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
+            isAttackCo = false;
+            attackco = null;
+        }
+        else if (playerWeapon.weaponType.ToString() == "Bow" || playerWeapon.weaponType.ToString() == "CrossBow")
         {
             isAttackCo = true;
             childBox.enabled = false;
             Vector2 direction = other.transform.position - transform.position;
-            float rotz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -90f;
+            float rotz = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             Arrow arrow = arrowPooling.ArrowPool();
             arrow.transform.SetParent(transform);
             arrow.transform.position = transform.position;
