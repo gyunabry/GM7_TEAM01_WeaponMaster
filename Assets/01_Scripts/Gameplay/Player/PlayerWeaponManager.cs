@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
-using System.IO;
-using UnityEngine.UIElements;
 
 public class PlayerWeaponManager : MonoBehaviour
 {

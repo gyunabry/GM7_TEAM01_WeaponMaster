@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 9696450a1459b6a439ca5a6002950603
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 669341219314973495
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_0
+  - first:
+      213: -4505228415922570670
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_1
+  - first:
+      213: -3903781742344397822
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_2
+  - first:
+      213: -4716867188494187539
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_3
+  - first:
+      213: 825195507182309515
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_4
+  - first:
+      213: -5414872578317726561
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_5
+  - first:
+      213: -8698571551948669247
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_6
+  - first:
+      213: -5560336404873466676
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_7
+  - first:
+      213: 5631857242185882340
+    second: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_0
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 825
+        width: 88
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73bbbcaea4af94900800000000000000
+      internalID: 669341219314973495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_1
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 846
+        width: 104
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a70fc10a63a71c0800000000000000
+      internalID: -4505228415922570670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 847
+        width: 102
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c18ee303bf2d9c0800000000000000
+      internalID: -3903781742344397822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_3
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 847
+        width: 76
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de3cb1978425a8eb0800000000000000
+      internalID: -4716867188494187539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_4
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 592
+        width: 76
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8099d311fea37b00800000000000000
+      internalID: 825195507182309515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 592
+        width: 110
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c4e5944128ad4b0800000000000000
+      internalID: -5414872578317726561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_6
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 551
+        width: 75
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cef7c0b247784780800000000000000
+      internalID: -8698571551948669247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_7
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 548
+        width: 74
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc28dbef77b5d2b0800000000000000
+      internalID: -5560336404873466676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_8
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 293
+        width: 69
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea533aa250682e40800000000000000
+      internalID: 5631857242185882340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_0: 669341219314973495
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_1: -4505228415922570670
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_2: -3903781742344397822
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_3: -4716867188494187539
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_4: 825195507182309515
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_5: -5414872578317726561
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_6: -8698571551948669247
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_7: -5560336404873466676
+      SPUM_20260626132326495_ATTACK0_0_Attack_Normal_0_8: 5631857242185882340
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

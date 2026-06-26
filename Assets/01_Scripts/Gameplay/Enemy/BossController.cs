@@ -25,11 +25,16 @@ public class BossController : MonoBehaviour, IDamageable
     [SerializeField] private int currentPhaseIndex = 0;
     private List<EnemyPatternData> currentPatterns;
 
+    [Header("보스 사망 이벤트")]
+    [SerializeField] private VoidEventChannel BossDeadEvent;
+
     [Header("컴포넌트 참조")]
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private Transform target;
     private EnemyShooter bossShooter;
+    private SpriteRenderer sr;
+    private EnemyAnimationController animationController;
 
     [SerializeField] private LayerMask targetLayer;
 
@@ -43,6 +48,8 @@ public class BossController : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         bossShooter = GetComponent<EnemyShooter>();
+        animationController = GetComponent<EnemyAnimationController>();
+        sr = GetComponentInChildren<SpriteRenderer>();
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -52,6 +59,12 @@ public class BossController : MonoBehaviour, IDamageable
     {
         InitializeBoss();
         StartCoroutine(BossLoopCo());
+    }
+
+    private void Update()
+    {
+        FlipSprite();
+        UpdateAnimation();
     }
 
     private void InitializeBoss()
@@ -164,6 +177,7 @@ public class BossController : MonoBehaviour, IDamageable
                 break;
             case AttackType.Range:
                 yield return StartCoroutine(ExecuteRangeAttack(attackData));
+                animationController.TriggerAttack();
                 break;
         }
     }
@@ -330,6 +344,26 @@ public class BossController : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log("보스 처치!");
+        BossDeadEvent?.RaiseEvent();
         Destroy(gameObject);
+    }
+
+    private void FlipSprite()
+    {
+        if (sr == null) return;
+
+        // 타겟의 위치 x값과 비교해 좌우 전환
+        if (target != null)
+        {
+            sr.flipX = target.position.x > transform.position.x;
+        }
+    }
+    
+    private void UpdateAnimation()
+    {
+        if (animationController == null) return;
+
+        bool isMoving = agent.velocity.sqrMagnitude > 0.001f;
+        animationController.PlayMove(isMoving);
     }
 }

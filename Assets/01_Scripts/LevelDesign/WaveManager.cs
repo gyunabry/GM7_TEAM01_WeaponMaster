@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public enum Difficulty { Normal, Hard, Hell}
 public class WaveManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class WaveManager : MonoBehaviour
 
     [Header("웨이브 데이터")]
     [SerializeField] private List<WaveData> stageWaves;
+
+    [Header("보스 연출 시간")]
+    [SerializeField] private float bossWaitTime = 3f;
 
     private float stageTime = 0;
     private int currentWaveIndex = 0;
@@ -85,6 +89,9 @@ public class WaveManager : MonoBehaviour
             {
                 isWaveActive = false;
 
+                StartCoroutine(BossEncounterCo());
+                Debug.Log("보스 코루틴 시작");
+
                 OnShopOpened?.Invoke();
             }
         }
@@ -111,5 +118,19 @@ public class WaveManager : MonoBehaviour
             //웨폰매니저 가져오기
         }
 
+    }
+
+    // 잠깐의 대기 시간 후 보스 이벤트 발행
+    private IEnumerator BossEncounterCo()
+    {
+        // 대기 시간
+        // TODO: 보스 등장 연출
+        yield return new WaitForSeconds(bossWaitTime);
+
+        if (bossEncounterEvent != null)
+        {
+            bossEncounterEvent.RaiseEvent();
+            Debug.Log("보스 등장 이벤트 발행");
+        }
     }
 }

@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: a962249ad653ed4478e4e2093db46b94
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9097620033988781554
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_0
+  - first:
+      213: -3238395774143932744
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_1
+  - first:
+      213: -2931399096624629588
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_2
+  - first:
+      213: 3281957650702618633
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_3
+  - first:
+      213: -2360517881630470833
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_4
+  - first:
+      213: 3855474918844906810
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_5
+  - first:
+      213: 7822463574103706613
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_6
+  - first:
+      213: 4265472109302207528
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_7
+  - first:
+      213: -5050211579983254867
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_8
+  - first:
+      213: -2789464147626018469
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_9
+  - first:
+      213: 949517630800491249
+    second: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_0
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 825
+        width: 88
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a1f94c7c2ceb180800000000000000
+      internalID: -9097620033988781554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_1
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 824
+        width: 87
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b656008338ee03d0800000000000000
+      internalID: -3238395774143932744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_2
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 837
+        width: 101
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca8b9c68d049157d0800000000000000
+      internalID: -2931399096624629588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_3
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 870
+        width: 88
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9005102481bdb8d20800000000000000
+      internalID: 3281957650702618633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_4
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 638
+        width: 99
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d45734e71cd3fd0800000000000000
+      internalID: -2360517881630470833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 624
+        width: 102
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3dbd22f206618530800000000000000
+      internalID: 3855474918844906810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_6
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 551
+        width: 68
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb42eaec29fe8c60800000000000000
+      internalID: 7822463574103706613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_7
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 551
+        width: 81
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8245b42b840023b30800000000000000
+      internalID: 4265472109302207528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_8
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 297
+        width: 93
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daaa88e335b0ae9b0800000000000000
+      internalID: -5050211579983254867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 287
+        width: 72
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b59301f0325d949d0800000000000000
+      internalID: -2789464147626018469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_10
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 313
+        width: 88
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f275d3214d5d2d00800000000000000
+      internalID: 949517630800491249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_0: -9097620033988781554
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_1: -3238395774143932744
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_10: 949517630800491249
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_2: -2931399096624629588
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_3: 3281957650702618633
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_4: -2360517881630470833
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_5: 3855474918844906810
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_6: 7822463574103706613
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_7: 4265472109302207528
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_8: -5050211579983254867
+      SPUM_20260626132326495_DAMAGED0_1_Skill_Normal_0_9: -2789464147626018469
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
