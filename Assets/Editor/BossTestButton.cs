@@ -1,23 +1,22 @@
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UIElements;
+//using UnityEditor;
+//using UnityEngine;
 
-[CustomEditor(typeof(BossController))]
-public class BossTestButton : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+//[CustomEditor(typeof(BossController))]
+//public class BossTestButton : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        base.OnInspectorGUI();
 
-        BossController controller = (BossController)target;
+//        BossController controller = (BossController)target;
 
-        if (GUILayout.Button("Take Damage (No Crit)"))
-        {
-            controller.TakeDamage(50, false);
-        }
-        if (GUILayout.Button("Take Damage (Crit)"))
-        {
-            controller.TakeDamage(100, true);
-        }
-    }
-}
+//        if (GUILayout.Button("Take Damage (No Crit)"))
+//        {
+//            controller.TakeDamage(50, false);
+//        }
+//        if (GUILayout.Button("Take Damage (Crit)"))
+//        {
+//            controller.TakeDamage(100, true);
+//        }
+//    }
+//}

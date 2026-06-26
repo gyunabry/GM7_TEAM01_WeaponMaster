@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     private int[] requireExp = { 0, 25, 50, 75, 100, 125, 150, 175, 200 };
     private int currentExp;
 
+    public int Level => level;
+    public int CurrentExp => currentExp;
+    public int[] RequireExp => requireExp;
+
     private void Awake()
     {
         if (Instance == null)

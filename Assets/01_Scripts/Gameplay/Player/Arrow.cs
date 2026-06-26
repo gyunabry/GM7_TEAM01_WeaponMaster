@@ -41,6 +41,10 @@ public class Arrow : MonoBehaviour
         {
             hitCo = StartCoroutine(DeleteTime());
         }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            hitCo = StartCoroutine(DeleteTime());
+        }
     }
 
 }

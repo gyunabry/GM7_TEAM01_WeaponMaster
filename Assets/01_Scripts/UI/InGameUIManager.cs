@@ -63,6 +63,7 @@ public class InGameUIManager : MonoBehaviour
         UpdateKillCount(GameManager.Instance.GetKillCount());
         UpdateWaveUI(WaveManager.Instance.CurrentWave);
         UpdateTimerUI(WaveManager.Instance.WaveTime);
+        UpdateExpUI(GameManager.Instance.CurrentExp, GameManager.Instance.RequireExp[GameManager.Instance.Level]);
     }
 
     private void OnDestroy()
