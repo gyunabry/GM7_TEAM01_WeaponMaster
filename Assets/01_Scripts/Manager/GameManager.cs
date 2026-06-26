@@ -91,17 +91,20 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
 
+            // 최고레벨 도달 시 더이상 레벨업 X
+            if (level >= requireExp.Length)
+            {
+                // 현재, 최대 EXP를 레벨업에 필요한 수치로 전달해 갱신
+                OnExpChanged?.Invoke(requireExp[level], requireExp[level]);
+                level = requireExp.Length - 1;
+                break;
+            }
+
             // 레벨업 시 현재 경험치를 필요 경험치만큼 삭감
             currentExp -= requireExp[level];
             level++;
             levelUpButton.SetActive(true);
 
-            // 최고레벨 도달 시 더이상 레벨업 X
-            if (level >= requireExp.Length)
-            {
-                level = requireExp.Length - 1;
-                break;
-            }
             // TODO:레벨업 효과 이벤트
         }
     }

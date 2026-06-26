@@ -6,9 +6,6 @@ public class InGameUIManager : MonoBehaviour
 {
     public static InGameUIManager Instance {  get; private set; }
 
-    //[Header("상점 진입하면 끌 UI")]
-    //[SerializeField] private GameObject waveUIs;//골드 제외하고 모든 UI 잠시 끄기위해
-
     [Header("구독할 이벤트")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
 
@@ -50,13 +47,11 @@ public class InGameUIManager : MonoBehaviour
         if (player != null)
         {
             player.OnHpChanged += UpdateHpUI;
-            //player.OnGoldChanged += UpdateGoldUI;
         }
         if (WaveManager.Instance != null)
         {
             WaveManager.Instance.OnWaveStarted += UpdateWaveUI;
             WaveManager.Instance.OnTimeChanged += UpdateTimerUI;
-            // WaveManager.Instance.OnShopOpened += CloseUIwithWaveEnds;
         }
         if (GameManager.Instance != null)
         {
@@ -74,15 +69,12 @@ public class InGameUIManager : MonoBehaviour
     {
         if (player != null)
         {
-            //player.OnHpChanged -= UpdateHpUI;
-            //player.OnExpChanged -= UpdateEXPUI;
-            //player.OnGoldChanged -= UpdateGoldUI;
+            player.OnHpChanged -= UpdateHpUI;
         }
         if (WaveManager.Instance != null)
         {
             WaveManager.Instance.OnWaveStarted -= UpdateWaveUI;
             WaveManager.Instance.OnTimeChanged -= UpdateTimerUI;
-            // WaveManager.Instance.OnShopOpened -= CloseUIwithWaveEnds;
         }
         if (GameManager.Instance != null)
         {
@@ -93,15 +85,17 @@ public class InGameUIManager : MonoBehaviour
 
     private void UpdateHpUI(float currentHp, float maxHp)
     {
-        if(hpSlider != null && maxHp>0)
+        if(hpSlider != null && maxHp > 0)
         {
-            hpSlider.value = currentHp / maxHp;
+            hpSlider.maxValue = maxHp;
+            hpSlider.value = currentHp;
         }
         if(hpText!=null)
         {
             hpText.text = $"{Mathf.RoundToInt(currentHp)}/{Mathf.RoundToInt(maxHp)}";
         }
     }
+
     private void UpdateExpUI(int currentExp, int maxExp)
     {
         if(expSlider != null && maxExp > 0)
@@ -125,6 +119,7 @@ public class InGameUIManager : MonoBehaviour
             goldAmountText.text = moneyPcket.ToString("N0");
         }
     }
+
     private void UpdateWaveUI(int curretnWave)
     {
         if(waveCountText!=null)
@@ -157,12 +152,4 @@ public class InGameUIManager : MonoBehaviour
             killCountText.text = count.ToString();
         }
     }
-
-    //private void CloseUIwithWaveEnds()
-    //{
-    //    if(waveUIs != null)
-    //    {
-    //        waveUIs.SetActive(false);
-    //    }
-    //}
 }
