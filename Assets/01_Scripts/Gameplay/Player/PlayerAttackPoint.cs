@@ -21,6 +21,7 @@ public class PlayerAttackPoint : MonoBehaviour
 
     private List<GameObject> enemyGO = new List<GameObject>();
     private BoxCollider2D box;
+    private CircleCollider2D circle;
     private Arrow arrow;
     private bool criHit = false;
     private bool bulletDestroy = false;
@@ -31,6 +32,7 @@ public class PlayerAttackPoint : MonoBehaviour
     {
         ue = new UnityEvent();
         box = GetComponent<BoxCollider2D>();
+        circle = GetComponent<CircleCollider2D>();
         arrow = GetComponent<Arrow>();
         
     }
@@ -42,10 +44,21 @@ public class PlayerAttackPoint : MonoBehaviour
     }
     private void Update()
     {
-        if(box.enabled == false && enemyGO.Count > 0)
+        if(box == null)
         {
-            enemyGO.Clear();
+            if(circle.enabled == false && enemyGO.Count > 0)
+            {
+                enemyGO.Clear();
+            }
         }
+        else
+        {
+            if (box.enabled == false && enemyGO.Count > 0)
+            {
+                enemyGO.Clear();
+            }
+        }
+        
     }
     public void SetWeaponType()
     {

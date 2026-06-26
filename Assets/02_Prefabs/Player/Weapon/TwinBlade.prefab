@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6055940723895545139}
   - component: {fileID: 449991919970872490}
   - component: {fileID: 694613651672668638}
-  - component: {fileID: 125984483756214723}
+  - component: {fileID: -7562383334318746433}
   m_Layer: 0
-  m_Name: Hammer
+  m_Name: TwinBlade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11705e8a14b507418ee863d8e33db9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackPoint
---- !u!58 &125984483756214723
-CircleCollider2D:
+--- !u!61 &-7562383334318746433
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,4 +140,14 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.4
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6, y: 0.6}
+  m_EdgeRadius: 0

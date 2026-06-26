@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     private GameObject weaponSprite;
     private BoxCollider2D childBox;
+    private CircleCollider2D childCircle;
     private Transform parentTrans;
     private Coroutine co;
     private Coroutine attackco;
@@ -62,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             instant = handle.Result;
-            if(instant.name == "Shield(Clone)")
+            if (instant.name == "Shield(Clone)")
             {
                 sr = instant.GetComponent<SpriteRenderer>();
                 sr.sprite = playerWeapon.weaponIcon;
@@ -71,6 +72,19 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 srPosition = transform.position;
                 instant.transform.position = srPosition;
                 childBox = GetComponentInChildren<BoxCollider2D>();
+                childBox.enabled = false;
+            }
+            else if (instant.name == "Hammer(Clone)")
+            {
+                instant.transform.Rotate(0f, 0f, -45f);
+                sr = instant.GetComponent<SpriteRenderer>();
+                sr.sprite = playerWeapon.weaponIcon;
+                instant.transform.SetParent(this.transform);
+                instant.transform.localScale = new Vector3(nowSize, nowSize, nowSize);
+                Vector3 srPosition = transform.position;
+                srPosition.x += 0.3f;
+                instant.transform.position = srPosition;
+                childCircle = GetComponentInChildren<CircleCollider2D>();
             }
             else
             {
@@ -83,8 +97,8 @@ public class PlayerAttack : MonoBehaviour
                 srPosition.x += 0.3f;
                 instant.transform.position = srPosition;
                 childBox = GetComponentInChildren<BoxCollider2D>();
+                childBox.enabled = false;
             }
-            childBox.enabled = false;
         }
         else
         {
@@ -265,6 +279,117 @@ public class PlayerAttack : MonoBehaviour
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
         motion.OnComplete (() => { playerController.SetWeaponArm(); });
     }
+    public void AttackHammerMotion(Transform targetPosi)
+    {
+        DG.Tweening.Sequence motion = DOTween.Sequence();
+        DG.Tweening.Sequence motion2 = DOTween.Sequence();
+        DG.Tweening.Sequence motion3 = DOTween.Sequence();
+        DG.Tweening.Sequence motionAll = DOTween.Sequence();
+        Vector2 nowTrans = transform.localPosition;
+        Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
+        Vector2 basePosi = direction.normalized;
+        Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
+
+        float Posi = playerWeapon.GetStatUpgradeSize();
+        Posi = Posi / 10;
+        Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 1.2f);
+        Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.2f);
+
+
+        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * (0.2f + Posi));
+        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * (0.2f + Posi));
+
+        Quaternion rotate = transform.rotation;
+        Quaternion leftRotate = rotate * Quaternion.Euler(0, 0, 90.6f);
+        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -90.6f);
+
+        if (transform.rotation.z >= -90f && transform.rotation.z <= 90f)
+        {
+            motion.Join(transform.DOLocalRotateQuaternion(leftRotate, 0f));
+            motion.Join(transform.DOMove(pullPosi, 0f));
+        }
+        else if(transform.rotation.z <= -90f || transform.rotation.z >= 90f)
+        {
+            motion.Join(transform.DOLocalRotateQuaternion(rightRotate, 0f));
+            motion.Join(transform.DOMove(pullPosi, 0f));
+        }
+        motion2.Join(transform.DOMove(pullMainPosi, 0.4f));
+        motion2.Join(transform.DOLocalRotateQuaternion(rotate, 0.4f));
+        
+        
+
+        motionAll.Append(motion);
+        motionAll.Append(motion2);
+        motionAll.Append(transform.DOLocalMove(nowTrans, 0.0f));
+        motionAll.OnComplete(() => { playerController.SetWeaponArm(); });
+    }
+    public void AttackKatanaMotion(Transform targetPosi)
+    {
+        DG.Tweening.Sequence motion = DOTween.Sequence();
+        DG.Tweening.Sequence motion2 = DOTween.Sequence();
+        DG.Tweening.Sequence motion3 = DOTween.Sequence();
+        DG.Tweening.Sequence motionAll = DOTween.Sequence();
+        Vector2 nowTrans = transform.localPosition;
+        Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
+        Vector2 basePosi = direction.normalized;
+        Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
+
+        float Posi = playerWeapon.GetStatUpgradeSize();
+        Posi = Posi / 10;
+        Vector3 pullPosi = targetPosi.position - (Vector3)(direction * 1f);
+        Vector3 pullMainPosi = targetPosi.position - (Vector3)(direction * 0.2f);
+
+
+        Vector3 leftPosi = pullPosi + (Vector3)(rightDir * (0.8f + Posi));
+        Vector3 rightPosi = pullPosi - (Vector3)(rightDir * (0.8f + Posi));
+
+        Quaternion rotate = transform.rotation;
+        Quaternion leftRotate = rotate * Quaternion.Euler(0, 0, 70.6f);
+        Quaternion rightRotate = rotate * Quaternion.Euler(0, 0, -70.6f);
+
+        motion.Join(transform.DOLocalRotateQuaternion(leftRotate, 0.1f));
+        motion.Join(transform.DOMove(leftPosi, 0.1f));
+        
+        
+        motion2.Join(transform.DOLocalRotateQuaternion(rotate, 0.1f));
+        motion2.Join(transform.DOMove(pullMainPosi, 0.1f));
+        
+
+        motion3.Join(transform.DOLocalRotateQuaternion(rightRotate, 0.1f));
+        motion3.Join(transform.DOMove(rightPosi, 0.1f));
+
+        motionAll.Append(motion);
+        motionAll.Append(motion2);
+        motionAll.Append(motion3);
+        
+        motionAll.Append(transform.DOLocalMove(nowTrans, 0.0f));
+        motionAll.OnComplete(() => { playerController.SetWeaponArm(); });
+    }
+    public void AttackRotateMotion(Transform targetPosi)
+    {
+        DG.Tweening.Sequence motion = DOTween.Sequence();
+        Vector2 nowTrans = transform.localPosition;
+        Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
+        Vector2 basePosi = direction.normalized;
+        Vector2 rightDir = new Vector2(-basePosi.y, basePosi.x);
+        float radius = direction.magnitude;
+        float angle = 0f;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle < 0f) angle += 360f;
+        float startAngle = angle;
+        float endAngle = angle + 360f;
+
+        motion.Join(transform.DORotate(new Vector3(0f, 0f, 1080f), 0.6f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        motion.Join(
+            DOTween.To(() => startAngle, x => startAngle = x, endAngle, 0.6f).SetEase(Ease.Linear).OnUpdate(() =>
+            {
+                float rad = startAngle * Mathf.Deg2Rad;
+                Vector3 next = playerController.transform.position + new Vector3(Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius, 0);
+                transform.position = next;
+            }));
+        motion.Play();
+        motion.OnComplete(() => { playerController.SetWeaponArm(); });
+    }
     public void AttackStingMotion(Transform targetPosi)
     {
         DG.Tweening.Sequence motion = DOTween.Sequence();
@@ -284,9 +409,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (playerWeapon.weaponType.ToString() == "Sword" 
             || playerWeapon.weaponType.ToString() == "Axe" 
-            || playerWeapon.weaponType.ToString() == "Shield"  
-            || playerWeapon.weaponType.ToString() == "Katana"
-            || playerWeapon.weaponType.ToString() == "Hammer")
+            || playerWeapon.weaponType.ToString() == "Shield")
         {
             isAttackCo = true;
             nowAttack = true;
@@ -299,7 +422,47 @@ public class PlayerAttack : MonoBehaviour
             isAttackCo = false;
             attackco = null;
         }
-        else if(playerWeapon.weaponType.ToString() == "Spear")
+        else if (playerWeapon.weaponType.ToString() == "Hammer")
+        {
+            isAttackCo = true;
+            nowAttack = true;
+            AttackHammerMotion(other.transform);
+            yield return new WaitForSecondsRealtime(0.3f);
+            childCircle.enabled = true;
+            yield return new WaitForSecondsRealtime(0.1f);
+            childCircle.enabled = false;
+            nowAttack = false;
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
+            isAttackCo = false;
+            attackco = null;
+        }
+        else if(playerWeapon.weaponType.ToString() == "Katana")
+        {
+            isAttackCo = true;
+            nowAttack = true;
+            childBox.enabled = true;
+            AttackKatanaMotion(other.transform);
+            yield return new WaitForSecondsRealtime(0.3f);
+            childBox.enabled = false;
+            nowAttack = false;
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
+            isAttackCo = false;
+            attackco = null;
+        }
+        else if (playerWeapon.weaponType.ToString() == "TwinBlade")
+        {
+            isAttackCo = true;
+            nowAttack = true;
+            childBox.enabled = true;
+            AttackRotateMotion(other.transform);
+            yield return new WaitForSecondsRealtime(0.6f);
+            childBox.enabled = false;
+            nowAttack = false;
+            yield return new WaitForSecondsRealtime(nowAttackSpeed);
+            isAttackCo = false;
+            attackco = null;
+        }
+        else if (playerWeapon.weaponType.ToString() == "Spear")
         {
             isAttackCo = true;
             nowAttack = true;
