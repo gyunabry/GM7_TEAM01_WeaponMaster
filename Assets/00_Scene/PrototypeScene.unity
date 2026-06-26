@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 996661441327463699, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 985414210}
     - target: {fileID: 1843929781002007539, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: m_Name
       value: LevelUpCanvas
@@ -959,7 +959,7 @@ PrefabInstance:
     - target: {fileID: 5433432132813994447, guid: d07dce79e7e7b7542ac1146e3af7d748, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 985414214}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1003,7 +1003,7 @@ MonoBehaviour:
     killCount: 0
     weaponUnlockType: 
     weaponUnlockBool: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 442802238}
 --- !u!4 &758721166
 Transform:
   m_ObjectHideFlags: 0
@@ -1208,9 +1208,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 872488056}
     - target: {fileID: 4632700160186018904, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5021323
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.76958215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.12549561
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.012343839
       objectReference: {fileID: 0}
     - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -1219,6 +1239,18 @@ PrefabInstance:
     - target: {fileID: 5959769542027020136, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1260,6 +1292,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8820678841470439701, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1299,6 +1335,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &985414210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+  m_PrefabInstance: {fileID: 985414206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985414207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae859e8da0c52348ac3fe690a77ba91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!4 &985414214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8482550140064032186, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+  m_PrefabInstance: {fileID: 985414206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &997869552 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2654824814252697687, guid: 4152a16c4161d544a9a87f97c9fd5806, type: 3}
@@ -2193,7 +2245,7 @@ PrefabInstance:
     - target: {fileID: 4260830416288764147, guid: 12511661cdcc3074db3010767d06613e, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 985414210}
     - target: {fileID: 4260830416288764147, guid: 12511661cdcc3074db3010767d06613e, type: 3}
       propertyPath: expText
       value: 

@@ -20,7 +20,7 @@ MonoBehaviour:
   weaponIcon: {fileID: 3060291918595649585, guid: 06d25675c742ec243b68f648bd316fb9, type: 3}
   weaponDamage: 20
   weaponArmorPiercing: 0
-  weaponAttackSpeed: 1.2
+  weaponAttackSpeed: 1.1
   weaponRange: 3
   weaponCri: 0
   weaponSize: 6
@@ -28,7 +28,7 @@ MonoBehaviour:
   - upgradeName: "\uB300\uAC80"
     upgradeDamage: 30
     upgradeArmorPiercing: 10
-    upgradeAttackSpeed: 0.3
+    upgradeAttackSpeed: 0
     upgradeRange: 2
     upgradeCri: 0
     upgradeSize: 12
@@ -44,19 +44,16 @@ MonoBehaviour:
     upgradeDes: "\uBE60\uB978 \uACF5\uACA9\uC18D\uB3C4\uAC00 \uD2B9\uC9D5\uC778 \uC9C4\uD654"
     upgradeSprite: {fileID: -8070790144581709556, guid: 55c02a3d1fbcac549802c0a671ded235, type: 3}
   statUpValue:
-    upgradeStatDamage: 8
+    upgradeStatDamage: 10
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.1
-    upgradeStatRange: 0.6
+    upgradeStatRange: 1
     upgradeStatCri: 10
     upgradeStatSize: 2
   upgradeNum: 0
-  upgradeCount: 2
+  upgradeCount: 0
   skill1: 0
   skill2: 0
   skill3: 0
   skill4: 0
-  route1: 0
-  route2: 0
-  route3: 0
-  route4: 0
+  unlocking: 0

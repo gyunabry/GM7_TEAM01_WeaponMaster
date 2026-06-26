@@ -139,7 +139,7 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetStatUpgradeAttackSpeed();
             nowRange = playerWeapon.weaponRange + playerWeapon.GetStatUpgradeRange();
             nowCri = playerWeapon.weaponCri + playerWeapon.GetStatUpgradeCri();
-            nowSize = (playerWeapon.weaponSize + playerWeapon.GetStatUpgradeSize()) / 2;
+            nowSize = (playerWeapon.weaponSize + playerWeapon.GetStatUpgradeSize());
             nowSprite = playerWeapon.weaponIcon;
         }
         else
@@ -149,12 +149,16 @@ public class PlayerAttack : MonoBehaviour
             nowAttackSpeed = playerWeapon.weaponAttackSpeed + playerWeapon.GetUpgradeAttackSpeed(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeAttackSpeed();
             nowRange = playerWeapon.weaponRange + playerWeapon.GetUpgradeRange(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeRange();
             nowCri = playerWeapon.weaponCri + playerWeapon.GetUpgradeCri(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeCri();
-            nowSize = (playerWeapon.GetUpgradeSize(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeSize()) / 2;
+            nowSize = (playerWeapon.GetUpgradeSize(playerWeapon.upgradeNum) + playerWeapon.GetStatUpgradeSize());
             nowSprite = playerWeapon.GetUpgradeSprite(playerWeapon.upgradeNum);
         }
         nowDamage = nowDamage * ((playerStat["damage"] + 100f) / 100f);
         nowArmorPiercing = nowArmorPiercing + playerStat["armorPiercing"];
         nowAttackSpeed = nowAttackSpeed / ((playerStat["attackSpeed"] + 100f) / 100f);
+        if(nowAttackSpeed < 0.1f)
+        {
+            nowAttackSpeed = 0.1f;
+        }
         nowRange = nowRange + (playerStat["range"] / 100);
         nowCri = nowCri + playerStat["cri"];
         if(instant != null)

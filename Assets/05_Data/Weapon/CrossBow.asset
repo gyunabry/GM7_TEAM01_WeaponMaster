@@ -44,7 +44,7 @@ MonoBehaviour:
     upgradeDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC5D0 \uC9D1\uC911\uB41C \uC9C4\uD654"
     upgradeSprite: {fileID: 5450094789475882396, guid: 513272fdf44e12d41b2ac90a58fa8e01, type: 3}
   statUpValue:
-    upgradeStatDamage: 20
+    upgradeStatDamage: 15
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 1

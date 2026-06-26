@@ -80,7 +80,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.7, y: 0.7}
-  m_EdgeRadius: 1
+  m_EdgeRadius: 0.1
 --- !u!212 &-5691132380141013013
 SpriteRenderer:
   serializedVersion: 2
@@ -164,4 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be96da7c761563478602e656dbfdb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrow
-  arrowSpeed: 2
+  arrowSpeed: 5

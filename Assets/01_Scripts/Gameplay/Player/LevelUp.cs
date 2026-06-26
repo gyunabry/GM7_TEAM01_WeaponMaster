@@ -91,25 +91,21 @@ public class LevelUp : MonoBehaviour
                 while (true)
                 {
                     int randomUpgrade = Random.Range(0, 101);
-                    if(0 <= randomUpgrade && randomUpgrade <= 30)
+                    if(0 <= randomUpgrade && randomUpgrade <= 35) // 대미지
                     {
                         ranUp[i] = 0;
                     }
-                    else if(31 <= randomUpgrade && randomUpgrade <= 50)
+                    else if(36 <= randomUpgrade && randomUpgrade <= 65) //공속
                     {
                         ranUp[i] = 2;
                     }
-                    else if(51 <= randomUpgrade && randomUpgrade <= 70)
+                    else if(71 <= randomUpgrade && randomUpgrade <= 90) //크확
                     {
                         ranUp[i] = 4;
                     }
-                    else if(71 <= randomUpgrade && randomUpgrade <= 85)
+                    else if(91 <= randomUpgrade && randomUpgrade <= 100) //범위
                     {
                         ranUp[i] = 3;
-                    }
-                    else if(86 <= randomUpgrade && randomUpgrade <= 100)
-                    {
-                        ranUp[i] = 5;
                     }
                     if (ranUp[i] == 2 && weaponList[ran[i]].GetStatUpgradeAttackSpeed() <= 0.2f)
                     {
@@ -152,7 +148,7 @@ public class LevelUp : MonoBehaviour
                 TextMeshProUGUI[] upText = go[i].GetComponentsInChildren<TextMeshProUGUI>();
                 if (weaponList[ran[i]].upgradeCount != 0)
                 {
-                    upText[1].text = $"강화 횟수 : {weaponList[ran[i]].upgradeCount}";
+                    upText[1].text = $"Level {weaponList[ran[i]].upgradeCount}";
                 }
                 else if(weaponList[ran[i]].upgradeCount == 0)
                 {
@@ -235,7 +231,7 @@ public class LevelUp : MonoBehaviour
             }
             if (i == 0)
             {
-                go[i].transform.localPosition = new Vector3(-500f, 0f, 0f);
+                go[i].transform.localPosition = new Vector3(-300f, 0f, 0f);
             }
             else if (i == 1)
             {
@@ -243,7 +239,7 @@ public class LevelUp : MonoBehaviour
             }
             else if (i == 2)
             {
-                go[i].transform.localPosition = new Vector3(500f, 0f, 0f);
+                go[i].transform.localPosition = new Vector3(300f, 0f, 0f);
             }
             go[i].gameObject.SetActive(true);
         }

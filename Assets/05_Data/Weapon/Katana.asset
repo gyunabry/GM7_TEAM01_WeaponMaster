@@ -19,15 +19,15 @@ MonoBehaviour:
   weaponIcon: {fileID: -5335853548581968422, guid: e98b595a44a0609428493462fc34e97e, type: 3}
   weaponDamage: 30
   weaponArmorPiercing: 10
-  weaponAttackSpeed: 2.2
+  weaponAttackSpeed: 1.7
   weaponRange: 3
-  weaponCri: 20
+  weaponCri: 30
   weaponSize: 6
   upgrades:
   - upgradeName: "\uBC14\uB78C\uC758 \uCE74\uD0C0\uB098"
-    upgradeDamage: 0
+    upgradeDamage: 10
     upgradeArmorPiercing: 0
-    upgradeAttackSpeed: -1.2
+    upgradeAttackSpeed: -0.8
     upgradeRange: 0
     upgradeCri: 0
     upgradeSize: 6
@@ -45,7 +45,7 @@ MonoBehaviour:
       \uC9C4\uD654"
     upgradeSprite: {fileID: 4924101769844784665, guid: f697e8432270a164c860d0f27d7968d9, type: 3}
   statUpValue:
-    upgradeStatDamage: 8
+    upgradeStatDamage: 10
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 1
@@ -57,7 +57,4 @@ MonoBehaviour:
   skill2: 0
   skill3: 0
   skill4: 0
-  route1: 0
-  route2: 0
-  route3: 0
-  route4: 0
+  unlocking: 0

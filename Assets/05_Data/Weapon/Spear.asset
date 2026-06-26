@@ -35,7 +35,7 @@ MonoBehaviour:
     upgradeDes: "\uCC3D\uC758 \uC7A5\uC810\uC744 \uADF9\uB300\uD654\uD55C \uC9C4\uD654"
     upgradeSprite: {fileID: -4120681316829262950, guid: ddfac5a375dbb2244aa5363be69028b7, type: 3}
   - upgradeName: "\uB2E8\uCC3D"
-    upgradeDamage: 5
+    upgradeDamage: 10
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -0.5
     upgradeRange: -1
@@ -45,7 +45,7 @@ MonoBehaviour:
       \uACF5\uACA9\uD560 \uC218 \uC788\uAC8C\uD55C \uC9C4\uD654"
     upgradeSprite: {fileID: 8055708086024870853, guid: f3841298ea3fd824f8202bb0911c4503, type: 3}
   statUpValue:
-    upgradeStatDamage: 8
+    upgradeStatDamage: 10
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 1
@@ -57,7 +57,4 @@ MonoBehaviour:
   skill2: 0
   skill3: 0
   skill4: 0
-  route1: 0
-  route2: 0
-  route3: 0
-  route4: 0
+  unlocking: 0

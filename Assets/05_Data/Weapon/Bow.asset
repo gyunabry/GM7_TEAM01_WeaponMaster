@@ -26,7 +26,7 @@ MonoBehaviour:
   weaponSize: 6
   upgrades:
   - upgradeName: "\uB300\uAD81"
-    upgradeDamage: 30
+    upgradeDamage: 20
     upgradeArmorPiercing: 50
     upgradeAttackSpeed: 0.6
     upgradeRange: 4
@@ -36,7 +36,7 @@ MonoBehaviour:
       \uD2B9\uD654\uB418\uC5B4\uC788\uB294 \uC9C4\uD654"
     upgradeSprite: {fileID: 6893954136789621787, guid: 177194f743a99954f9ab756304516543, type: 3}
   - upgradeName: "\uC18D\uAD81"
-    upgradeDamage: 5
+    upgradeDamage: 10
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -0.6
     upgradeRange: 0
@@ -52,12 +52,9 @@ MonoBehaviour:
     upgradeStatCri: 10
     upgradeStatSize: 2
   upgradeNum: 0
-  upgradeCount: 1
+  upgradeCount: 0
   skill1: 0
   skill2: 0
   skill3: 0
   skill4: 0
-  route1: 0
-  route2: 0
-  route3: 0
-  route4: 0
+  unlocking: 0
