@@ -20,7 +20,7 @@ MonoBehaviour:
   weaponIcon: {fileID: 2618635765060545242, guid: 3f03cf4faf8d7234db7ffe5a77303fb4, type: 3}
   weaponDamage: 20
   weaponArmorPiercing: 10
-  weaponAttackSpeed: 1.5
+  weaponAttackSpeed: 1.1
   weaponRange: 5
   weaponCri: 10
   weaponSize: 5
