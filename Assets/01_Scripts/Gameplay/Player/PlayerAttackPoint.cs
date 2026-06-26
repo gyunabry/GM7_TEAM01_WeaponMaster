@@ -24,6 +24,7 @@ public class PlayerAttackPoint : MonoBehaviour
     private BoxCollider2D box;
     private Arrow arrow;
     private bool criHit = false;
+    private bool bulletDestroy = false;
     
 
     private float damage;
@@ -96,8 +97,16 @@ public class PlayerAttackPoint : MonoBehaviour
                 collision.TryGetComponent<EnemyController>(out enemy);
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(nowDamage);
-                    playerController.HpAbs();
+                    if (criHit == true)
+                    {
+                        enemy.TakeDamage(nowDamage, true);
+                        playerController.HpAbs();
+                    }
+                    else
+                    {
+                        enemy.TakeDamage(nowDamage);
+                        playerController.HpAbs();
+                    }
                 }
                 criHit = false;
             }
@@ -130,8 +139,16 @@ public class PlayerAttackPoint : MonoBehaviour
                 collision.TryGetComponent<BossController>(out enemy);
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(nowDamage);
-                    playerController.HpAbs();
+                    if(criHit == true)
+                    {
+                        enemy.TakeDamage(nowDamage, true);
+                        playerController.HpAbs();
+                    }
+                    else
+                    {
+                        enemy.TakeDamage(nowDamage);
+                        playerController.HpAbs();
+                    }
                 }
                 criHit = false;
             }

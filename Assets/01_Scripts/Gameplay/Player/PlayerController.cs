@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public event Action<float, float> OnHpChanged;
     [SerializeField] private VoidEventChannel onPlayerDead;
-    private WeaponUnlock weaponUnlock;
+    private LevelUp weaponUnlock;
     private Animator Ani;
     SpriteRenderer sp;
 
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         moveia = InputSystem.actions.FindAction("Move");
         jumpia = InputSystem.actions.FindAction("Jump");
         rb = GetComponent<Rigidbody2D>();
-        weaponUnlock = FindAnyObjectByType<WeaponUnlock>();
+        weaponUnlock = FindAnyObjectByType<LevelUp>();
         Ani = GetComponent<Animator>();
     }
     private void Start()
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         move = moveia.ReadValue<Vector2>().normalized;
         if (jumpia.WasPressedThisFrame())
         {
-            weaponUnlock.Save();
+            weaponUnlock.transform.gameObject.SetActive(true);
         }
     }
 

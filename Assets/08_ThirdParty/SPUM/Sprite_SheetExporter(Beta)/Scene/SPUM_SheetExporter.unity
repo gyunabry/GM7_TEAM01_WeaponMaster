@@ -11154,8 +11154,8 @@ MonoBehaviour:
   _imageSize: {x: 256, y: 256}
   _fullSize: {x: 2048, y: 2048}
   _scaleFactor: 1.5
-  _frameRate: 16
-  _frameNumber: 5
+  _frameRate: 60
+  _frameNumber: 19
   _advanced: 0
   ImageNumber: 2
   items:
