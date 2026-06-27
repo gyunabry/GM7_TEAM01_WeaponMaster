@@ -14,6 +14,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private int armor;
     [SerializeField] private float moveSpeed;
     [SerializeField] private LayerMask targetLayer;
+
+    [Header("피격 연출")]
+    [SerializeField] private Material flashMaterial;
+    [SerializeField] private float flashDuration = 0.1f;
+    private Material originMaterial;
     
     private EnemyData currentEnemy;
     private SpriteRenderer sr;
@@ -41,6 +46,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         enemyAttack = GetComponent<EnemyAttack>();
         animationController = GetComponent<EnemyAnimationController>();
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        originMaterial = sr.material;
 
         // Z축 회전 방지
         agent.updateRotation = false;
@@ -138,6 +145,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         hitText.ShowDamage(damage, transform.position, isCrit);
 
         // TODO: 하얗게 반짝이는 효과 추가
+        OnDamaged();
 
         // 피해를 입은 직후 체력을 검사하여 사망 처리
         if (IsDead)
@@ -158,6 +166,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void ReturnToPool()
     {
+        // 반짝일 때 죽은 적을 원상복구하기 위해 해당 함수에서 다시 설정
+        sr.material = originMaterial;
         PoolManager.Instance.ReturnPool(this);
     }
 
@@ -178,5 +188,20 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         bool isMoving = agent.velocity.sqrMagnitude > 0.001f;
         animationController.PlayMove(isMoving);
+    }
+
+    private void OnDamaged()
+    {
+        StartCoroutine(FlashSprite());
+    }
+
+    // 피격됐을 때 잠깐 번쩍이는 효과
+    private IEnumerator FlashSprite()
+    {
+        sr.material = flashMaterial;
+
+        yield return new WaitForSeconds(flashDuration);
+
+        sr.material = originMaterial;
     }
 }

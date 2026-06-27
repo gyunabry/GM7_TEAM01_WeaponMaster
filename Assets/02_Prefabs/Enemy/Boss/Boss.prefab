@@ -253,7 +253,8 @@ MonoBehaviour:
   currentState: 0
   currentHp: 0
   currentPhaseIndex: 0
-  BossDeadEvent: {fileID: 11400000, guid: c162d4fcae319a44db351bf06b0327be, type: 2}
+  bossDeadEvent: {fileID: 11400000, guid: c162d4fcae319a44db351bf06b0327be, type: 2}
+  bossDamagedEvent: {fileID: 11400000, guid: bf785d9b693fbb940a2ed337e7531ff7, type: 2}
   targetLayer:
     serializedVersion: 2
     m_Bits: 1048576
