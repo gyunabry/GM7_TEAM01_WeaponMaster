@@ -13,7 +13,6 @@ public class WaveManager : MonoBehaviour
 
     public event Action<int> OnWaveStarted;
     public event Action<float> OnTimeChanged;
-    public event Action OnShopOpened;
 
     [Header("난이도 설정")]
     [SerializeField] private Difficulty currentDifficulty = Difficulty.Normal;
@@ -85,21 +84,18 @@ public class WaveManager : MonoBehaviour
                 stageTime = 0f;
                 StartWave(currentWaveIndex);
             }
-            else
+            else // 모든 웨이브가 끝나면 보스 등장
             {
                 isWaveActive = false;
 
                 StartCoroutine(BossEncounterCo());
-                Debug.Log("보스 코루틴 시작");
-
-                OnShopOpened?.Invoke();
             }
         }
     }
 
     private void StartWave(int index)
     {
-        if (stageWaves==null ||  stageWaves.Count==0 || index>=stageWaves.Count)
+        if (stageWaves==null || stageWaves.Count==0 || index>=stageWaves.Count)
         {
             return;
         }

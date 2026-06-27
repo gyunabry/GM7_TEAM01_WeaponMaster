@@ -18,6 +18,7 @@ public class BossController : MonoBehaviour, IDamageable
 
     [Header("보스 데이터")]
     [SerializeField] private BossData bossData;
+    private float maxHp;
 
     [Header("현재 상태")]
     [SerializeField] private BossState currentState;
@@ -25,8 +26,9 @@ public class BossController : MonoBehaviour, IDamageable
     [SerializeField] private int currentPhaseIndex = 0;
     private List<EnemyPatternData> currentPatterns;
 
-    [Header("보스 사망 이벤트")]
-    [SerializeField] private VoidEventChannel BossDeadEvent;
+    [Header("보스 이벤트")]
+    [SerializeField] private VoidEventChannel bossDeadEvent;
+    [SerializeField] private HpEventChannel bossDamagedEvent;
 
     [Header("컴포넌트 참조")]
     private Rigidbody2D rb;
@@ -71,7 +73,9 @@ public class BossController : MonoBehaviour, IDamageable
     {
         if (bossData == null || bossData.phases.Count == 0) return;
 
-        currentHp = bossData.maxHp;
+        maxHp = bossData.maxHp;
+        currentHp = maxHp;
+
         agent.speed = bossData.moveSpeed;
 
         // 1페이즈 세팅
@@ -294,6 +298,9 @@ public class BossController : MonoBehaviour, IDamageable
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, isCrit, false);
 
+        // 인게임 UI 내 보스 체력 UI 갱신
+        bossDamagedEvent?.RaiseEvent(currentHp, maxHp);
+
         int nextPhaseIndex = currentPhaseIndex + 1;
         // index는 0부터 시작하기 때문에 Count - 1과 같음
         if (nextPhaseIndex < bossData.phases.Count)
@@ -344,7 +351,7 @@ public class BossController : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log("보스 처치!");
-        BossDeadEvent?.RaiseEvent();
+        bossDeadEvent?.RaiseEvent();
         Destroy(gameObject);
     }
 

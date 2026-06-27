@@ -26,5 +26,8 @@ public class BossSpawner : MonoBehaviour
         if (bossPrefab == null) return;
 
         BossController currentBoss = Instantiate(bossPrefab, Vector2.zero, Quaternion.identity).GetComponent<BossController>();
+        string bossName = currentBoss.GetComponent<BossData>().bossName;
+        InGameUIManager.Instance.SetBossName(bossName);
+        Debug.Log($"{bossName} 인게임 UI에 전달");
     }
 }

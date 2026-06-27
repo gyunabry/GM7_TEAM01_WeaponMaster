@@ -171,6 +171,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 1048576
+  flashMaterial: {fileID: 2100000, guid: 1695fca954a58ea42b83a724cb49f22a, type: 2}
+  flashDuration: 0.15
   target: {fileID: 0}
 --- !u!114 &319731871572461636
 MonoBehaviour:
