@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerAttack : MonoBehaviour
@@ -38,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
     private float nowSize;
     private Sprite nowSprite;
     private bool upgrade = false;
+
+    private ISkillBase skillBase;
 
     private void Awake()
     {
@@ -104,6 +107,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("무기 프리팹이 없거나 이름이 다름");
         }
+        skillBase = GetComponent<ISkillBase>();
     }
     private void Start()
     {
@@ -113,7 +117,6 @@ public class PlayerAttack : MonoBehaviour
         Addressables.InstantiateAsync(weaponType.ToString()).Completed += OnPrefabLoaded;
         parentTrans = playerController.transform;
     }
-    // GameObject go = Instantiate(weaponSprite, srPosition, Quaternion.Euler(0f, 0f, -45f), transform);
     
     void Update()
     {
@@ -136,10 +139,10 @@ public class PlayerAttack : MonoBehaviour
     {
         upgrade = true;
         playerWeapon.upgradeNum = j;
-        SetWeaponStat(playerWeapon.upgradeNum);
+        SetWeaponStat();
         sr.sprite = nowSprite;
     }
-    public void SetWeaponStat(int i)
+    public void SetWeaponStat()
     {
         if (upgrade == false)
         {
@@ -201,7 +204,7 @@ public class PlayerAttack : MonoBehaviour
     }
     IEnumerator Weapon()
     {
-        SetWeaponStat(0);
+        SetWeaponStat();
         yield return new WaitForSecondsRealtime(1.0f);
         sr.sprite = nowSprite;
 
@@ -218,6 +221,8 @@ public class PlayerAttack : MonoBehaviour
                     if (isAttackCo == false)
                     {
                         attackco = StartCoroutine(Attack(enemyTrans));
+                        foreach(SkillStat ss in playerWeapon.skillStat)
+                        skillBase.Skill(ss);
                     }
                     break;
                 }
@@ -490,5 +495,9 @@ public class PlayerAttack : MonoBehaviour
             isAttackCo = false;
             attackco = null;
         }
+    }
+    public List<SkillStat> GetSkillStat()
+    {
+        return playerWeapon.skillStat;
     }
 }

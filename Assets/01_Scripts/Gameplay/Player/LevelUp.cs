@@ -310,7 +310,7 @@ public class LevelUp : MonoBehaviour
         if (imsiList.TryGetValue(weaponList[ran[jk]].weaponType, out var arm))
         {
             weaponStat = arm.GetComponent<PlayerAttack>();
-            weaponStat.SetWeaponStat(0);
+            weaponStat.SetWeaponStat();
         }
         i = 0;
         dho = 0;

@@ -31,14 +31,10 @@ public class PlayerWeaponSO : ScriptableObject
     public int upgradeCount = 0;
 
     [Header("weaponSkill")]
-    public bool skill1;
-    public bool skill2;
-    public bool skill3;
-    public bool skill4;
+    public List<SkillStat> skillStat = new List<SkillStat>();
 
     [Header("weaponUnlock")]
     public bool unlocking;
-
     
     public float GetUpgradeDamage(int i)
     {
@@ -186,4 +182,10 @@ public class WeaponStatUpValue
     public float upgradeStatRange;
     public float upgradeStatCri;
     public float upgradeStatSize;
+}
+public class SkillStat
+{
+    public bool skillEnable;
+    public float skillDamage;
+    public float skillAttackSpeed;
 }
