@@ -13,6 +13,7 @@ public class WaveManager : MonoBehaviour
 
     public event Action<int> OnWaveStarted;
     public event Action<float> OnTimeChanged;
+    public event Action OnBossWarningStarted; // 보스 등장 대기 이벤트
 
     [Header("난이도 설정")]
     [SerializeField] private Difficulty currentDifficulty = Difficulty.Normal;
@@ -121,6 +122,7 @@ public class WaveManager : MonoBehaviour
     {
         // 대기 시간
         // TODO: 보스 등장 연출
+        OnBossWarningStarted?.Invoke();
         yield return new WaitForSeconds(bossWaitTime);
 
         if (bossEncounterEvent != null)

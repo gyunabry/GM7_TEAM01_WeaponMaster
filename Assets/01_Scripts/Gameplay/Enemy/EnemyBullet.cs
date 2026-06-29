@@ -4,10 +4,12 @@ public class EnemyBullet : MonoBehaviour
 {
     private int bulletDamage;
 
+    public float AoeLifetime { get; set; } = 4f;
+
     private void OnEnable()
     {
         // 활성화 4초 이후 풀로 반환
-        Invoke(nameof(ReturnToPool), 4f);
+        Invoke(nameof(ReturnToPool), AoeLifetime);
     }
 
     public void InitBullet(int damage)
