@@ -7,6 +7,12 @@ using UnityEngine;
 
 public class EnemyShooter : MonoBehaviour
 {
+    public struct PendingAOE
+    {
+        public float executeTime;
+
+    }
+
     public void Fire(EnemyAttackData attackData, Transform target)
     {
         if (target == null) return;
@@ -30,6 +36,9 @@ public class EnemyShooter : MonoBehaviour
                 break;
             case BulletPattern.BurstAround:
                 StartCoroutine(FireBurstAround(attackData, target));
+                break;
+            case BulletPattern.AOE:
+                StartCoroutine(FireAOE(attackData, target));
                 break;
         }
     }
@@ -119,10 +128,35 @@ public class EnemyShooter : MonoBehaviour
         }
     }
 
+    // 타겟 근처에 투사체 잠깐 스폰해 닿으면 피해
+    private IEnumerator FireAOE(EnemyAttackData attackData, Transform target)
+    {
+        Vector2 centerPos = target.position;
+
+        for (int i = 0; i < attackData.aoeCount; i++)
+        {
+            // Random.insdeUnitCircle을 통해 원형 범위 내 랜덤한 오프셋 값 계산
+            Vector2 randomOffset = Random.insideUnitCircle * attackData.aoeRadius;
+            Vector2 spawnPos = centerPos + randomOffset;
+
+            WarningMarker warning = PoolManager.Instance.GetPool(attackData.warningPrefab);
+            warning.transform.position = spawnPos;
+
+            // 람다식으로 WarningMarker 내의 onComplete 발생 시 SpawnProjectileAt 메서드가 실행되도록 넘겨줌
+            warning.InitWarningMarker(attackData.warningDuration, () =>
+            {
+                SpawnProjectileAt(attackData, spawnPos);
+            });
+
+            yield return null;
+        }
+    }
+
     private void SpawnProjectile(EnemyAttackData attackData, Vector2 direction)
     {
         EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
         bullet.InitBullet(attackData.attackDamage);
+        bullet.AoeLifetime = 4f;
 
         // 투사체의 현재 위치를 몬스터의 위치로 설정
         bullet.transform.position = transform.position;
@@ -130,6 +164,23 @@ public class EnemyShooter : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = direction * attackData.projectileSpeed;
+        }
+    }
+
+    private void SpawnProjectileAt(EnemyAttackData attackData, Vector2 spawnPosition)
+    {
+        // 총알을 풀에서 꺼내고 잠깐의 공격을 구현하기 위해 0.5초로 지속시간 설정
+        EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
+        bullet.InitBullet(attackData.attackDamage);
+        bullet.AoeLifetime = 0.5f;
+
+        bullet.transform.position = spawnPosition;
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            // 제자리에 생성되어야 하기 때문에 이동속도를 0으로 고정
+            rb.linearVelocity = Vector2.zero;
         }
     }
 }

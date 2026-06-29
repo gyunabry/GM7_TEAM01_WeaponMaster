@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneController
   playerDeadEvent: {fileID: 11400000, guid: e5686fe0bbf931243872e0132e23455d, type: 2}
+  bossDeadEvent: {fileID: 11400000, guid: c162d4fcae319a44db351bf06b0327be, type: 2}
   pauseCG: {fileID: 0}
   optionCG: {fileID: 0}
   gameoverCG: {fileID: 0}
@@ -52,5 +53,6 @@ MonoBehaviour:
   restartButton: {fileID: 0}
   optionButton: {fileID: 0}
   exitButton: {fileID: 0}
+  gameoverText: {fileID: 0}
   goRestartButton: {fileID: 0}
   goTitleButton: {fileID: 0}

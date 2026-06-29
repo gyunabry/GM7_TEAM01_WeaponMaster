@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5346638834525905889}
   - component: {fileID: 1049738459318947163}
+  - component: {fileID: 7038998235526452076}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -48,4 +49,20 @@ MonoBehaviour:
   maxX: 18
   minY: -18
   maxY: 18
-  genericEnemyPrefab: {fileID: 6522585078857555969, guid: ead5f00e5285a2749af527468e022cf1, type: 3}
+  warningDuration: 1
+  markerPrefab: {fileID: 5796480262704675772, guid: 21e0a8c8ccda21746aa3fb94374257ea, type: 3}
+  enemyPrefab: {fileID: 6522585078857555969, guid: ead5f00e5285a2749af527468e022cf1, type: 3}
+--- !u!114 &7038998235526452076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082961109484340099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb68c2c22674564ca289be4080e1abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
+  BossEncounterEvent: {fileID: 11400000, guid: 6e7f9f939ba348742a3e18c087aedb60, type: 2}
+  bossPrefab: {fileID: 4246351091821930707, guid: 1118882eee9596b4cbd88c359c11a265, type: 3}

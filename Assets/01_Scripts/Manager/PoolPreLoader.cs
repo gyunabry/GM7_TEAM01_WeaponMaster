@@ -7,6 +7,7 @@ public class PoolPreLoader : MonoBehaviour
     [SerializeField] private EnemyBullet enemyBulletPrefab;
     [SerializeField] private ExpGem expPrefab;
     [SerializeField] private HitText hitTextPrefab;
+    [SerializeField] private WarningMarker warningPrefab;
     // 필요시 여기에 추가
 
     [Header("초기 생성 수")]
@@ -14,6 +15,7 @@ public class PoolPreLoader : MonoBehaviour
     [SerializeField] private int enemyBulletCount;
     [SerializeField] private int expCount = 100;
     [SerializeField] private int hitTextCount = 30;
+    [SerializeField] private int warningCount = 30;
 
     private void Start()
     {
@@ -21,5 +23,6 @@ public class PoolPreLoader : MonoBehaviour
         PoolManager.Instance.PreLoadPool(enemyBulletPrefab, enemyBulletCount);
         PoolManager.Instance.PreLoadPool(expPrefab, expCount);
         PoolManager.Instance.PreLoadPool(hitTextPrefab, hitTextCount);
+        PoolManager.Instance.PreLoadPool(warningPrefab, warningCount);
     }
 }

@@ -14,7 +14,8 @@ public enum BulletPattern
     Circle,
     Orbit,
     Burst,
-    BurstAround
+    BurstAround,
+    AOE
 }
 
 [CreateAssetMenu(fileName = "Enemy Attack Data", menuName = "GamePlay/EnemyAttackData")]
@@ -48,4 +49,11 @@ public class EnemyAttackData : ScriptableObject
     public int burstCount = 1;
     public float burstInterval = 0.2f;
     public int fireCount = 1;
+
+    [Header("범위공격 설정")]
+    public int aoeRadius;
+    [Tooltip("범위공격 시 생성할 투사체 개수")]
+    public int aoeCount;
+    public WarningMarker warningPrefab;
+    public float warningDuration;
 }
