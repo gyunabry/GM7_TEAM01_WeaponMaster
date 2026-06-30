@@ -1,6 +1,9 @@
-﻿using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapCardUI : MonoBehaviour, ICardPanel
 {
@@ -16,9 +19,11 @@ public class MapCardUI : MonoBehaviour, ICardPanel
 
     [Header("이 맵의 웨이브 데이터들")]
     [SerializeField] private List<WaveData> mapWaveDataList;
+    [SerializeField] private GameObject selectButton;
 
     private bool isOpen;
     private bool isSelected;
+    private Coroutine co;
 
     private void Awake()
     {
@@ -54,8 +59,20 @@ public class MapCardUI : MonoBehaviour, ICardPanel
             PlayCardOpenTween();
         });
     }
+    public void OnEnable()
+    {
+        co = StartCoroutine(FirstSelectCard());
+    }
+    IEnumerator FirstSelectCard()
+    {
+        yield return null;
+        if (EventSystem.current != null && selectButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(selectButton);
+        }
+    }
 
-   
     private void PlayCardOpenTween()
     {
         for (int i = 0; i < mapCards.Length; i++)
@@ -107,7 +124,10 @@ public class MapCardUI : MonoBehaviour, ICardPanel
             
         }, false);
     }
+    public void SelectCard(DeSelectCardUI selectCard)
+    {
 
+    }
     private void CloseInstant()
     {
         isOpen = false;
