@@ -19,12 +19,13 @@ MonoBehaviour:
   weaponDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC774 \uD2B9\uAE30\uC778 \uC6D0\uAC70\uB9AC
     \uBB34\uAE30"
   weaponIcon: {fileID: -2653693364168859081, guid: 00af9d98d4f8db54b80c0e3d48ea9eae, type: 3}
-  weaponDamage: 65
+  weaponDamage: 50
   weaponArmorPiercing: 15
   weaponAttackSpeed: 2.5
   weaponRange: 6
   weaponCri: 10
   weaponSize: 10
+  weaponPiercing: 4
   upgrades:
   - upgradeName: "\uC5F0\uC0AC \uD06C\uB85C\uC2A4 \uBCF4\uC6B0"
     upgradeDamage: 0

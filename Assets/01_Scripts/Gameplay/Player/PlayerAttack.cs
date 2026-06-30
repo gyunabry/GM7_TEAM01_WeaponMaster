@@ -382,11 +382,11 @@ public class PlayerAttack : MonoBehaviour
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         if (angle < 0f) angle += 360f;
         float startAngle = angle;
-        float endAngle = angle + 360f;
+        float endAngle = angle + 380f;
 
-        motion.Join(transform.DORotate(new Vector3(0f, 0f, 1080f), 0.6f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
+        motion.Join(transform.DORotate(new Vector3(0f, 0f, 1080f), 0.8f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
         motion.Join(
-            DOTween.To(() => startAngle, x => startAngle = x, endAngle, 0.6f).SetEase(Ease.Linear).OnUpdate(() =>
+            DOTween.To(() => startAngle, x => startAngle = x, endAngle, 0.8f).SetEase(Ease.Linear).OnUpdate(() =>
             {
                 float rad = startAngle * Mathf.Deg2Rad;
                 Vector3 next = playerController.transform.position + new Vector3(Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius, 0);
@@ -458,7 +458,7 @@ public class PlayerAttack : MonoBehaviour
             nowAttack = true;
             childBox.enabled = true;
             AttackRotateMotion(other.transform);
-            yield return new WaitForSecondsRealtime(0.6f);
+            yield return new WaitForSecondsRealtime(0.8f);
             childBox.enabled = false;
             nowAttack = false;
             yield return new WaitForSecondsRealtime(nowAttackSpeed);
@@ -489,6 +489,7 @@ public class PlayerAttack : MonoBehaviour
             arrow.transform.position = transform.position;
             arrow.transform.Rotate(0f, 0f, rotz + 45f);
             arrow.transform.localScale = new Vector3(nowSize / 2, nowSize / 2, nowSize / 2);
+            arrow.GetMaxPiercing(playerWeapon.weaponPiercing);
             yield return new WaitForSecondsRealtime(nowAttackSpeed);
             isAttackCo = false;
             attackco = null;

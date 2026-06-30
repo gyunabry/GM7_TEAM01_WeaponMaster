@@ -8,6 +8,8 @@ public class Arrow : MonoBehaviour
     private ObjectPool<Arrow> pool;
     private Coroutine co;
     private Coroutine hitCo;
+    private int Pier = 0;
+    private int MaxPier = 3;
 
     
     public void SetPool(ObjectPool<Arrow> pool)
@@ -21,6 +23,10 @@ public class Arrow : MonoBehaviour
         Vector2 dir = new Vector2(1f, 1f);
         transform.Translate(dir * arrowSpeed * Time.deltaTime);
         co = StartCoroutine(ReleaseTime());
+    }
+    public void GetMaxPiercing(int value)
+    {
+        MaxPier = value;
     }
     IEnumerator ReleaseTime()
     {
@@ -37,14 +43,30 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            hitCo = StartCoroutine(DeleteTime());
+            if (Pier > MaxPier)
+            { 
+                hitCo = StartCoroutine(DeleteTime());
+                Pier = 0;
+            }
+            else
+            {
+                Pier++;
+            }
         }
-        if (collision.gameObject.CompareTag("Boss"))
+        else if (collision.gameObject.CompareTag("Boss"))
         {
-            hitCo = StartCoroutine(DeleteTime());
+            if (Pier > MaxPier)
+            {
+                hitCo = StartCoroutine(DeleteTime());
+                Pier = 0;
+            }
+            else
+            {
+                Pier++;
+            }
         }
     }
-
 }

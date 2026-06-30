@@ -24,6 +24,7 @@ public class PlayerWeaponSO : ScriptableObject
     public float weaponRange;
     public float weaponCri;
     public float weaponSize;
+    public int weaponPiercing;
 
     [Header("UpgradeList")]
     public List<WeaponStat> upgrades;
