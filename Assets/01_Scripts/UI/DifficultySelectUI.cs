@@ -10,7 +10,7 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
     [Header("투명도")]
     [SerializeField] private CanvasGroup panelCavasGroup;
     [Header("난이도 선택")]
-    [SerializeField] private SelectMapCardUI[] difficultyCards;
+    [SerializeField] private DeSelectCardUI[] difficultyCards;
 
     [SerializeField] private GameObject selectButton;
 
@@ -85,7 +85,7 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
         }
     }
 
-    public void SelectCard(SelectMapCardUI selectCard)
+    public void SelectCard(DeSelectCardUI selectCard)
     {
         if (isSelected) return;
         isSelected = true;
@@ -96,7 +96,7 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
 
         for (int i = 0; i < difficultyCards.Length; i++)
         {
-            SelectMapCardUI card = difficultyCards[i];
+            DeSelectCardUI card = difficultyCards[i];
             if (card == selectCard)
             {
                 sequence.Join(card.PlaySelectTween());
@@ -114,6 +114,10 @@ public class DifficultySelectUI : MonoBehaviour, ICardPanel
             // GameSceneManager를 통해 씬 타입으로 씬 로드
             GameSceneManager.Instance.LoadScene(SceneType.Game);
         });
+    }
+    public void SelectCard(SelectMapCardUI selectMapCardUI)
+    {
+
     }
 
     private void CloseInstant()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
+public class DeSelectCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler, ISubmitHandler
 {
     [Header("카드 투명도")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -104,6 +104,8 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         childUi[1].gameObject.SetActive(true);
         transform.SetAsLastSibling();
         childUi[0].material = mate;
+        transform.DOKill();
+        transform.DOScale(originalScale * hoveScale, 0.15f).SetEase(Ease.OutQuad);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -112,6 +114,7 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         childUi[1].gameObject.SetActive(false);
         transform.DOKill();
         childUi[0].material = null;
+        transform.DOScale(originalScale, 0.15f).SetEase(Ease.OutQuad);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -128,6 +131,8 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         childUi[1].gameObject.SetActive(true);
         transform.SetAsLastSibling();
         childUi[0].material = mate;
+        transform.DOKill();
+        transform.DOScale(originalScale * hoveScale, 0.15f).SetEase(Ease.OutQuad);
     }
     public void OnDeselect(BaseEventData eventData)
     {
@@ -135,6 +140,7 @@ public class SelectMapCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExit
         childUi[1].gameObject.SetActive(false);
         transform.DOKill();
         childUi[0].material = null;
+        transform.DOScale(originalScale, 0.15f).SetEase(Ease.OutQuad);
     }
     public void OnSubmit(BaseEventData eventData)
     {
