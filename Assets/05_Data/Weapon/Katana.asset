@@ -26,7 +26,7 @@ MonoBehaviour:
   weaponSize: 10
   upgrades:
   - upgradeName: "\uBC14\uB78C\uC758 \uCE74\uD0C0\uB098"
-    upgradeDamage: 10
+    upgradeDamage: 20
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -0.8
     upgradeRange: 0
@@ -36,11 +36,11 @@ MonoBehaviour:
       \uC218 \uC788\uB294 \uC9C4\uD654"
     upgradeSprite: {fileID: 4022362869950292737, guid: 0b31b84e1b5706545acce5d8fc320174, type: 3}
   - upgradeName: "\uBB34\uB77C\uB9C8\uC0AC"
-    upgradeDamage: 20
+    upgradeDamage: 30
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: 0
     upgradeRange: 0
-    upgradeCri: 30
+    upgradeCri: 40
     upgradeSize: 10
     upgradeDes: "\uCE74\uD0C0\uB098\uC758 \uC7A5\uC810\uC744 \uADF9\uB300\uD654\uD55C
       \uC9C4\uD654"

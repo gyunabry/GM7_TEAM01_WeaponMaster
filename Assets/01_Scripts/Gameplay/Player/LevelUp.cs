@@ -11,6 +11,8 @@ public class LevelUp : MonoBehaviour
     [SerializeField] private PlayerWeaponManager playerWeapon;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Button button;
+    [Header("무기 진화에 필요한 업그레이드 횟수")]
+    [SerializeField] private int needUpCount;
 
     private Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO> equWeaponList = new Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO>();
     private PlayerWeaponSO[] weaponList;
@@ -136,7 +138,7 @@ public class LevelUp : MonoBehaviour
                     }
                     break;
                 }
-                if (weaponList[ran[i]].upgradeCount == 8) //무기 진화 메서드
+                if (weaponList[ran[i]].upgradeCount == needUpCount) //무기 진화 메서드
                 {
                     if (i == 0)
                     {
