@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -170,14 +171,22 @@ public class InGameUIManager : MonoBehaviour
     #region 보스 관련
     private void ShowBossUI()
     {
-        bossUI.DOFade(1f, fadeInDuration);
         CanvasGroupController.EnableCG(bossUI);
+        bossUI.DOFade(1f, fadeInDuration).SetUpdate(true);
     }
 
     // 보스 초기화 시 호출해 이름 설정
-    public void SetBossName(string text)
+    public void SetBossInfo(string bossName, float currentHp, float maxHp)
     {
-        bossNameText.text = text;
+        if (bossNameText != null)
+        {
+            bossNameText.text = bossName;
+        }
+
+        if (bossHpFill != null && maxHp > 0f)
+        {
+            bossHpFill.fillAmount = currentHp / maxHp;
+        }
     }
 
     private void UpdateBossHp(float currentHp, float maxHp)

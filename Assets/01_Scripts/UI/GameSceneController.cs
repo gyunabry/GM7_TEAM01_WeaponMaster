@@ -7,8 +7,8 @@ public class GameSceneController : MonoBehaviour
 {
     [Header("플레이어 사망 이벤트")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
-    [Header("보스 사망 이벤트")]
-    [SerializeField] private VoidEventChannel bossDeadEvent;
+    [Header("보스 클리어 이벤트")]
+    [SerializeField] private VoidEventChannel bossClearEvent;
 
     [Header("패널")]
     [SerializeField] private CanvasGroup pauseCG;   // 일시정지 시 보여줄 패널
@@ -29,7 +29,7 @@ public class GameSceneController : MonoBehaviour
     private void Start()
     {
         playerDeadEvent.OnEventRaised += OnPlayerDead;
-        bossDeadEvent.OnEventRaised += OnBossDead;
+        bossClearEvent.OnEventRaised += OnBossClear;
 
         if (resumeButton != null)
             resumeButton.onClick.AddListener(() => OnClickResumeButton());
@@ -49,7 +49,7 @@ public class GameSceneController : MonoBehaviour
     private void OnDisable()
     {
         playerDeadEvent.OnEventRaised -= OnPlayerDead;
-        bossDeadEvent.OnEventRaised -= OnBossDead;
+        bossClearEvent.OnEventRaised -= OnBossClear;
     }
 
     #region 일시정지 메뉴
@@ -87,7 +87,7 @@ public class GameSceneController : MonoBehaviour
         gameoverText.color = Color.red;
     }
 
-    private void OnBossDead()
+    private void OnBossClear()
     {
         CanvasGroupController.EnableCG(gameoverCG);
         CanvasGroupController.DisableCG(optionCG);

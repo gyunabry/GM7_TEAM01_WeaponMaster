@@ -2,35 +2,32 @@ using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    [Header("구독할 이벤트")]
-    [SerializeField] private VoidEventChannel BossEncounterEvent;
-
     [Header("보스 프리팹")]
     [SerializeField] private GameObject bossPrefab;
 
     [Header("보스 스폰 위치")]
     [SerializeField] private Transform bossSpawnPoint;
 
-    private void Start()
+    public BossController SpawnBoss()
     {
-        BossEncounterEvent.OnEventRaised += OnBossEncounter;
-    }
+        if (bossPrefab == null || bossSpawnPoint == null)
+        {
+            return null;
+        }
 
-    private void OnDestroy()
-    {
-        BossEncounterEvent.OnEventRaised -= OnBossEncounter;
-    }
+        GameObject bossObj = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
 
-    // 보스 출현 이벤트 발행 시 호출할 메서드
-    private void OnBossEncounter()
-    {
-        Debug.Log("보스 출현!");
+        BossController currentBoss = bossObj.GetComponent<BossController>();
+        if (currentBoss == null)
+        {
+            return null;
+        }
 
-        if (bossPrefab == null) return;
+        if (InGameUIManager.Instance != null)
+        {
+            InGameUIManager.Instance.SetBossInfo(currentBoss.BossName, currentBoss.CurrentHp, currentBoss.MaxHp);
+        }
 
-        BossController currentBoss = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity).GetComponent<BossController>();
-        string bossName = currentBoss.GetComponent<BossData>().bossName;
-        InGameUIManager.Instance.SetBossName(bossName);
-        Debug.Log($"{bossName} 인게임 UI에 전달");
+        return currentBoss;
     }
 }

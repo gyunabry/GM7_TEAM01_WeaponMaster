@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     [Header("구독할 이벤트")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
-    [SerializeField] private VoidEventChannel BossDeadEvent;
+    [SerializeField] private VoidEventChannel BossClearEvent;
 
     [Header("레벨업 시 띄울 오브젝트")]
     [SerializeField] private GameObject levelUpButton;
@@ -54,10 +54,6 @@ public class GameManager : MonoBehaviour
         {
             playerDeadEvent.OnEventRaised += OnPlayerDead;
         }
-        if (BossDeadEvent != null)
-        {
-            BossDeadEvent.OnEventRaised += OnBossDead;
-        }
     }
 
     private void OnDisable()
@@ -65,10 +61,6 @@ public class GameManager : MonoBehaviour
         if (playerDeadEvent != null)
         {
             playerDeadEvent.OnEventRaised -= OnPlayerDead;
-        }
-        if (BossDeadEvent != null)
-        {
-            BossDeadEvent.OnEventRaised += OnBossDead;
         }
     }
 

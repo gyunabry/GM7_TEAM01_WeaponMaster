@@ -43,6 +43,11 @@ public class BossController : MonoBehaviour, IDamageable
     private float patternTimer = 0f;
     private int patternIndex;
 
+
+    public string BossName => bossData != null ? bossData.bossName : string.Empty;
+    public float CurrentHp => currentHp;
+    public float MaxHp => maxHp;
+
     public bool IsDead => currentHp <= 0;
 
     private void Awake()
@@ -294,7 +299,8 @@ public class BossController : MonoBehaviour, IDamageable
         if (IsDead || currentState == BossState.PhaseTransition) return;
 
         // 체력 감소 및 데미지 텍스트 표시
-        currentHp -= damage;
+        currentHp = Mathf.Max(0f, currentHp - damage);
+
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, isCrit, false);
 
@@ -350,9 +356,15 @@ public class BossController : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log("보스 처치!");
+        // 사망 시 보스의 모든 코루틴 종료
+        StopAllCoroutines();
+
+        animationController.TriggerDead();
+
+        rb.linearVelocity = Vector2.zero;
+
         bossDeadEvent?.RaiseEvent();
-        Destroy(gameObject);
+        //Destroy(gameObject); // 보스 사망 연출을 위해 파괴 X
     }
 
     private void FlipSprite()

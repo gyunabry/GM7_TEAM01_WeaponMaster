@@ -14,11 +14,6 @@ public class EnemyAnimationController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void Update()
-    {
-        
-    }
-
     // 애니메이터의 런타임 애니메이터 컨트롤러를 교체
     public void SetupAnimator(RuntimeAnimatorController controller)
     {

@@ -557,6 +557,17 @@ PrefabInstance:
       addedObject: {fileID: 1947878602}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
+--- !u!114 &405603934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7038998235526452076, guid: 88fe6f371fcddd946984319b93bb877a, type: 3}
+  m_PrefabInstance: {fileID: 405603933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb68c2c22674564ca289be4080e1abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSpawner
 --- !u!114 &407141512 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 933445512078899253, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
@@ -613,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerDeadEvent: {fileID: 11400000, guid: e5686fe0bbf931243872e0132e23455d, type: 2}
-  BossDeadEvent: {fileID: 11400000, guid: c162d4fcae319a44db351bf06b0327be, type: 2}
+  BossClearEvent: {fileID: 0}
   levelUpButton: {fileID: 133909477}
 --- !u!114 &458032327 stripped
 MonoBehaviour:
@@ -825,11 +836,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraTrasition
   bossEncounterEvent: {fileID: 11400000, guid: 6e7f9f939ba348742a3e18c087aedb60, type: 2}
   bossDeadEvent: {fileID: 11400000, guid: c162d4fcae319a44db351bf06b0327be, type: 2}
+  bossClearEvent: {fileID: 11400000, guid: 41c34c02c12f3504e9f2209fe8a42ec4, type: 2}
   playerCamera: {fileID: 648482317}
   bossCamera: {fileID: 325168667}
+  bossSpawner: {fileID: 405603934}
   bossSpawnPoint: {fileID: 1947878602}
-  spawnDuration: 3
-  deathDuration: 3
+  preSpawnFocusDuration: 2
+  postSpawnGraceDuration: 2
+  deathFocusDuration: 3
 --- !u!4 &611736247
 Transform:
   m_ObjectHideFlags: 0
@@ -2270,6 +2284,10 @@ PrefabInstance:
       propertyPath: restartButton
       value: 
       objectReference: {fileID: 458032327}
+    - target: {fileID: 4812882232494134356, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
+      propertyPath: bossClearEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 41c34c02c12f3504e9f2209fe8a42ec4, type: 2}
     - target: {fileID: 4812882232494134356, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
       propertyPath: goRestartButton
       value: 

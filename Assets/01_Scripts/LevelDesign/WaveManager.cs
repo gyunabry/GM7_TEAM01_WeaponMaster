@@ -123,12 +123,12 @@ public class WaveManager : MonoBehaviour
         // 대기 시간
         // TODO: 보스 등장 연출
         OnBossWarningStarted?.Invoke();
+
         yield return new WaitForSeconds(bossWaitTime);
 
         if (bossEncounterEvent != null)
         {
             bossEncounterEvent.RaiseEvent();
-            Debug.Log("보스 등장 이벤트 발행");
         }
     }
 }
