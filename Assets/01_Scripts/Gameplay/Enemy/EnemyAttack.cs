@@ -16,8 +16,9 @@ public class EnemyAttack : MonoBehaviour
     [Header("공격 판정")]
     [SerializeField] private float attackCheckInterval = 0.1f;
     [SerializeField] private float playerHitRadius = 0.5f;
-    [SerializeField] private float rangeWindUpTime = 0.5f;
-    [SerializeField] private float afterActionDealy = 0.2f;
+    [SerializeField] private float dashWindUpTime = 1f;
+    [SerializeField] private float rangeWindUpTime = 1f;
+    [SerializeField] private float afterActionDealy = 0.5f;
 
     private float attackTimer;  // 공격 쿨타임 타이머
     private float attackCheckTimer;
@@ -27,7 +28,7 @@ public class EnemyAttack : MonoBehaviour
     private Coroutine attackRoutine;
 
     // 공격 딜레이
-    private WaitForSeconds meleeWindUpWait;
+    private WaitForSeconds dashWindUpWait;
     private WaitForSeconds rangeWindUpWait;
     private WaitForSeconds afterActionWait;
 
@@ -36,6 +37,7 @@ public class EnemyAttack : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
         enemyShooter = GetComponent<EnemyShooter>();
 
+        dashWindUpWait = new WaitForSeconds(dashWindUpTime);
         rangeWindUpWait = new WaitForSeconds(rangeWindUpTime);
         afterActionWait = new WaitForSeconds(afterActionDealy);
     }
@@ -169,8 +171,9 @@ public class EnemyAttack : MonoBehaviour
 
         // 대쉬 전 대기 동작
         enemyController.CanMove = false;
+        yield return dashWindUpWait;
 
-        Vector3 dashDir = transform.position - enemyController.target.position;
+        Vector3 dashDir = enemyController.target.position - transform.position;
         dashDir.z = 0f;
 
         // 초근접이라면 대쉬 공격 취소
@@ -190,12 +193,13 @@ public class EnemyAttack : MonoBehaviour
         while (elapsed < dashDuration)
         {
             transform.position += dashDir * dashSpeed * Time.deltaTime;
-            TryDamageTargetOnce(data.attackDamage);
+            TryDamageTargetOnContact(data.attackDamage);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
+        yield return afterActionWait;
         // 추적 재개
         enemyController.CanMove = true;
     }
@@ -217,6 +221,7 @@ public class EnemyAttack : MonoBehaviour
     }
     #endregion
 
+    // 테스트 후 삭제
     private void TryDamageTargetOnce(float damage)
     {
         if (hasHitDuringAction) return;

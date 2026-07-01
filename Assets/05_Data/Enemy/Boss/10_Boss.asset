@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossData
   bossId: 10
   bossName: "\uBD80\uD328\uD55C \uC9C0\uBC30\uC790"
-  runtimeAnimator: {fileID: 22100000, guid: 45338c447164e754a8a0667129a77d73, type: 2}
+  runtimeAnimator: {fileID: 22100000, guid: 952780e06d577a14d936e5263e96d420, type: 2}
   maxHp: 2000
   moveSpeed: 2
   damage: 10
