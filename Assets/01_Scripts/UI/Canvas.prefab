@@ -1456,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5893839867499952935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3184,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3775718527967823029}
   startOffset: -80
   hoveScale: 1.09
-  stageData: {fileID: 11400000, guid: 4ac2967fa2ed7164fa88e826474fd441, type: 2}
+  stageData: {fileID: 11400000, guid: 4b2afc2f71a7c3542b29aaa48d69b96a, type: 2}
   mate: {fileID: 2100000, guid: 11cb1f113cd4ba448a6e409b7832560f, type: 2}
 --- !u!1 &6812407327465687601
 GameObject:
@@ -3560,7 +3560,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3775718527967823029}
   startOffset: -80
   hoveScale: 1.09
-  stageData: {fileID: 11400000, guid: 4b2afc2f71a7c3542b29aaa48d69b96a, type: 2}
+  stageData: {fileID: 11400000, guid: e3e0aae8bb360f448bed1854a779379a, type: 2}
   mate: {fileID: 2100000, guid: 11cb1f113cd4ba448a6e409b7832560f, type: 2}
 --- !u!1 &7052160384411318447
 GameObject:
@@ -4250,7 +4250,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 3775718527967823029}
   startOffset: -80
   hoveScale: 1.09
-  stageData: {fileID: 11400000, guid: 7d392d018717f0e49b21327fcf5905c4, type: 2}
+  stageData: {fileID: 11400000, guid: 4ac2967fa2ed7164fa88e826474fd441, type: 2}
   mate: {fileID: 2100000, guid: 11cb1f113cd4ba448a6e409b7832560f, type: 2}
 --- !u!1 &8825547938026532411
 GameObject:
@@ -4703,5 +4703,5 @@ MonoBehaviour:
   canvasGroup: {fileID: 3775718527967823029}
   startOffset: -80
   hoveScale: 1.09
-  stageData: {fileID: 11400000, guid: e3e0aae8bb360f448bed1854a779379a, type: 2}
+  stageData: {fileID: 11400000, guid: 7d392d018717f0e49b21327fcf5905c4, type: 2}
   mate: {fileID: 2100000, guid: 11cb1f113cd4ba448a6e409b7832560f, type: 2}

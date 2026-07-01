@@ -26,10 +26,10 @@ MonoBehaviour:
   weaponCri: 0
   weaponSize: 12
   weaponPiercing: 0
-  weaponAttackSpeedUpgradeCount: 0
+  weaponAttackSpeedUpgradeCount: 1
   upgrades:
   - upgradeName: "\uBC30\uD2C0 \uD574\uBA38"
-    upgradeDamage: 30
+    upgradeDamage: 40
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: 0
     upgradeRange: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
   - upgradeName: "\uBA54\uC774\uC2A4"
     upgradeDamage: 10
     upgradeArmorPiercing: 0
-    upgradeAttackSpeed: -1.2
+    upgradeAttackSpeed: -0.8
     upgradeRange: 0
     upgradeCri: 0
     upgradeSize: 10
@@ -55,5 +55,5 @@ MonoBehaviour:
     upgradeStatCri: 5
     upgradeStatSize: 2
   upgradeNum: 0
-  upgradeCount: 0
+  upgradeCount: 2
   unlocking: 0

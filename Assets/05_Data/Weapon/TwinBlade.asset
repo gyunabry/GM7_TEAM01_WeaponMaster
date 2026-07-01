@@ -44,7 +44,7 @@ MonoBehaviour:
     upgradeAttackSpeed: 0
     upgradeRange: 0
     upgradeCri: 0
-    upgradeSize: 20
+    upgradeSize: 40
     upgradeDes: "\uBC94\uC704\uAC00 \uD06C\uAC8C \uC99D\uAC00\uD558\uB294 \uC9C4\uD654"
     upgradeSprite: {fileID: -8326655767720833581, guid: 01a51d3f98eb8a44d939ea32833a7ba4, type: 3}
   statUpValue:

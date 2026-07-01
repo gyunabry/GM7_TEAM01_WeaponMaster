@@ -28,11 +28,11 @@ MonoBehaviour:
   weaponAttackSpeedUpgradeCount: 0
   upgrades:
   - upgradeName: "\uBC14\uB78C\uC758 \uCE74\uD0C0\uB098"
-    upgradeDamage: 20
+    upgradeDamage: 25
     upgradeArmorPiercing: 0
-    upgradeAttackSpeed: -0.8
+    upgradeAttackSpeed: -0.5
     upgradeRange: 0
-    upgradeCri: 0
+    upgradeCri: 20
     upgradeSize: 10
     upgradeDes: "\uBC14\uB78C \uCC98\uB7FC \uBE60\uB974\uAC8C \uACF5\uACA9\uD560
       \uC218 \uC788\uB294 \uC9C4\uD654"
