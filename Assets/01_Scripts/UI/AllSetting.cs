@@ -64,14 +64,41 @@ public class resolutionsSetting : MonoBehaviour
     }
     public void SetMaster(float vo)
     {
-        audioMixer.SetFloat("Master", Mathf.Log10(vo) * 20);
+        float dbV;
+        if(vo <= 0)
+        {
+            dbV = -80f;
+        }
+        else
+        {
+            dbV = Mathf.Log10(vo) * 20;
+        }
+        audioMixer.SetFloat("Master", dbV);
     }
     public void SetBGM(float vo)
     {
-        audioMixer.SetFloat("BGM", Mathf.Log10(vo) * 20);
+        float dbV;
+        if (vo <= 0)
+        {
+            dbV = -80f;
+        }
+        else
+        {
+            dbV = Mathf.Log10(vo) * 20;
+        }
+        audioMixer.SetFloat("BGM", dbV);
     }
     public void SetSFX(float vo)
     {
-        audioMixer.SetFloat("SFX", Mathf.Log10(vo) * 20);
+        float dbV;
+        if (vo <= 0)
+        {
+            dbV = -80f;
+        }
+        else
+        {
+            dbV = Mathf.Log10(vo) * 20;
+        }
+        audioMixer.SetFloat("SFX", dbV);
     }
 }

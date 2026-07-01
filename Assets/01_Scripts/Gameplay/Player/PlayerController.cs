@@ -234,7 +234,10 @@ public class PlayerController : MonoBehaviour, IDamageable
             if(hpRegen != 0)
             {
                 yield return new WaitForSeconds(300 / (hpRegen + 100));
-                NowHp++;
+                if(NowHp < maxHp)
+                {
+                    NowHp++;
+                }
             }
             else
             {
@@ -249,7 +252,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         int i = UnityEngine.Random.Range(1, 101);
         if(hpAbs >= i)
         {
-            NowHp += 1;
+            if(NowHp < maxHp)
+            {
+                NowHp += 1;
+            }
             OnHpChanged?.Invoke(NowHp, maxHp);
         }
     }

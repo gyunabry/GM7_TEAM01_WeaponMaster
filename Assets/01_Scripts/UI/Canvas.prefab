@@ -3069,10 +3069,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 411252159047140623}
+    m_SelectOnUp: {fileID: 2548654863816881633}
     m_SelectOnDown: {fileID: 2548654863816881633}
-    m_SelectOnLeft: {fileID: 411252159047140623}
-    m_SelectOnRight: {fileID: 2548654863816881633}
+    m_SelectOnLeft: {fileID: 4418799521964750952}
+    m_SelectOnRight: {fileID: 4418799521964750952}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3446,9 +3446,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 8695268900726561954}
-    m_SelectOnDown: {fileID: 6164717766789153953}
-    m_SelectOnLeft: {fileID: 8695268900726561954}
-    m_SelectOnRight: {fileID: 6164717766789153953}
+    m_SelectOnDown: {fileID: 8695268900726561954}
+    m_SelectOnLeft: {fileID: 6164717766789153953}
+    m_SelectOnRight: {fileID: 411252159047140623}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3999,9 +3999,9 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 411252159047140623}
-    m_SelectOnDown: {fileID: 6164717766789153953}
-    m_SelectOnLeft: {fileID: 6164717766789153953}
-    m_SelectOnRight: {fileID: 411252159047140623}
+    m_SelectOnDown: {fileID: 411252159047140623}
+    m_SelectOnLeft: {fileID: 8695268900726561954}
+    m_SelectOnRight: {fileID: 8695268900726561954}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4526,10 +4526,10 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 8695268900726561954}
+    m_SelectOnUp: {fileID: 4418799521964750952}
     m_SelectOnDown: {fileID: 4418799521964750952}
-    m_SelectOnLeft: {fileID: 4418799521964750952}
-    m_SelectOnRight: {fileID: 8695268900726561954}
+    m_SelectOnLeft: {fileID: 2548654863816881633}
+    m_SelectOnRight: {fileID: 6164717766789153953}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

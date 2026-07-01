@@ -50,7 +50,7 @@ MonoBehaviour:
   statUpValue:
     upgradeStatDamage: 10
     upgradeStatArmorPiercing: 0
-    upgradeStatAttackSpeed: -0.15
+    upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 1
     upgradeStatCri: 10
     upgradeStatSize: 2

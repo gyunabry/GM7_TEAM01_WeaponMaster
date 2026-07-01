@@ -48,12 +48,12 @@ MonoBehaviour:
       \uC9C4\uD654"
     upgradeSprite: {fileID: -7569139067131880650, guid: 76858e80f1ce69349b1fb77fd59ed22b, type: 3}
   statUpValue:
-    upgradeStatDamage: 15
+    upgradeStatDamage: 12
     upgradeStatArmorPiercing: 5
-    upgradeStatAttackSpeed: -0.12
+    upgradeStatAttackSpeed: -0.1
     upgradeStatRange: 0.5
     upgradeStatCri: 10
     upgradeStatSize: 2
-  upgradeNum: 1
-  upgradeCount: 0
+  upgradeNum: 0
+  upgradeCount: 1
   unlocking: 0
