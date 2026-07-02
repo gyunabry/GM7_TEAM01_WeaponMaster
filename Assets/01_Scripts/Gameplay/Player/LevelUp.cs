@@ -115,19 +115,19 @@ public class LevelUp : MonoBehaviour
                 while (true)
                 {
                     int randomUpgrade = Random.Range(0, 101);
-                    if(0 <= randomUpgrade && randomUpgrade <= 35) // 대미지
+                    if(0 <= randomUpgrade && randomUpgrade <= 30) // 대미지
                     {
                         ranUp[i] = 0;
                     }
-                    else if(36 <= randomUpgrade && randomUpgrade <= 65) //공속
+                    else if(31 <= randomUpgrade && randomUpgrade <= 60) //공속
                     {
                         ranUp[i] = 2;
                     }
-                    else if(71 <= randomUpgrade && randomUpgrade <= 90) //크확
+                    else if(61 <= randomUpgrade && randomUpgrade <= 80) //크확
                     {
                         ranUp[i] = 4;
                     }
-                    else if(91 <= randomUpgrade && randomUpgrade <= 100) //범위 && 크기
+                    else if(81 <= randomUpgrade && randomUpgrade <= 100) //범위 && 크기
                     {
                         ranUp[i] = 3;
                     }

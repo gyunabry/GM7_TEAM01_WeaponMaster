@@ -296,28 +296,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: T_VFX_Projectile_Burst_Impact_01_Color_7
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72e923c107512e14f9e00d4558712d0d
-      internalID: -1467400491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -341,7 +319,6 @@ TextureImporter:
       T_VFX_Projectile_Burst_Impact_01_Color_4: 538556060
       T_VFX_Projectile_Burst_Impact_01_Color_5: 70509363
       T_VFX_Projectile_Burst_Impact_01_Color_6: -412186302
-      T_VFX_Projectile_Burst_Impact_01_Color_7: -1467400491
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

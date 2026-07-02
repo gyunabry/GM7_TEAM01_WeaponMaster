@@ -29,7 +29,7 @@ MonoBehaviour:
   weaponAttackSpeedUpgradeCount: 2
   upgrades:
   - upgradeName: "\uBC14\uB78C\uC758 \uCE74\uD0C0\uB098"
-    upgradeDamage: 35
+    upgradeDamage: 40
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: -0.5
     upgradeRange: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
       \uC218 \uC788\uB294 \uC9C4\uD654"
     upgradeSprite: {fileID: 4022362869950292737, guid: 0b31b84e1b5706545acce5d8fc320174, type: 3}
   - upgradeName: "\uBB34\uB77C\uB9C8\uC0AC"
-    upgradeDamage: 45
+    upgradeDamage: 50
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: 0
     upgradeRange: 0
