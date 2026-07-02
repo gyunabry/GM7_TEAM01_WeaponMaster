@@ -114,13 +114,22 @@ public class TitleSceneController : MonoBehaviour
 
     public void OnClickDifficultCloseButton()
     {
-        if (difficultySelectUI != null && difficultySelectUI.gameObject.activeInHierarchy)
+        if (difficultySelectUI != null)
         {
             difficultySelectUI.Close();
         }
         else if (difficultPanel != null)
         {
             difficultPanel.SetActive(false);
+        }
+
+        if (mapCardUI != null)
+        {
+            mapCardUI.Open();
+        }
+        else if (mapPanel != null)
+        {
+            mapPanel.SetActive(true);
         }
     }
     #endregion

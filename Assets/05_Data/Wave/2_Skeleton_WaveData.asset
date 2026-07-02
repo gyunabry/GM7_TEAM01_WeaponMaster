@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2_Skeleton_WaveData
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   waveStartTiming: 0
-  waveDuration: 180
+  waveDuration: 900
   spawnList:
   - enemyData: {fileID: 11400000, guid: deafc41623ff5b0438310f269535c7c8, type: 2}
     spawnCount: 14

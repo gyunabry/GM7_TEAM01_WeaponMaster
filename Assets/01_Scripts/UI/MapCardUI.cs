@@ -36,11 +36,6 @@ public class MapCardUI : MonoBehaviour, ICardPanel
         }
     }
 
-    void Start()
-    {
-        Open();
-    }
-
     private void OnEnable()
     {
         if (!isOpen)
@@ -64,7 +59,11 @@ public class MapCardUI : MonoBehaviour, ICardPanel
             return;
         }
 
-        if (isOpen) return;
+        if (isOpen)
+        {
+            RestoreSelectionState();
+            return;
+        }
         isOpen = true;
         isSelected = false;
         DOTween.Kill(this);
@@ -119,22 +118,16 @@ public class MapCardUI : MonoBehaviour, ICardPanel
         if (isSelected) return;
         isSelected = true;
         panelCanvasGroup.interactable = false;
+        panelCanvasGroup.blocksRaycasts = false;
 
-       
-
-        for (int i = 0; i < mapCards.Length; i++)
-        {
-            SelectMapCardUI card = mapCards[i];
-            if (card == selectCard) card.PlaySelectTween();
-            else if (card != null) card.PlayHideTween();
-        }
+        selectCard.PlaySelectTween();
 
         DOVirtual.DelayedCall(0.26f, () =>
         {
             // GameSceneData에 선택된 스테이지의 데이터 저장
             GameSceneData.SelectedStage = selectCard.MapStageData;
 
-            //CloseInstant();
+            // CloseInstant();
 
             if (difficultySelectUI != null)
             {
@@ -157,6 +150,7 @@ public class MapCardUI : MonoBehaviour, ICardPanel
     private void CloseInstant()
     {
         ResetPanelState();
+        mapSelectPanel.SetActive(false);
     }
 
     private void ResetPanelState()
@@ -164,9 +158,9 @@ public class MapCardUI : MonoBehaviour, ICardPanel
         isOpen = false;
         isSelected = false;
         DOTween.Kill(this);
-        panelCanvasGroup.alpha = 1.0f;
-        panelCanvasGroup.blocksRaycasts = true;
-        panelCanvasGroup.interactable = true;
+        panelCanvasGroup.alpha = 0.0f;
+        panelCanvasGroup.blocksRaycasts = false;
+        panelCanvasGroup.interactable = false;
         ResetCards();
 
         if (co != null)
@@ -174,6 +168,17 @@ public class MapCardUI : MonoBehaviour, ICardPanel
             StopCoroutine(co);
             co = null;
         }
+    }
+
+    private void RestoreSelectionState()
+    {
+        isSelected = false;
+        DOTween.Kill(this);
+        panelCanvasGroup.alpha = 1.0f;
+        panelCanvasGroup.blocksRaycasts = true;
+        panelCanvasGroup.interactable = true;
+        ResetCards();
+        PlayCardOpenTween();
     }
 
     private void ResetCards()

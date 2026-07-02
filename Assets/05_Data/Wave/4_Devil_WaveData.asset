@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4_Devil_WaveData
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   waveStartTiming: 0
-  waveDuration: 180
+  waveDuration: 900
   spawnList:
   - enemyData: {fileID: 11400000, guid: 66ef89ada445ac744b2662de77486319, type: 2}
     spawnCount: 20

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_Orc_WaveData
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   waveStartTiming: 0
-  waveDuration: 180
+  waveDuration: 900
   spawnList:
   - enemyData: {fileID: 11400000, guid: 65fa96dfceb8db848bedcabe2fd97bb3, type: 2}
     spawnCount: 8

@@ -240,6 +240,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13666531}
   m_CullTransparentMesh: 1
+--- !u!225 &31251764 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8431352237928238654, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+  m_PrefabInstance: {fileID: 452429625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &236564113 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 4018445709095655453, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+  m_PrefabInstance: {fileID: 452429625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &323769019
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +532,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74806590787548051, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 31251764}
+    - target: {fileID: 1590665052152513851, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1899454938026728906, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
       propertyPath: m_Name
       value: SelectCanvas
@@ -606,11 +624,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8216500569457162193, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 236564113}
+    - target: {fileID: 8701783530035830792, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 786801531}
+    - target: {fileID: 8899112145158399874, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 766124492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+--- !u!225 &766124492 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6953408958198679701, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+  m_PrefabInstance: {fileID: 452429625}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &786801531 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1914264917925841454, guid: fd5ae01c005576d45b561bc65cfa8955, type: 3}
+  m_PrefabInstance: {fileID: 452429625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &924155018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 922916239052309402, guid: 123f2f752df439f449414d17499a67e0, type: 3}
