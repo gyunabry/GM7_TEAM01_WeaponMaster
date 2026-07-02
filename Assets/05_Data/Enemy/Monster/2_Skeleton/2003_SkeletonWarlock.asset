@@ -17,6 +17,7 @@ MonoBehaviour:
   maxHp: 80
   armor: 2
   moveSpeed: 1.5
+  contactDamage: 10
   enemyPattern:
   - {fileID: 11400000, guid: 2a27d68ce5e0c074c985e7c2589702d0, type: 2}
   dropItems:

@@ -5,6 +5,8 @@ using UnityEngine;
 - 월드를 일정한 크기의 셀로 이루어진 격자로 나눈다. 
 - 몬스터의 현재 위치를 변환해 저장한다.
 - 해당 몬스터가 위치한 셀과 인접한 셀 안의 몬스터와의 충돌을 검사한다.
+
+- 플레이어 주위 몬스터 조회 기능 추가
 */
 
 public class SpatialHashGrid : MonoBehaviour
@@ -105,6 +107,36 @@ public class SpatialHashGrid : MonoBehaviour
         }
 
         return push;
+    }
+
+    public void GetEnemiesInRadius(Vector2 position, float radius, List<EnemyController> results)
+    {
+        results.Clear();
+
+        Vector2Int centerCell = WorldToCell(position);
+        int cellRange = Mathf.CeilToInt(radius / cellSize);
+        float radiusSqr = radius * radius;
+
+        for (int x = -cellRange; x <= cellRange; x++)
+        {
+            for (int y = -cellRange; y <= cellRange; y++)
+            {
+                Vector2Int cell = centerCell + new Vector2Int(x, y);
+
+                if (!cells.TryGetValue(cell, out var list)) continue;
+
+                foreach (EnemyController enemy in list)
+                {
+                    if (enemy == null || enemy.IsDead) continue;
+
+                    Vector2 diff = (Vector2)enemy.transform.position - position;
+                    if (diff.sqrMagnitude <= radiusSqr)
+                    {
+                        results.Add(enemy);
+                    }
+                }
+            }
+        }
     }
 
     // 적 위치를 셀 사이즈로 나눠 좌표값 반환
