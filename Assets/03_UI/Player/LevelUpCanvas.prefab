@@ -117,5 +117,5 @@ MonoBehaviour:
   playerWeapon: {fileID: 0}
   playerController: {fileID: 0}
   button: {fileID: 9200449709777796302, guid: 7981c3041ef53ee4cb0f625cbfcead52, type: 3}
-  needUpCount: 6
+  needUpCount: 10
   maxAttackSpeedUpgrade: 6

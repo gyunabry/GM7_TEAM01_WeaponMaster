@@ -48,7 +48,7 @@ MonoBehaviour:
       \uACF5\uACA9\uD560 \uC218 \uC788\uAC8C\uD55C \uC9C4\uD654"
     upgradeSprite: {fileID: 8055708086024870853, guid: f3841298ea3fd824f8202bb0911c4503, type: 3}
   statUpValue:
-    upgradeStatDamage: 5
+    upgradeStatDamage: 3
     upgradeStatArmorPiercing: 5
     upgradeStatAttackSpeed: -0.05
     upgradeStatRange: 1
@@ -57,4 +57,4 @@ MonoBehaviour:
   upgradeNum: 0
   upgradeCount: 0
   unlocking: 0
-  totalDamage: 0
+  totalDamage: 4170
