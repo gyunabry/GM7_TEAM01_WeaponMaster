@@ -144,6 +144,8 @@ public class EnemySpawner : MonoBehaviour
         enemy.Initialize(task.enemyData);
         enemy.SetTarget(targetTransform);
         enemy.transform.position = task.position;
+
+        SpatialHashGrid.Instance?.UpdateEnemyCell(enemy);
     }
         
     private void StopAllSpawnCoroutines()

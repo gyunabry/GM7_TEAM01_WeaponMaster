@@ -23,6 +23,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private Material flashMaterial;
     [SerializeField] private float flashDuration = 0.1f;
 
+    [Header("공간해싱 설정")]
+    [SerializeField] private float separationRadius = 0.7f;
+    [SerializeField] private float separationWeight = 1.2f;
+
     private Material originMaterial;
     private EnemyData currentEnemy;
     private SpriteRenderer sr;
@@ -65,6 +69,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             visualCoroutine = StartCoroutine(VisualUpdateCo());
         }
+
+        SpatialHashGrid.Instance?.Register(this);
     }
 
     private void OnDisable()
@@ -83,6 +89,8 @@ public class EnemyController : MonoBehaviour, IDamageable
             StopCoroutine(flashCoroutine);
             flashCoroutine = null;
         }
+
+        SpatialHashGrid.Instance?.Unregister(this);
     }
 
     private void Start()
@@ -156,13 +164,35 @@ public class EnemyController : MonoBehaviour, IDamageable
         Vector3 currentPos = transform.position;
         Vector3 targetPos = target.position;
 
-        Vector3 dir = targetPos - currentPos;
-        dir.z = 0f;
+        Vector2 chaseDir = targetPos - currentPos;
+        if (chaseDir.sqrMagnitude <= 0.001f) return;
+
+        Vector2 separation = Vector2.zero;
+
+        if (SpatialHashGrid.Instance != null)
+        {
+            // 이동 전 셀 위치 갱신
+            SpatialHashGrid.Instance.UpdateEnemyCell(this);
+
+            separation = SpatialHashGrid.Instance.GetSeparationForce(this, separationRadius);
+        }
+
+        // 플레이어 추적 방향 + 주변 적으로부터 밀리는 힘
+        Vector2 finalDir = chaseDir.normalized + separation * separationWeight;
+
+        if (finalDir.sqrMagnitude <= 0.0001f) return;
+
+        transform.position += (Vector3)(finalDir.normalized * moveSpeed * Time.deltaTime);
+
+        SpatialHashGrid.Instance?.UpdateEnemyCell(this);
+
+        //Vector3 dir = targetPos - currentPos;
+        //dir.z = 0f;
 
         // 타겟에 근접했을 땐 리턴
-        if (dir.sqrMagnitude <= 0.001f) return;
+        //if (dir.sqrMagnitude <= 0.001f) return;
 
-        transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+        //transform.position += dir.normalized * moveSpeed * Time.deltaTime;
     }
 
     // 기존 Update에서 매 프레임 호출되던 구조를 코루틴으로 변경해 최적화
