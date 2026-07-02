@@ -288,7 +288,7 @@ public class PlayerAttack : MonoBehaviour
         motion.Append(transform.DOLocalRotateQuaternion(rightRotate, 0f));
         motion.Append(transform.DOMove(rightPosi, 0.1f));
         motion.Append(transform.DOLocalMove(nowTrans, 0.05f));
-        motion.OnComplete (() => { playerController.SetWeaponArm(); });
+        motion.OnComplete (() => { playerController.SetWeaponArm(); motion.Kill(); });
     }
     public void AttackHammerMotion(Transform targetPosi)
     {
@@ -332,7 +332,7 @@ public class PlayerAttack : MonoBehaviour
         motionAll.Append(motion);
         motionAll.Append(motion2);
         motionAll.Append(transform.DOLocalMove(nowTrans, 0.0f));
-        motionAll.OnComplete(() => { playerController.SetWeaponArm(); });
+        motionAll.OnComplete(() => { playerController.SetWeaponArm(); motion.Kill(); });
     }
     public void AttackKatanaMotion(Transform targetPosi)
     {
@@ -376,7 +376,7 @@ public class PlayerAttack : MonoBehaviour
         motionAll.Append(motion3);
         
         motionAll.Append(transform.DOLocalMove(nowTrans, 0.0f));
-        motionAll.OnComplete(() => { playerController.SetWeaponArm(); });
+        motionAll.OnComplete(() => { playerController.SetWeaponArm(); motion.Kill(); });
     }
     public void AttackRotateMotion(Transform targetPosi)
     {
@@ -401,11 +401,12 @@ public class PlayerAttack : MonoBehaviour
                 transform.position = next;
             }));
         motion.Play();
-        motion.OnComplete(() => { playerController.SetWeaponArm(); });
+        motion.OnComplete(() => { playerController.SetWeaponArm(); motion.Kill(); });
     }
     public void AttackStingMotion(Transform targetPosi)
     {
         DG.Tweening.Sequence motion = DOTween.Sequence();
+        
         Vector2 nowTrans = transform.localPosition;
         Vector2 direction = (Vector2)targetPosi.position - (Vector2)parentTrans.transform.position;
         Vector2 basePosi = direction.normalized;
@@ -416,7 +417,7 @@ public class PlayerAttack : MonoBehaviour
 
         motion.Append(transform.DOMove(pullPosi, 0.15f));
         motion.Append(transform.DOLocalMove(nowTrans, 0.15f));
-        motion.OnComplete(() => { playerController.SetWeaponArm(); });
+        motion.OnComplete(() => { playerController.SetWeaponArm(); motion.Kill(); });
     }
     IEnumerator Attack(Collider2D other)
     {
