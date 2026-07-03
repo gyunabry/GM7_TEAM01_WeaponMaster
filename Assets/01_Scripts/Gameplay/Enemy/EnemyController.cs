@@ -232,15 +232,15 @@ public class EnemyController : MonoBehaviour, IDamageable
     }public int ReturnTakeDamage(float damage)
     {
         int takeDamage;
-        if(currentHp < 0)
+        if(currentHp < damage)
         {
-            takeDamage = (int)damage + (int)currentHp;
+            takeDamage = (int)currentHp;
         }
         else
         {
             takeDamage = (int)damage;
         }
-        return takeDamage;
+            return takeDamage;
     }
 
     private void Die()

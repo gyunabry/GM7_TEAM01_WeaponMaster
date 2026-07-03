@@ -434,6 +434,19 @@ public class BossController : MonoBehaviour, IDamageable
 
         if (IsDead) Die();
     }
+    public int ReturnTakeDamage(float damage)
+    {
+        int takeDamage;
+        if (currentHp < damage)
+        {
+            takeDamage = (int)currentHp;
+        }
+        else
+        {
+            takeDamage = (int)damage;
+        }
+        return takeDamage;
+    }
 
     private void TryEnterNextPhase()
     {
