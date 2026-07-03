@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeed7f86e8fa8814db2ed9b4aa9ecd81, type: 3}
-  m_Name: Dash13
+  m_Name: RangeHoming45_360
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackData
-  attackType: 1
+  attackType: 2
   attackDamage: 10
-  attackCooltime: 2
-  dashSpeed: 13
-  dashRange: 7.5
-  bulletPattern: 0
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
-  projectileCount: 0
-  spreadAngle: 0
-  burstCount: 1
-  burstInterval: 0.2
-  fireCount: 1
+  attackCooltime: 0
+  dashSpeed: 0
+  dashRange: 0
+  bulletPattern: 7
+  projectilePrefab: {fileID: 3417943345609019291, guid: 4fd4728aaea86a446be250ad4aefecf3, type: 3}
+  projectileSpeed: 3
+  projectileCount: 12
+  spreadAngle: 360
+  burstCount: 0
+  burstInterval: 0
+  fireCount: 0
   aoeRadius: 0
   aoeCount: 0
   warningPrefab: {fileID: 0}
   warningDuration: 0
-  homingTurnSpeed: 0
-  homingDuration: 0
+  homingTurnSpeed: 45
+  homingDuration: 4

@@ -32,8 +32,7 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private float fadeInDuration = 0.5f;
 
     [Header("경험치 UI")]
-    [SerializeField] private Slider expSlider;
-    [SerializeField] private TextMeshProUGUI expText;
+    [SerializeField] private Image expFill;
 
     [Header("보유 골드 및 스테이지 UI")]
     [SerializeField] private TextMeshProUGUI goldAmountText;
@@ -143,17 +142,14 @@ public class InGameUIManager : MonoBehaviour
 
     private void UpdateExpUI(int currentExp, int maxExp)
     {
-        if(expSlider != null && maxExp > 0)
+        if(expFill != null && maxExp > 0)
         {
-            // 슬라이더의 최대값 설정
-            expSlider.maxValue = maxExp;
+            expFill.fillAmount = (float)(currentExp / maxExp);
+            //// 슬라이더의 최대값 설정
+            //expSlider.maxValue = maxExp;
 
-            // 슬라이더에 현재값을 적용
-            expSlider.value = currentExp;
-        }
-        if(expText!=null)
-        {
-            expText.text =$"{Mathf.RoundToInt(currentExp)}/{Mathf.RoundToInt(maxExp)}";
+            //// 슬라이더에 현재값을 적용
+            //expSlider.value = currentExp;
         }
     }
     #endregion

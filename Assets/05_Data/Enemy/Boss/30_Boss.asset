@@ -16,16 +16,16 @@ MonoBehaviour:
   bossName: "\uC624\uD06C \uB300\uC871\uC7A5"
   runtimeAnimator: {fileID: 22100000, guid: 88f37259781247642b240207da02ff50, type: 2}
   maxHp: 8000
-  moveSpeed: 3
+  moveSpeed: 2.75
   damage: 15
   phases:
   - hpThreshold: 1
     phasePatterns:
-    - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
-    - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
-    - {fileID: 11400000, guid: 6be4f95d409e5764e9b9d922a620a682, type: 2}
+    - {fileID: 11400000, guid: 22e5c916ed5fc534bbbd8b90eefe4128, type: 2}
+    - {fileID: 11400000, guid: c27162be9e8296848a5d8053f4fbcfb7, type: 2}
+    - {fileID: 11400000, guid: 23f694197fcb77a48bf851cbe3a6414f, type: 2}
   - hpThreshold: 0.5
     phasePatterns:
-    - {fileID: 11400000, guid: 8a6f35b26a7aee14a847d81a7637e843, type: 2}
-    - {fileID: 11400000, guid: 8a6f35b26a7aee14a847d81a7637e843, type: 2}
-    - {fileID: 11400000, guid: 2b9dc5499e44334469fb153578bfb4c8, type: 2}
+    - {fileID: 11400000, guid: 11d5cb54071f9a74dbe3ecdc58a21178, type: 2}
+    - {fileID: 11400000, guid: 23f694197fcb77a48bf851cbe3a6414f, type: 2}
+    - {fileID: 11400000, guid: 20127b86e27787946b81094cf67ca571, type: 2}

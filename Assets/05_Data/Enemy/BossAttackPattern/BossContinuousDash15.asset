@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c17a13af1adc8f14ea0a3d3393274629, type: 3}
-  m_Name: Melee
+  m_Name: BossContinuousDash15
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternData
-  triggerRange: 1.5
-  patternCooltime: 1
+  triggerRange: 5
+  patternCooltime: 5
   attackSequence:
-  - {fileID: 11400000, guid: 24225fdb919442e4cb1ebe807791fc88, type: 2}
-  actionDelay: 0.25
+  - {fileID: 11400000, guid: 0344438d8ab66574fb5cfb4e1a73adf0, type: 2}
+  - {fileID: 11400000, guid: 0344438d8ab66574fb5cfb4e1a73adf0, type: 2}
+  - {fileID: 11400000, guid: 0344438d8ab66574fb5cfb4e1a73adf0, type: 2}
+  actionDelay: 0.15

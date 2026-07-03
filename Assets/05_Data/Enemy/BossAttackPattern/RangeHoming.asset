@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a13af1adc8f14ea0a3d3393274629, type: 3}
   m_Name: RangeHoming
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternData
-  triggerRange: 7
+  triggerRange: 8
   patternCooltime: 5
   attackSequence:
-  - {fileID: 11400000, guid: 6861ea7134e3a7d42bce1dcce9e1a82a, type: 2}
-  actionDelay: 0.5
+  - {fileID: 11400000, guid: 3d33fefb63e62c24a98e23946aa7c26c, type: 2}
+  actionDelay: 0.25

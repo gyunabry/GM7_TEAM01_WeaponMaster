@@ -15,6 +15,6 @@ MonoBehaviour:
   triggerRange: 10
   patternCooltime: 5
   attackSequence:
-  - {fileID: 11400000, guid: 96b95dc3851921e4eba9cd298cd4e325, type: 2}
+  - {fileID: 11400000, guid: 0344438d8ab66574fb5cfb4e1a73adf0, type: 2}
   - {fileID: 11400000, guid: fbe435d6ee115b044ac2c780239dcff2, type: 2}
-  actionDelay: 0.5
+  actionDelay: 0.25

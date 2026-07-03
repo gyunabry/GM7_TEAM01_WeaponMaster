@@ -16,4 +16,4 @@ MonoBehaviour:
   patternCooltime: 5
   attackSequence:
   - {fileID: 11400000, guid: 8a072428c729bcf46bb8b666909c1603, type: 2}
-  actionDelay: 0.5
+  actionDelay: 0.25

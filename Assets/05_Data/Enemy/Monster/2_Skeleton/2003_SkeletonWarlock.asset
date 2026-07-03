@@ -19,7 +19,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   contactDamage: 10
   enemyPattern:
-  - {fileID: 11400000, guid: 2a27d68ce5e0c074c985e7c2589702d0, type: 2}
+  - {fileID: 11400000, guid: d539d04808b748e44984d45e865b93d6, type: 2}
   dropItems:
   - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
     dropChance: 1
