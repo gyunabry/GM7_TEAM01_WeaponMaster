@@ -78,7 +78,7 @@ public class InGameUIManager : MonoBehaviour
         // 게임 첫 시작 시 UI 초기화
         UpdateKillCount(GameManager.Instance.GetKillCount());
         UpdateTimerUI(WaveManager.Instance.WaveTime);
-        UpdateExpUI(GameManager.Instance.CurrentExp, GameManager.Instance.RequireExp[GameManager.Instance.Level]);
+        UpdateExpUI(GameManager.Instance.CurrentExp, GameManager.Instance.CurrentRequireExp);
 
         // 첫 시작 시 보스 UI는 비활성화
         CanvasGroupController.DisableCG(bossUI);
@@ -142,15 +142,16 @@ public class InGameUIManager : MonoBehaviour
 
     private void UpdateExpUI(int currentExp, int maxExp)
     {
-        if(expFill != null && maxExp > 0)
-        {
-            expFill.fillAmount = (float)(currentExp / maxExp);
-            //// 슬라이더의 최대값 설정
-            //expSlider.maxValue = maxExp;
+        if (expFill == null) return;
 
-            //// 슬라이더에 현재값을 적용
-            //expSlider.value = currentExp;
+        // 0 Divide 방지
+        if (maxExp <= 0)
+        {
+            expFill.fillAmount = 0f;
+            return;
         }
+
+        expFill.fillAmount = Mathf.Clamp01((float)currentExp / maxExp);
     }
     #endregion
 

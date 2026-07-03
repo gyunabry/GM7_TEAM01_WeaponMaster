@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public int Level => level;
     public int CurrentExp => currentExp;
-    public int[] RequireExp => requireExp;
+    public int CurrentRequireExp => requireExp[Mathf.Clamp(level, 0, requireExp.Length - 1)];
 
     private void Awake()
     {
@@ -55,16 +55,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        pauseAction = InputSystem.actions.FindAction("Pause");
-    }
-
-    private void Start()
-    {
         level = 0;
         currentExp = 0;
         KillCount = 0;
         Gold = 0;
         SetNeedExp();
+
+        pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     private void OnEnable()
