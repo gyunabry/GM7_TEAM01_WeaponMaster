@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float playerHitRadius = 0.2f;
     [SerializeField] private float dashWindUpTime = 1f;
     [SerializeField] private float rangeWindUpTime = 1f;
-    [SerializeField] private float afterActionDealy = 0.5f;
+    [SerializeField] private float afterActionDealy = 0.25f;
 
     private float attackTimer;  // 공격 쿨타임 타이머
     private float attackCheckTimer;
@@ -115,7 +115,7 @@ public class EnemyAttack : MonoBehaviour
                     break;
             }
 
-            yield return new WaitForSeconds(pattern.actionDelay);
+            // yield return new WaitForSeconds(pattern.actionDelay);
         }
 
         isAttacking = false;

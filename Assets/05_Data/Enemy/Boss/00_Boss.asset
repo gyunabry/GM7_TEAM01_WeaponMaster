@@ -21,9 +21,10 @@ MonoBehaviour:
   phases:
   - hpThreshold: 1
     phasePatterns:
-    - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
-    - {fileID: 11400000, guid: d539d04808b748e44984d45e865b93d6, type: 2}
+    - {fileID: 11400000, guid: 9987f362cc5776a41a67b7bd3ea72a2b, type: 2}
+    - {fileID: 11400000, guid: 2dccbdda427e20f4ab00576757b54e6d, type: 2}
   - hpThreshold: 0.5
     phasePatterns:
-    - {fileID: 11400000, guid: 8a6f35b26a7aee14a847d81a7637e843, type: 2}
-    - {fileID: 11400000, guid: 47b199aae02766744b7b4bdbb147e3cb, type: 2}
+    - {fileID: 11400000, guid: 9987f362cc5776a41a67b7bd3ea72a2b, type: 2}
+    - {fileID: 11400000, guid: 23f694197fcb77a48bf851cbe3a6414f, type: 2}
+    - {fileID: 11400000, guid: 2dccbdda427e20f4ab00576757b54e6d, type: 2}

@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c17a13af1adc8f14ea0a3d3393274629, type: 3}
-  m_Name: BossContinuousDash13
+  m_Name: Dash15
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternData
-  triggerRange: 5
+  triggerRange: 7.5
   patternCooltime: 5
   attackSequence:
-  - {fileID: 11400000, guid: 41af0ed8b5767a945b0420c85a8c08b8, type: 2}
-  - {fileID: 11400000, guid: 41af0ed8b5767a945b0420c85a8c08b8, type: 2}
-  - {fileID: 11400000, guid: 41af0ed8b5767a945b0420c85a8c08b8, type: 2}
+  - {fileID: 11400000, guid: 0344438d8ab66574fb5cfb4e1a73adf0, type: 2}
   actionDelay: 0.25
