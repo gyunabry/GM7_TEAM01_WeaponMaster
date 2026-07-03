@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeed7f86e8fa8814db2ed9b4aa9ecd81, type: 3}
-  m_Name: Dash
+  m_Name: Dash7
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackData
   attackType: 1
   attackDamage: 10
   attackCooltime: 2
-  dashSpeed: 15
-  dashRange: 7.5
+  dashSpeed: 7
+  dashRange: 5
   bulletPattern: 0
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
