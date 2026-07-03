@@ -22,8 +22,12 @@ MonoBehaviour:
   projectileSpeed: 5
   projectileCount: 0
   spreadAngle: 0
-  orbitRadius: 0
-  orbitSpeed: 0
   burstCount: 5
   burstInterval: 0.2
-  fireCount: 10
+  fireCount: 3
+  aoeRadius: 0
+  aoeCount: 0
+  warningPrefab: {fileID: 0}
+  warningDuration: 0
+  homingTurnSpeed: 0
+  homingDuration: 0

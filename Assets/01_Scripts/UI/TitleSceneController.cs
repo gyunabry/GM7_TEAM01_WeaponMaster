@@ -14,8 +14,8 @@ public class TitleSceneController : MonoBehaviour
     [SerializeField] private Button optionButton;
     [SerializeField] private Button exitButton;
 
-    //[Header("옵션 버튼 참조")]
-    //[SerializeField] private Button optionButton;
+    [Header("옵션 버튼")]
+    [SerializeField] private Button optionCloseButton;
 
     [Header("맵 선택 UI 버튼")]
     [SerializeField] private Button mapCloseButton;
@@ -96,6 +96,11 @@ public class TitleSceneController : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
+    public void OnClickOptionCloseButton()
+    {
+        CanvasGroupController.EnableCG(titleCG);
+    }
 
     #region 맵 선택 UI 버튼 액션
     public void OnClickMapCloseButton()

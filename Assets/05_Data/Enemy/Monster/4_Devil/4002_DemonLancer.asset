@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 4002
   enemyName: "\uC545\uB9C8 \uCC3D\uAE30\uBCD1"
-  maxHp: 80
+  maxHp: 140
   armor: 0
   moveSpeed: 3
   contactDamage: 10

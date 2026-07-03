@@ -16,10 +16,10 @@ MonoBehaviour:
   enemyName: "\uC624\uD06C \uB3CC\uACA9\uC804\uCC28"
   maxHp: 400
   armor: 4
-  moveSpeed: 3
+  moveSpeed: 2.5
   contactDamage: 10
   enemyPattern:
-  - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
+  - {fileID: 11400000, guid: 9018baa0a6ec97d41994a52743ddcf2c, type: 2}
   dropItems:
   - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
     dropChance: 1

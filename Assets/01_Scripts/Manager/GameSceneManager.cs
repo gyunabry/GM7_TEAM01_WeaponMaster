@@ -10,12 +10,12 @@ public class GameSceneManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
         }
         else
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(this);
     }
 
     public void LoadScene(SceneType type)

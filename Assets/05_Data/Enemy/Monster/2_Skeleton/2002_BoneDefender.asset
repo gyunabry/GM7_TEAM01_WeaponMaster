@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 2002
   enemyName: "\uBF08\uB2E4\uADC0 \uBC29\uD328\uBCD1"
-  maxHp: 80
+  maxHp: 100
   armor: 3
   moveSpeed: 1.5
   contactDamage: 10
   enemyPattern:
-  - {fileID: 11400000, guid: 7de71f769de22bc4cad5374e65aaf0f1, type: 2}
+  - {fileID: 11400000, guid: eb468066c5fdd3d4dbfea62531f67691, type: 2}
   dropItems:
   - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
     dropChance: 1
