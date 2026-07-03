@@ -19,14 +19,14 @@ MonoBehaviour:
   weaponDes: "\uAC15\uB825\uD55C \uD55C\uBC29\uC774 \uD2B9\uAE30\uC778 \uC6D0\uAC70\uB9AC
     \uBB34\uAE30"
   weaponIcon: {fileID: -2653693364168859081, guid: 00af9d98d4f8db54b80c0e3d48ea9eae, type: 3}
-  weaponDamage: 35
+  weaponDamage: 30
   weaponArmorPiercing: 15
   weaponAttackSpeed: 2
-  weaponRange: 6
+  weaponRange: 7
   weaponCri: 0
   weaponSize: 10
   weaponPiercing: 3
-  weaponAttackSpeedUpgradeCount: 4
+  weaponAttackSpeedUpgradeCount: 1
   upgrades:
   - upgradeName: "\uC5F0\uC0AC \uC11D\uAD81"
     upgradeDamage: 25
@@ -54,6 +54,6 @@ MonoBehaviour:
     upgradeStatCri: 5
     upgradeStatSize: 2
   upgradeNum: 0
-  upgradeCount: 18
+  upgradeCount: 3
   unlocking: 1
-  totalDamage: 641945
+  totalDamage: 17232

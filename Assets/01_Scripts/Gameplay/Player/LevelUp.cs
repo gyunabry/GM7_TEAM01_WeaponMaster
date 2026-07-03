@@ -95,7 +95,7 @@ public class LevelUp : MonoBehaviour
                 }
                 else
                 {
-                    if (40 <= upRan || playerController.transform.childCount >= 8)
+                    if (70 <= upRan || playerController.transform.childCount >= 8)
                     {
                         continue;
                     }

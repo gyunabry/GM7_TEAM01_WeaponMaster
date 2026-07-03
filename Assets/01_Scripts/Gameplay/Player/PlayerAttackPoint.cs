@@ -123,7 +123,7 @@ public class PlayerAttackPoint : MonoBehaviour
                         enemy.TakeDamage(nowDamage);
                         playerController.HpAbs();
                     }
-                    weaponStat.totalDamage += (int)nowDamage;
+                    weaponStat.totalDamage += enemy.ReturnTakeDamage(nowDamage);
                     vfxm.SpawnEffect(enemy.transform, weaponType);
                 }
                 criHit = false;

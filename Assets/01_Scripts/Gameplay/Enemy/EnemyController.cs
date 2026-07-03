@@ -226,6 +226,18 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }public int ReturnTakeDamage(float damage)
+    {
+        int takeDamage;
+        if(currentHp < 0)
+        {
+            takeDamage = (int)damage + (int)currentHp;
+        }
+        else
+        {
+            takeDamage = (int)damage;
+        }
+        return takeDamage;
     }
 
     private void Die()
