@@ -237,6 +237,7 @@ public class PlayerAttack : MonoBehaviour
         ContactFilter2D fill = new ContactFilter2D();
         fill.SetLayerMask(enemyLayer);
         fill.useLayerMask = true;
+        fill.useTriggers = true;
         int enemyCount = Physics2D.OverlapCircle(transform.position, nowRange + (playerStat["range"] / 100), fill, enemyTamgi);
         Collider2D nearEnemy = null;
         float minDis = Mathf.Infinity;

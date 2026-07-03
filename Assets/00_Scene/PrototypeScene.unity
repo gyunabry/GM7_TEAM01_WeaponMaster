@@ -285,7 +285,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 996661441327463699, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: needUpCount
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 996661441327463699, guid: 6624141f2d84ff34bb744d5428654cdc, type: 3}
       propertyPath: playerWeapon
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamageManager
   player: {fileID: 985414210}
-  playerHitRadius: 0.5
+  playerHitRadius: 0.2
   checkRadius: 2
   checkInterval: 0.1
 --- !u!4 &773931012

@@ -35,16 +35,16 @@ public class WeaponUnlock : MonoBehaviour
             wud.weaponUnlockBool.Add(pair.Value);
         }
         string json = JsonUtility.ToJson(wud);
-        File.WriteAllText(Application.dataPath + "/05_Data/Weapon/WeaponUnlockData.json", json);
+        File.WriteAllText(Application.persistentDataPath + "WeaponUnlockData.json", json);
     }
     public void Save()
     {
         string json = JsonUtility.ToJson(wud);
-        File.WriteAllText(Application.dataPath + "/05_Data/Weapon/WeaponUnlockData.json", json);
+        File.WriteAllText(Application.persistentDataPath + "WeaponUnlockData.json", json);
     }
     public void Load()
     {
-        string path = Application.dataPath + "/05_Data/Weapon/WeaponUnlockData.json";
+        string path = Application.persistentDataPath + "WeaponUnlockData.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);

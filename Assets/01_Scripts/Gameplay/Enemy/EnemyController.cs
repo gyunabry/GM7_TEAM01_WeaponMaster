@@ -229,7 +229,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             Die();
         }
-    }public int ReturnTakeDamage(float damage)
+    }
+    public int ReturnTakeDamage(float damage)
     {
         int takeDamage;
         if(currentHp < damage)
