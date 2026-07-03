@@ -23,6 +23,7 @@ public class LevelUp : MonoBehaviour
     private Button[] go = new Button[3];
     private Coroutine co;
     private PlayerAttack weaponStat;
+    private GameManager gameManager;
 
     private string[] weaponDes = new string[3];
     private int[] ran = new int[3];
@@ -33,7 +34,12 @@ public class LevelUp : MonoBehaviour
     private string iconName;
     private string iconNameAvo;
     private bool stop = false;
-    
+    private void Start()
+    {
+        gameManager = FindAnyObjectByType<GameManager>();
+        gameManager.PauseGame();
+    }
+
     private void OnEnable()
     {
         Button[] qwe = new Button[3];

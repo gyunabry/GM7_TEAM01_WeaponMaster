@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         { 
             if(i == 0)
             {
-                requireExp[i] = 0;
+                requireExp[i] = 20;
             }
             else if(i == 1)
             {

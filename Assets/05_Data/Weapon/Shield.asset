@@ -24,7 +24,7 @@ MonoBehaviour:
   weaponAttackSpeed: 1
   weaponRange: 4
   weaponCri: 0
-  weaponSize: 20
+  weaponSize: 23
   weaponPiercing: 0
   weaponAttackSpeedUpgradeCount: 0
   upgrades:
@@ -52,8 +52,8 @@ MonoBehaviour:
     upgradeStatAttackSpeed: -0.07
     upgradeStatRange: 1
     upgradeStatCri: 10
-    upgradeStatSize: 6
+    upgradeStatSize: 7
   upgradeNum: 1
-  upgradeCount: 0
+  upgradeCount: 1
   unlocking: 0
-  totalDamage: 0
+  totalDamage: 7844

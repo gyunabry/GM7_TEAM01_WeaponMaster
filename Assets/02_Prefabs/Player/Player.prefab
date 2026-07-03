@@ -188,7 +188,7 @@ MonoBehaviour:
   white: {fileID: 0}
   weaponManager: {fileID: 0}
   maxHp: 100
-  hpRegen: 1
+  hpRegen: 50
   hpAbs: 10
   damage: 0
   armorPiercing: 0

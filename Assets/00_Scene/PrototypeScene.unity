@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamageManager
   player: {fileID: 985414210}
-  playerHitRadius: 0.5
+  playerHitRadius: 0.2
   checkRadius: 2
   checkInterval: 0.1
 --- !u!4 &773931012
