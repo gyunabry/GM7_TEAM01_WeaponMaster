@@ -12,6 +12,8 @@ public class PoolManager : MonoBehaviour
     // 프리팹 원본을 저장하는 딕셔너리
     private Dictionary<Type, Component> prefabDict = new Dictionary<Type, Component>();
 
+    private Dictionary<Type, HashSet<Component>> activeObjects = new Dictionary<Type, HashSet<Component>>();
+
     private Transform poolRoot;
 
     private void Awake()
@@ -112,6 +114,7 @@ public class PoolManager : MonoBehaviour
         }
         // 사용할 오브젝트 활성화
         obj.gameObject.SetActive(true);
+        activeObjects[type].Add(obj);
 
         return obj;
     }
@@ -132,6 +135,10 @@ public class PoolManager : MonoBehaviour
         }
         // 큐(풀)에 다시 삽입
         poolDictionary[type].Enqueue(obj);
+        if (activeObjects.TryGetValue(type, out var activeSet))
+        {
+            activeSet.Remove(obj);
+        }
     }
 
     // 해당 타입의 풀이 이미 있으면 즉시 리턴
@@ -144,6 +151,7 @@ public class PoolManager : MonoBehaviour
         }
         // 해당 타입의 큐를 생성해 딕셔너리에 추가
         poolDictionary.Add(type, new Queue<Component>());
+        activeObjects.Add(type, new HashSet<Component>());
         // 부모 생성 호출
         CreatePoolParent(type);
     }
@@ -157,5 +165,32 @@ public class PoolManager : MonoBehaviour
         parentObj.transform.SetParent(poolRoot);
 
         poolParent.Add(type, parentObj.transform);
+    }
+
+    // 활성화된 오브젝트들을 모두 반환
+    public void ReturnAllActiveObjects()
+    {
+        foreach (var pair in activeObjects)
+        {
+            Type type = pair.Key;
+            Component[] activeObjs = new Component[pair.Value.Count];
+            pair.Value.CopyTo(activeObjs);
+
+            foreach (Component obj in activeObjs)
+            {
+                if (obj == null) continue;
+
+                obj.gameObject.SetActive(false);
+
+                if (obj.transform.parent != poolParent[type])
+                {
+                    obj.transform.SetParent(poolParent[type]);
+                }
+
+                poolDictionary[type].Enqueue(obj);
+            }
+
+            pair.Value.Clear();
+        }
     }
 }

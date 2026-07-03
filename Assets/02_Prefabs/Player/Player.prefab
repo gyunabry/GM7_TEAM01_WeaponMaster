@@ -198,11 +198,11 @@ MonoBehaviour:
   armor: 0
   evasion: 0
   moveSpeed: 0
-  invincibleTime: 0.5
+  invincibleTime: 0.7
   nowExp: 0
   reqExp: 50
   gold: 0
-  baseSpeed: 8
+  baseSpeed: 6
   onPlayerDead: {fileID: 11400000, guid: e5686fe0bbf931243872e0132e23455d, type: 2}
 --- !u!114 &4626836144241479772
 MonoBehaviour:

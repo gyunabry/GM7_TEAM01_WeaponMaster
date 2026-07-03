@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +22,7 @@ public class GameSceneController : MonoBehaviour
     [SerializeField] private GameObject pausePanel;   // 일시정지 시 보여줄 패널
     [SerializeField] private GameObject optionPanel;  // 일시정지 메뉴 중 옵션을 선택했을 때 보여줄 패널
     [SerializeField] private GameObject gameoverPanel; // 게임오버 시 보여줄 패널
+    [SerializeField] private CanvasGroup gameoverCG;
 
     [Header("일시정지")]
     [SerializeField] private Button resumeButton;
@@ -135,9 +138,13 @@ public class GameSceneController : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        PoolManager.Instance.ReturnAllActiveObjects();
+
         gameoverPanel.SetActive(true);
         optionPanel.SetActive(false);
         pausePanel.SetActive(false);
+
+        StartCoroutine(GameOverSequence());
 
         gameoverText.text = "YOU DIED";
         gameoverText.color = Color.red;
@@ -153,5 +160,21 @@ public class GameSceneController : MonoBehaviour
 
         GameManager.Instance.OpenResultUI();
         resultUIController.ShowResult();
+    }
+
+    private IEnumerator GameOverSequence()
+    {
+        Time.timeScale = 0.25f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        yield return new WaitForSecondsRealtime(0.8f);
+
+        gameoverPanel.SetActive(true);
+        gameoverCG.alpha = 0f;
+        gameoverCG.DOFade(1f, 1.2f).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(1.2f);
+
+        Time.timeScale = 0f;
     }
 }

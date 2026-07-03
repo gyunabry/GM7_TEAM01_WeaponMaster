@@ -179,9 +179,12 @@ public class PlayerController : MonoBehaviour, IDamageable
         sr.material = ori;
         NowHp -= damage * (100 / 100 + armor);
         OnHpChanged?.Invoke(NowHp, maxHp);
-        if (NowHp < 0)
+
+        if (NowHp <= 0)
         {
             NowHp = 0;
+            OnHpChanged?.Invoke(NowHp, maxHp);
+            // Ani.SetTrigger("Dead");
             onPlayerDead.RaiseEvent();
         }
 
