@@ -113,6 +113,7 @@ public class PlayerAttackPoint : MonoBehaviour
                 collision.TryGetComponent<EnemyController>(out enemy);
                 if (enemy != null)
                 {
+                    weaponStat.totalDamage += enemy.ReturnTakeDamage(nowDamage);
                     if (criHit == true)
                     {
                         enemy.TakeDamage(nowDamage, true);
@@ -123,7 +124,6 @@ public class PlayerAttackPoint : MonoBehaviour
                         enemy.TakeDamage(nowDamage);
                         playerController.HpAbs();
                     }
-                    weaponStat.totalDamage += (int)nowDamage;
                     vfxm.SpawnEffect(enemy.transform, weaponType);
                 }
                 criHit = false;
@@ -157,7 +157,8 @@ public class PlayerAttackPoint : MonoBehaviour
                 collision.TryGetComponent<BossController>(out enemy);
                 if (enemy != null)
                 {
-                    if(criHit == true)
+                    weaponStat.totalDamage += enemy.ReturnTakeDamage(nowDamage);
+                    if (criHit == true)
                     {
                         enemy.TakeDamage(nowDamage, true);
                         playerController.HpAbs();
@@ -167,7 +168,6 @@ public class PlayerAttackPoint : MonoBehaviour
                         enemy.TakeDamage(nowDamage);
                         playerController.HpAbs();
                     }
-                    weaponStat.totalDamage += (int)nowDamage;
                     vfxm.SpawnEffect(enemy.transform, weaponType);
                 }
                 criHit = false;

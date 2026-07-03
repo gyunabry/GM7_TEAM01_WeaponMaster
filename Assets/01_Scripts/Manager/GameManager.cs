@@ -164,23 +164,23 @@ public class GameManager : MonoBehaviour
             }
             else if (i <= 20)
             {
-                requireExp[i] = 100 + (i - 1) * 100;
+                requireExp[i] = 60 + (i - 1) * 60;
             }
             else if (i <= 40)
             {
-                requireExp[i] = 4000 + (i - 20) * 120;
+                requireExp[i] = 2000 + (i - 20) * 70;
             }
             else if (i <= 60)
             {
-                requireExp[i] = 8000 + (i - 40) * 140;
+                requireExp[i] = 4500 + (i - 40) * 80;
             }
             else if (i <= 80)
             {
-                requireExp[i] = 14000 + (i - 60) * 160;
+                requireExp[i] = 8000 + (i - 60) * 90;
             }
             else if (i <= 100)
             {
-                requireExp[i] = 20000 + (i - 80) * 180;
+                requireExp[i] = 13000 + (i - 80) * 100;
             }
         }
     }
