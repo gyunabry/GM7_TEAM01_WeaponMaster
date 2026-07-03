@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LevelUp : MonoBehaviour
@@ -35,7 +36,13 @@ public class LevelUp : MonoBehaviour
     
     private void OnEnable()
     {
-        if(stop == false)
+        Button[] qwe = new Button[3];
+        qwe = GetComponentsInChildren<Button>();
+        go[0] = qwe[0];
+        go[1] = qwe[1];
+        go[2] = qwe[2];
+        EventSystem.current.SetSelectedGameObject(go[1].gameObject);
+        if (stop == false)
         {
             co = StartCoroutine(Stop());
             stop = true;
@@ -135,7 +142,11 @@ public class LevelUp : MonoBehaviour
                     {
                         continue;
                     }
-                    break;
+                    else if (ranUp[i] == 4 && weaponList[ran[i]].GetStatUpgradeCri() >= 50)
+                    {
+                        continue;
+                    }
+                        break;
                 }
                 if (weaponList[ran[i]].upgradeCount == needUpCount) //무기 진화 메서드
                 {

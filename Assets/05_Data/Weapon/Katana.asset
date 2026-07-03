@@ -43,18 +43,18 @@ MonoBehaviour:
     upgradeArmorPiercing: 0
     upgradeAttackSpeed: 0
     upgradeRange: 0
-    upgradeCri: 60
+    upgradeCri: 20
     upgradeSize: 15
     upgradeDes: "\uCE74\uD0C0\uB098\uC758 \uC7A5\uC810\uC744 \uADF9\uB300\uD654\uD55C
       \uC9C4\uD654"
     upgradeSprite: {fileID: 4924101769844784665, guid: f697e8432270a164c860d0f27d7968d9, type: 3}
   statUpValue:
-    upgradeStatDamage: 3
+    upgradeStatDamage: 5
     upgradeStatArmorPiercing: 5
-    upgradeStatAttackSpeed: -0.05
+    upgradeStatAttackSpeed: -0.07
     upgradeStatRange: 1
-    upgradeStatCri: 10
-    upgradeStatSize: 3
+    upgradeStatCri: 15
+    upgradeStatSize: 5
   upgradeNum: 0
   upgradeCount: 0
   unlocking: 0
