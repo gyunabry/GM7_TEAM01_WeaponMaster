@@ -37,7 +37,6 @@ public class InGameUIManager : MonoBehaviour
 
     [Header("보유 골드 및 스테이지 UI")]
     [SerializeField] private TextMeshProUGUI goldAmountText;
-    [SerializeField] private TextMeshProUGUI waveCountText;
     [SerializeField] private TextMeshProUGUI waveTimerText;
 
     [Header("킬 카운트")]
@@ -69,7 +68,6 @@ public class InGameUIManager : MonoBehaviour
         }
         if (WaveManager.Instance != null)
         {
-            WaveManager.Instance.OnWaveStarted += UpdateWaveUI;
             WaveManager.Instance.OnTimeChanged += UpdateTimerUI;
         }
         if (GameManager.Instance != null)
@@ -80,7 +78,6 @@ public class InGameUIManager : MonoBehaviour
 
         // 게임 첫 시작 시 UI 초기화
         UpdateKillCount(GameManager.Instance.GetKillCount());
-        UpdateWaveUI(WaveManager.Instance.CurrentWave);
         UpdateTimerUI(WaveManager.Instance.WaveTime);
         UpdateExpUI(GameManager.Instance.CurrentExp, GameManager.Instance.RequireExp[GameManager.Instance.Level]);
 
@@ -99,8 +96,7 @@ public class InGameUIManager : MonoBehaviour
             bossDamagedEvent.OnEventRaised -= UpdateBossHp;
         }
         if (WaveManager.Instance != null)
-        {
-            WaveManager.Instance.OnWaveStarted -= UpdateWaveUI;
+        { 
             WaveManager.Instance.OnTimeChanged -= UpdateTimerUI;
         }
         if (GameManager.Instance != null)
@@ -192,14 +188,6 @@ public class InGameUIManager : MonoBehaviour
     #endregion
 
     #region 웨이브
-    private void UpdateWaveUI(int curretnWave)
-    {
-        if(waveCountText!=null)
-        {
-            //웨이브 데이터 0으로 대기시간 만들때 웨이브 카운트 오류 개선용
-            waveCountText.text =$"Wave {curretnWave-1}";
-        }
-    }
 
     private void UpdateTimerUI(float playTime)
     {

@@ -19,11 +19,9 @@ MonoBehaviour:
   dashRange: 0
   bulletPattern: 7
   projectilePrefab: {fileID: 3417943345609019291, guid: 4fd4728aaea86a446be250ad4aefecf3, type: 3}
-  projectileSpeed: 4
+  projectileSpeed: 3
   projectileCount: 4
-  spreadAngle: 90
-  orbitRadius: 0
-  orbitSpeed: 0
+  spreadAngle: 180
   burstCount: 0
   burstInterval: 0
   fireCount: 0
@@ -31,5 +29,5 @@ MonoBehaviour:
   aoeCount: 0
   warningPrefab: {fileID: 5796480262704675772, guid: 21e0a8c8ccda21746aa3fb94374257ea, type: 3}
   warningDuration: 0
-  homingTurnSpeed: 180
+  homingTurnSpeed: 90
   homingDuration: 3

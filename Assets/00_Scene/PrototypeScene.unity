@@ -3211,6 +3211,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771421696}
   m_CullTransparentMesh: 1
+--- !u!1 &773931010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773931012}
+  - component: {fileID: 773931011}
+  m_Layer: 0
+  m_Name: EnemyContactDamageManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &773931011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773931010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01511c516fab4d45ac378ba03f9e24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamageManager
+  player: {fileID: 985414210}
+  playerHitRadius: 0.5
+  checkRadius: 2
+  checkInterval: 0.1
+--- !u!4 &773931012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773931010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830469834
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,17 +4315,6 @@ CanvasRenderer:
 --- !u!114 &1182149036 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2465103544503640995, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
-  m_PrefabInstance: {fileID: 1688107050}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &1224187930 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6364714722116753629, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
   m_PrefabInstance: {fileID: 1688107050}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -5909,6 +5946,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4365116322249933909, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.100006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516301255070082751, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4603208991088629197, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5922,7 +5967,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7886054774539422195, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2589461995605198108, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
       insertIndex: -1
@@ -7550,7 +7596,7 @@ PrefabInstance:
     - target: {fileID: 4260830416288764147, guid: 12511661cdcc3074db3010767d06613e, type: 3}
       propertyPath: waveCountText
       value: 
-      objectReference: {fileID: 1224187930}
+      objectReference: {fileID: 0}
     - target: {fileID: 4260830416288764147, guid: 12511661cdcc3074db3010767d06613e, type: 3}
       propertyPath: waveTimerText
       value: 
@@ -7678,6 +7724,7 @@ SceneRoots:
   - {fileID: 611736247}
   - {fileID: 22880359}
   - {fileID: 1005159979}
+  - {fileID: 773931012}
   - {fileID: 891627547}
   - {fileID: 1688107050}
   - {fileID: 1616752823}

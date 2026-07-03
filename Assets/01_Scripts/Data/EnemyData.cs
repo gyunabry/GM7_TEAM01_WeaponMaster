@@ -10,14 +10,15 @@ public class EnemyData : ScriptableObject
     public int maxHp;
     public int armor;
     public float moveSpeed;
+    public int contactDamage;
 
-    [Header("Attack Patterns")]
+    [Header("공격 패턴")]
     public List<EnemyPatternData> enemyPattern;
 
-    [Header("Drop Items")]
+    [Header("드랍 아이템")]
     [SerializeField] private List<DropItemEntry> dropItems;
 
-    [Header("Animation Settings")]
+    [Header("애니메이션")]
     public RuntimeAnimatorController runtimeAnimator;
 
     public void DropItem(Vector3 dropPosition)

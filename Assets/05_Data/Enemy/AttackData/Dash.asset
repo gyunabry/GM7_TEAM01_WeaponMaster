@@ -16,11 +16,18 @@ MonoBehaviour:
   attackDamage: 10
   attackCooltime: 2
   dashSpeed: 15
-  dashRange: 5
+  dashRange: 7.5
   bulletPattern: 0
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
   projectileCount: 0
   spreadAngle: 0
-  orbitRadius: 0
-  orbitSpeed: 0
+  burstCount: 1
+  burstInterval: 0.2
+  fireCount: 1
+  aoeRadius: 0
+  aoeCount: 0
+  warningPrefab: {fileID: 0}
+  warningDuration: 0
+  homingTurnSpeed: 0
+  homingDuration: 0
