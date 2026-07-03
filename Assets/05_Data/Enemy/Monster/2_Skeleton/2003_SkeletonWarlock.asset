@@ -24,5 +24,5 @@ MonoBehaviour:
   - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
     dropChance: 1
   - item: {fileID: 3791253550718468618, guid: ffaa29c629901d940bcd8967de7374e2, type: 3}
-    dropChance: 0.04
+    dropChance: 0.01
   runtimeAnimator: {fileID: 22100000, guid: 279f2d9842e96754a8ffbd94e6105016, type: 2}
