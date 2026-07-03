@@ -12,7 +12,7 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("공격 판정")]
     [SerializeField] private float attackCheckInterval = 0.1f;
-    [SerializeField] private float playerHitRadius = 0.5f;
+    [SerializeField] private float playerHitRadius = 0.2f;
     [SerializeField] private float dashWindUpTime = 1f;
     [SerializeField] private float rangeWindUpTime = 1f;
     [SerializeField] private float afterActionDealy = 0.5f;
@@ -166,9 +166,10 @@ public class EnemyAttack : MonoBehaviour
 
         // 대쉬 전 대기 동작
         enemyController.CanMove = false;
+        Vector3 targetLastPos = enemyController.target.position;
         yield return dashWindUpWait;
 
-        Vector3 dashDir = enemyController.target.position - transform.position;
+        Vector3 dashDir = targetLastPos - transform.position;
         dashDir.z = 0f;
 
         // 초근접이라면 대쉬 공격 취소

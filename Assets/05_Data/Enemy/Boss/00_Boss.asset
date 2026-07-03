@@ -15,7 +15,7 @@ MonoBehaviour:
   bossId: 00
   bossName: "\uB0A8\uBD80\uC81C\uC77C\uAC80"
   runtimeAnimator: {fileID: 22100000, guid: 45338c447164e754a8a0667129a77d73, type: 2}
-  maxHp: 1500
+  maxHp: 5000
   moveSpeed: 2
   damage: 10
   phases:
@@ -27,4 +27,3 @@ MonoBehaviour:
     phasePatterns:
     - {fileID: 11400000, guid: 8a6f35b26a7aee14a847d81a7637e843, type: 2}
     - {fileID: 11400000, guid: 47b199aae02766744b7b4bdbb147e3cb, type: 2}
-    - {fileID: 11400000, guid: 675682409b3b00a4ebdc61a7be59c4da, type: 2}

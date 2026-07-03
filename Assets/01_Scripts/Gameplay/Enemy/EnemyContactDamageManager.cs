@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyContactDamageManager : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
-    [SerializeField] private float playerHitRadius = 0.3f;
+    [SerializeField] private float playerHitRadius = 0.2f;
     [SerializeField] private float checkRadius = 2f;
     [SerializeField] private float checkInterval = 0.1f;
 
