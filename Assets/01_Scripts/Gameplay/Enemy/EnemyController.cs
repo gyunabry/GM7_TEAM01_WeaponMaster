@@ -12,12 +12,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Header("기본 설정")]
     [SerializeField] private float maxHp;
     [SerializeField] private float moveSpeed;
+    private int contactDamage;
 
     [Header("시각 갱신 주기")]
     [SerializeField] private float visualUpdateInterval = 0.1f;
 
     [Header("충돌 판정")]
-    [SerializeField] private float hitRadius = 0.5f;
+    [SerializeField] private float hitRadius = 0.3f;
 
     [Header("피격 연출")]
     [SerializeField] private Material flashMaterial;
@@ -42,6 +43,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Coroutine flashCoroutine;
     private WaitForSeconds visualWait;
 
+    public int ContactDamage => contactDamage;
     public float HitRadius => hitRadius;
     public Transform target;
     public bool CanMove { get; set; } = true;
@@ -113,6 +115,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         maxHp = data.maxHp;
         moveSpeed = data.moveSpeed;
+        contactDamage = data.contactDamage;
         currentHp = maxHp;
 
         CanMove = true;

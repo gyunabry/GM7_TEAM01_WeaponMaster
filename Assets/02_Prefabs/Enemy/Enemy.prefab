@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1135880575, guid: 01f7d610fcd6ac440a0a305e58d70ff4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,6 +170,8 @@ MonoBehaviour:
   hitRadius: 0.5
   flashMaterial: {fileID: 2100000, guid: 1695fca954a58ea42b83a724cb49f22a, type: 2}
   flashDuration: 0.15
+  separationRadius: 0.7
+  separationWeight: 1.2
   target: {fileID: 0}
 --- !u!114 &319731871572461636
 MonoBehaviour:

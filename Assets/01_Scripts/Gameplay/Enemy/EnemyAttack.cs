@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -31,6 +28,8 @@ public class EnemyAttack : MonoBehaviour
     private WaitForSeconds dashWindUpWait;
     private WaitForSeconds rangeWindUpWait;
     private WaitForSeconds afterActionWait;
+
+    public float ContactDamage { get; private set; }
 
     private void Awake()
     {
@@ -107,10 +106,6 @@ public class EnemyAttack : MonoBehaviour
 
             switch (actionData.attackType)
             {
-                case AttackType.Melee:
-                    yield return StartCoroutine(MeleeAttackCo(actionData));
-                    break;
-
                 case AttackType.Dash:
                     yield return StartCoroutine(DashAttackCo(actionData));
                     break;

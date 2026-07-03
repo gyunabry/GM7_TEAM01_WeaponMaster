@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17a13af1adc8f14ea0a3d3393274629, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatternData
-  triggerRange: 7
+  triggerRange: 7.5
   patternCooltime: 5
   attackSequence:
   - {fileID: 11400000, guid: 41af0ed8b5767a945b0420c85a8c08b8, type: 2}

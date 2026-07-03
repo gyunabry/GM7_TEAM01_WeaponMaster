@@ -121,6 +121,7 @@ public class GameSceneController : MonoBehaviour
 
     private void OnClickExitButton()
     {
+        GameManager.Instance.ResumeGame();
         GameSceneManager.Instance.LoadScene(SceneType.Title);
     }
     #endregion
