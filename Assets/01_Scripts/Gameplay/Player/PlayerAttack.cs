@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
     private Sprite nowSprite;
     private bool upgrade = false;
 
-    private ISkillBase skillBase;
+    // private ISkillBase skillBase;
 
     private void Awake()
     {
@@ -107,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("무기 프리팹이 없거나 이름이 다름");
         }
-        skillBase = GetComponent<ISkillBase>();
+        //skillBase = GetComponent<ISkillBase>();
     }
     private void Start()
     {
@@ -221,8 +221,8 @@ public class PlayerAttack : MonoBehaviour
                     if (isAttackCo == false)
                     {
                         attackco = StartCoroutine(Attack(enemyTrans));
-                        foreach(SkillStat ss in playerWeapon.skillStat)
-                        skillBase.Skill(ss);
+                        //foreach(SkillStat ss in playerWeapon.skillStat)
+                        //skillBase.Skill(ss);
                     }
                     break;
                 }

@@ -188,14 +188,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         transform.position += (Vector3)(finalDir.normalized * moveSpeed * Time.deltaTime);
 
         SpatialHashGrid.Instance?.UpdateEnemyCell(this);
-
-        //Vector3 dir = targetPos - currentPos;
-        //dir.z = 0f;
-
-        // 타겟에 근접했을 땐 리턴
-        //if (dir.sqrMagnitude <= 0.001f) return;
-
-        //transform.position += dir.normalized * moveSpeed * Time.deltaTime;
     }
 
     // 기존 Update에서 매 프레임 호출되던 구조를 코루틴으로 변경해 최적화

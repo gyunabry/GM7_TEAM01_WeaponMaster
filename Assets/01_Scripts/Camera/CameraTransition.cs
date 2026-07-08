@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CameraTrasition : MonoBehaviour
+public class CameraTransition : MonoBehaviour
 {
     [Header("구독할 이벤트")]
     [SerializeField] private VoidEventChannel bossEncounterEvent;
