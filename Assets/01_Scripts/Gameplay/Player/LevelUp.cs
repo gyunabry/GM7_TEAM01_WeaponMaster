@@ -300,7 +300,7 @@ public class LevelUp : MonoBehaviour
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.ResumeGame();
+        GameManager.Instance.CloseLevelUpUI();
     }
 
     //스탯업그레이드
@@ -347,7 +347,7 @@ public class LevelUp : MonoBehaviour
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.ResumeGame();
+        GameManager.Instance.CloseLevelUpUI();
     }
     //무기 진화
     public void GetUpgrade(int jk)
@@ -366,7 +366,7 @@ public class LevelUp : MonoBehaviour
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.ResumeGame();
+        GameManager.Instance.CloseLevelUpUI();
     }
 }
     

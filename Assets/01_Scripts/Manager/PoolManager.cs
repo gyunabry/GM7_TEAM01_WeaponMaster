@@ -7,9 +7,9 @@ public class PoolManager : MonoBehaviour
     public static PoolManager Instance { get; private set; }
 
     private Dictionary<Type, Queue<Component>> poolDictionary = new Dictionary<Type, Queue<Component>>();
+
     private Dictionary<Type, Transform> poolParent = new Dictionary<Type, Transform>();
 
-    // 프리팹 원본을 저장하는 딕셔너리
     private Dictionary<Type, Component> prefabDict = new Dictionary<Type, Component>();
 
     private Dictionary<Type, HashSet<Component>> activeObjects = new Dictionary<Type, HashSet<Component>>();

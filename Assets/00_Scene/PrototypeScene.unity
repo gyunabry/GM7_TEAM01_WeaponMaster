@@ -308,6 +308,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2130848727628481499, guid: 123f2f752df439f449414d17499a67e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3288979876055002997}
+    - target: {fileID: 2130848727628481499, guid: 123f2f752df439f449414d17499a67e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseOptionUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130848727628481499, guid: 123f2f752df439f449414d17499a67e0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameSceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3526004716347827222, guid: 123f2f752df439f449414d17499a67e0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2871,6 +2883,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
+--- !u!114 &3288979876055002997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4812882232494134356, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
+  m_PrefabInstance: {fileID: 3288979876055002996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6de2f555a079146a50d18a53100a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameSceneController
 --- !u!1001 &4639636123689041750
 PrefabInstance:
   m_ObjectHideFlags: 0

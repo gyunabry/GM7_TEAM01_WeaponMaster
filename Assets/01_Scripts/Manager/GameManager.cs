@@ -113,6 +113,9 @@ public class GameManager : MonoBehaviour
             case PauseMenuState.OptionMenu:
                 CloseOptionToPause();
                 break;
+
+            case PauseMenuState.LevelUp:
+                break;
         }
     }
 
@@ -145,6 +148,19 @@ public class GameManager : MonoBehaviour
     public void OpenResultUI()
     {
         pauseMenuState = PauseMenuState.Result;
+    }
+
+    public void OpenLevelUpUI()
+    {
+        PauseGame();
+        pauseMenuState = PauseMenuState.LevelUp;
+        levelUpButton.SetActive(true);
+    }
+
+    public void CloseLevelUpUI()
+    {
+        pauseMenuState = PauseMenuState.Playing;
+        ResumeGame();
     }
 
     public void SetNeedExp()
@@ -226,7 +242,7 @@ public class GameManager : MonoBehaviour
             // 레벨업 시 현재 경험치를 필요 경험치만큼 삭감
             currentExp -= requireExp[level];
             level++;
-            levelUpButton.SetActive(true);
+            OpenLevelUpUI();
 
             // TODO:레벨업 효과 이벤트
         }

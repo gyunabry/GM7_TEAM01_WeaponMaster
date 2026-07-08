@@ -147,4 +147,24 @@ public class SpatialHashGrid : MonoBehaviour
             Mathf.FloorToInt(position.y / cellSize)
         );
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        if (cells == null) return;
+
+        foreach (var cell in cells.Keys)
+        {
+            Vector3 center = new Vector3(
+                cell.x * cellSize + cellSize * 0.5f,
+                cell.y * cellSize + cellSize * 0.5f,
+                0f
+            );
+
+            Vector3 size = new Vector3(cellSize, cellSize, 0f);
+
+            Gizmos.DrawWireCube(center, size);
+        }
+    }
 }

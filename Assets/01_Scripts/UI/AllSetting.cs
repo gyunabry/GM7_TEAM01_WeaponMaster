@@ -1,12 +1,10 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class resolutionsSetting : MonoBehaviour
+public class ResolutionsSetting : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
     private List<Resolution> resol;
