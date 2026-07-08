@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c58a8043ce8974ca7265efaf1a31f4, type: 3}
+  m_Name: 2003_SkeletonWarlock
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 2003
+  enemyName: "\uD574\uACE8 \uD751\uB9C8\uBC95\uC0AC"
+  maxHp: 90
+  armor: 2
+  moveSpeed: 1.5
+  contactDamage: 10
+  enemyPattern:
+  - {fileID: 11400000, guid: d539d04808b748e44984d45e865b93d6, type: 2}
+  dropItems:
+  - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
+    dropChance: 1
+  - item: {fileID: 3791253550718468618, guid: ffaa29c629901d940bcd8967de7374e2, type: 3}
+    dropChance: 0.01
+  runtimeAnimator: {fileID: 22100000, guid: 279f2d9842e96754a8ffbd94e6105016, type: 2}

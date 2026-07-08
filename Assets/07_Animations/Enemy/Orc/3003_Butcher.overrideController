@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 3003_Butcher
+  m_Controller: {fileID: 9100000, guid: 6fb27e1eab6a6914c8daf2673333aa67, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c6498e766a6c35c49baa92e178f82f7b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6fcd6edbc4f3aab4d9a9799e09c9ed4b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 18c8a35c00790e24895d710625229953, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 65e99c4f557f0274c98c3a4767e9b589, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: adfa6756f1c428c41a572ca66a0a417b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 46c2c911e9509f14c8a4eea25e4f30a0, type: 2}

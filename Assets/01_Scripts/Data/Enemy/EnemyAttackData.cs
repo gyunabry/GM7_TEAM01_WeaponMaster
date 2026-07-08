@@ -1,0 +1,58 @@
+using UnityEngine;
+
+public enum AttackType
+{
+    Melee,
+    Dash,
+    Range,
+}
+
+public enum BulletPattern
+{
+    Straight,
+    Cone,
+    Circle,
+    Orbit,
+    Burst,
+    BurstAround,
+    AOE,
+    Homing
+}
+
+[CreateAssetMenu(fileName = "Enemy Attack Data", menuName = "GamePlay/EnemyAttackData")]
+public class EnemyAttackData : ScriptableObject
+{
+    [Header("기본 공격 설정")]
+    public AttackType attackType;
+    public int attackDamage;
+    public float attackCooltime;
+
+    [Header("대쉬 공격 설정")]
+    public float dashSpeed;
+    public float dashRange;
+
+    [Header("원거리 공격 설정")]
+    public BulletPattern bulletPattern;
+    public EnemyBullet projectilePrefab;
+    public float projectileSpeed;
+    [Tooltip("투사체 개수")]
+    public int projectileCount;
+    [Tooltip("투사체 발사 각도")]
+    public float spreadAngle;
+
+    [Header("연속 발사 설정")]
+    public int burstCount = 1;
+    public float burstInterval = 0.2f;
+    public int fireCount = 1;
+
+    [Header("범위공격 설정")]
+    public int aoeRadius;
+    [Tooltip("범위공격 시 생성할 투사체 개수")]
+    public int aoeCount;
+    public WarningMarker warningPrefab;
+    public float warningDuration;
+
+    [Header("유도탄 설정")]
+    public float homingTurnSpeed;
+    public float homingDuration;
+}

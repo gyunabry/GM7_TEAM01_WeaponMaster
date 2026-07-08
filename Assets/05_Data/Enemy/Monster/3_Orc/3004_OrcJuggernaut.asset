@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c58a8043ce8974ca7265efaf1a31f4, type: 3}
+  m_Name: 3004_OrcJuggernaut
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 3004
+  enemyName: "\uC624\uD06C \uB3CC\uACA9\uC804\uCC28"
+  maxHp: 400
+  armor: 4
+  moveSpeed: 2.5
+  contactDamage: 10
+  enemyPattern:
+  - {fileID: 11400000, guid: 9018baa0a6ec97d41994a52743ddcf2c, type: 2}
+  dropItems:
+  - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
+    dropChance: 1
+  - item: {fileID: 3791253550718468618, guid: ffaa29c629901d940bcd8967de7374e2, type: 3}
+    dropChance: 0.01
+  runtimeAnimator: {fileID: 22100000, guid: 23b60298afe60d947b417077f48ad4c8, type: 2}

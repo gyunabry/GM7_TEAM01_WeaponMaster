@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c58a8043ce8974ca7265efaf1a31f4, type: 3}
+  m_Name: 0000_Farmer
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 0000
+  enemyName: "\uB18D\uBD80"
+  maxHp: 30
+  armor: 0
+  moveSpeed: 2
+  contactDamage: 10
+  enemyPattern:
+  - {fileID: 11400000, guid: ee69e06baf0a3dd48904ef02631bc802, type: 2}
+  dropItems:
+  - item: {fileID: 8961237026755449203, guid: 81ff6f6a284f27641989548480a12787, type: 3}
+    dropChance: 1
+  - item: {fileID: 3791253550718468618, guid: ffaa29c629901d940bcd8967de7374e2, type: 3}
+    dropChance: 0.005
+  runtimeAnimator: {fileID: 22100000, guid: 6a3292bc5b49d8242a6919f13773190d, type: 2}

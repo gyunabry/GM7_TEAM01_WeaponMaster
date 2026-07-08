@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5722de3788d6d4a8b207671e2fc95c, type: 3}
+  m_Name: 00_Boss
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  bossId: 00
+  bossName: "\uB0A8\uBD80\uC81C\uC77C\uAC80"
+  runtimeAnimator: {fileID: 22100000, guid: 45338c447164e754a8a0667129a77d73, type: 2}
+  maxHp: 5000
+  moveSpeed: 2
+  damage: 10
+  phases:
+  - hpThreshold: 1
+    phasePatterns:
+    - {fileID: 11400000, guid: 9987f362cc5776a41a67b7bd3ea72a2b, type: 2}
+    - {fileID: 11400000, guid: 2dccbdda427e20f4ab00576757b54e6d, type: 2}
+  - hpThreshold: 0.5
+    phasePatterns:
+    - {fileID: 11400000, guid: 9987f362cc5776a41a67b7bd3ea72a2b, type: 2}
+    - {fileID: 11400000, guid: 23f694197fcb77a48bf851cbe3a6414f, type: 2}
+    - {fileID: 11400000, guid: 2dccbdda427e20f4ab00576757b54e6d, type: 2}
