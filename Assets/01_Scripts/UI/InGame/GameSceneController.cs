@@ -3,11 +3,24 @@ using System.Runtime.CompilerServices;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class GameSceneController : MonoBehaviour
 {
+    // 현재 인게임 UI 상태를 한 번에 관리하기 위해 열거형으로 선언
+    public enum GameSceneState
+    {
+        Playing,
+        PauseMenu,
+        OptionMenu,
+        GameOver,
+        LevelUp,
+        Result
+    }
+
     public static GameSceneController Instance { get; private set; }
 
     [Header("플레이어 사망 이벤트")]
@@ -17,6 +30,9 @@ public class GameSceneController : MonoBehaviour
 
     [Header("결과창 컨트롤러")]
     [SerializeField] private ResultUIController resultUIController;
+
+    [Header("레벨업 시 띄울 오브젝트")]
+    [SerializeField] private GameObject levelUpPanel;
 
     [Header("패널")]
     [SerializeField] private GameObject pausePanel;   // 일시정지 시 보여줄 패널
@@ -38,6 +54,9 @@ public class GameSceneController : MonoBehaviour
     [Header("옵션")]
     [SerializeField] private Button exitOptionButton;
 
+    public GameSceneState gameSceneState = GameSceneState.Playing;
+    private InputAction pauseAction;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,6 +67,8 @@ public class GameSceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     private void Start()
@@ -79,34 +100,94 @@ public class GameSceneController : MonoBehaviour
         bossClearEvent.OnEventRaised -= OnBossClear;
     }
 
-    #region 일시정지 메뉴
-    public void ShowPauseUI()
+    private void Update()
+    {
+        if (pauseAction.WasPressedThisFrame())
+        {
+            HandlePauseInput();
+        }
+    }
+
+    // esc를 눌렀을 때 처리할 UI 작업
+    private void HandlePauseInput()
+    {
+        switch (gameSceneState)
+        {
+            case GameSceneState.Playing:
+                ShowPauseUI();
+                break;
+
+            case GameSceneState.PauseMenu:
+                ClosePauseUI();
+                break;
+
+            case GameSceneState.OptionMenu:
+                CloseOptionUI();
+                break;
+
+            case GameSceneState.LevelUp:
+                break;
+        }
+    }
+
+    #region 인게임 UI 조작
+    private void ShowPauseUI()
     {
         optionPanel.SetActive(false);
         pausePanel.SetActive(true);
+        gameSceneState = GameSceneState.PauseMenu;
+        GameManager.Instance.PauseGame();
     }
 
-    public void ClosePauseUI()
+    private void ClosePauseUI()
     {
         optionPanel.SetActive(false);
         pausePanel.SetActive(false);
+        gameSceneState = GameSceneState.Playing;
+        GameManager.Instance.ResumeGame();
     }
 
-    public void ShowOptionUI()
+    private void ShowOptionUI()
     {
         optionPanel.SetActive(true);
         pausePanel.SetActive(false);
+        gameSceneState = GameSceneState.OptionMenu;
     }
 
-    public void CloseOptionUI()
+    private void CloseOptionUI()
     {
         optionPanel.SetActive(false);
         pausePanel.SetActive(true);
+        gameSceneState = GameSceneState.PauseMenu;
     }
 
+    private void ShowResultUI()
+    {
+        optionPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        gameSceneState = GameSceneState.Result;
+        resultUIController.ShowResult();
+    }
+
+    public void ShowLevelUpUI()
+    {
+        GameManager.Instance.PauseGame();
+        gameSceneState = GameSceneState.LevelUp;
+        levelUpPanel.SetActive(true);
+    }
+
+    public void CloseLevelUpUI()
+    {
+        levelUpPanel.SetActive(false);
+        gameSceneState = GameSceneState.Playing;
+        GameManager.Instance.ResumeGame();
+    }
+    #endregion
+
+    #region 일시정지 UI 버튼 온클릭
     private void OnClickResumeButton()
     {
-        GameManager.Instance.ResumeFromPause();
+        ClosePauseUI();
     }
 
     private void OnClickRestartButton()
@@ -119,7 +200,7 @@ public class GameSceneController : MonoBehaviour
 
     private void OnClickOptionButton()
     {
-        GameManager.Instance.OpenOptionMenu();
+        ShowOptionUI();
     }
 
     private void OnClickExitButton()
@@ -132,10 +213,11 @@ public class GameSceneController : MonoBehaviour
     #region 환경설정 메뉴
     private void OnClickOptionExitButton()
     {
-        GameManager.Instance.CloseOptionToPause();
+        CloseOptionUI();
     }
     #endregion
 
+    #region 이벤트 수신 시 실행할 메서드
     private void OnPlayerDead()
     {
         PoolManager.Instance.ReturnAllActiveObjects();
@@ -152,14 +234,7 @@ public class GameSceneController : MonoBehaviour
 
     private void OnBossClear()
     {
-        optionPanel.SetActive(false);
-        pausePanel.SetActive(false);
-
-        //gameoverText.text = "클리어!";
-        //gameoverText.color = Color.green;
-
-        GameManager.Instance.OpenResultUI();
-        resultUIController.ShowResult();
+        ShowResultUI();
     }
 
     private IEnumerator GameOverSequence()
@@ -177,4 +252,5 @@ public class GameSceneController : MonoBehaviour
 
         Time.timeScale = 0f;
     }
+    #endregion
 }

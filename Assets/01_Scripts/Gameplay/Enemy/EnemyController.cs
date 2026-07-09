@@ -1,46 +1,35 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
-
-/*
-- ½ºÆ÷³Ê¿¡¼­ µ¥ÀÌÅÍ¸¦ ÁÖÀÔÇÒ ¼ö ÀÖµµ·Ï ¸Þ¼­µå Á¤ÀÇ
-- ÇÃ·¹ÀÌ¾î ÃßÀû ±â´É
- */
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
-    [Header("±âº» ¼³Á¤")]
+    [Header("ê¸°ë³¸ ì„¤ì •")]
     [SerializeField] private float maxHp;
     [SerializeField] private float moveSpeed;
     private int contactDamage;
 
-    [Header("½Ã°¢ °»½Å ÁÖ±â")]
+    [Header("ì‹œê° ê°±ì‹  ì£¼ê¸°")]
     [SerializeField] private float visualUpdateInterval = 0.1f;
 
-    [Header("Ãæµ¹ ÆÇÁ¤")]
+    [Header("ì¶©ëŒ íŒì •")]
     [SerializeField] private float hitRadius = 0.3f;
 
-    [Header("ÇÇ°Ý ¿¬Ãâ")]
+    [Header("í”¼ê²© ì—°ì¶œ")]
     [SerializeField] private Material flashMaterial;
     [SerializeField] private float flashDuration = 0.1f;
 
-    [Header("°ø°£ÇØ½Ì ¼³Á¤")]
+    [Header("ê³µê°„í•´ì‹± ì„¤ì •")]
     [SerializeField] private float separationRadius = 0.7f;
     [SerializeField] private float separationWeight = 1.2f;
 
-    private Material originMaterial;
     private EnemyData currentEnemy;
-    private SpriteRenderer sr;
-    private EnemyAnimationController animationController;
     private EnemyAttack enemyAttack;
+    private EnemyVisualController visualController;
 
     private float currentHp;
 
-    // ÇÃ·¹ÀÌ¾î Æ®·£½ºÆûÀ» ÇÑ ¹ø Ã£°í ¸ðµç EnemyController°¡ °øÀ¯ÇÒ ¼ö ÀÖµµ·Ï Àü¿ª º¯¼ö·Î ¼±¾î
     private static Transform cachedPlayerTarget;
-
     private Coroutine visualCoroutine;
-    private Coroutine flashCoroutine;
     private WaitForSeconds visualWait;
 
     public int ContactDamage => contactDamage;
@@ -52,12 +41,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void Awake()
     {
         enemyAttack = GetComponent<EnemyAttack>();
-        animationController = GetComponent<EnemyAnimationController>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-
-        if (sr != null)
+        visualController = GetComponent<EnemyVisualController>();
+        if (visualController == null)
         {
-            originMaterial = sr.material;
+            visualController = gameObject.AddComponent<EnemyVisualController>();
         }
 
         visualWait = new WaitForSeconds(visualUpdateInterval);
@@ -86,11 +73,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             visualCoroutine = null;
         }
 
-        if (flashCoroutine != null)
-        {
-            StopCoroutine(flashCoroutine);
-            flashCoroutine = null;
-        }
+        visualController?.StopAllVisuals();
 
         SpatialHashGrid.Instance?.Unregister(this);
     }
@@ -102,7 +85,6 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        // ±âÁ¸ ÇÃ·¹ÀÌ¾î Å½Áö ¹× ½ºÇÁ¶óÀÌÆ® ·»´õ·¯ Á¶ÀÛ Á¦°Å
         MoveToTarget();
     }
 
@@ -110,7 +92,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         currentEnemy = data;
 
-        // ÁÖÀÔ È®ÀÎ¿ë
         gameObject.name = data.enemyName;
 
         maxHp = data.maxHp;
@@ -120,12 +101,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         CanMove = true;
 
-        if (animationController != null)
-        {
-            animationController.SetupAnimator(data.runtimeAnimator);
-        }
+        visualController?.SetupAnimator(data.runtimeAnimator);
 
-        // enemyAttackÀÌ ÀÖ´Ù¸é ÇöÀç ¸ó½ºÅÍÀÇ °ø°Ý ÆÐÅÏ ÁÖÀÔ
         if (enemyAttack != null)
         {
             enemyAttack.Initialize(currentEnemy.enemyPattern);
@@ -143,7 +120,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         cachedPlayerTarget = newTarget;
     }
 
-    // Å¸°ÙÀÌ ºñ¾îÀÖÀ» ¶§¸¸ È£ÃâÇØ ÇÃ·¹ÀÌ¾î¸¦ ¿¬°á
     private void ConnectTargetOnce()
     {
         if (target != null) return;
@@ -157,7 +133,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             }
         }
 
-        target = cachedPlayerTarget;
+        SetTarget(cachedPlayerTarget);
     }
 
     private void MoveToTarget()
@@ -174,13 +150,10 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (SpatialHashGrid.Instance != null)
         {
-            // ÀÌµ¿ Àü ¼¿ À§Ä¡ °»½Å
             SpatialHashGrid.Instance.UpdateEnemyCell(this);
-
             separation = SpatialHashGrid.Instance.GetSeparationForce(this, separationRadius);
         }
 
-        // ÇÃ·¹ÀÌ¾î ÃßÀû ¹æÇâ + ÁÖº¯ ÀûÀ¸·ÎºÎÅÍ ¹Ð¸®´Â Èû
         Vector2 finalDir = chaseDir.normalized + separation * separationWeight;
 
         if (finalDir.sqrMagnitude <= 0.0001f) return;
@@ -190,59 +163,38 @@ public class EnemyController : MonoBehaviour, IDamageable
         SpatialHashGrid.Instance?.UpdateEnemyCell(this);
     }
 
-    // ±âÁ¸ Update¿¡¼­ ¸Å ÇÁ·¹ÀÓ È£ÃâµÇ´ø ±¸Á¶¸¦ ÄÚ·çÆ¾À¸·Î º¯°æÇØ ÃÖÀûÈ­
-    private IEnumerator VisualUpdateCo()
-    {
-        while (!IsDead)
-        {
-            FlipSprite();
-            UpdateAnimation();
-
-            yield return visualWait;
-        }
-
-        visualCoroutine = null;
-    }
-
     public void TakeDamage(float damage, bool isCrit = false)
     {
-        if (IsDead) return; // ÀÌ¹Ì Á×Àº »óÅÂ¸é Ãß°¡ µ¥¹ÌÁö ¿¬»ê ¹«½Ã
+        if (IsDead) return;
 
         currentHp -= damage;
 
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, isCrit);
 
-        // TODO: ÇÏ¾é°Ô ¹ÝÂ¦ÀÌ´Â È¿°ú Ãß°¡
-        OnDamaged();
+        visualController?.PlayHitFlash(flashMaterial);
 
-        // ÇÇÇØ¸¦ ÀÔÀº Á÷ÈÄ Ã¼·ÂÀ» °Ë»çÇÏ¿© »ç¸Á Ã³¸®
         if (IsDead)
         {
             Die();
         }
     }
+
     public int ReturnTakeDamage(float damage)
     {
-        int takeDamage;
-        if(currentHp < damage)
+        if (currentHp < damage)
         {
-            takeDamage = (int)currentHp;
+            return (int)currentHp;
         }
-        else
-        {
-            takeDamage = (int)damage;
-        }
-            return takeDamage;
+
+        return (int)damage;
     }
 
     private void Die()
     {
         CanMove = false;
 
-        // ¸ó½ºÅÍ µ¥ÀÌÅÍ¿¡ ÀÖ´Â µå¶ø ¾ÆÀÌÅÛÀ» È°¼ºÈ­
         currentEnemy.DropItem(transform.position);
-        // Å³Ä«¿îÆ® Áõ°¡
         GameManager.Instance.AddKillCount();
 
         ReturnToPool();
@@ -250,51 +202,21 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void ReturnToPool()
     {
-        // ¹ÝÂ¦ÀÏ ¶§ Á×Àº ÀûÀ» ¿ø»óº¹±¸ÇÏ±â À§ÇØ ÇØ´ç ÇÔ¼ö¿¡¼­ ´Ù½Ã ¼³Á¤
-        if (sr != null)
-        {
-            sr.material = originMaterial;
-        }
+        visualController?.RestoreMaterial();
 
         PoolManager.Instance.ReturnPool(this);
     }
 
-    private void FlipSprite()
+    private IEnumerator VisualUpdateCo()
     {
-        if (sr == null || target == null) return;
-
-        // Å¸°ÙÀÇ À§Ä¡ x°ª°ú ºñ±³ÇØ ÁÂ¿ì ÀüÈ¯
-        sr.flipX = target.position.x > transform.position.x;
-    }
-
-    private void UpdateAnimation()
-    {
-        if (animationController == null) return;
-
-        bool isMoving = CanMove && target != null && !IsDead;
-        animationController.PlayMove(isMoving);
-    }
-
-    private void OnDamaged()
-    {
-        if (sr == null) return;
-
-        if (flashCoroutine != null)
+        while (!IsDead)
         {
-            StopCoroutine(flashCoroutine);
+            bool isMoving = CanMove && target != null && !IsDead;
+            visualController?.UpdateVisual(target, isMoving);
+
+            yield return visualWait;
         }
 
-        flashCoroutine = StartCoroutine(FlashSprite());
-    }
-
-    // ÇÇ°ÝµÆÀ» ¶§ Àá±ñ ¹øÂ½ÀÌ´Â È¿°ú
-    private IEnumerator FlashSprite()
-    {
-        sr.material = flashMaterial;
-
-        yield return new WaitForSeconds(flashDuration);
-
-        sr.material = originMaterial;
-        flashCoroutine = null;
+        visualCoroutine = null;
     }
 }

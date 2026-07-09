@@ -114,48 +114,13 @@ public class EnemyAttack : MonoBehaviour
                     yield return StartCoroutine(RangeAttackCo(actionData));
                     break;
             }
-
-            // yield return new WaitForSeconds(pattern.actionDelay);
         }
 
         isAttacking = false;
     }
 
-    // 최적화 위해 별도의 함수를 작성
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    CollisionHandler(collision.gameObject);
-    //}
-
-    //private void OnCollisionEnterStay2D(Collision2D collision)
-    //{
-    //    CollisionHandler(collision.gameObject);
-    //}
-
-    //private void CollisionHandler(GameObject target)
-    //{
-    //    if (currentAttackData == null)
-    //    {
-    //        return;
-    //    }
-
-    //    // 공격 타입이 근접, 돌진인 공격만 충돌 허용
-    //    if (currentAttackData.attackType == AttackType.Melee || currentAttackData.attackType == AttackType.Dash)
-    //    {
-    //        if (target.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
-    //        {
-    //            player.TakeDamage(currentAttackData.attackDamage);
-    //        }
-    //    }
-    //}
 
     #region 공격타입 코루틴
-    private IEnumerator MeleeAttackCo(EnemyAttackData data)
-    {
-        TryDamageTargetOnContact(data.attackDamage);
-
-        yield return new WaitForSeconds(afterActionDealy);
-    }
 
     private IEnumerator DashAttackCo(EnemyAttackData data)
     {
@@ -217,29 +182,6 @@ public class EnemyAttack : MonoBehaviour
     }
     #endregion
 
-    // 테스트 후 삭제
-    private void TryDamageTargetOnce(float damage)
-    {
-        if (hasHitDuringAction) return;
-        if (enemyController.target == null) return;
-
-        float totalRadius = enemyController.HitRadius + playerHitRadius;
-        float totalRadiusSqr = totalRadius * totalRadius;
-
-        Vector3 toTarget = enemyController.target.position - transform.position;
-
-        // 타겟과의 거리가 사거리 안이라면
-        if (toTarget.sqrMagnitude <= totalRadius)
-        {
-            PlayerController player = enemyController.target.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.TakeDamage(damage);
-                hasHitDuringAction = true;
-            }
-        }
-    }
-
     private void TryDamageTargetOnContact(float damage)
     {
         if (enemyController == null || enemyController.target == null)
@@ -264,67 +206,4 @@ public class EnemyAttack : MonoBehaviour
             player.TakeDamage(damage);
         }
     }
-
-    // 테스트 후 삭제 예정
-    #region 탄막 패턴
-    //private void FireStraight(EnemyAttackData attackData)
-    //{
-    //    // 타겟 방향으로 발사
-    //    Vector2 direction = (enemyController.target.position - transform.position).normalized;
-    //    SpawnProjectile(attackData, direction);
-    //}
-
-    //private void FireCone(EnemyAttackData attackData)
-    //{
-    //    float angleRange = attackData.spreadAngle; // 데이터 상 발사각
-    //    float startAngle = -angleRange * 0.5f; // 시작 각도
-    //    float angleStep = angleRange / (attackData.projectileCount - 1); // 투사체 간 간격
-        
-    //    for (int i = 0; i < attackData.projectileCount; i++)
-    //    {
-    //        float angle = startAngle + angleStep * i;
-    //        Vector2 direction = Quaternion.Euler(0, 0, angle) * transform.right;
-    //        SpawnProjectile(attackData, direction);
-    //    }
-    //}
-
-    //private void FireCircle(EnemyAttackData attackData)
-    //{
-    //    // 360도를 투사체 개수만큼 나누어 전방위로 발사
-    //    float angleStep = 360f / attackData.projectileCount;
-    //    float angle = 0f;
-
-    //    for (int i = 0; i < attackData.projectileCount; i++)
-    //    {
-    //        float projectileDirXPosition = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180);
-    //        float projectileDirYPosition = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180);
-
-    //        Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
-    //        Vector2 projectileMoveDirection = (projectileVector - (Vector2)transform.position).normalized;
-
-    //        SpawnProjectile(attackData, projectileMoveDirection);
-    //        angle += angleStep;
-    //    }
-    //}
-
-    //// 보스 전용 패턴
-    //private void FireOrbit(EnemyAttackData attackData)
-    //{
-        
-    //}
-
-    //private void SpawnProjectile(EnemyAttackData attackData, Vector2 direction)
-    //{
-    //    EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
-    //    bullet.InitBullet(attackData.attackDamage);
-
-    //    // 투사체의 현재 위치를 몬스터의 위치로 설정
-    //    bullet.transform.position = transform.position;
-    //    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-    //    if (rb != null)
-    //    {
-    //        rb.linearVelocity = direction * attackData.projectileSpeed;
-    //    }
-    //}
-    #endregion
 }

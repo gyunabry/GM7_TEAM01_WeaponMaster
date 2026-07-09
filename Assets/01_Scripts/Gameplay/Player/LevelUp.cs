@@ -23,7 +23,6 @@ public class LevelUp : MonoBehaviour
     private Button[] go = new Button[3];
     private Coroutine co;
     private PlayerAttack weaponStat;
-    private GameManager gameManager;
 
     private string[] weaponDes = new string[3];
     private int[] ran = new int[3];
@@ -34,11 +33,6 @@ public class LevelUp : MonoBehaviour
     private string iconName;
     private string iconNameAvo;
     private bool stop = false;
-    private void Start()
-    {
-        gameManager = FindAnyObjectByType<GameManager>();
-        gameManager.PauseGame();
-    }
 
     private void OnEnable()
     {
@@ -300,7 +294,7 @@ public class LevelUp : MonoBehaviour
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.CloseLevelUpUI();
+        GameSceneController.Instance.CloseLevelUpUI();
     }
 
     //스탯업그레이드
@@ -347,7 +341,7 @@ public class LevelUp : MonoBehaviour
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.CloseLevelUpUI();
+        GameSceneController.Instance.CloseLevelUpUI();
     }
     //무기 진화
     public void GetUpgrade(int jk)
@@ -362,11 +356,10 @@ public class LevelUp : MonoBehaviour
         dho = 0;
         go[0].onClick.RemoveAllListeners();
         go[1].onClick.RemoveAllListeners();
-        go[2].onClick.RemoveAllListeners();
         gameObject.SetActive(false);
 
         playerController.SetWeaponArm();
-        GameManager.Instance.CloseLevelUpUI();
+        GameSceneController.Instance.CloseLevelUpUI();
     }
 }
     

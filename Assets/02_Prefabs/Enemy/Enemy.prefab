@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 319731871572461636}
   - component: {fileID: 6565792709871853669}
   - component: {fileID: 5689245771355135525}
+  - component: {fileID: -4927775416690410553}
   - component: {fileID: 8627826069076033274}
   m_Layer: 22
   m_Name: Enemy
@@ -213,6 +214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b035f8673f797704389df92ced26e624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationController
+--- !u!114 &-4927775416690410553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085451030641730648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83ced295a57fbc4e8ea23c57cb91afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyVisualController
 --- !u!61 &8627826069076033274
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -77,8 +77,6 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnRoutine(SpawnInfo info, float duration)
     {
         float countMultiplier = WaveManager.Instance.SpawnCountMultiplier;
-        //float hpMultiplier = WaveManager.Instance.EnemyHpMultiplier;
-        //float speedMultiplier = WaveManager.Instance.EnemyMoveSpeedMultiplier;
 
         float elapsed = 0f;
         float spawnStack = 0f; // 스폰할 몬스터 개수를 누적하는 변수

@@ -38,6 +38,9 @@ public class BossController : MonoBehaviour, IDamageable
     [SerializeField] private float rangeWindUpTime = 0.2f;
     [SerializeField] private float afterActionDelay = 0.2f;
 
+    [Header("시각 갱신 주기")]
+    [SerializeField] private float visualUpdateInterval = 0.1f;
+
     [Header("보스 이벤트")]
     [SerializeField] private VoidEventChannel bossDeadEvent;
     [SerializeField] private HpEventChannel bossDamagedEvent;
@@ -46,8 +49,7 @@ public class BossController : MonoBehaviour, IDamageable
     private Transform target;
     private PlayerController targetPlayer;
     private EnemyShooter bossShooter;
-    private SpriteRenderer sr;
-    private EnemyAnimationController animationController;
+    private EnemyVisualController visualController;
 
     private Collider2D[] bossColliders;
 
@@ -77,13 +79,16 @@ public class BossController : MonoBehaviour, IDamageable
     private void Awake()
     {
         bossShooter = GetComponent<EnemyShooter>();
-        animationController = GetComponent<EnemyAnimationController>();
-        sr = GetComponentInChildren<SpriteRenderer>();
+        visualController = GetComponent<EnemyVisualController>();
+        if (visualController == null)
+        {
+            visualController = gameObject.AddComponent<EnemyVisualController>();
+        }
 
         bossColliders = GetComponentsInChildren<Collider2D>();
 
         patternCheckWait = new WaitForSeconds(patternCheckInterval);
-        visualWait = new WaitForSeconds(0.1f);
+        visualWait = new WaitForSeconds(visualUpdateInterval);
     }
 
     private void Start()
@@ -135,18 +140,14 @@ public class BossController : MonoBehaviour, IDamageable
             }
         }
 
-        target = cachedPlayerTarget;
-        targetPlayer = target != null ? target.GetComponent<PlayerController>() : null;
+        SetTarget(cachedPlayerTarget);
     }
 
     private void InitializeBoss()
     {
         if (bossData == null) return;
 
-        if (animationController != null)
-        {
-            animationController.SetupAnimator(bossData.runtimeAnimator);
-        }
+        visualController?.SetupAnimator(bossData.runtimeAnimator);
 
         maxHp = bossData.maxHp;
         currentHp = maxHp;
@@ -210,19 +211,6 @@ public class BossController : MonoBehaviour, IDamageable
         bossLoopRoutine = null;
     }
 
-    private IEnumerator VisualUpdateCo()
-    {
-        while (!IsDead)
-        {
-            FlipSprite();
-            UpdateAnimation();
-
-            yield return visualWait;
-        }
-
-        visualRoutine = null;
-    }
-
     // 패턴 데이터의 공격 시퀀스를 순회하며 실행
     private void SelectAndExecutePattern()
     {
@@ -264,7 +252,7 @@ public class BossController : MonoBehaviour, IDamageable
         switch (attackData.attackType)
         {
             case AttackType.Melee:
-                animationController?.TriggerAttack();
+                visualController?.TriggerAttack();
                 yield return StartCoroutine(BossMeleeCo(attackData));
                 break;
 
@@ -307,10 +295,7 @@ public class BossController : MonoBehaviour, IDamageable
 
         dashDirection.Normalize();
 
-        if (animationController != null)
-        {
-            animationController.TriggerAttack();
-        }
+        visualController?.TriggerAttack();
 
         yield return new WaitForSeconds(dashWindUpTime);
 
@@ -340,10 +325,7 @@ public class BossController : MonoBehaviour, IDamageable
     {
         canMove = false; // 원거리 공격 시 추적 일시정지
 
-        if (animationController != null)
-        {
-            animationController.TriggerAttack();
-        }
+        visualController?.TriggerAttack();
 
         yield return new WaitForSeconds(rangeWindUpTime); // 발사 전 딜레이
 
@@ -481,9 +463,6 @@ public class BossController : MonoBehaviour, IDamageable
 
         currentPhaseIndex = targetPhaseIndex; // 인덱스 갱신
 
-        // TODO: 2페이즈 연출
-        Debug.Log($"{bossData.bossName} {currentPhaseIndex + 1}페이즈 돌입");
-
         yield return new WaitForSeconds(0.5f);
 
         // 새 페이즈의 패턴으로 교체
@@ -523,56 +502,29 @@ public class BossController : MonoBehaviour, IDamageable
             visualRoutine = null;
         }
 
+        visualController?.StopAllVisuals();
+
         if (attackRoutine != null)
         {
             StopCoroutine(attackRoutine);
             attackRoutine = null;
         }
 
-        if (animationController != null)
-        {
-            animationController.TriggerDead();
-        }
+        visualController?.TriggerDead();
 
         bossDeadEvent?.RaiseEvent();
-
-        // 보스 사망 연출을 위해 Destroy(gameObject)는 호출하지 않음
     }
 
-    private void FlipSprite()
+    private IEnumerator VisualUpdateCo()
     {
-        if (sr == null) return;
-
-        // 타겟의 위치 x값과 비교해 좌우 전환
-        if (target != null)
+        while (!IsDead)
         {
-            sr.flipX = target.position.x > transform.position.x;
+            bool isMoving = canMove && currentState == BossState.Chasing && target != null && !IsDead;
+            visualController?.UpdateVisual(target, isMoving);
+
+            yield return visualWait;
         }
+
+        visualRoutine = null;
     }
-    
-    private void UpdateAnimation()
-    {
-        if (animationController == null) return;
-
-        bool isMoving = canMove && currentState == BossState.Chasing && target != null && !IsDead;
-        animationController.PlayMove(isMoving);
-    }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    CollisionHandler(collision.gameObject);
-    //}
-
-    //private void OnCollisionEnterStay2D(Collision2D collision)
-    //{
-    //    CollisionHandler(collision.gameObject);
-    //}
-
-    //private void CollisionHandler(GameObject targetObj)
-    //{
-    //    if (targetObj.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
-    //    {
-    //        player.TakeDamage(bossData.damage);
-    //    }
-    //}
 }
