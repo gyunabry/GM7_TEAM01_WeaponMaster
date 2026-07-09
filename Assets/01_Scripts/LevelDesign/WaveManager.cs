@@ -29,8 +29,6 @@ public class WaveManager : MonoBehaviour
     private bool isWaveActive = false;
 
     public float SpawnCountMultiplier => currentDifficulty == Difficulty.Hard ? 1.2f : (currentDifficulty == Difficulty.Hell ? 1.5f : 1.0f);
-    public float EnemyHpMultiplier => currentDifficulty == Difficulty.Hard ? 1.2f : (currentDifficulty == Difficulty.Hell ? 1.5f : 1.0f);
-    public float EnemyMoveSpeedMultiplier => currentDifficulty == Difficulty.Hard?1.2f : (currentDifficulty == Difficulty.Hell?1.5f : 1.0f);
 
     public int CurrentWave => currentWaveIndex + 1;
     public float WaveTime => stageTime;

@@ -5,7 +5,6 @@ public class WarningMarker : MonoBehaviour
 {
     private float timer;
     private float duration;
-    private Action onComplete;
     private bool isActive;
 
     public void PlayWarningEffect(float duration)
@@ -24,9 +23,6 @@ public class WarningMarker : MonoBehaviour
         if (timer >= duration)
         {
             isActive = false;
-
-            // 유예 시간이 끝났을 때 
-            onComplete?.Invoke();
 
             // 오브젝트 풀로 반환
             PoolManager.Instance.ReturnPool(this);

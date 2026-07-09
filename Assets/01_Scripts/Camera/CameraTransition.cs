@@ -108,7 +108,6 @@ public class CameraTransition : MonoBehaviour
 
     private IEnumerator BossDeadCameraCo()
     {
-        // GameManager.Instance.PauseGame();
         Time.timeScale = 0.3f; // 슬로우 연출
 
         BossController boss = FindFirstObjectByType<BossController>();
@@ -137,8 +136,6 @@ public class CameraTransition : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        // yield return new WaitForSeconds(deathFocusDuration);
 
         bossCamera.Priority = 0;
 

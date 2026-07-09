@@ -108,7 +108,6 @@ public class PlayerAttackPoint : MonoBehaviour
                 {
                     nowDamage = playerAttack.GetDamage();
                 }
-             // Debug.Log(nowDamage);
                 EnemyController enemy;
                 collision.TryGetComponent<EnemyController>(out enemy);
                 if (enemy != null)
@@ -152,7 +151,6 @@ public class PlayerAttackPoint : MonoBehaviour
                 {
                     nowDamage = playerAttack.GetDamage();
                 }
-                // Debug.Log(nowDamage);
                 BossController enemy;
                 collision.TryGetComponent<BossController>(out enemy);
                 if (enemy != null)

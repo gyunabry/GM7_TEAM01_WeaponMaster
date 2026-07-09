@@ -4,41 +4,21 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    // 현재 메뉴 상태를 한 번에 관리하기 위해 열거형으로 선언
-    private enum PauseMenuState
-    {
-        Playing,
-        PauseMenu,
-        OptionMenu,
-        GameOver,
-        LevelUp,
-        Result
-    }
-
     public static GameManager Instance { get; private set; }
 
     [Header("구독할 이벤트")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
     [SerializeField] private VoidEventChannel bossClearEvent;
 
-    [Header("레벨업 시 띄울 오브젝트")]
-    [SerializeField] private GameObject levelUpButton;
-
     public int KillCount { get; private set; }
-    public int Gold { get; private set; }
 
     public event Action<int> OnKillEnemy;
-    public event Action<int> OnGoldChanged;
     public event Action<int, int> OnExpChanged;
 
     // 레벨
     private int level;
     private int[] requireExp = new int[100];
     private int currentExp;
-
-    private InputAction pauseAction;
-
-    private PauseMenuState pauseMenuState = PauseMenuState.Playing;
 
     public int Level => level;
     public int CurrentExp => currentExp;
@@ -58,10 +38,7 @@ public class GameManager : MonoBehaviour
         level = 0;
         currentExp = 0;
         KillCount = 0;
-        Gold = 0;
         SetNeedExp();
-
-        pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     private void OnEnable()
@@ -88,79 +65,6 @@ public class GameManager : MonoBehaviour
         {
             bossClearEvent.OnEventRaised -= OnBossDead;
         }
-    }
-
-    private void Update()
-    {
-        if (pauseAction.WasPressedThisFrame())
-        {
-            HandlePauseInput();
-        }
-    }
-
-    private void HandlePauseInput()
-    {
-        switch (pauseMenuState)
-        {
-            case PauseMenuState.Playing:
-                OpenPauseMenu();
-                break;
-
-            case PauseMenuState.PauseMenu:
-                ResumeFromPause();
-                break;
-
-            case PauseMenuState.OptionMenu:
-                CloseOptionToPause();
-                break;
-
-            case PauseMenuState.LevelUp:
-                break;
-        }
-    }
-
-    public void OpenPauseMenu()
-    {
-        PauseGame();
-        pauseMenuState = PauseMenuState.PauseMenu;
-        GameSceneController.Instance.ShowPauseUI();
-    }
-
-    public void ResumeFromPause()
-    {
-        pauseMenuState = PauseMenuState.Playing;
-        GameSceneController.Instance.ClosePauseUI();
-        ResumeGame();
-    }
-    
-    public void OpenOptionMenu()
-    {
-        pauseMenuState = PauseMenuState.OptionMenu;
-        GameSceneController.Instance.ShowOptionUI();
-    }
-
-    public void CloseOptionToPause()
-    {
-        pauseMenuState = PauseMenuState.PauseMenu;
-        GameSceneController.Instance.CloseOptionUI();
-    }
-
-    public void OpenResultUI()
-    {
-        pauseMenuState = PauseMenuState.Result;
-    }
-
-    public void OpenLevelUpUI()
-    {
-        PauseGame();
-        pauseMenuState = PauseMenuState.LevelUp;
-        levelUpButton.SetActive(true);
-    }
-
-    public void CloseLevelUpUI()
-    {
-        pauseMenuState = PauseMenuState.Playing;
-        ResumeGame();
     }
 
     public void SetNeedExp()
@@ -209,12 +113,6 @@ public class GameManager : MonoBehaviour
         return KillCount;
     }
 
-    public void AddGold()
-    {
-        Gold++;
-        OnGoldChanged?.Invoke(Gold);
-    }
-
     public void AddExp(int amount)
     {
         currentExp += amount;
@@ -242,7 +140,7 @@ public class GameManager : MonoBehaviour
             // 레벨업 시 현재 경험치를 필요 경험치만큼 삭감
             currentExp -= requireExp[level];
             level++;
-            OpenLevelUpUI();
+            GameSceneController.Instance.ShowLevelUpUI();
 
             // TODO:레벨업 효과 이벤트
         }

@@ -12,8 +12,8 @@ public static class SceneNames
     private static readonly Dictionary<SceneType, string> sceneTable
         = new Dictionary<SceneType, string>()
     {
-        { SceneType.Title, "TitleScene"},
-        { SceneType.Game, "PrototypeScene"}
+        { SceneType.Title, "TitleScene" },
+        { SceneType.Game, "GameScene" }
     };
 
     public static string GetSceneName(SceneType type)
