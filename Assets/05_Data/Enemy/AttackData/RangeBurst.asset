@@ -20,10 +20,14 @@ MonoBehaviour:
   bulletPattern: 4
   projectilePrefab: {fileID: 3417943345609019291, guid: 4fd4728aaea86a446be250ad4aefecf3, type: 3}
   projectileSpeed: 5
-  projectileCount: 5
+  projectileCount: 3
   spreadAngle: 0
-  orbitRadius: 0
-  orbitSpeed: 0
-  burstCount: 5
+  burstCount: 3
   burstInterval: 0.2
   fireCount: 1
+  aoeRadius: 0
+  aoeCount: 0
+  warningPrefab: {fileID: 0}
+  warningDuration: 0
+  homingTurnSpeed: 0
+  homingDuration: 0

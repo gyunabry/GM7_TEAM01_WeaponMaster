@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetNeedExp()
+    private void SetNeedExp()
     {
         for (int i = 0; i < requireExp.Length; i++) 
         { 
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         OnExpChanged?.Invoke(currentExp, requireExp[level]);
     }
 
-    public void CheckLevelUp()
+    private void CheckLevelUp()
     {
         if (currentExp < 0) return;
 

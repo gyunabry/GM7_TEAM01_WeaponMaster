@@ -34,6 +34,11 @@ public class LevelUp : MonoBehaviour
     private string iconNameAvo;
     private bool stop = false;
 
+    private void Start()
+    {
+        GameSceneController.Instance.ShowLevelUpUI();
+    }
+
     private void OnEnable()
     {
         Button[] qwe = new Button[3];
