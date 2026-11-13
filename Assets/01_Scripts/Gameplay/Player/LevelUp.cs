@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -12,9 +12,9 @@ public class LevelUp : MonoBehaviour
     [SerializeField] private PlayerWeaponManager playerWeapon;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Button button;
-    [Header("¹«±â ÁøÈ­¿¡ ÇÊ¿äÇÑ ¾÷±×·¹ÀÌµå È½¼ö")]
+    [Header("ë¬´ê¸° ì§„í™”ì— í•„ìš”í•œ ì—…ê·¸ë ˆì´ë“œ íšŸìˆ˜")]
     [SerializeField] private int needUpCount;
-    [Header("ÃÖ´ë °ø¼Ó °­È­ È½¼ö")]
+    [Header("ìµœëŒ€ ê³µì† ê°•í™” íšŸìˆ˜")]
     [SerializeField] private int maxAttackSpeedUpgrade;
 
     private Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO> equWeaponList = new Dictionary<PlayerWeaponSO.WeaponType, PlayerWeaponSO>();
@@ -127,19 +127,19 @@ public class LevelUp : MonoBehaviour
                 while (true)
                 {
                     int randomUpgrade = Random.Range(0, 101);
-                    if(0 <= randomUpgrade && randomUpgrade <= 30) // ´ë¹ÌÁö
+                    if(0 <= randomUpgrade && randomUpgrade <= 30) // ëŒ€ë¯¸ì§€
                     {
                         ranUp[i] = 0;
                     }
-                    else if(31 <= randomUpgrade && randomUpgrade <= 60) //°ø¼Ó
+                    else if(31 <= randomUpgrade && randomUpgrade <= 60) //ê³µì†
                     {
                         ranUp[i] = 2;
                     }
-                    else if(61 <= randomUpgrade && randomUpgrade <= 80) //Å©È®
+                    else if(61 <= randomUpgrade && randomUpgrade <= 80) //í¬í™•
                     {
                         ranUp[i] = 4;
                     }
-                    else if(81 <= randomUpgrade && randomUpgrade <= 100) //¹üÀ§ && Å©±â
+                    else if(81 <= randomUpgrade && randomUpgrade <= 100) //ë²”ìœ„ && í¬ê¸°
                     {
                         ranUp[i] = 3;
                     }
@@ -153,7 +153,7 @@ public class LevelUp : MonoBehaviour
                     }
                         break;
                 }
-                if (weaponList[ran[i]].upgradeCount == needUpCount) //¹«±â ÁøÈ­ ¸Ş¼­µå
+                if (weaponList[ran[i]].upgradeCount == needUpCount) //ë¬´ê¸° ì§„í™” ë©”ì„œë“œ
                 {
                     if (i == 0)
                     {
@@ -168,7 +168,7 @@ public class LevelUp : MonoBehaviour
                         go[2].onClick.AddListener(() => GetUpgrade(2));
                     }
                 }
-                else //¹«±â ¾÷±Û ¸Ş¼­µå
+                else //ë¬´ê¸° ì—…ê¸€ ë©”ì„œë“œ
                 {
                     if (i == 0)
                     {
@@ -194,7 +194,7 @@ public class LevelUp : MonoBehaviour
                 {
                     text.text = "";
                 }
-                if (weaponList[ran[i]].upgradeCount == needUpCount) // ¹«±â ÁøÈ­ ÅØ½ºÆ®
+                if (weaponList[ran[i]].upgradeCount == needUpCount) // ë¬´ê¸° ì§„í™” í…ìŠ¤íŠ¸
                 {
                     iconNameAvo = weaponList[ran[i]].upgrades[ranAvo[i]].upgradeSprite.ToString().Replace("_0 (UnityEngine.Sprite)", "");
                     text.text = $"{weaponList[ran[i]].upgrades[ranAvo[i]].upgradeName}";
@@ -205,27 +205,27 @@ public class LevelUp : MonoBehaviour
                     weaponImage[dho].sprite = spriteAvo;
                     dho++;
                 }
-                else // ¹«±â ¾÷±Û ÅØ½ºÆ®
+                else // ë¬´ê¸° ì—…ê¸€ í…ìŠ¤íŠ¸
                 {
                     if (ranUp[i] == 0)
                     {
-                        upText[1].text = $"°ø°İ·Â {weaponList[ran[i]].GetUpValueDamage()} Áõ°¡";
+                        upText[1].text = $"ê³µê²©ë ¥ {weaponList[ran[i]].GetUpValueDamage()} ì¦ê°€";
                     }
                     else if (ranUp[i] == 1)
                     {
-                        upText[1].text = $"¹æ¾î·Â °üÅë {weaponList[ran[i]].GetUpValueArmorPiercing()} Áõ°¡";
+                        upText[1].text = $"ë°©ì–´ë ¥ ê´€í†µ {weaponList[ran[i]].GetUpValueArmorPiercing()} ì¦ê°€";
                     }
                     else if (ranUp[i] == 2)
                     {
-                        upText[1].text = $"°ø°İ ¼Óµµ {weaponList[ran[i]].GetUpValueAttackSpeed()} Áõ°¡";
+                        upText[1].text = $"ê³µê²© ì†ë„ {weaponList[ran[i]].GetUpValueAttackSpeed()} ì¦ê°€";
                     }
                     else if (ranUp[i] == 3)
                     {
-                        upText[1].text = $"¹üÀ§ {weaponList[ran[i]].GetUpValueRange()} Áõ°¡, Å©±â {weaponList[ran[i]].GetUpValueSize()} Áõ°¡";
+                        upText[1].text = $"ë²”ìœ„ {weaponList[ran[i]].GetUpValueRange()} ì¦ê°€, í¬ê¸° {weaponList[ran[i]].GetUpValueSize()} ì¦ê°€";
                     }
                     else if (ranUp[i] == 4)
                     {
-                        upText[1].text = $"Å©¸®Æ¼ÄÃ È®·ü {weaponList[ran[i]].GetUpValueCri()} Áõ°¡";
+                        upText[1].text = $"í¬ë¦¬í‹°ì»¬ í™•ë¥  {weaponList[ran[i]].GetUpValueCri()} ì¦ê°€";
                     }
                     else if (ranUp[i] == 5)
                     {
@@ -239,7 +239,7 @@ public class LevelUp : MonoBehaviour
                     dho++;
                 }
             }
-            else //¹«±â »ı¼º
+            else //ë¬´ê¸° ìƒì„±
             {
                 weaponDes[i] = weaponList[ran[i]].weaponDes;
                 iconName = weaponList[ran[i]].weaponIcon.ToString().Replace("_0 (UnityEngine.Sprite)", "");
@@ -287,7 +287,7 @@ public class LevelUp : MonoBehaviour
             go[i].gameObject.SetActive(true);
         }
     }
-    //¹«±â È¹µæ
+    //ë¬´ê¸° íšë“
     public void GetWeapon(int jk)
     {
         playerController.OnWeaponArm(weaponList[ran[jk]].weaponType);
@@ -302,7 +302,7 @@ public class LevelUp : MonoBehaviour
         GameSceneController.Instance.CloseLevelUpUI();
     }
 
-    //½ºÅÈ¾÷±×·¹ÀÌµå
+    //ìŠ¤íƒ¯ì—…ê·¸ë ˆì´ë“œ
     public void GetStatUpgrade(int jk)
     {
         if (ranUp[jk] == 0)
@@ -348,7 +348,7 @@ public class LevelUp : MonoBehaviour
         playerController.SetWeaponArm();
         GameSceneController.Instance.CloseLevelUpUI();
     }
-    //¹«±â ÁøÈ­
+    //ë¬´ê¸° ì§„í™”
     public void GetUpgrade(int jk)
     {
         Dictionary<PlayerWeaponSO.WeaponType, GameObject> imsiList = playerController.GetArm();

@@ -1,51 +1,51 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 /*
-- º¸½º ¸ó½ºÅÍ´Â °³Ã¼¸¶´Ù Å©±â°¡ ´Ù¸¦ ¼ö ÀÖ±â ¶§¹®¿¡ Á÷Á¢ ÇÁ¸®ÆÕÀ» ¸¸µé¾î ½ºÆùÇÏ±â 
-- Start ÇÔ¼ö¿¡¼­ BossData ÃÊ±âÈ­
+- ë³´ìŠ¤ ëª¬ìŠ¤í„°ëŠ” ê°œì²´ë§ˆë‹¤ í¬ê¸°ê°€ ë‹¤ë¥¼ ìˆ˜ ìˆê¸° ë•Œë¬¸ì— ì§ì ‘ í”„ë¦¬íŒ¹ì„ ë§Œë“¤ì–´ ìŠ¤í°í•˜ê¸° 
+- Start í•¨ìˆ˜ì—ì„œ BossData ì´ˆê¸°í™”
 */
 
 public class BossController : MonoBehaviour, IDamageable
 {
     public enum BossState {            
-        Chasing,        // ÃßÀû »óÅÂ
-        ActionRunning,  // °ø°İ »óÅÂ
-        PhaseTransition, // ÆäÀÌÁî ÀüÈ¯ »óÅÂ
+        Chasing,        // ì¶”ì  ìƒíƒœ
+        ActionRunning,  // ê³µê²© ìƒíƒœ
+        PhaseTransition, // í˜ì´ì¦ˆ ì „í™˜ ìƒíƒœ
         Dead
     }
 
-    [Header("º¸½º µ¥ÀÌÅÍ")]
+    [Header("ë³´ìŠ¤ ë°ì´í„°")]
     [SerializeField] private BossData bossData;
     private float maxHp;
 
-    [Header("ÇöÀç »óÅÂ")]
+    [Header("í˜„ì¬ ìƒíƒœ")]
     [SerializeField] private BossState currentState;
     [SerializeField] private float currentHp;
     [SerializeField] private int currentPhaseIndex = 0;
     private List<EnemyPatternData> currentPatterns;
 
-    [Header("Ãæµ¹ ÆÇÁ¤")]
+    [Header("ì¶©ëŒ íŒì •")]
     [SerializeField] private float hitRadius = 1.0f;
     [SerializeField] private float playerHitRadius = 0.5f;
 
-    [Header("°ø°İ ¼³Á¤")]
+    [Header("ê³µê²© ì„¤ì •")]
     [SerializeField] private float patternCheckInterval = 0.15f;
     [SerializeField] private float patternInterval = 2f;
     [SerializeField] private float dashWindUpTime = 0.5f;
     [SerializeField] private float rangeWindUpTime = 0.2f;
     [SerializeField] private float afterActionDelay = 0.2f;
 
-    [Header("½Ã°¢ °»½Å ÁÖ±â")]
+    [Header("ì‹œê° ê°±ì‹  ì£¼ê¸°")]
     [SerializeField] private float visualUpdateInterval = 0.1f;
 
-    [Header("º¸½º ÀÌº¥Æ®")]
+    [Header("ë³´ìŠ¤ ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel bossDeadEvent;
     [SerializeField] private HpEventChannel bossDamagedEvent;
 
-    [Header("ÄÄÆ÷³ÍÆ® ÂüÁ¶")]
+    [Header("ì»´í¬ë„ŒíŠ¸ ì°¸ì¡°")]
     private Transform target;
     private PlayerController targetPlayer;
     private EnemyShooter bossShooter;
@@ -80,11 +80,6 @@ public class BossController : MonoBehaviour, IDamageable
     {
         bossShooter = GetComponent<EnemyShooter>();
         visualController = GetComponent<EnemyVisualController>();
-        if (visualController == null)
-        {
-            visualController = gameObject.AddComponent<EnemyVisualController>();
-        }
-
         bossColliders = GetComponentsInChildren<Collider2D>();
 
         patternCheckWait = new WaitForSeconds(patternCheckInterval);
@@ -152,7 +147,7 @@ public class BossController : MonoBehaviour, IDamageable
         maxHp = bossData.maxHp;
         currentHp = maxHp;
 
-        // 1ÆäÀÌÁî ¼¼ÆÃ
+        // 1í˜ì´ì¦ˆ ì„¸íŒ…
         currentPhaseIndex = 0;
         currentPatterns = bossData.phases != null && bossData.phases.Count > 0
             ? bossData.phases[currentPhaseIndex].phasePatterns
@@ -163,7 +158,7 @@ public class BossController : MonoBehaviour, IDamageable
         canMove = true;
         isDeadHandled = false;
 
-        // ÇöÀç »óÅÂ¸¦ ÃßÀû »óÅÂ·Î ÀüÈ¯
+        // í˜„ì¬ ìƒíƒœë¥¼ ì¶”ì  ìƒíƒœë¡œ ì „í™˜
         currentState = BossState.Chasing;
     }
 
@@ -185,7 +180,7 @@ public class BossController : MonoBehaviour, IDamageable
         transform.position += direction.normalized * bossData.moveSpeed * Time.deltaTime;
     }
 
-    // ÀÌµ¿°ú ÆĞÅÏ ½ÇÇà ¸ŞÀÎ ·çÇÁ¸¦ °ü¸®ÇÏ´Â ÄÚ·çÆ¾
+    // ì´ë™ê³¼ íŒ¨í„´ ì‹¤í–‰ ë©”ì¸ ë£¨í”„ë¥¼ ê´€ë¦¬í•˜ëŠ” ì½”ë£¨í‹´
     private IEnumerator BossLoopCo()
     {
         while (!IsDead)
@@ -211,16 +206,16 @@ public class BossController : MonoBehaviour, IDamageable
         bossLoopRoutine = null;
     }
 
-    // ÆĞÅÏ µ¥ÀÌÅÍÀÇ °ø°İ ½ÃÄö½º¸¦ ¼øÈ¸ÇÏ¸ç ½ÇÇà
+    // íŒ¨í„´ ë°ì´í„°ì˜ ê³µê²© ì‹œí€€ìŠ¤ë¥¼ ìˆœíšŒí•˜ë©° ì‹¤í–‰
     private void SelectAndExecutePattern()
     {
         if (currentPatterns == null || currentPatterns.Count == 0) return;
 
-        // ¼øÂ÷ÀûÀ¸·Î ÆĞÅÏ ½ÇÇà ¹× ¼øÈ¸
+        // ìˆœì°¨ì ìœ¼ë¡œ íŒ¨í„´ ì‹¤í–‰ ë° ìˆœíšŒ
         EnemyPatternData pattern = currentPatterns[patternIndex];
         patternIndex = (patternIndex + 1) % currentPatterns.Count;
 
-        // »óÅÂ ÀüÈ¯ ¹× ÄÚ·çÆ¾ ½ÇÇà
+        // ìƒíƒœ ì „í™˜ ë° ì½”ë£¨í‹´ ì‹¤í–‰
         currentState = BossState.ActionRunning;
         patternTimer = 0f;
 
@@ -237,7 +232,7 @@ public class BossController : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(pattern.actionDelay);
         }
 
-        // ÆĞÅÏ Á¾·á ÈÄ ´Ù½Ã ÃßÀû »óÅÂ·Î ÀüÈ¯
+        // íŒ¨í„´ ì¢…ë£Œ í›„ ë‹¤ì‹œ ì¶”ì  ìƒíƒœë¡œ ì „í™˜
         if (!IsDead && currentState == BossState.ActionRunning)
         {
             currentState = BossState.Chasing;
@@ -281,7 +276,7 @@ public class BossController : MonoBehaviour, IDamageable
             yield break;
         }
 
-        // ´ë½¬ Àü ´ë±â µ¿ÀÛ
+        // ëŒ€ì‰¬ ì „ ëŒ€ê¸° ë™ì‘
         canMove = false;
 
         Vector3 dashDirection = target.position - transform.position;
@@ -299,7 +294,7 @@ public class BossController : MonoBehaviour, IDamageable
 
         yield return new WaitForSeconds(dashWindUpTime);
 
-        // ´ë½¬ ½ÇÇà
+        // ëŒ€ì‰¬ ì‹¤í–‰
         float dashSpeed = Mathf.Max(attackData.dashSpeed, 0.01f);
         float dashRange = Mathf.Max(attackData.dashRange, 0f);
         float dashDuration = dashRange / dashSpeed;
@@ -317,28 +312,28 @@ public class BossController : MonoBehaviour, IDamageable
 
         yield return new WaitForSeconds(afterActionDelay);
 
-        // ÃßÀû Àç°³
+        // ì¶”ì  ì¬ê°œ
         canMove = true;
     }
 
     private IEnumerator ExecuteRangeAttack(EnemyAttackData data)
     {
-        canMove = false; // ¿ø°Å¸® °ø°İ ½Ã ÃßÀû ÀÏ½ÃÁ¤Áö
+        canMove = false; // ì›ê±°ë¦¬ ê³µê²© ì‹œ ì¶”ì  ì¼ì‹œì •ì§€
 
         visualController?.TriggerAttack();
 
-        yield return new WaitForSeconds(rangeWindUpTime); // ¹ß»ç Àü µô·¹ÀÌ
+        yield return new WaitForSeconds(rangeWindUpTime); // ë°œì‚¬ ì „ ë”œë ˆì´
 
         if (bossShooter != null && target != null)
         {
             bossShooter.Fire(data, target);
         }
 
-        yield return new WaitForSeconds(afterActionDelay); // ¹ß»ç ÈÄ µô·¹ÀÌ
+        yield return new WaitForSeconds(afterActionDelay); // ë°œì‚¬ í›„ ë”œë ˆì´
         canMove = true;
     }
 
-    #region °ø°İ ÆÇÁ¤
+    #region ê³µê²© íŒì •
     private void TryDamageTargetOnce(float damage)
     {
         if (hasHitDuringAction || target == null)
@@ -397,16 +392,16 @@ public class BossController : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, bool isCrit = false)
     {
-        // ÆäÀÌÁî ÀüÈ¯ ÁßÀÌ¶ó¸é µ¥¹ÌÁö¸¦ ¹ŞÁö ¾Êµµ·Ï ¼³Á¤
+        // í˜ì´ì¦ˆ ì „í™˜ ì¤‘ì´ë¼ë©´ ë°ë¯¸ì§€ë¥¼ ë°›ì§€ ì•Šë„ë¡ ì„¤ì •
         if (IsDead || currentState == BossState.PhaseTransition) return;
 
-        // Ã¼·Â °¨¼Ò ¹× µ¥¹ÌÁö ÅØ½ºÆ® Ç¥½Ã
+        // ì²´ë ¥ ê°ì†Œ ë° ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ í‘œì‹œ
         currentHp = Mathf.Max(0f, currentHp - damage);
 
         HitText hitText = PoolManager.Instance.GetPool<HitText>();
         hitText.ShowDamage(damage, transform.position, isCrit, false);
 
-        // ÀÎ°ÔÀÓ UI ³» º¸½º Ã¼·Â UI °»½Å
+        // ì¸ê²Œì„ UI ë‚´ ë³´ìŠ¤ ì²´ë ¥ UI ê°±ì‹ 
         bossDamagedEvent?.RaiseEvent(currentHp, maxHp);
 
         if (currentHp > 0f)
@@ -461,11 +456,11 @@ public class BossController : MonoBehaviour, IDamageable
         currentState = BossState.PhaseTransition;
         canMove = false;
 
-        currentPhaseIndex = targetPhaseIndex; // ÀÎµ¦½º °»½Å
+        currentPhaseIndex = targetPhaseIndex; // ì¸ë±ìŠ¤ ê°±ì‹ 
 
         yield return new WaitForSeconds(0.5f);
 
-        // »õ ÆäÀÌÁîÀÇ ÆĞÅÏÀ¸·Î ±³Ã¼
+        // ìƒˆ í˜ì´ì¦ˆì˜ íŒ¨í„´ìœ¼ë¡œ êµì²´
         currentPatterns = bossData.phases[currentPhaseIndex].phasePatterns;
         patternIndex = 0;
         patternTimer = 0f;
@@ -484,7 +479,7 @@ public class BossController : MonoBehaviour, IDamageable
         isDeadHandled = true;
         currentState = BossState.Dead;
         canMove = false;
-        // ÇÃ·¹ÀÌ¾î¿¡°Ô °ø°İ¹ŞÁö ¾Ê±â À§ÇØ ¸ğµç Äİ¶óÀÌ´õ ºñÈ°¼ºÈ­
+        // í”Œë ˆì´ì–´ì—ê²Œ ê³µê²©ë°›ì§€ ì•Šê¸° ìœ„í•´ ëª¨ë“  ì½œë¼ì´ë” ë¹„í™œì„±í™”
         foreach (Collider2D bossCollider in bossColliders)
         {
             bossCollider.enabled = false;

@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public static class CanvasGroupController
 {
     /// <summary>
-    /// Äµ¹ö½º ±×·ìÀ» È°¼ºÈ­
+    /// ìº”ë²„ìŠ¤ ê·¸ë£¹ì„ í™œì„±í™”
     /// </summary>
     public static void EnableCG(CanvasGroup cg)
     {
@@ -16,7 +16,7 @@ public static class CanvasGroupController
     }
 
     /// <summary>
-    /// Äµ¹ö½º ±×·ìÀ» ºñÈ°¼ºÈ­
+    /// ìº”ë²„ìŠ¤ ê·¸ë£¹ì„ ë¹„í™œì„±í™”
     /// </summary>
     /// <param name="cg"></param>
     public static void DisableCG(CanvasGroup cg)

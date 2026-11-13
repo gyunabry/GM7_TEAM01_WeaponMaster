@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public class WarningMarker : MonoBehaviour
@@ -24,7 +24,7 @@ public class WarningMarker : MonoBehaviour
         {
             isActive = false;
 
-            // ¿ÀºêÁ§Æ® Ç®·Î ¹İÈ¯
+            // ì˜¤ë¸Œì íŠ¸ í’€ë¡œ ë°˜í™˜
             PoolManager.Instance.ReturnPool(this);
         }
     }

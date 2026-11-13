@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +29,7 @@ public class PoolManager : MonoBehaviour
         InitializeRoot();
     }
 
-    // »ı¼ºµÈ °´Ã¼¸¦ ´ãÀ» ÃÖ»óÀ§ ¿ÀºêÁ§Æ®°¡ ¾ø´Ù¸é »ı¼º
+    // ìƒì„±ëœ ê°ì²´ë¥¼ ë‹´ì„ ìµœìƒìœ„ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ë‹¤ë©´ ìƒì„±
     private void InitializeRoot()
     {
         GameObject rootObj = new GameObject("PoolRoot");
@@ -37,15 +37,15 @@ public class PoolManager : MonoBehaviour
         poolRoot = rootObj.transform;
     }
 
-    // ¿ÀºêÁ§Æ®¸¦ ¹Ì¸® Ç®¿¡ »ı¼º
+    // ì˜¤ë¸Œì íŠ¸ë¥¼ ë¯¸ë¦¬ í’€ì— ìƒì„±
     public void PreLoadPool<T>(T prefab, int count) where T : Component
     {
-        // ÇöÀç ÇÁ¸®ÆÕÀÇ Å¸ÀÔÀ» °¡Á®¿È
+        // í˜„ì¬ í”„ë¦¬íŒ¹ì˜ íƒ€ì…ì„ ê°€ì ¸ì˜´
         Type type = typeof(T);
 
         CreatePool(type);
 
-        // ÇÁ¸®ÆÕ ¿øº»À» ÀúÀå
+        // í”„ë¦¬íŒ¹ ì›ë³¸ì„ ì €ì¥
         if (!prefabDict.ContainsKey(type))
         {
             prefabDict.Add(type, prefab);
@@ -53,26 +53,26 @@ public class PoolManager : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            // T Å¸ÀÔ ¿ÀºêÁ§Æ® »ı¼º
+            // T íƒ€ì… ì˜¤ë¸Œì íŠ¸ ìƒì„±
             T obj = Instantiate(prefab);
-            // »ç¿ë Àü ºñÈ°¼ºÈ­
+            // ì‚¬ìš© ì „ ë¹„í™œì„±í™”
             obj.gameObject.SetActive(false);
-            // ÇÏÀÌ¾î¶óÅ° Á¤¸®¸¦ À§ÇØ ºÎ¸ğÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤
+            // í•˜ì´ì–´ë¼í‚¤ ì •ë¦¬ë¥¼ ìœ„í•´ ë¶€ëª¨ì˜ ìì‹ìœ¼ë¡œ ì„¤ì •
             obj.transform.SetParent(poolParent[type]);
 
-            // »ı¼ºÇÑ ¿ÀºêÁ§Æ®¸¦ ÇØ´çÇÏ´Â Å¸ÀÔ Å¥¿¡ ÀúÀå
+            // ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ í•´ë‹¹í•˜ëŠ” íƒ€ì… íì— ì €ì¥
             poolDictionary[type].Enqueue(obj);
         }
     }
 
-    // Ç® ÇÁ¸®·Îµå ½Ã ÀúÀåµÈ ÇÁ¸®ÆÕ Å¸ÀÔÀ¸·Î Ç®¿¡¼­ ²¨³»´Â ¸Ş¼­µå
+    // í’€ í”„ë¦¬ë¡œë“œ ì‹œ ì €ì¥ëœ í”„ë¦¬íŒ¹ íƒ€ì…ìœ¼ë¡œ í’€ì—ì„œ êº¼ë‚´ëŠ” ë©”ì„œë“œ
     public T GetPool<T>() where T : Component
     {
         Type type = typeof(T);
 
         if (!prefabDict.ContainsKey(type))
         {
-            Debug.LogWarning($"{type.Name} ÇÁ¸®ÆÕÀÌ PoolManager¿¡ µî·ÏµÇÁö ¾ÊÀ½");
+            Debug.LogWarning($"{type.Name} í”„ë¦¬íŒ¹ì´ PoolManagerì— ë“±ë¡ë˜ì§€ ì•ŠìŒ");
             return null;
         }
 
@@ -101,25 +101,25 @@ public class PoolManager : MonoBehaviour
 
         T obj = null;
 
-        // Å¥¿¡ ´ë±â ÁßÀÎ ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é ÇØ´ç ¿ÀºêÁ§Æ® »ç¿ë
+        // íì— ëŒ€ê¸° ì¤‘ì¸ ì˜¤ë¸Œì íŠ¸ê°€ ìˆë‹¤ë©´ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ ì‚¬ìš©
         if (poolDictionary[type].Count > 0)
         {
             obj = poolDictionary[type].Dequeue() as T;
         }
         else
         {
-            // ´ë±â ÁßÀÎ ¿ÀºêÁ§Æ®°¡ ¾øÀ¸¸é »õ·Î »ı¼º
+            // ëŒ€ê¸° ì¤‘ì¸ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±
             obj = Instantiate(prefab);
             obj.transform.SetParent(poolParent[type]);
         }
-        // »ç¿ëÇÒ ¿ÀºêÁ§Æ® È°¼ºÈ­
+        // ì‚¬ìš©í•  ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         obj.gameObject.SetActive(true);
         activeObjects[type].Add(obj);
 
         return obj;
     }
 
-    // »ç¿ëÀÌ ³¡³­ ¿ÀºêÁ§Æ®¸¦ Ç®¿¡ ¹İÈ¯
+    // ì‚¬ìš©ì´ ëë‚œ ì˜¤ë¸Œì íŠ¸ë¥¼ í’€ì— ë°˜í™˜
     public void ReturnPool<T>(T obj) where T : Component
     {
         Type type = typeof(T);
@@ -128,12 +128,12 @@ public class PoolManager : MonoBehaviour
 
         obj.gameObject.SetActive(false);
 
-        // ¸¸¾à ´Ù¸¥ ºÎ¸ğ ¹Ø¿¡ ÀÖÀ¸¸é Å¸ÀÔº° Ç® ºÎ¸ğ ¹ØÀ¸·Î ¿Å±è
+        // ë§Œì•½ ë‹¤ë¥¸ ë¶€ëª¨ ë°‘ì— ìˆìœ¼ë©´ íƒ€ì…ë³„ í’€ ë¶€ëª¨ ë°‘ìœ¼ë¡œ ì˜®ê¹€
         if (obj.transform.parent != poolParent[type])
         {
             obj.transform.SetParent(poolParent[type]);
         }
-        // Å¥(Ç®)¿¡ ´Ù½Ã »ğÀÔ
+        // í(í’€)ì— ë‹¤ì‹œ ì‚½ì…
         poolDictionary[type].Enqueue(obj);
         if (activeObjects.TryGetValue(type, out var activeSet))
         {
@@ -141,25 +141,25 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    // ÇØ´ç Å¸ÀÔÀÇ Ç®ÀÌ ÀÌ¹Ì ÀÖÀ¸¸é Áï½Ã ¸®ÅÏ
-    // ¾ø´Ù¸é Å¥¿Í ºÎ¸ğ ¿ÀºêÁ¦Æ®¸¦ ¸¸µê
+    // í•´ë‹¹ íƒ€ì…ì˜ í’€ì´ ì´ë¯¸ ìˆìœ¼ë©´ ì¦‰ì‹œ ë¦¬í„´
+    // ì—†ë‹¤ë©´ íì™€ ë¶€ëª¨ ì˜¤ë¸Œì œíŠ¸ë¥¼ ë§Œë“¦
     private void CreatePool(Type type)
     {
         if (poolDictionary.ContainsKey(type))
         {
             return;
         }
-        // ÇØ´ç Å¸ÀÔÀÇ Å¥¸¦ »ı¼ºÇØ µñ¼Å³Ê¸®¿¡ Ãß°¡
+        // í•´ë‹¹ íƒ€ì…ì˜ íë¥¼ ìƒì„±í•´ ë”•ì…”ë„ˆë¦¬ì— ì¶”ê°€
         poolDictionary.Add(type, new Queue<Component>());
         activeObjects.Add(type, new HashSet<Component>());
-        // ºÎ¸ğ »ı¼º È£Ãâ
+        // ë¶€ëª¨ ìƒì„± í˜¸ì¶œ
         CreatePoolParent(type);
     }
 
-    // Å¸ÀÔº° ºÎ¸ğ ¿ÀºêÁ§Æ®¸¦ »ı¼º
+    // íƒ€ì…ë³„ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±
     private void CreatePoolParent(Type type)
     {
-        // Å¸ÀÔ ÀÌ¸§À¸·Î »ı¼º
+        // íƒ€ì… ì´ë¦„ìœ¼ë¡œ ìƒì„±
         GameObject parentObj = new GameObject(type.Name + "_Pool");
 
         parentObj.transform.SetParent(poolRoot);
@@ -167,7 +167,7 @@ public class PoolManager : MonoBehaviour
         poolParent.Add(type, parentObj.transform);
     }
 
-    // È°¼ºÈ­µÈ ¿ÀºêÁ§Æ®µéÀ» ¸ğµÎ ¹İÈ¯
+    // í™œì„±í™”ëœ ì˜¤ë¸Œì íŠ¸ë“¤ì„ ëª¨ë‘ ë°˜í™˜
     public void ReturnAllActiveObjects()
     {
         foreach (var pair in activeObjects)

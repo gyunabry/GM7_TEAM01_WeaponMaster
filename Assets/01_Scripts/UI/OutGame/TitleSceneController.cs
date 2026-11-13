@@ -1,26 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class TitleSceneController : MonoBehaviour
 {
-    [Header("UI ±×·ì")]
+    [Header("UI ê·¸ë£¹")]
     [SerializeField] private CanvasGroup titleCG;
     [SerializeField] private CanvasGroup optionCG;
     [SerializeField] private GameObject mapPanel;
     [SerializeField] private GameObject difficultPanel;
 
-    [Header("Å¸ÀÌÆ² ¹öÆ° ÂüÁ¶")]
+    [Header("íƒ€ì´í‹€ ë²„íŠ¼ ì°¸ì¡°")]
     [SerializeField] private Button startButton;
     [SerializeField] private Button optionButton;
     [SerializeField] private Button exitButton;
 
-    [Header("¿É¼Ç ¹öÆ°")]
+    [Header("ì˜µì…˜ ë²„íŠ¼")]
     [SerializeField] private Button optionCloseButton;
 
-    [Header("¸Ê ¼±ÅÃ UI ¹öÆ°")]
+    [Header("ë§µ ì„ íƒ UI ë²„íŠ¼")]
     [SerializeField] private Button mapCloseButton;
 
-    [Header("³­ÀÌµµ ¼±ÅÃ UI ¹öÆ°")]
+    [Header("ë‚œì´ë„ ì„ íƒ UI ë²„íŠ¼")]
     [SerializeField] private Button difficultCloseButton;
 
     private MapCardUI mapCardUI;
@@ -38,13 +38,13 @@ public class TitleSceneController : MonoBehaviour
             difficultySelectUI = difficultPanel.GetComponentInChildren<DifficultySelectUI>(true);
         }
 
-        // Äµ¹ö½º ±×·ì ÃÊ±âÈ­
+        // ìº”ë²„ìŠ¤ ê·¸ë£¹ ì´ˆê¸°í™”
         if (titleCG != null)
             CanvasGroupController.EnableCG(titleCG);
         if (optionCG != null)
             CanvasGroupController.DisableCG(optionCG);
 
-        // Å¸ÀÌÆ² UI ¹öÆ°
+        // íƒ€ì´í‹€ UI ë²„íŠ¼
         if (startButton != null)
             startButton.onClick.AddListener(() => OnClickStartButton());
         if (optionButton != null)
@@ -52,14 +52,14 @@ public class TitleSceneController : MonoBehaviour
         if (exitButton != null)
             exitButton.onClick.AddListener(() => OnClickExitButton());
         
-        // ¸Ê ¼±ÅÃ UI ¹öÆ°
+        // ë§µ ì„ íƒ UI ë²„íŠ¼
         if (mapCloseButton != null)
             mapCloseButton.onClick.AddListener(() => OnClickMapCloseButton());
         if (difficultCloseButton != null)
             difficultCloseButton.onClick.AddListener(() => OnClickDifficultCloseButton());
     }
 
-    #region Å¸ÀÌÆ² UI ¹öÆ° ¾×¼Ç
+    #region íƒ€ì´í‹€ UI ë²„íŠ¼ ì•¡ì…˜
     public void OnClickStartButton()
     {
         // GameSceneManager.Instance.LoadScene(SceneType.Game);
@@ -86,7 +86,7 @@ public class TitleSceneController : MonoBehaviour
 
     public void OnClickOptionButton()
     {
-        // TODO: ¿É¼Ç UI ±¸¼º ÈÄ È°¼ºÈ­µÇµµ·Ï ¼³Á¤
+        // TODO: ì˜µì…˜ UI êµ¬ì„± í›„ í™œì„±í™”ë˜ë„ë¡ ì„¤ì •
         CanvasGroupController.DisableCG(titleCG);
         CanvasGroupController.EnableCG(optionCG);
     }
@@ -102,7 +102,7 @@ public class TitleSceneController : MonoBehaviour
         CanvasGroupController.EnableCG(titleCG);
     }
 
-    #region ¸Ê ¼±ÅÃ UI ¹öÆ° ¾×¼Ç
+    #region ë§µ ì„ íƒ UI ë²„íŠ¼ ì•¡ì…˜
     public void OnClickMapCloseButton()
     {
         if (mapCardUI != null)

@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 /*
-- ¸ó½ºÅÍÀÇ Åº¸· °ø°İ Á¾·ù¸¦ Á¤ÀÇÇÏ´Â ½ºÅ©¸³Æ®
-- Åõ»çÃ¼ÀÇ ¹æÇâ, ¼Óµµ, À§Ä¡, ¼ö¸í, Å¸°Ù¸¸ ÁöÁ¤
-- ½ÇÁ¦ Ãæµ¹ ÆÇÁ¤Àº EnemyBulletÀÌ Á÷Á¢ Ã³¸®
+- ëª¬ìŠ¤í„°ì˜ íƒ„ë§‰ ê³µê²© ì¢…ë¥˜ë¥¼ ì •ì˜í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+- íˆ¬ì‚¬ì²´ì˜ ë°©í–¥, ì†ë„, ìœ„ì¹˜, ìˆ˜ëª…, íƒ€ê²Ÿë§Œ ì§€ì •
+- ì‹¤ì œ ì¶©ëŒ íŒì •ì€ EnemyBulletì´ ì§ì ‘ ì²˜ë¦¬
 */
 
 public class EnemyShooter : MonoBehaviour
@@ -22,14 +22,14 @@ public class EnemyShooter : MonoBehaviour
 
     private List<PendingAOE> pendingAOEs = new List<PendingAOE>();
 
-    // [Ãß°¡µÊ] ´ë±â ÁßÀÎ AOE °ø°İÀ» Ã³¸®ÇÏ´Â Update ·çÇÁ
+    // [ì¶”ê°€ë¨] ëŒ€ê¸° ì¤‘ì¸ AOE ê³µê²©ì„ ì²˜ë¦¬í•˜ëŠ” Update ë£¨í”„
     private void Update()
     {
         if (pendingAOEs.Count == 0) return;
 
         float currentTime = Time.time;
 
-        // ¸®½ºÆ®¿¡¼­ ¿ä¼Ò°¡ »èÁ¦µÇ¹Ç·Î ¿ª¼øÀ¸·Î ¼øÈ¸
+        // ë¦¬ìŠ¤íŠ¸ì—ì„œ ìš”ì†Œê°€ ì‚­ì œë˜ë¯€ë¡œ ì—­ìˆœìœ¼ë¡œ ìˆœíšŒ
         for (int i = pendingAOEs.Count - 1; i >= 0; i--)
         {
             if (currentTime >= pendingAOEs[i].executeTime)
@@ -72,7 +72,7 @@ public class EnemyShooter : MonoBehaviour
 
     private void FireStraight(EnemyAttackData attackData, Transform target)
     {
-        // Å¸°Ù ¹æÇâÀ¸·Î ¹ß»ç
+        // íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
         Vector2 direction = (target.position - transform.position).normalized;
         SpawnProjectile(attackData, direction, target);
     }
@@ -82,10 +82,10 @@ public class EnemyShooter : MonoBehaviour
         Vector2 targetDir = target.position - transform.position;
         float baseAngle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
 
-        float angleRange = attackData.spreadAngle; // µ¥ÀÌÅÍ »ó ¹ß»ç°¢
-        float startAngle = baseAngle - angleRange * 0.5f; // ½ÃÀÛ °¢µµ
+        float angleRange = attackData.spreadAngle; // ë°ì´í„° ìƒ ë°œì‚¬ê°
+        float startAngle = baseAngle - angleRange * 0.5f; // ì‹œì‘ ê°ë„
 
-        // Åõ»çÃ¼ °£ °£°İ
+        // íˆ¬ì‚¬ì²´ ê°„ ê°„ê²©
         float angleStep = attackData.projectileCount > 1
             ? angleRange / (attackData.projectileCount - 1)
             : 0f;
@@ -107,7 +107,7 @@ public class EnemyShooter : MonoBehaviour
     {
         if (attackData.projectileCount <= 0) return;
 
-        // 360µµ¸¦ Åõ»çÃ¼ °³¼ö¸¸Å­ ³ª´©¾î Àü¹æÀ§·Î ¹ß»ç
+        // 360ë„ë¥¼ íˆ¬ì‚¬ì²´ ê°œìˆ˜ë§Œí¼ ë‚˜ëˆ„ì–´ ì „ë°©ìœ„ë¡œ ë°œì‚¬
         float angleStep = 360f / attackData.projectileCount;
 
         for (int i = 0; i < attackData.projectileCount; i++)
@@ -135,14 +135,14 @@ public class EnemyShooter : MonoBehaviour
         }
     }
 
-    // ·£´ıÇÑ ¹æÇâÀ¸·Î ¹ö½ºÆ® °ø°İ
+    // ëœë¤í•œ ë°©í–¥ìœ¼ë¡œ ë²„ìŠ¤íŠ¸ ê³µê²©
     private IEnumerator FireBurstAround(EnemyAttackData attackData, Transform target)
     {
         for (int i = 0; i < attackData.fireCount; i++)
         {
             if (target == null) yield break;
 
-            // ÇÑ ¹ø °ø°İ¸¶´Ù ÇÃ·¹ÀÌ¾î À§Ä¡ ÃßÀûÇØ Åõ»çÃ¼ ¹ß»ç
+            // í•œ ë²ˆ ê³µê²©ë§ˆë‹¤ í”Œë ˆì´ì–´ ìœ„ì¹˜ ì¶”ì í•´ íˆ¬ì‚¬ì²´ ë°œì‚¬
             Vector2 targetDir = (target.position - transform.position).normalized;
             float baseAngle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
 
@@ -165,7 +165,7 @@ public class EnemyShooter : MonoBehaviour
         }
     }
 
-    // Å¸°Ù ±ÙÃ³¿¡ Åõ»çÃ¼ Àá±ñ ½ºÆùÇØ ´êÀ¸¸é ÇÇÇØ
+    // íƒ€ê²Ÿ ê·¼ì²˜ì— íˆ¬ì‚¬ì²´ ì ê¹ ìŠ¤í°í•´ ë‹¿ìœ¼ë©´ í”¼í•´
     private IEnumerator FireAOE(EnemyAttackData attackData, Transform target)
     {
         if (target == null) yield break;
@@ -174,16 +174,16 @@ public class EnemyShooter : MonoBehaviour
 
         for (int i = 0; i < attackData.aoeCount; i++)
         {
-            // Random.insdeUnitCircleÀ» ÅëÇØ ¿øÇü ¹üÀ§ ³» ·£´ıÇÑ ¿ÀÇÁ¼Â °ª °è»ê
+            // Random.insdeUnitCircleì„ í†µí•´ ì›í˜• ë²”ìœ„ ë‚´ ëœë¤í•œ ì˜¤í”„ì…‹ ê°’ ê³„ì‚°
             Vector2 randomOffset = Random.insideUnitCircle * attackData.aoeRadius;
             Vector2 spawnPos = centerPos + randomOffset;
 
             WarningMarker warning = PoolManager.Instance.GetPool(attackData.warningPrefab);
             warning.transform.position = spawnPos;
-            // ¶÷´Ù½ÄÀ¸·Î WarningMarker ³»ÀÇ onComplete ¹ß»ı ½Ã SpawnProjectileAt ¸Ş¼­µå°¡ ½ÇÇàµÇµµ·Ï ³Ñ°ÜÁÜ
+            // ëŒë‹¤ì‹ìœ¼ë¡œ WarningMarker ë‚´ì˜ onComplete ë°œìƒ ì‹œ SpawnProjectileAt ë©”ì„œë“œê°€ ì‹¤í–‰ë˜ë„ë¡ ë„˜ê²¨ì¤Œ
             warning.PlayWarningEffect(attackData.warningDuration);
 
-            // ´ë±â¿­¿¡ ½ºÆù ÀÛ¾÷ Ãß°¡
+            // ëŒ€ê¸°ì—´ì— ìŠ¤í° ì‘ì—… ì¶”ê°€
             pendingAOEs.Add(new PendingAOE
             {
                 executeTime = Time.time + attackData.warningDuration,
@@ -199,7 +199,7 @@ public class EnemyShooter : MonoBehaviour
 
     private void ExecuteAOE(PendingAOE task)
     {
-        // °æ°íÇ¥½Ã ¹İÈ¯
+        // ê²½ê³ í‘œì‹œ ë°˜í™˜
         if (task.marker != null)
         {
             PoolManager.Instance.ReturnPool(task.marker);
@@ -255,7 +255,7 @@ public class EnemyShooter : MonoBehaviour
 
     private void SpawnProjectileAt(EnemyAttackData attackData, Vector2 spawnPosition, Transform target, float lifetime = 0.5f)
     {
-        // ÃÑ¾ËÀ» Ç®¿¡¼­ ²¨³»°í Àá±ñÀÇ °ø°İÀ» ±¸ÇöÇÏ±â À§ÇØ 0.5ÃÊ·Î Áö¼Ó½Ã°£ ¼³Á¤
+        // ì´ì•Œì„ í’€ì—ì„œ êº¼ë‚´ê³  ì ê¹ì˜ ê³µê²©ì„ êµ¬í˜„í•˜ê¸° ìœ„í•´ 0.5ì´ˆë¡œ ì§€ì†ì‹œê°„ ì„¤ì •
         EnemyBullet bullet = PoolManager.Instance.GetPool(attackData.projectilePrefab);
 
         bullet.transform.position = spawnPosition;

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public enum AttackType
 {
@@ -22,37 +22,37 @@ public enum BulletPattern
 [CreateAssetMenu(fileName = "Enemy Attack Data", menuName = "GamePlay/EnemyAttackData")]
 public class EnemyAttackData : ScriptableObject
 {
-    [Header("±âº» °ø°İ ¼³Á¤")]
+    [Header("ê¸°ë³¸ ê³µê²© ì„¤ì •")]
     public AttackType attackType;
     public int attackDamage;
     public float attackCooltime;
 
-    [Header("´ë½¬ °ø°İ ¼³Á¤")]
+    [Header("ëŒ€ì‰¬ ê³µê²© ì„¤ì •")]
     public float dashSpeed;
     public float dashRange;
 
-    [Header("¿ø°Å¸® °ø°İ ¼³Á¤")]
+    [Header("ì›ê±°ë¦¬ ê³µê²© ì„¤ì •")]
     public BulletPattern bulletPattern;
     public EnemyBullet projectilePrefab;
     public float projectileSpeed;
-    [Tooltip("Åõ»çÃ¼ °³¼ö")]
+    [Tooltip("íˆ¬ì‚¬ì²´ ê°œìˆ˜")]
     public int projectileCount;
-    [Tooltip("Åõ»çÃ¼ ¹ß»ç °¢µµ")]
+    [Tooltip("íˆ¬ì‚¬ì²´ ë°œì‚¬ ê°ë„")]
     public float spreadAngle;
 
-    [Header("¿¬¼Ó ¹ß»ç ¼³Á¤")]
+    [Header("ì—°ì† ë°œì‚¬ ì„¤ì •")]
     public int burstCount = 1;
     public float burstInterval = 0.2f;
     public int fireCount = 1;
 
-    [Header("¹üÀ§°ø°İ ¼³Á¤")]
+    [Header("ë²”ìœ„ê³µê²© ì„¤ì •")]
     public int aoeRadius;
-    [Tooltip("¹üÀ§°ø°İ ½Ã »ı¼ºÇÒ Åõ»çÃ¼ °³¼ö")]
+    [Tooltip("ë²”ìœ„ê³µê²© ì‹œ ìƒì„±í•  íˆ¬ì‚¬ì²´ ê°œìˆ˜")]
     public int aoeCount;
     public WarningMarker warningPrefab;
     public float warningDuration;
 
-    [Header("À¯µµÅº ¼³Á¤")]
+    [Header("ìœ ë„íƒ„ ì„¤ì •")]
     public float homingTurnSpeed;
     public float homingDuration;
 }

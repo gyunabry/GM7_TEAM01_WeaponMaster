@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,24 +7,24 @@ using UnityEngine.UI;
 
 public class ResultUIController : MonoBehaviour
 {
-    [Header("∞·∞˙√¢ UI")]
+    [Header("Í≤∞Í≥ºÏ∞Ω UI")]
     [SerializeField] private GameObject resultRoot;
 
-    [Header("≈ÿΩ∫∆Æ")]
+    [Header("ÌÖçÏä§Ìä∏")]
     [SerializeField] private TMP_Text stageText;
     [SerializeField] private TMP_Text clearTimeText;
     [SerializeField] private TMP_Text playerLevelText;
     [SerializeField] private TMP_Text killCountText;
 
-    [Header("π´±‚ ≈Î∞Ë")]
+    [Header("Î¨¥Í∏∞ ÌÜµÍ≥Ñ")]
     [SerializeField] private Transform weaponSlotParent;
     [SerializeField] private List<ResultWeaponSlotUI> fixedWeaponSlots = new List<ResultWeaponSlotUI>();
     [SerializeField] private bool hideEmptyWeaponSlots = true;
 
-    [Header("πˆ∆∞")]
+    [Header("Î≤ÑÌäº")]
     [SerializeField] private Button lobbyButton;
 
-    [Header("¬¸¡∂")]
+    [Header("Ï∞∏Ï°∞")]
     [SerializeField] private PlayerController player;
 
     private void Awake()

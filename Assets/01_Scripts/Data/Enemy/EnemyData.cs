@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,13 +12,13 @@ public class EnemyData : ScriptableObject
     public float moveSpeed;
     public int contactDamage;
 
-    [Header("°ø°İ ÆĞÅÏ")]
+    [Header("ê³µê²© íŒ¨í„´")]
     public List<EnemyPatternData> enemyPattern;
 
-    [Header("µå¶ø ¾ÆÀÌÅÛ")]
+    [Header("ë“œë ì•„ì´í…œ")]
     [SerializeField] private List<DropItemEntry> dropItems;
 
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç")]
+    [Header("ì• ë‹ˆë©”ì´ì…˜")]
     public RuntimeAnimatorController runtimeAnimator;
 
     public void DropItem(Vector3 dropPosition)

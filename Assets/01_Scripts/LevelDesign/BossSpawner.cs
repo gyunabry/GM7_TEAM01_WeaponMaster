@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
 {
-    [Header("º¸½º ÇÁ¸®ÆÕ")]
+    [Header("ë³´ìŠ¤ í”„ë¦¬íŒ¹")]
     [SerializeField] private GameObject bossPrefab;
 
-    [Header("Å¸°Ù ÇÃ·¹ÀÌ¾î")]
+    [Header("íƒ€ê²Ÿ í”Œë ˆì´ì–´")]
     [SerializeField] private Transform targetTransform;
 
-    [Header("º¸½º ½ºÆù À§Ä¡")]
+    [Header("ë³´ìŠ¤ ìŠ¤í° ìœ„ì¹˜")]
     [SerializeField] private Transform bossSpawnPoint;
     
-    // ¼±ÅÃµÈ ½ºÅ×ÀÌÁö·ÎºÎÅÍ º¸½º µ¥ÀÌÅÍ °¡Á®¿È
+    // ì„ íƒëœ ìŠ¤í…Œì´ì§€ë¡œë¶€í„° ë³´ìŠ¤ ë°ì´í„° ê°€ì ¸ì˜´
     public BossController SpawnBoss()
     {
         StageData currentStage = GameSceneData.SelectedStage;

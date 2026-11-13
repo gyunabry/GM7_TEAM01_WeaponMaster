@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
+ï»¿using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEngine.Timeline.DirectorControlPlayable;
 
 public class GameSceneController : MonoBehaviour
 {
-    // ÇöÀç ÀÎ°ÔÀÓ UI »óÅÂ¸¦ ÇÑ ¹ø¿¡ °ü¸®ÇÏ±â À§ÇØ ¿­°ÅÇüÀ¸·Î ¼±¾ğ
+    // í˜„ì¬ ì¸ê²Œì„ UI ìƒíƒœë¥¼ í•œ ë²ˆì— ê´€ë¦¬í•˜ê¸° ìœ„í•´ ì—´ê±°í˜•ìœ¼ë¡œ ì„ ì–¸
     public enum GameSceneState
     {
         Playing,
@@ -23,35 +21,35 @@ public class GameSceneController : MonoBehaviour
 
     public static GameSceneController Instance { get; private set; }
 
-    [Header("ÇÃ·¹ÀÌ¾î »ç¸Á ÀÌº¥Æ®")]
+    [Header("í”Œë ˆì´ì–´ ì‚¬ë§ ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
-    [Header("º¸½º Å¬¸®¾î ÀÌº¥Æ®")]
+    [Header("ë³´ìŠ¤ í´ë¦¬ì–´ ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel bossClearEvent;
 
-    [Header("°á°úÃ¢ ÄÁÆ®·Ñ·¯")]
+    [Header("ê²°ê³¼ì°½ ì»¨íŠ¸ë¡¤ëŸ¬")]
     [SerializeField] private ResultUIController resultUIController;
 
-    [Header("·¹º§¾÷ ½Ã ¶ç¿ï ¿ÀºêÁ§Æ®")]
+    [Header("ë ˆë²¨ì—… ì‹œ ë„ìš¸ ì˜¤ë¸Œì íŠ¸")]
     [SerializeField] private GameObject levelUpPanel;
 
-    [Header("ÆĞ³Î")]
-    [SerializeField] private GameObject pausePanel;   // ÀÏ½ÃÁ¤Áö ½Ã º¸¿©ÁÙ ÆĞ³Î
-    [SerializeField] private GameObject optionPanel;  // ÀÏ½ÃÁ¤Áö ¸Ş´º Áß ¿É¼ÇÀ» ¼±ÅÃÇßÀ» ¶§ º¸¿©ÁÙ ÆĞ³Î
-    [SerializeField] private GameObject gameoverPanel; // °ÔÀÓ¿À¹ö ½Ã º¸¿©ÁÙ ÆĞ³Î
+    [Header("íŒ¨ë„")]
+    [SerializeField] private GameObject pausePanel;   // ì¼ì‹œì •ì§€ ì‹œ ë³´ì—¬ì¤„ íŒ¨ë„
+    [SerializeField] private GameObject optionPanel;  // ì¼ì‹œì •ì§€ ë©”ë‰´ ì¤‘ ì˜µì…˜ì„ ì„ íƒí–ˆì„ ë•Œ ë³´ì—¬ì¤„ íŒ¨ë„
+    [SerializeField] private GameObject gameoverPanel; // ê²Œì„ì˜¤ë²„ ì‹œ ë³´ì—¬ì¤„ íŒ¨ë„
     [SerializeField] private CanvasGroup gameoverCG;
 
-    [Header("ÀÏ½ÃÁ¤Áö")]
+    [Header("ì¼ì‹œì •ì§€")]
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button restartButton;
     [SerializeField] private Button optionButton;
     [SerializeField] private Button exitButton;
 
-    [Header("°ÔÀÓÁ¾·á")]
+    [Header("ê²Œì„ì¢…ë£Œ")]
     [SerializeField] private TMP_Text gameoverText;
     [SerializeField] private Button goRestartButton;
     [SerializeField] private Button goTitleButton;
 
-    [Header("¿É¼Ç")]
+    [Header("ì˜µì…˜")]
     [SerializeField] private Button exitOptionButton;
 
     public GameSceneState gameSceneState = GameSceneState.Playing;
@@ -108,7 +106,7 @@ public class GameSceneController : MonoBehaviour
         }
     }
 
-    // esc¸¦ ´­·¶À» ¶§ Ã³¸®ÇÒ UI ÀÛ¾÷
+    // escë¥¼ ëˆŒë €ì„ ë•Œ ì²˜ë¦¬í•  UI ì‘ì—…
     private void HandlePauseInput()
     {
         switch (gameSceneState)
@@ -130,7 +128,7 @@ public class GameSceneController : MonoBehaviour
         }
     }
 
-    #region ÀÎ°ÔÀÓ UI Á¶ÀÛ
+    #region ì¸ê²Œì„ UI ì¡°ì‘
     private void ShowPauseUI()
     {
         optionPanel.SetActive(false);
@@ -184,7 +182,7 @@ public class GameSceneController : MonoBehaviour
     }
     #endregion
 
-    #region ÀÏ½ÃÁ¤Áö UI ¹öÆ° ¿ÂÅ¬¸¯
+    #region ì¼ì‹œì •ì§€ UI ë²„íŠ¼ ì˜¨í´ë¦­
     private void OnClickResumeButton()
     {
         ClosePauseUI();
@@ -194,7 +192,7 @@ public class GameSceneController : MonoBehaviour
     {
         ClosePauseUI();
 
-        // ÇØ´ç ³­ÀÌµµ·Î Àç½ÃÀÛ
+        // í•´ë‹¹ ë‚œì´ë„ë¡œ ì¬ì‹œì‘
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -210,14 +208,14 @@ public class GameSceneController : MonoBehaviour
     }
     #endregion
 
-    #region È¯°æ¼³Á¤ ¸Ş´º
+    #region í™˜ê²½ì„¤ì • ë©”ë‰´
     private void OnClickOptionExitButton()
     {
         CloseOptionUI();
     }
     #endregion
 
-    #region ÀÌº¥Æ® ¼ö½Å ½Ã ½ÇÇàÇÒ ¸Ş¼­µå
+    #region ì´ë²¤íŠ¸ ìˆ˜ì‹  ì‹œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnPlayerDead()
     {
         PoolManager.Instance.ReturnAllActiveObjects();

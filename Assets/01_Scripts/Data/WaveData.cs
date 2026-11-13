@@ -1,26 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System;
 
 [System.Serializable]
 public struct SpawnInfo
 {
     
-    public EnemyData enemyData; // Àû ÇÁ¸®ÆÕ
-    public int spawnCount; //½ºÆùµÇ´Â Àû ¼ö
-    public float spawnInterval; //½ºÆù °£°İ
-    public float spawnDelay; //´ÙÀ½ ¸÷ ¼ÒÈ¯ µô·¹ÀÌ
+    public EnemyData enemyData; // ì  í”„ë¦¬íŒ¹
+    public int spawnCount; //ìŠ¤í°ë˜ëŠ” ì  ìˆ˜
+    public float spawnInterval; //ìŠ¤í° ê°„ê²©
+    public float spawnDelay; //ë‹¤ìŒ ëª¹ ì†Œí™˜ ë”œë ˆì´
 
-    [Header("½ºÆù ¹èÀ²")]
+    [Header("ìŠ¤í° ë°°ìœ¨")]
     public AnimationCurve spawnDensityCurve;
 
 }
 [CreateAssetMenu(fileName ="WaveData", menuName = "ScriptableObject/WaveData")]
 public class WaveData : ScriptableObject
 {
-    [Header("¿şÀÌºê ½Ã°£±¸Á¶")]
-    public float waveStartTiming; //¶ó¿îµå ½ÃÀÛ ÈÄ ¿şÀÌºê°¡ ½ÃÀÛµÉ ½Ã°£
-    public float waveDuration; //¿şÀÌºê Áö¼Ó½Ã°£
+    [Header("ì›¨ì´ë¸Œ ì‹œê°„êµ¬ì¡°")]
+    public float waveStartTiming; //ë¼ìš´ë“œ ì‹œì‘ í›„ ì›¨ì´ë¸Œê°€ ì‹œì‘ë  ì‹œê°„
+    public float waveDuration; //ì›¨ì´ë¸Œ ì§€ì†ì‹œê°„
 
-    [Header("½ºÆùÇÒ Àû ¹è¿­")]
-    public SpawnInfo[] spawnList; //¿şÀÌºê¿¡ µé¾î°¥ Àû Á¤º¸
+    [Header("ìŠ¤í°í•  ì  ë°°ì—´")]
+    public SpawnInfo[] spawnList; //ì›¨ì´ë¸Œì— ë“¤ì–´ê°ˆ ì  ì •ë³´
 }

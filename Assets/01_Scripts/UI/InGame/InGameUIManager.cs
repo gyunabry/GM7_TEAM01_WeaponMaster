@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,12 +9,12 @@ public class InGameUIManager : MonoBehaviour
 {
     public static InGameUIManager Instance {  get; private set; }
 
-    [Header("±¸µ¶ÇÒ ÀÌº¥Æ®")]
+    [Header("êµ¬ë…í•  ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
     [SerializeField] private VoidEventChannel bossEncounterEvent;
     [SerializeField] private HpEventChannel bossDamagedEvent;
 
-    [Header("ÇÃ·¹ÀÌ¾î")]
+    [Header("í”Œë ˆì´ì–´")]
     [SerializeField] private PlayerController player;
 
     [Header("HP UI")]
@@ -24,22 +24,56 @@ public class InGameUIManager : MonoBehaviour
     private float lerpSpeed = 5f;
     private Coroutine hpEaseCoroutine;
 
-    [Header("º¸½º UI")]
-    [Tooltip("º¸½º ÃâÇö ½Ã º¸¿©ÁÙ UI")]
+    [Header("ë³´ìŠ¤ UI")]
+    [Tooltip("ë³´ìŠ¤ ì¶œí˜„ ì‹œ ë³´ì—¬ì¤„ UI")]
     [SerializeField] private CanvasGroup bossUI;
     [SerializeField] private TMP_Text bossNameText;
     [SerializeField] private Image bossHpFill;
     [SerializeField] private float fadeInDuration = 0.5f;
 
-    [Header("°æÇèÄ¡ UI")]
+    [Header("ê²½í—˜ì¹˜ UI")]
     [SerializeField] private Image expFill;
 
-    [Header("º¸À¯ °ñµå ¹× ½ºÅ×ÀÌÁö UI")]
+    [Header("ë³´ìœ  ê³¨ë“œ ë° ìŠ¤í…Œì´ì§€ UI")]
     [SerializeField] private TextMeshProUGUI goldAmountText;
     [SerializeField] private TextMeshProUGUI waveTimerText;
 
-    [Header("Å³ Ä«¿îÆ®")]
+    [Header("í‚¬ ì¹´ìš´íŠ¸")]
     [SerializeField] private TMP_Text killCountText;
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    [Header("Debug UI")]
+    [SerializeField] private bool showActiveEnemyCount = true;
+
+    private int lastActiveEnemyCount = -1;
+    private string activeEnemyCountLabel;
+    private GUIStyle activeEnemyCountStyle;
+
+    private void OnGUI()
+    {
+        if (!showActiveEnemyCount) return;
+
+        int count = SpatialHashGrid.Instance != null ? SpatialHashGrid.Instance.ActiveEnemyCount : 0;
+        if (count != lastActiveEnemyCount)
+        {
+            lastActiveEnemyCount = count;
+            activeEnemyCountLabel = $"Active Enemies: {count}";
+        }
+
+        if (activeEnemyCountStyle == null)
+        {
+            activeEnemyCountStyle = new GUIStyle(GUI.skin.box)
+            {
+                fontSize = 20,
+                alignment = TextAnchor.MiddleLeft,
+                padding = new RectOffset(12, 12, 6, 6)
+            };
+            activeEnemyCountStyle.normal.textColor = Color.yellow;
+        }
+
+        GUI.Box(new Rect(16f, Screen.height - 56f, 260f, 40f), activeEnemyCountLabel, activeEnemyCountStyle);
+    }
+#endif
 
     private void Awake()
     {
@@ -53,10 +87,10 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    // ¸ðµç ¿ÀºêÁ§Æ®ÀÇ Awake°¡ ³¡³­ ½ÃÁ¡ÀÎ Start¿¡¼­ ÀÌº¥Æ®¸¦ ±¸µ¶
+    // ëª¨ë“  ì˜¤ë¸Œì íŠ¸ì˜ Awakeê°€ ëë‚œ ì‹œì ì¸ Startì—ì„œ ì´ë²¤íŠ¸ë¥¼ êµ¬ë…
     private void Start()
     {
-        // ÀÌº¥Æ® ±¸µ¶
+        // ì´ë²¤íŠ¸ êµ¬ë…
         if (player != null)
         {
             player.OnHpChanged += UpdateHpUI;
@@ -75,12 +109,12 @@ public class InGameUIManager : MonoBehaviour
             GameManager.Instance.OnKillEnemy += UpdateKillCount;
         }
 
-        // °ÔÀÓ Ã¹ ½ÃÀÛ ½Ã UI ÃÊ±âÈ­
+        // ê²Œìž„ ì²« ì‹œìž‘ ì‹œ UI ì´ˆê¸°í™”
         UpdateKillCount(GameManager.Instance.GetKillCount());
         UpdateTimerUI(WaveManager.Instance.WaveTime);
         UpdateExpUI(GameManager.Instance.CurrentExp, GameManager.Instance.CurrentRequireExp);
 
-        // Ã¹ ½ÃÀÛ ½Ã º¸½º UI´Â ºñÈ°¼ºÈ­
+        // ì²« ì‹œìž‘ ì‹œ ë³´ìŠ¤ UIëŠ” ë¹„í™œì„±í™”
         CanvasGroupController.DisableCG(bossUI);
     }
 
@@ -105,7 +139,7 @@ public class InGameUIManager : MonoBehaviour
         }
     }
 
-    #region ÇÃ·¹ÀÌ¾î »óÅÂ
+    #region í”Œë ˆì´ì–´ ìƒíƒœ
     private void UpdateHpUI(float currentHp, float maxHp)
     {
         if(hpFill != null && maxHp > 0)
@@ -127,10 +161,10 @@ public class InGameUIManager : MonoBehaviour
 
     private IEnumerator HpEaseCo()
     {
-        // ÇÇ°ÝµÇ°í Àá±ñÀÇ ´ë±â½Ã°£ ÀÌÈÄ Ã¼·Â¹Ù °¨¼Ò
+        // í”¼ê²©ë˜ê³  ìž ê¹ì˜ ëŒ€ê¸°ì‹œê°„ ì´í›„ ì²´ë ¥ë°” ê°ì†Œ
         yield return new WaitForSeconds(0.2f);
 
-        // Lerp´Â °è¼Ó ¸ñÇ¥°ªÀ¸·Î ÀÛ¾ÆÁö±â ¶§¹®¿¡ ±× Â÷ÀÌ°¡ ¸Å¿ì ÀÛ¾ÆÁö¸é Áß´Ü
+        // LerpëŠ” ê³„ì† ëª©í‘œê°’ìœ¼ë¡œ ìž‘ì•„ì§€ê¸° ë•Œë¬¸ì— ê·¸ ì°¨ì´ê°€ ë§¤ìš° ìž‘ì•„ì§€ë©´ ì¤‘ë‹¨
         while (Mathf.Abs(hpEase.fillAmount - hpFill.fillAmount) > 0.001f)
         {
             hpEase.fillAmount = Mathf.Lerp(hpEase.fillAmount, hpFill.fillAmount, lerpSpeed * Time.deltaTime);
@@ -144,7 +178,7 @@ public class InGameUIManager : MonoBehaviour
     {
         if (expFill == null) return;
 
-        // 0 Divide ¹æÁö
+        // 0 Divide ë°©ì§€
         if (maxExp <= 0)
         {
             expFill.fillAmount = 0f;
@@ -155,8 +189,8 @@ public class InGameUIManager : MonoBehaviour
     }
     #endregion
 
-    #region º¸½º °ü·Ã
-    // º¸½º ÃÊ±âÈ­ ½Ã È£ÃâÇØ ÀÌ¸§ ¼³Á¤
+    #region ë³´ìŠ¤ ê´€ë ¨
+    // ë³´ìŠ¤ ì´ˆê¸°í™” ì‹œ í˜¸ì¶œí•´ ì´ë¦„ ì„¤ì •
     public void SetBossInfo(string bossName, float currentHp, float maxHp)
     {
         ShowBossUI();
@@ -184,7 +218,7 @@ public class InGameUIManager : MonoBehaviour
     }
     #endregion
 
-    #region ¿þÀÌºê
+    #region ì›¨ì´ë¸Œ
 
     private void UpdateTimerUI(float playTime)
     {

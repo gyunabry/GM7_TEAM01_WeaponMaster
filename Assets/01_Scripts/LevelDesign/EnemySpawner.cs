@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-// ½ºÆù ÀÛ¾÷ ´ë±â¿­À» ¸¸µé±â À§ÇÑ ±¸Á¶Ã¼ (GC ¾ø¾Ö±â¿ë)
+// ìŠ¤í° ì‘ì—… ëŒ€ê¸°ì—´ì„ ë§Œë“¤ê¸° ìœ„í•œ êµ¬ì¡°ì²´ (GC ì—†ì• ê¸°ìš©)
 public struct PendingSpawn
 {
     public float executeTime;
@@ -16,25 +16,25 @@ public class EnemySpawner : MonoBehaviour
 
     public static EnemySpawner Instance { get; private set; }
 
-    [Header("Å¸°Ù ÇÃ·¹ÀÌ¾î")]
+    [Header("íƒ€ê²Ÿ í”Œë ˆì´ì–´")]
     [SerializeField] private Transform targetTransform;
 
-    [Header("½ºÆù ¿µ¿ª")]
+    [Header("ìŠ¤í° ì˜ì—­")]
     [SerializeField] private float minX = -10.0f;
     [SerializeField] private float maxX = 10f;
     [SerializeField] private float minY = -7.9f;
     [SerializeField] private float maxY = 6.3f;
 
-    [Header("°æ°í Ç¥½Ã")]
+    [Header("ê²½ê³  í‘œì‹œ")]
     [SerializeField] private float warningDuration = 1f;
 
-    [Header("½ºÆùÇÒ ¿ÀºêÁ§Æ® ÇÁ¸®ÆÕ")]
+    [Header("ìŠ¤í°í•  ì˜¤ë¸Œì íŠ¸ í”„ë¦¬íŒ¹")]
     [SerializeField] private WarningMarker markerPrefab;
     [SerializeField] private EnemyController enemyPrefab;
 
     private List<Coroutine> activeSpawnCoroutines = new List<Coroutine>();
 
-    // ½ºÆù ´ë±â¿­ ¸®½ºÆ®
+    // ìŠ¤í° ëŒ€ê¸°ì—´ ë¦¬ìŠ¤íŠ¸
     private List<PendingSpawn> pendingSpawns = new List<PendingSpawn>();
 
     private void Awake()
@@ -48,15 +48,15 @@ public class EnemySpawner : MonoBehaviour
 
         float currentTime = Time.time;
 
-        // ¸®½ºÆ® ¿ª¼ø ¼øÈ¸
+        // ë¦¬ìŠ¤íŠ¸ ì—­ìˆœ ìˆœíšŒ
         for (int i = pendingSpawns.Count - 1; i >= 0; i--)
         {
             if (currentTime >= pendingSpawns[i].executeTime)
             {
-                // ½Ã°£ÀÌ ´Ù µÇ¸é ½ºÆù ½ÇÇà
+                // ì‹œê°„ì´ ë‹¤ ë˜ë©´ ìŠ¤í° ì‹¤í–‰
                 ExecuteSpawn(pendingSpawns[i]);
 
-                // ´ë±â¿­¿¡¼­ Á¦°Å
+                // ëŒ€ê¸°ì—´ì—ì„œ ì œê±°
                 pendingSpawns.RemoveAt(i);
             }
         }
@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
         float countMultiplier = WaveManager.Instance.SpawnCountMultiplier;
 
         float elapsed = 0f;
-        float spawnStack = 0f; // ½ºÆùÇÒ ¸ó½ºÅÍ °³¼ö¸¦ ´©ÀûÇÏ´Â º¯¼ö
+        float spawnStack = 0f; // ìŠ¤í°í•  ëª¬ìŠ¤í„° ê°œìˆ˜ë¥¼ ëˆ„ì í•˜ëŠ” ë³€ìˆ˜
 
         while (elapsed < duration)
         {
@@ -88,22 +88,22 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(intervalTime);
             elapsed += intervalTime;
 
-            // ÇöÀç ½ÃÁ¡ÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç Ä¿ºê °ª Æò°¡
+            // í˜„ì¬ ì‹œì ì˜ ì• ë‹ˆë©”ì´ì…˜ ì»¤ë¸Œ ê°’ í‰ê°€
             float curveValue = 0f;
             if (info.spawnDensityCurve != null && info.spawnDensityCurve.keys.Length > 0)
             {
                 curveValue = info.spawnDensityCurve.Evaluate(elapsed);
             }
 
-            // (Ä¿ºê ¹èÀ² * ÃÊ´ç ½ºÆù ¼ö * ³­ÀÌµµ ¹èÀ² * Èê·¯°£ ÀÎÅÍ¹ú)À» ´©Àû
+            // (ì»¤ë¸Œ ë°°ìœ¨ * ì´ˆë‹¹ ìŠ¤í° ìˆ˜ * ë‚œì´ë„ ë°°ìœ¨ * í˜ëŸ¬ê°„ ì¸í„°ë²Œ)ì„ ëˆ„ì 
             spawnStack += curveValue * info.spawnCount * countMultiplier * intervalTime;
 
-            // ½ºÅÃ¿¡¼­ Á¤¼ö ¸¶¸®¼ö ÃßÃâ
+            // ìŠ¤íƒì—ì„œ ì •ìˆ˜ ë§ˆë¦¬ìˆ˜ ì¶”ì¶œ
             int finalSpawnCount = Mathf.RoundToInt(spawnStack);
 
             if (finalSpawnCount > 0)
             {
-                // ½ºÆùÀ» ½ÇÇàÇÑ °ª¸¸Å­ ½ºÅÃ¿¡¼­ Â÷°¨
+                // ìŠ¤í°ì„ ì‹¤í–‰í•œ ê°’ë§Œí¼ ìŠ¤íƒì—ì„œ ì°¨ê°
                 spawnStack -= finalSpawnCount;
 
                 for (int i = 0; i < finalSpawnCount; i++)
@@ -112,11 +112,11 @@ public class EnemySpawner : MonoBehaviour
                     float randomY = Random.Range(minY, maxY);
                     Vector2 randomSpawnPos = new Vector2(randomX, randomY);
 
-                    // ½ºÆù À§Ä¡¿¡ ¹Ì¸® Ç¥½ÄÀ¸·Î °æ°í Ç¥½Ã
+                    // ìŠ¤í° ìœ„ì¹˜ì— ë¯¸ë¦¬ í‘œì‹ìœ¼ë¡œ ê²½ê³  í‘œì‹œ
                     WarningMarker warningMarker = PoolManager.Instance.GetPool(markerPrefab);
                     warningMarker.transform.position = randomSpawnPos;
 
-                    // ´ë±â¿­¿¡ ½ºÆù ÀÛ¾÷ µî·Ï
+                    // ëŒ€ê¸°ì—´ì— ìŠ¤í° ì‘ì—… ë“±ë¡
                     pendingSpawns.Add(new PendingSpawn
                     {
                         executeTime = Time.time + warningDuration,
@@ -129,16 +129,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // ½ÇÇà ½Ã°£ÀÌ ´Ù µÈ ½ºÆù ÀÛ¾÷À» Ã³¸®ÇÏ´Â ¸Ş¼­µå
+    // ì‹¤í–‰ ì‹œê°„ì´ ë‹¤ ëœ ìŠ¤í° ì‘ì—…ì„ ì²˜ë¦¬í•˜ëŠ” ë©”ì„œë“œ
     private void ExecuteSpawn(PendingSpawn task)
     {
-        // °æ°í Ç¥½Ã ¹İÈ¯
+        // ê²½ê³  í‘œì‹œ ë°˜í™˜
         if (task.marker != null)
         {
             PoolManager.Instance.ReturnPool(task.marker);
         }
         EnemyController enemy = PoolManager.Instance.GetPool(enemyPrefab);
-        // ¸ó½ºÅÍ Á¤º¸ ÁÖÀÔ ÈÄ ÅÂ½ºÅ©¿¡ Àü´ŞµÈ ·£´ı À§Ä¡·Î ¼³Á¤
+        // ëª¬ìŠ¤í„° ì •ë³´ ì£¼ì… í›„ íƒœìŠ¤í¬ì— ì „ë‹¬ëœ ëœë¤ ìœ„ì¹˜ë¡œ ì„¤ì •
         enemy.Initialize(task.enemyData);
         enemy.SetTarget(targetTransform);
         enemy.transform.position = task.position;
@@ -159,7 +159,7 @@ public class EnemySpawner : MonoBehaviour
     {
         StopAllSpawnCoroutines();
 
-        // ³²¾ÆÀÖ´Â ´ë±â¿­ ¹İÈ¯
+        // ë‚¨ì•„ìˆëŠ” ëŒ€ê¸°ì—´ ë°˜í™˜
         foreach (var task in pendingSpawns)
         {
             if (task.marker != null)

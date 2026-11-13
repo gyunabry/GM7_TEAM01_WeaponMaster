@@ -1,16 +1,16 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Stage Data", menuName = "Stage/Stage Data")]
 public class StageData : ScriptableObject
 {
-    [Header("½ºÅ×ÀÌÁö Á¤º¸")]
+    [Header("ìŠ¤í…Œì´ì§€ ì •ë³´")]
     public string stageName;
     public GameObject mapPrefab;
 
-    [Header("¿şÀÌºê µ¥ÀÌÅÍ")]
+    [Header("ì›¨ì´ë¸Œ ë°ì´í„°")]
     public List<WaveData> waveDataList;
 
-    [Header("½ºÅ×ÀÌÁö º¸½º µ¥ÀÌÅÍ")]
+    [Header("ìŠ¤í…Œì´ì§€ ë³´ìŠ¤ ë°ì´í„°")]
     public BossData bossData;
 }

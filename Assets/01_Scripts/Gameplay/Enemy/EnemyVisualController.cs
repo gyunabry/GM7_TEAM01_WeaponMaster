@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class EnemyVisualController : MonoBehaviour
@@ -23,11 +23,11 @@ public class EnemyVisualController : MonoBehaviour
             originMaterial = spriteRenderer.material;
         }
 
-        // WaitForSeconds °´Ã¼¸¦ ÃÖÃÊ 1È¸¸¸ »ı¼º
+        // WaitForSeconds ê°ì²´ë¥¼ ìµœì´ˆ 1íšŒë§Œ ìƒì„±
         flashWait = new WaitForSeconds(flashDuration);
     }
 
-    // Àû¿¡°Ô ·±Å¸ÀÓ ¾Ö´Ï¸ŞÀÌÅÍ ÄÁÆ®·Ñ·¯ ÁÖÀÔ
+    // ì ì—ê²Œ ëŸ°íƒ€ì„ ì• ë‹ˆë©”ì´í„° ì»¨íŠ¸ë¡¤ëŸ¬ ì£¼ì…
     public void SetupAnimator(RuntimeAnimatorController controller)
     {
         animationController?.SetupAnimator(controller);
@@ -52,7 +52,7 @@ public class EnemyVisualController : MonoBehaviour
         RestoreMaterial();
     }
 
-    // ¸ó½ºÅÍ¿¡¼­ ÇÇ°İ ½Ã È£Ãâ
+    // ëª¬ìŠ¤í„°ì—ì„œ í”¼ê²© ì‹œ í˜¸ì¶œ
     public void PlayHitFlash(Material flashMaterial)
     {
         if (spriteRenderer == null || flashMaterial == null)
@@ -68,7 +68,7 @@ public class EnemyVisualController : MonoBehaviour
         flashRoutine = StartCoroutine(FlashSpriteCo(flashMaterial));
     }
 
-    // ÇÇ°İ ½Ã º¯°æµÈ ¸¶Å×¸®¾óÀ» º¹±¸
+    // í”¼ê²© ì‹œ ë³€ê²½ëœ ë§ˆí…Œë¦¬ì–¼ì„ ë³µêµ¬
     public void RestoreMaterial()
     {
         if (spriteRenderer != null && originMaterial != null)

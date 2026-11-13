@@ -1,16 +1,16 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SkillCardUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-    [Header("·¹º§¾÷ UI")]
+    [Header("ë ˆë²¨ì—… UI")]
     [SerializeField] private LevelUpUI levelUpUI;
-    [Header("Ä«µå Åõ¸íµµ")]
+    [Header("ì¹´ë“œ íˆ¬ëª…ë„")]
     [SerializeField] private CanvasGroup canvasGroup;
-    [Header("µîÀå ½ÃÀÛ À§Ä¡")]
+    [Header("ë“±ì¥ ì‹œì‘ ìœ„ì¹˜")]
     [SerializeField] private float startYOffset = -80.0f;
-    [Header("¸¶¿ì½º ¿À¹ö Å©±â")]
+    [Header("ë§ˆìš°ìŠ¤ ì˜¤ë²„ í¬ê¸°")]
     [SerializeField] private float hoveScale = 1.09f;
 
     private RectTransform rectTransform;
@@ -27,37 +27,37 @@ public class SkillCardUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
 
         originalScale = transform.localScale;
     }
-    //Ä«µå¸¦ ¼û±â´Â ³à¼®
+    //ì¹´ë“œë¥¼ ìˆ¨ê¸°ëŠ” ë…€ì„
     public void HideInstant()
     {
         isClickable = false;
-        //DOKill : ÇöÀç ¿ÀºêÁ§Æ®¿¡¼­ ½ÇÇàÁßÀÎ DoTween¾Ö´Ï¸ŞÀÌ¼ÇÀ» Áï½Ã Á¾·áÇÏ´Â ³à¼®
+        //DOKill : í˜„ì¬ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì‹¤í–‰ì¤‘ì¸ DoTweenì• ë‹ˆë©”ì´ì…˜ì„ ì¦‰ì‹œ ì¢…ë£Œí•˜ëŠ” ë…€ì„
         transform.DOKill();
         canvasGroup.DOKill();
         rectTransform.DOKill();
         canvasGroup.alpha = 0.0f;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.interactable = false;
-        //Ä«µå¸¦ ¿ø·¡ À§Ä¡º¸´Ù ¾Æ·¡ÂÊÀ¸·Î ÀÌµ¿½ÃÅ²´Ù.
+        //ì¹´ë“œë¥¼ ì›ë˜ ìœ„ì¹˜ë³´ë‹¤ ì•„ë˜ìª½ìœ¼ë¡œ ì´ë™ì‹œí‚¨ë‹¤.
         rectTransform.anchoredPosition = originalPosition + new Vector2(0.0f, startYOffset);
 
         transform.localScale = Vector3.zero;
     }
-    //Ä«µå µîÀå ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ½ÇÇà
+    //ì¹´ë“œ ë“±ì¥ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹¤í–‰
     public void PlayOpenTween()
     {
-        isClickable = true;//Ä«µå µîÀåÇÏ¸é Å¬¸¯ °¡´ÉÇÑ »óÅÂ
+        isClickable = true;//ì¹´ë“œ ë“±ì¥í•˜ë©´ í´ë¦­ ê°€ëŠ¥í•œ ìƒíƒœ
         canvasGroup.blocksRaycasts = true;
         canvasGroup.interactable = true;
 
         Sequence sequence =  DOTween.Sequence();
        
-        sequence.Join(canvasGroup.DOFade(1.0f, 0.25f));//Åõ¸íµµ¸¦ 0.25ÃÊ¾È 1·Î ¸¸µç´Ù.
+        sequence.Join(canvasGroup.DOFade(1.0f, 0.25f));//íˆ¬ëª…ë„ë¥¼ 0.25ì´ˆì•ˆ 1ë¡œ ë§Œë“ ë‹¤.
         sequence.Join(rectTransform.DOAnchorPos(originalPosition, 0.35f).SetEase(Ease.OutCubic));
         sequence.Join(transform.DOScale(originalScale, 0.35f).SetEase(Ease.OutBack));
 
     }
-    //Ä«µå°¡ ¼±ÅÃµÇ¾úÀ»¶§ ½ÇÇàÇÒ ³à¼®
+    //ì¹´ë“œê°€ ì„ íƒë˜ì—ˆì„ë•Œ ì‹¤í–‰í•  ë…€ì„
     public Tween PlaySelectTween()
     {
         isClickable = false;
@@ -71,7 +71,7 @@ public class SkillCardUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
         return sequence;
 
     }
-    //¼±ÅÃµÇÁö ¾ÊÀº Ä«µå°¡ »ç¶óÁú¶§
+    //ì„ íƒë˜ì§€ ì•Šì€ ì¹´ë“œê°€ ì‚¬ë¼ì§ˆë•Œ
     public Tween PlayHideTween()
     {
         isClickable = false;
@@ -99,7 +99,7 @@ public class SkillCardUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
         transform.DOScale(originalScale, 0.15f).SetEase(Ease.OutQuad);
     }
 
-    //Ä«µå°¡ Å¬¸¯µÇ¾úÀ»¶§ ButtonÀÇ OnClick¿¡¼­ È£ÃâÇÒ ³à¼®
+    //ì¹´ë“œê°€ í´ë¦­ë˜ì—ˆì„ë•Œ Buttonì˜ OnClickì—ì„œ í˜¸ì¶œí•  ë…€ì„
     public void OnClickCard()
     {
         if (!isClickable) return;

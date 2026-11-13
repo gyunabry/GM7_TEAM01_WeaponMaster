@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyContactDamageManager : MonoBehaviour
@@ -23,7 +23,7 @@ public class EnemyContactDamageManager : MonoBehaviour
     {
         checkTimer += Time.deltaTime;
 
-        // 0.1ÃÊ¿¡ ÇÑ ¹ø¾¿ Á¶È¸ ÈÄ Á¢ÃË È®ÀÎ
+        // 0.1ì´ˆì— í•œ ë²ˆì”© ì¡°íšŒ í›„ ì ‘ì´‰ í™•ì¸
         if (checkTimer < checkInterval) return;
         checkTimer = 0;
 

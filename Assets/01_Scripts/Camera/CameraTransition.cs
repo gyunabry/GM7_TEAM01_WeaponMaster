@@ -1,23 +1,23 @@
-using System.Collections;
+ï»¿using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraTransition : MonoBehaviour
 {
-    [Header("±¸µ¶ÇÒ ÀÌº¥Æ®")]
+    [Header("êµ¬ë…í•  ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel bossEncounterEvent;
     [SerializeField] private VoidEventChannel bossDeadEvent;
     [SerializeField] private VoidEventChannel bossClearEvent;
 
-    [Header("½Ã³×¸Ó½Å Ä«¸Ş¶ó")]
+    [Header("ì‹œë„¤ë¨¸ì‹  ì¹´ë©”ë¼")]
     [SerializeField] private CinemachineCamera playerCamera;
     [SerializeField] private CinemachineCamera bossCamera;
 
-    [Header("º¸½º ½ºÆù")]
+    [Header("ë³´ìŠ¤ ìŠ¤í°")]
     [SerializeField] private BossSpawner bossSpawner;
     [SerializeField] private Transform bossSpawnPoint;
 
-    [Header("¿¬Ãâ ½Ã°£ ¼³Á¤")]
+    [Header("ì—°ì¶œ ì‹œê°„ ì„¤ì •")]
     [SerializeField] private float preSpawnFocusDuration = 2f;
     [SerializeField] private float postSpawnGraceDuration = 2f;
     [SerializeField] private float deathFocusDuration = 4f;
@@ -61,7 +61,7 @@ public class CameraTransition : MonoBehaviour
 
         if (bossCamera != null)
         {
-            // º¸½º ½ºÆù À§Ä¡¸¦ Ä«¸Ş¶ó Å¸°ÙÀ¸·Î ¼³Á¤
+            // ë³´ìŠ¤ ìŠ¤í° ìœ„ì¹˜ë¥¼ ì¹´ë©”ë¼ íƒ€ê²Ÿìœ¼ë¡œ ì„¤ì •
             bossCamera.Follow = bossSpawnPoint;
             bossCamera.Priority = 20;
         }
@@ -73,8 +73,8 @@ public class CameraTransition : MonoBehaviour
 
         GameManager.Instance.PauseGame();
 
-        // ÀÏ½ÃÁ¤Áö »óÅÂÀÌ±â ¶§¹®¿¡ Realtime »ç¿ë
-        // ½ºÆù Àü Æ÷Ä¿½º ½Ã°£
+        // ì¼ì‹œì •ì§€ ìƒíƒœì´ê¸° ë•Œë¬¸ì— Realtime ì‚¬ìš©
+        // ìŠ¤í° ì „ í¬ì»¤ìŠ¤ ì‹œê°„
         yield return new WaitForSecondsRealtime(preSpawnFocusDuration);
 
         BossController spawnedBoss = null;
@@ -83,7 +83,7 @@ public class CameraTransition : MonoBehaviour
             spawnedBoss = bossSpawner.SpawnBoss();
         }
 
-        // º¸½º°¡ ÀÖ´Ù¸é º¸½º Ä«¸Ş¶ó°¡ º¸½º¸¦ µû¶ó°¡µµ·Ï ¼³Á¤
+        // ë³´ìŠ¤ê°€ ìˆë‹¤ë©´ ë³´ìŠ¤ ì¹´ë©”ë¼ê°€ ë³´ìŠ¤ë¥¼ ë”°ë¼ê°€ë„ë¡ ì„¤ì •
         if (spawnedBoss != null && bossCamera != null)
         {
             bossCamera.Follow = spawnedBoss.transform;
@@ -108,7 +108,7 @@ public class CameraTransition : MonoBehaviour
 
     private IEnumerator BossDeadCameraCo()
     {
-        Time.timeScale = 0.3f; // ½½·Î¿ì ¿¬Ãâ
+        Time.timeScale = 0.3f; // ìŠ¬ë¡œìš° ì—°ì¶œ
 
         BossController boss = FindFirstObjectByType<BossController>();
 
@@ -123,7 +123,7 @@ public class CameraTransition : MonoBehaviour
             playerCamera.Priority = 10;
         }
 
-        // ´À·ÁÁø ½Ã°£ÀÌ Á¡Á¡ ¿ø»óº¹±¸ µÇµµ·Ï ¿¬Ãâ
+        // ëŠë ¤ì§„ ì‹œê°„ì´ ì ì  ì›ìƒë³µêµ¬ ë˜ë„ë¡ ì—°ì¶œ
         float elapsed = 0f;
         while (elapsed < deathFocusDuration)
         {

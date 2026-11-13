@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         Invincible = false;
         co = null;
     }
-    //°æÇèÄ¡¿Í °ñµå ¼öÄ¡ Ãß°¡ÇÏ´Â ¸Þ¼­µå
+    //ê²½í—˜ì¹˜ì™€ ê³¨ë“œ ìˆ˜ì¹˜ ì¶”ê°€í•˜ëŠ” ë©”ì„œë“œ
     public void SetExp(float value)
     {
         nowExp += value;
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         gold += value;
     }
-    //ÇÃ·¹ÀÌ¾î ½ºÅÈ ¼öÄ¡ °¡Á®¿À±â
+    //í”Œë ˆì´ì–´ ìŠ¤íƒ¯ ìˆ˜ì¹˜ ê°€ì ¸ì˜¤ê¸°
     public float GetMaxHp()
     {
         return this.maxHp;
@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         return saveArm;
     }
-    //³¡
+    //ë
     IEnumerator HpRegen()
     {
         while (true)
@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (NowHp >= maxHp) return;
 
-        // ÈúÀ» ¹Þ¾Æ ÃÖ´ë Ã¼·ÂÀ» ³Ñ¾î°¡°Ô µÇ¸é maxHp·Î °íÁ¤
+        // ížì„ ë°›ì•„ ìµœëŒ€ ì²´ë ¥ì„ ë„˜ì–´ê°€ê²Œ ë˜ë©´ maxHpë¡œ ê³ ì •
         NowHp = Mathf.Clamp(NowHp + healAmount, 0f, maxHp);
         OnHpChanged?.Invoke(NowHp, maxHp);
     }
