@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyAnimationController : MonoBehaviour
 {
     private Animator animator;
 
-    // ¼º´É ÃÖÀûÈ­¸¦ À§ÇØ ¹®ÀÚ¿­À» ÇØ½Ã°ªÀ¸·Î º¯È¯ÇØ Ä³½Ì
+    // ì„±ëŠ¥ ìµœì í™”ë¥¼ ìœ„í•´ ë¬¸ìì—´ì„ í•´ì‹œê°’ìœ¼ë¡œ ë³€í™˜í•´ ìºì‹±
     private readonly int isMovingHash = Animator.StringToHash("IsMove");
     private readonly int attackHash = Animator.StringToHash("Attack");
     private readonly int dieHash = Animator.StringToHash("Die");
@@ -14,7 +14,7 @@ public class EnemyAnimationController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    // ¾Ö´Ï¸ŞÀÌÅÍÀÇ ·±Å¸ÀÓ ¾Ö´Ï¸ŞÀÌÅÍ ÄÁÆ®·Ñ·¯¸¦ ±³Ã¼
+    // ì• ë‹ˆë©”ì´í„°ì˜ ëŸ°íƒ€ì„ ì• ë‹ˆë©”ì´í„° ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ êµì²´
     public void SetupAnimator(RuntimeAnimatorController controller)
     {
         if (animator != null && controller != null)
@@ -47,7 +47,7 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetTrigger(dieHash);
     }
 
-    // ¿ÀºêÁ§Æ® Ç®¿¡¼­ ²¨³»¾îÁú ¶§ ÆÄ¶ó¹ÌÅÍ ÃÊ±âÈ­ÇÏ´Â ¸Ş¼­µå
+    // ì˜¤ë¸Œì íŠ¸ í’€ì—ì„œ êº¼ë‚´ì–´ì§ˆ ë•Œ íŒŒë¼ë¯¸í„° ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ
     public void ResetAllParameters()
     {
         if (animator == null) return;

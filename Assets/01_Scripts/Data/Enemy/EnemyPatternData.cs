@@ -1,17 +1,17 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyPatternData", menuName = "GamePlay/Enemy Pattern Data")]
 public class EnemyPatternData : ScriptableObject
 {
-    [Header("ÆĞÅÏ ±âº» ¼³Á¤")]
+    [Header("íŒ¨í„´ ê¸°ë³¸ ì„¤ì •")]
     public float triggerRange = 5f;
     public float patternCooltime = 5f;
 
-    [Header("°ø°İ ½ÃÄö½º")]
-    [Tooltip("°¢ EnemyAttackData¸¦ ³Ö¾î ÄŞº¸ ÆĞÅÏ ±¸Çö °¡´É")]
+    [Header("ê³µê²© ì‹œí€€ìŠ¤")]
+    [Tooltip("ê° EnemyAttackDataë¥¼ ë„£ì–´ ì½¤ë³´ íŒ¨í„´ êµ¬í˜„ ê°€ëŠ¥")]
     public List<EnemyAttackData> attackSequence;
 
-    [Tooltip(("°ø°İ ÆĞÅÏ °£ Áö¿¬½Ã°£"))]
+    [Tooltip(("ê³µê²© íŒ¨í„´ ê°„ ì§€ì—°ì‹œê°„"))]
     public float actionDelay = 0.5f;
 }

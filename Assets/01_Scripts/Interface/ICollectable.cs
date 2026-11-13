@@ -1,13 +1,13 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public interface ICollectable
 {
-    // ¸Å°³º¯¼ö·Î ÇÃ·¹ÀÌ¾î ½ºÅÈ ¹ŞÀ½
+    // ë§¤ê°œë³€ìˆ˜ë¡œ í”Œë ˆì´ì–´ ìŠ¤íƒ¯ ë°›ìŒ
     void Collect(PlayerController player);
 
-    // ÇÃ·¹ÀÌ¾îÀÇ È¹µæ ¹üÀ§ ¾È¿¡ ÀÖÀ» ¶§ ²ø·Á°¡´Â ·ÎÁ÷
-    // target : ²ø·Á°¡´Â ´ë»ó
-    // pullSpeed : ²ø·Á°¡´Â ¼Óµµ
+    // í”Œë ˆì´ì–´ì˜ íšë“ ë²”ìœ„ ì•ˆì— ìˆì„ ë•Œ ëŒë ¤ê°€ëŠ” ë¡œì§
+    // target : ëŒë ¤ê°€ëŠ” ëŒ€ìƒ
+    // pullSpeed : ëŒë ¤ê°€ëŠ” ì†ë„
     void Pull(Transform target, float pullSpeed);
 }

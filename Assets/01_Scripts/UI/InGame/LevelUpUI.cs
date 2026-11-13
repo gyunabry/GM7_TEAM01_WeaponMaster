@@ -1,22 +1,22 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using UnityEngine;
 
 public class LevelUpUI : MonoBehaviour
 {
-    [Header("ÆĞ³Î")]
-    //·¹º§¾÷ UIÀüÃ¼ ÆĞ³Î¿ÀºêÁ§Æ®
+    [Header("íŒ¨ë„")]
+    //ë ˆë²¨ì—… UIì „ì²´ íŒ¨ë„ì˜¤ë¸Œì íŠ¸
     [SerializeField] private GameObject levelUpPanel;
-    [Header("Åõ¸íµµ")]
+    [Header("íˆ¬ëª…ë„")]
     [SerializeField] private CanvasGroup panleCanvasGroup;
-    [Header("Å¸ÀÌÆ²")]
+    [Header("íƒ€ì´í‹€")]
     [SerializeField] private RectTransform levelUpText;
-    [Header("½ºÅ³Ä«µå")] 
+    [Header("ìŠ¤í‚¬ì¹´ë“œ")] 
     [SerializeField] private SkillCardUI[] skillCards;
 
-    //ÆĞ³ÎÀÌ ¿­·ÁÀÖ³Ä?
+    //íŒ¨ë„ì´ ì—´ë ¤ìˆëƒ?
     private bool isOpen;
 
-    //Ä«µå ¼±ÅÃ¿ë
+    //ì¹´ë“œ ì„ íƒìš©
     private bool isSelected;
     void Start()
     {
@@ -24,64 +24,64 @@ public class LevelUpUI : MonoBehaviour
     }
     public void Open()
     {
-        if (isOpen) return;//ÀÌ¹Ì ÆĞ³ÎÀÌ ¿­·Á ÀÖÀ¸¸é ´Ù½Ã ¿­Áö ¸»ÀÚ.
+        if (isOpen) return;//ì´ë¯¸ íŒ¨ë„ì´ ì—´ë ¤ ìˆìœ¼ë©´ ë‹¤ì‹œ ì—´ì§€ ë§ì.
 
-        isOpen = true;//¿­¸°»óÅÂ·Î º¯°æ
-        isSelected = false;//¾ÆÁ÷ ¾î¶² Ä«µåµµ ¼±ÅÃÇÏÁö ¾ÊÀº »óÅÂÀÓ.
-        levelUpPanel.SetActive(true);//·¹º§¾÷ ÆĞ³Î ¿ÀºêÁ§Æ® È°¼ºÈ­
+        isOpen = true;//ì—´ë¦°ìƒíƒœë¡œ ë³€ê²½
+        isSelected = false;//ì•„ì§ ì–´ë–¤ ì¹´ë“œë„ ì„ íƒí•˜ì§€ ì•Šì€ ìƒíƒœì„.
+        levelUpPanel.SetActive(true);//ë ˆë²¨ì—… íŒ¨ë„ ì˜¤ë¸Œì íŠ¸ í™œì„±í™”
         panleCanvasGroup.alpha = 0.0f;
         panleCanvasGroup.blocksRaycasts = true;
         panleCanvasGroup.interactable = true;
 
-        //ÆĞ³Î ÀüÃ¼ Åõ¸íµµ¸¦ 0.25ÃÊµ¿¾È 1·Î ¸¸µç´Ù.
-        //È­¸éÀÌ ÀÚ¿¬½º·´°Ô ³ªÅ¸³ª´Â ÆäÀÌµå ÀÎ È¿°úÀÓ.
+        //íŒ¨ë„ ì „ì²´ íˆ¬ëª…ë„ë¥¼ 0.25ì´ˆë™ì•ˆ 1ë¡œ ë§Œë“ ë‹¤.
+        //í™”ë©´ì´ ìì—°ìŠ¤ëŸ½ê²Œ ë‚˜íƒ€ë‚˜ëŠ” í˜ì´ë“œ ì¸ íš¨ê³¼ì„.
         panleCanvasGroup.DOFade(1.0f, 0.25f);
 
-        //·¹º§¾÷ Å¸ÀÌÆ² µîÀå ¾Ö´Ï¸ŞÀÌ¼Ç 
+        //ë ˆë²¨ì—… íƒ€ì´í‹€ ë“±ì¥ ì• ë‹ˆë©”ì´ì…˜ 
         PlayTitleTween();
-        //½ºÅ³ Ä«µå 3°³ µîÀÛ ¾Ö´Ï¸ŞÀÌ¼Ç
+        //ìŠ¤í‚¬ ì¹´ë“œ 3ê°œ ë“±ì‘ ì• ë‹ˆë©”ì´ì…˜
         PlayCardOpenTween();
 
     }
     private void PlayTitleTween()
     {
         levelUpText.localScale = Vector3.zero;
-        //Å¸ÀÌÆ² Å©±â¸¦ 0.4ÃÊ µ¿¾È ¿ø·¡ Å©±â·Î Å°¿î´Ù.
-        //Ease.OutBack´Â »ìÂ¦ Æ¨±âµí Ä¿Áö´Â ´À³¦À» ÁØ´Ù.
+        //íƒ€ì´í‹€ í¬ê¸°ë¥¼ 0.4ì´ˆ ë™ì•ˆ ì›ë˜ í¬ê¸°ë¡œ í‚¤ìš´ë‹¤.
+        //Ease.OutBackëŠ” ì‚´ì§ íŠ•ê¸°ë“¯ ì»¤ì§€ëŠ” ëŠë‚Œì„ ì¤€ë‹¤.
         levelUpText.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
     }
     private void PlayCardOpenTween()
     {
-        //¿ì¼± ¸ğµç Ä«µå¸¦ ¸ÕÀú ¼û±âÀÚ.
+        //ìš°ì„  ëª¨ë“  ì¹´ë“œë¥¼ ë¨¼ì € ìˆ¨ê¸°ì.
 
         for(int i = 0;i<skillCards.Length;i++)
         {
             skillCards[i].HideInstant();
         }
 
-        //Ä«µå µîÀå ¼ø¼­¸¦ Á¦¾îÇÏ±â À§ÇÑ ½ÃÄö½º¸¦ ¸¸µç´Ù.
-        //½ÃÄö½º¸¦ »ç¿ëÇÏ¸é ¿©·¯ Æ®À©ÀÌ³ª Äİ¹éÀ» ¼ø¼­´ë·Î ½ÇÇàÇÒ¼ö ÀÖÀ½
+        //ì¹´ë“œ ë“±ì¥ ìˆœì„œë¥¼ ì œì–´í•˜ê¸° ìœ„í•œ ì‹œí€€ìŠ¤ë¥¼ ë§Œë“ ë‹¤.
+        //ì‹œí€€ìŠ¤ë¥¼ ì‚¬ìš©í•˜ë©´ ì—¬ëŸ¬ íŠ¸ìœˆì´ë‚˜ ì½œë°±ì„ ìˆœì„œëŒ€ë¡œ ì‹¤í–‰í• ìˆ˜ ìˆìŒ
         Sequence sequence =  DOTween.Sequence();
 
         for (int i = 0; i < skillCards.Length; i++)
         {
             int index = i;
 
-            //ÇöÀç ¼ø¼­ÀÇ Ä«µå µîÀå ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ½ÇÇàÇÑ´Ù.
-            //AppendCallback Æ®À©Àº ¾Æ´ÏÁö¸¸ ½ÃÄö½º Áß°£¿¡ ÇÔ¼ö¸¦ ½ÇÇàÇÒ¼ö ÀÖ°Ô ÇØÁØ´Ù.
+            //í˜„ì¬ ìˆœì„œì˜ ì¹´ë“œ ë“±ì¥ ì• ë‹ˆë©”ì´ì…˜ì„ ì‹¤í–‰í•œë‹¤.
+            //AppendCallback íŠ¸ìœˆì€ ì•„ë‹ˆì§€ë§Œ ì‹œí€€ìŠ¤ ì¤‘ê°„ì— í•¨ìˆ˜ë¥¼ ì‹¤í–‰í• ìˆ˜ ìˆê²Œ í•´ì¤€ë‹¤.
             sequence.AppendCallback(() =>
             {
                 skillCards[index].PlayOpenTween();
             });
 
-            //´ÙÀ½ Ä«µå°¡ µîÀåÇÏ±â Àü±îÁö 0.12ÃÊ ±â´Ù¸°´Ù.
-            //ÀÌ °£°İ¶§¹®¿¡ Ä«µå°¡ ÇÏ³ª¾¿ ¼ø¼­´ë·Î µîÀåÇÏ´Â ´À³¦À» º¼¼ö ÀÖÀ½
+            //ë‹¤ìŒ ì¹´ë“œê°€ ë“±ì¥í•˜ê¸° ì „ê¹Œì§€ 0.12ì´ˆ ê¸°ë‹¤ë¦°ë‹¤.
+            //ì´ ê°„ê²©ë•Œë¬¸ì— ì¹´ë“œê°€ í•˜ë‚˜ì”© ìˆœì„œëŒ€ë¡œ ë“±ì¥í•˜ëŠ” ëŠë‚Œì„ ë³¼ìˆ˜ ìˆìŒ
             sequence.AppendInterval(0.12f);
 
         }
 
     }
-    //Ä«µå°¡ Å¬¸¯µÇ¾úÀ»¶§
+    //ì¹´ë“œê°€ í´ë¦­ë˜ì—ˆì„ë•Œ
     public void SelectCard(SkillCardUI selectCard)
     {
         if (isSelected) return;
@@ -90,7 +90,7 @@ public class LevelUpUI : MonoBehaviour
 
         for(int i = 0;i<skillCards.Length;i++)
         {
-            SkillCardUI card = skillCards[i];//¹è¿­¿¡¼­ ÇöÀç Ä«µå¸¦ °¡Á®¿À°í
+            SkillCardUI card = skillCards[i];//ë°°ì—´ì—ì„œ í˜„ì¬ ì¹´ë“œë¥¼ ê°€ì ¸ì˜¤ê³ 
 
             if(card==selectCard)
             {
@@ -118,15 +118,15 @@ public class LevelUpUI : MonoBehaviour
     }
     private void CloseInstant()
     {
-        isOpen = false;//ÆĞ³ÎÀÌ ´İÈù»óÅÂ
-        isSelected = false;//Ä«µå ¼±ÅÃ »óÅÂ ÃÊ±âÈ­
-        levelUpPanel.SetActive(false);//¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
-        panleCanvasGroup.alpha = 0.0f;//ÆĞ³Î Åõ¸íµµ¸¦ 0À¸·Î
-        panleCanvasGroup.blocksRaycasts = false;//ÆĞ³ÎÀÌ ¸¶¿ì½º ÀÔ·ÂÀ» ¹ŞÁö ¾Ê°Ô ÇÏÀÚ.
-        panleCanvasGroup.interactable = false;//ÆĞ³Î¾ÈÀÇ UI »óÈ£ÀÛ¿ëÀ» ¸·ÀÚ.
+        isOpen = false;//íŒ¨ë„ì´ ë‹«íŒìƒíƒœ
+        isSelected = false;//ì¹´ë“œ ì„ íƒ ìƒíƒœ ì´ˆê¸°í™”
+        levelUpPanel.SetActive(false);//ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
+        panleCanvasGroup.alpha = 0.0f;//íŒ¨ë„ íˆ¬ëª…ë„ë¥¼ 0ìœ¼ë¡œ
+        panleCanvasGroup.blocksRaycasts = false;//íŒ¨ë„ì´ ë§ˆìš°ìŠ¤ ì…ë ¥ì„ ë°›ì§€ ì•Šê²Œ í•˜ì.
+        panleCanvasGroup.interactable = false;//íŒ¨ë„ì•ˆì˜ UI ìƒí˜¸ì‘ìš©ì„ ë§‰ì.
 
 
-        //¿©±â¼­ Ä«µåµµ ¼û±ä»óÅÂ·Î ÃÊ±âÈ­ÇÏÀÚ.
+        //ì—¬ê¸°ì„œ ì¹´ë“œë„ ìˆ¨ê¸´ìƒíƒœë¡œ ì´ˆê¸°í™”í•˜ì.
 
     }
 }

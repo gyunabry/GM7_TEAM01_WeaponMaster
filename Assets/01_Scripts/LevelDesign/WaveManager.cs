@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Collections;
@@ -8,20 +8,20 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager Instance { get; private set; }
 
-    [Header("ÀÌº¥Æ®")]
+    [Header("ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel bossEncounterEvent;
 
     public event Action<int> OnWaveStarted;
     public event Action<float> OnTimeChanged;
-    public event Action OnBossWarningStarted; // º¸½º µîÀå ´ë±â ÀÌº¥Æ®
+    public event Action OnBossWarningStarted; // ë³´ìŠ¤ ë“±ì¥ ëŒ€ê¸° ì´ë²¤íŠ¸
 
-    [Header("³­ÀÌµµ ¼³Á¤")]
+    [Header("ë‚œì´ë„ ì„¤ì •")]
     [SerializeField] private Difficulty currentDifficulty = Difficulty.Normal;
 
-    [Header("¿şÀÌºê µ¥ÀÌÅÍ")]
+    [Header("ì›¨ì´ë¸Œ ë°ì´í„°")]
     [SerializeField] private List<WaveData> stageWaves;
 
-    [Header("º¸½º ¿¬Ãâ ½Ã°£")]
+    [Header("ë³´ìŠ¤ ì—°ì¶œ ì‹œê°„")]
     [SerializeField] private float bossWaitTime = 3f;
 
     private float stageTime = 0;
@@ -83,7 +83,7 @@ public class WaveManager : MonoBehaviour
                 stageTime = 0f;
                 StartWave(currentWaveIndex);
             }
-            else // ¸ğµç ¿şÀÌºê°¡ ³¡³ª¸é º¸½º µîÀå
+            else // ëª¨ë“  ì›¨ì´ë¸Œê°€ ëë‚˜ë©´ ë³´ìŠ¤ ë“±ì¥
             {
                 isWaveActive = false;
 
@@ -110,16 +110,16 @@ public class WaveManager : MonoBehaviour
 
         if(clearedIndex == 4)
         {
-            //¿şÆù¸Å´ÏÀú °¡Á®¿À±â
+            //ì›¨í°ë§¤ë‹ˆì € ê°€ì ¸ì˜¤ê¸°
         }
 
     }
 
-    // Àá±ñÀÇ ´ë±â ½Ã°£ ÈÄ º¸½º ÀÌº¥Æ® ¹ßÇà
+    // ì ê¹ì˜ ëŒ€ê¸° ì‹œê°„ í›„ ë³´ìŠ¤ ì´ë²¤íŠ¸ ë°œí–‰
     private IEnumerator BossEncounterCo()
     {
-        // ´ë±â ½Ã°£
-        // TODO: º¸½º µîÀå ¿¬Ãâ
+        // ëŒ€ê¸° ì‹œê°„
+        // TODO: ë³´ìŠ¤ ë“±ì¥ ì—°ì¶œ
         OnBossWarningStarted?.Invoke();
 
         yield return new WaitForSeconds(bossWaitTime);

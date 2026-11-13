@@ -1,32 +1,32 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public struct BossPhaseInfo
 {
     [Range(0, 1)]
-    [Tooltip("ÇØ´ç ÆäÀÌÁî°¡ ½ÃÀÛµÇ´Â HP ºñÀ²")]
+    [Tooltip("í•´ë‹¹ í˜ì´ì¦ˆê°€ ì‹œì‘ë˜ëŠ” HP ë¹„ìœ¨")]
     public float hpThreshold;
 
-    [Tooltip("ÇØ´ç ÆäÀÌÁî¿¡¼­ »ç¿ëÇÒ °ø°İ ÆĞÅÏ ¸ñ·Ï")]
+    [Tooltip("í•´ë‹¹ í˜ì´ì¦ˆì—ì„œ ì‚¬ìš©í•  ê³µê²© íŒ¨í„´ ëª©ë¡")]
     public List<EnemyPatternData> phasePatterns;
 }
 
 [CreateAssetMenu(fileName = "New Boss Data", menuName = "Scriptable Objects/BossData")]
 public class BossData : ScriptableObject
 {
-    [Header("±âº» Á¤º¸")]
+    [Header("ê¸°ë³¸ ì •ë³´")]
     public string bossId;
     public string bossName;
 
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤")]
+    [Header("ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •")]
     public RuntimeAnimatorController runtimeAnimator;
 
-    [Header("±âº» ½ºÅÈ")]
+    [Header("ê¸°ë³¸ ìŠ¤íƒ¯")]
     public float maxHp;
     public float moveSpeed;
     public float damage = 10f;
 
-    [Header("ÆäÀÌÁî ±¸¼º")]
+    [Header("í˜ì´ì¦ˆ êµ¬ì„±")]
     public List<BossPhaseInfo> phases;
 }

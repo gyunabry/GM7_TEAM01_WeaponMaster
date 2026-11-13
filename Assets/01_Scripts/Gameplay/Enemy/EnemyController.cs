@@ -160,7 +160,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         transform.position += (Vector3)(finalDir.normalized * moveSpeed * Time.deltaTime);
 
-        SpatialHashGrid.Instance?.UpdateEnemyCell(this);
+        // SpatialHashGrid.Instance?.UpdateEnemyCell(this);
     }
 
     public void TakeDamage(float damage, bool isCrit = false)

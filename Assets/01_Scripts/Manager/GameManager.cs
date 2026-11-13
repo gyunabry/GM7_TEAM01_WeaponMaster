@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("±¸µ¶ÇÒ ÀÌº¥Æ®")]
+    [Header("êµ¬ë…í•  ì´ë²¤íŠ¸")]
     [SerializeField] private VoidEventChannel playerDeadEvent;
     [SerializeField] private VoidEventChannel bossClearEvent;
 
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public event Action<int> OnKillEnemy;
     public event Action<int, int> OnExpChanged;
 
-    // ·¹º§
+    // ë ˆë²¨
     private int level;
     private int[] requireExp = new int[100];
     private int currentExp;
@@ -128,21 +128,21 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
 
-            // ÃÖ°í·¹º§ µµ´Ş ½Ã ´õÀÌ»ó ·¹º§¾÷ X
+            // ìµœê³ ë ˆë²¨ ë„ë‹¬ ì‹œ ë”ì´ìƒ ë ˆë²¨ì—… X
             if (level >= requireExp.Length)
             {
-                // ÇöÀç, ÃÖ´ë EXP¸¦ ·¹º§¾÷¿¡ ÇÊ¿äÇÑ ¼öÄ¡·Î Àü´ŞÇØ °»½Å
+                // í˜„ì¬, ìµœëŒ€ EXPë¥¼ ë ˆë²¨ì—…ì— í•„ìš”í•œ ìˆ˜ì¹˜ë¡œ ì „ë‹¬í•´ ê°±ì‹ 
                 OnExpChanged?.Invoke(requireExp[level], requireExp[level]);
                 level = requireExp.Length - 1;
                 break;
             }
 
-            // ·¹º§¾÷ ½Ã ÇöÀç °æÇèÄ¡¸¦ ÇÊ¿ä °æÇèÄ¡¸¸Å­ »è°¨
+            // ë ˆë²¨ì—… ì‹œ í˜„ì¬ ê²½í—˜ì¹˜ë¥¼ í•„ìš” ê²½í—˜ì¹˜ë§Œí¼ ì‚­ê°
             currentExp -= requireExp[level];
             level++;
             GameSceneController.Instance.ShowLevelUpUI();
 
-            // TODO:·¹º§¾÷ È¿°ú ÀÌº¥Æ®
+            // TODO:ë ˆë²¨ì—… íš¨ê³¼ ì´ë²¤íŠ¸
         }
     }
 

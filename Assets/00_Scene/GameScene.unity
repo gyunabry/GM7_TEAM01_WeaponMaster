@@ -598,6 +598,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 922916239052309402, guid: 123f2f752df439f449414d17499a67e0, type: 3}
   m_PrefabInstance: {fileID: 48270897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &48270899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2130848727628481499, guid: 123f2f752df439f449414d17499a67e0, type: 3}
+  m_PrefabInstance: {fileID: 48270897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &86381990 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9013802498750900432, guid: 123ef0efeefdaae4caa0ccfd9e6bbbed, type: 3}
@@ -1721,7 +1732,7 @@ PrefabInstance:
     - target: {fileID: 4663351556205782450, guid: f1c510303bee05949990a18db564fb56, type: 3}
       propertyPath: 'stageWaves.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 2ae57ca7ee249bc45a28276d5dbab7ab, type: 2}
+      objectReference: {fileID: 11400000, guid: 6ba3bc575ee7186458870219970169ec, type: 2}
     - target: {fileID: 7461544033466033393, guid: f1c510303bee05949990a18db564fb56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1966,6 +1977,10 @@ PrefabInstance:
       propertyPath: red
       value: 
       objectReference: {fileID: 2100000, guid: e5e7bc3c89bf5dc4f9927af03f0b39fa, type: 2}
+    - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
+      propertyPath: maxHp
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1493961109511499000, guid: 858f913c5bdfb3b449b818f493811db3, type: 3}
       propertyPath: white
       value: 
@@ -2276,11 +2291,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: expCount
-      value: 300
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
+      propertyPath: mealCount
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: enemyCount
-      value: 300
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: mealPrefab
@@ -2288,7 +2307,11 @@ PrefabInstance:
       objectReference: {fileID: 3791253550718468618, guid: ffaa29c629901d940bcd8967de7374e2, type: 3}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: hitTextCount
-      value: 40
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
+      propertyPath: warningCount
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: hitTextPrefab
@@ -2300,7 +2323,7 @@ PrefabInstance:
       objectReference: {fileID: 5796480262704675772, guid: 21e0a8c8ccda21746aa3fb94374257ea, type: 3}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: attackVfxCount
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: attackVfxPrefab
@@ -2308,7 +2331,7 @@ PrefabInstance:
       objectReference: {fileID: 3075276769813256605, guid: 5a3cffdd6dceee642826f28621d820aa, type: 3}
     - target: {fileID: 6695134758001766246, guid: 326c7e4db981e3a4dbe4693d8e19958a, type: 3}
       propertyPath: enemyBulletCount
-      value: 100
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2872,7 +2895,7 @@ PrefabInstance:
     - target: {fileID: 4812882232494134356, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
       propertyPath: exitOptionButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 48270899}
     - target: {fileID: 4812882232494134356, guid: 192c16e7ec9f6544db3ee6c8ef786dbe, type: 3}
       propertyPath: resultUIController
       value: 

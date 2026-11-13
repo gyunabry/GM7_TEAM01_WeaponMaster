@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 /*
-- ¿ùµå¸¦ ÀÏÁ¤ÇÑ Å©±âÀÇ ¼¿·Î ÀÌ·ç¾îÁø °İÀÚ·Î ³ª´«´Ù. 
-- ¸ó½ºÅÍÀÇ ÇöÀç À§Ä¡¸¦ º¯È¯ÇØ ÀúÀåÇÑ´Ù.
-- ÇØ´ç ¸ó½ºÅÍ°¡ À§Ä¡ÇÑ ¼¿°ú ÀÎÁ¢ÇÑ ¼¿ ¾ÈÀÇ ¸ó½ºÅÍ¿ÍÀÇ Ãæµ¹À» °Ë»çÇÑ´Ù.
+- ì›”ë“œë¥¼ ì¼ì •í•œ í¬ê¸°ì˜ ì…€ë¡œ ì´ë£¨ì–´ì§„ ê²©ìë¡œ ë‚˜ëˆˆë‹¤. 
+- ëª¬ìŠ¤í„°ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ë³€í™˜í•´ ì €ì¥í•œë‹¤.
+- í•´ë‹¹ ëª¬ìŠ¤í„°ê°€ ìœ„ì¹˜í•œ ì…€ê³¼ ì¸ì ‘í•œ ì…€ ì•ˆì˜ ëª¬ìŠ¤í„°ì™€ì˜ ì¶©ëŒì„ ê²€ì‚¬í•œë‹¤.
 
-- ÇÃ·¹ÀÌ¾î ÁÖÀ§ ¸ó½ºÅÍ Á¶È¸ ±â´É Ãß°¡
+- í”Œë ˆì´ì–´ ì£¼ìœ„ ëª¬ìŠ¤í„° ì¡°íšŒ ê¸°ëŠ¥ ì¶”ê°€
 */
 
 public class SpatialHashGrid : MonoBehaviour
@@ -15,10 +15,12 @@ public class SpatialHashGrid : MonoBehaviour
 
     [SerializeField] private float cellSize = 1.5f;
 
-    // °¢ ÁÂÇ¥¿¡ ¾î¶² ÀûµéÀÌ ÀÖ´ÂÁö ÀúÀå - ÁÖº¯ Àû °»½Å¿ë
+    // ê° ì¢Œí‘œì— ì–´ë–¤ ì ë“¤ì´ ìˆëŠ”ì§€ ì €ì¥ - ì£¼ë³€ ì  ê°±ì‹ ìš©
     private readonly Dictionary<Vector2Int, List<EnemyController>> cells = new();
-    // °¢ ÀûÀÌ ¾î´À ÁÂÇ¥¿¡ ÀÖ´ÂÁö ÀúÀå - »óÅÂ °»½Å¿ë
+    // ê° ì ì´ ì–´ëŠ ì¢Œí‘œì— ìˆëŠ”ì§€ ì €ì¥ - ìƒíƒœ ê°±ì‹ ìš©
     private readonly Dictionary<EnemyController, Vector2Int> enemyCells = new();
+
+    public int ActiveEnemyCount => enemyCells.Count;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class SpatialHashGrid : MonoBehaviour
         }
     }
 
-    // À¯´ÖÀÌ »ı¼ºµÉ ¶§ È£ÃâÇØ µî·Ï
+    // ìœ ë‹›ì´ ìƒì„±ë  ë•Œ í˜¸ì¶œí•´ ë“±ë¡
     public void Register(EnemyController enemy)
     {
         Vector2Int cell = WorldToCell(enemy.transform.position);
@@ -48,7 +50,7 @@ public class SpatialHashGrid : MonoBehaviour
         list.Add(enemy);
     }
 
-    // À¯´ÖÀÌ Á×¾úÀ» ¶§ È£ÃâÇØ Á¦°Å
+    // ìœ ë‹›ì´ ì£½ì—ˆì„ ë•Œ í˜¸ì¶œí•´ ì œê±°
     public void Unregister(EnemyController enemy)
     {
         if (!enemyCells.TryGetValue(enemy, out var cell)) return;
@@ -61,7 +63,7 @@ public class SpatialHashGrid : MonoBehaviour
         enemyCells.Remove(enemy);
     }
 
-    // À¯´ÖÀÌ ÀÌµ¿ÇØ ÇØ´ç ¼¿À» ¹ş¾î³µÀ» ¶§ È£ÃâÇØ °»½Å
+    // ìœ ë‹›ì´ ì´ë™í•´ í•´ë‹¹ ì…€ì„ ë²—ì–´ë‚¬ì„ ë•Œ í˜¸ì¶œí•´ ê°±ì‹ 
     public void UpdateEnemyCell(EnemyController enemy)
     {
         Vector2Int newCell = WorldToCell(enemy.transform.position);
@@ -82,6 +84,7 @@ public class SpatialHashGrid : MonoBehaviour
         Vector2Int centerCell = WorldToCell(enemyPos);
         float radiusSqr = separationRadius * separationRadius;
 
+        // í˜„ì¬ ëª¬ìŠ¤í„°ê°€ ìœ„ì¹˜í•œ ì…€ê³¼ ì¸ì ‘í•œ ì…€ì˜ ëª¬ìŠ¤í„°ë¥¼ ì¡°íšŒ
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -99,7 +102,7 @@ public class SpatialHashGrid : MonoBehaviour
 
                     if (sqrDistance > 0.001f && sqrDistance < radiusSqr)
                     {
-                        // °¡±î¿ï ¼ö·Ï °­ÇÏ°Ô ¹Ğµµ·Ï ¼³Á¤
+                        // ê°€ê¹Œìš¸ ìˆ˜ë¡ ê°•í•˜ê²Œ ë°€ë„ë¡ ì„¤ì •
                         push += diff.normalized / sqrDistance;
                     }
                 }
@@ -139,32 +142,12 @@ public class SpatialHashGrid : MonoBehaviour
         }
     }
 
-    // Àû À§Ä¡¸¦ ¼¿ »çÀÌÁî·Î ³ª´² ÁÂÇ¥°ª ¹İÈ¯
+    // ì  ìœ„ì¹˜ë¥¼ ì…€ ì‚¬ì´ì¦ˆë¡œ ë‚˜ëˆ  ì¢Œí‘œê°’ ë°˜í™˜
     private Vector2Int WorldToCell(Vector2 position)
     {
         return new Vector2Int(
             Mathf.FloorToInt(position.x / cellSize),
             Mathf.FloorToInt(position.y / cellSize)
         );
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        if (cells == null) return;
-
-        foreach (var cell in cells.Keys)
-        {
-            Vector3 center = new Vector3(
-                cell.x * cellSize + cellSize * 0.5f,
-                cell.y * cellSize + cellSize * 0.5f,
-                0f
-            );
-
-            Vector3 size = new Vector3(cellSize, cellSize, 0f);
-
-            Gizmos.DrawWireCube(center, size);
-        }
     }
 }

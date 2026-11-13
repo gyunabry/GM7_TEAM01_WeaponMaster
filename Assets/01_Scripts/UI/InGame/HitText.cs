@@ -1,14 +1,14 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class HitText : MonoBehaviour
 {
-    [Header("Å¸°Ý ÅØ½ºÆ® ¼³Á¤")]
-    [SerializeField] private float floatHeight = 1.2f; // ¶°¿À¸£´Â ³ôÀÌ
-    [SerializeField] private float duration = 0.5f; // ¾Ö´Ï¸ÞÀÌ¼Ç Áö¼Ó½Ã°£
+    [Header("íƒ€ê²© í…ìŠ¤íŠ¸ ì„¤ì •")]
+    [SerializeField] private float floatHeight = 1.2f; // ë– ì˜¤ë¥´ëŠ” ë†’ì´
+    [SerializeField] private float duration = 0.5f; // ì• ë‹ˆë©”ì´ì…˜ ì§€ì†ì‹œê°„
 
-    [Header("»ö»ó ¼³Á¤")]
+    [Header("ìƒ‰ìƒ ì„¤ì •")]
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color critColor = Color.yellow;
     [SerializeField] private Color playerColor = Color.red;
@@ -20,42 +20,42 @@ public class HitText : MonoBehaviour
 
     private void Awake()
     {
-        // Ã³À½ ½ÃÀÛ ½Ã ¿ø·¡ Å©±â¸¦ ÀúÀå
+        // ì²˜ìŒ ì‹œìž‘ ì‹œ ì›ëž˜ í¬ê¸°ë¥¼ ì €ìž¥
         baseScale = transform.localScale;
     }
 
     private void OnEnable()
     {
-        // ÆäÀÌµåÀÎ È¿°ú¸¦ ÁÖ±â À§ÇØ È°¼ºÈ­ ½Ã ¾ËÆÄ°ªÀ» 0.5·Î ¼³Á¤
+        // íŽ˜ì´ë“œì¸ íš¨ê³¼ë¥¼ ì£¼ê¸° ìœ„í•´ í™œì„±í™” ì‹œ ì•ŒíŒŒê°’ì„ 0.5ë¡œ ì„¤ì •
         damageText.alpha = 0.5f;
     }
 
     public void ShowDamage(float damage, Vector2 spawnPos, bool isCrit = false, bool isPlayer = false)
     {
-        // ¿ÀºêÁ§Æ® Ç®¸µ Àû¿ëÀ» À§ÇØ ±âº» °ªÀ¸·Î ÃÊ±âÈ­
+        // ì˜¤ë¸Œì íŠ¸ í’€ë§ ì ìš©ì„ ìœ„í•´ ê¸°ë³¸ ê°’ìœ¼ë¡œ ì´ˆê¸°í™”
         transform.position = spawnPos;
         transform.localScale = baseScale;
 
-        // ÇÃ·¹ÀÌ¾î¶ó¸é »¡°£»ö
-        // ¾Æ´Ï¶ó¸é Ä¡¸íÅ¸ ¿©ºÎ È®ÀÎ ÈÄ »ö ¼³Á¤
+        // í”Œë ˆì´ì–´ë¼ë©´ ë¹¨ê°„ìƒ‰
+        // ì•„ë‹ˆë¼ë©´ ì¹˜ëª…íƒ€ ì—¬ë¶€ í™•ì¸ í›„ ìƒ‰ ì„¤ì •
         if (isPlayer) textColor = playerColor;
         else textColor = isCrit ? critColor : normalColor;
 
-        // µ¥¹ÌÁö Ç¥½Ã
+        // ë°ë¯¸ì§€ í‘œì‹œ
         damageText.text = damage.ToString();
         damageText.color = textColor;
 
-        // DOTween ½ÃÄö½º »ý¼º
+        // DOTween ì‹œí€€ìŠ¤ ìƒì„±
         Sequence sequence = DOTween.Sequence();
 
-        // »ó½Â È¿°ú
+        // ìƒìŠ¹ íš¨ê³¼
         sequence.Join(transform.DOMoveY(transform.position.y + floatHeight, duration).SetEase(Ease.OutCirc));
-        // ÆÝÄ¡ È¿°ú
+        // íŽ€ì¹˜ íš¨ê³¼
         sequence.Join(transform.DOPunchScale(Vector3.one * 0.5f, duration, 1, 0.5f));
-        // ÆäÀÌµå¾Æ¿ô
+        // íŽ˜ì´ë“œì•„ì›ƒ
         sequence.Join(damageText.DOFade(0f, duration).SetEase(Ease.InExpo));
 
-        // ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·á ÈÄ Ç®¿¡ ¹ÝÈ¯
+        // ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ í›„ í’€ì— ë°˜í™˜
         sequence.OnComplete(() =>
         {
             ReturnToPool();

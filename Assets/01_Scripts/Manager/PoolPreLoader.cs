@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PoolPreLoader : MonoBehaviour
 {
-    [Header("»ı¼ºÇÒ ÇÁ¸®ÆÕ")]
+    [Header("ìƒì„±í•  í”„ë¦¬íŒ¹")]
     [SerializeField] private EnemyController enemyPrefab;
     [SerializeField] private EnemyBullet enemyBulletPrefab;
     [SerializeField] private ExpGem expPrefab;
@@ -10,9 +10,9 @@ public class PoolPreLoader : MonoBehaviour
     [SerializeField] private HitText hitTextPrefab;
     [SerializeField] private WarningMarker warningPrefab;
     [SerializeField] private VFXAdd attackVfxPrefab;
-    // ÇÊ¿ä½Ã ¿©±â¿¡ Ãß°¡
+    // í•„ìš”ì‹œ ì—¬ê¸°ì— ì¶”ê°€
 
-    [Header("ÃÊ±â »ı¼º ¼ö")]
+    [Header("ì´ˆê¸° ìƒì„± ìˆ˜")]
     [SerializeField] private int enemyCount;
     [SerializeField] private int enemyBulletCount;
     [SerializeField] private int expCount = 100;

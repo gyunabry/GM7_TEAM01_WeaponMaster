@@ -1,30 +1,30 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // ¸ó½ºÅÍ°¡ °¡Áú ¼ö ÀÖ´Â ÆĞÅÏ ¸ñ·ÏÀ» ¹ŞÀ½
+    // ëª¬ìŠ¤í„°ê°€ ê°€ì§ˆ ìˆ˜ ìˆëŠ” íŒ¨í„´ ëª©ë¡ì„ ë°›ìŒ
     private List<EnemyPatternData> enemyPattern;
     private EnemyController enemyController;
     private EnemyShooter enemyShooter;
     private PlayerController targetPlayer;
 
-    [Header("°ø°İ ÆÇÁ¤")]
+    [Header("ê³µê²© íŒì •")]
     [SerializeField] private float attackCheckInterval = 0.1f;
     [SerializeField] private float playerHitRadius = 0.2f;
     [SerializeField] private float dashWindUpTime = 1f;
     [SerializeField] private float rangeWindUpTime = 1f;
     [SerializeField] private float afterActionDealy = 0.25f;
 
-    private float attackTimer;  // °ø°İ ÄğÅ¸ÀÓ Å¸ÀÌ¸Ó
+    private float attackTimer;  // ê³µê²© ì¿¨íƒ€ì„ íƒ€ì´ë¨¸
     private float attackCheckTimer;
-    private bool isAttacking;   // Áßº¹ °ø°İÀ» ¸·±â À§ÇÑ bool °ª
-    private bool hasHitDuringAction; // Áßº¹ °ø°İ ÆÇÁ¤À» ¸·±â À§ÇÑ bool °ª
+    private bool isAttacking;   // ì¤‘ë³µ ê³µê²©ì„ ë§‰ê¸° ìœ„í•œ bool ê°’
+    private bool hasHitDuringAction; // ì¤‘ë³µ ê³µê²© íŒì •ì„ ë§‰ê¸° ìœ„í•œ bool ê°’
 
     private Coroutine attackRoutine;
 
-    // °ø°İ µô·¹ÀÌ
+    // ê³µê²© ë”œë ˆì´
     private WaitForSeconds dashWindUpWait;
     private WaitForSeconds rangeWindUpWait;
     private WaitForSeconds afterActionWait;
@@ -61,7 +61,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        // ÆĞÅÏÀÌ ¾ø°Å³ª, Å¸°ÙÀÌ ¾ø°Å³ª, ÀÌ¹Ì °ø°İ ÁßÀÌ¶ó¸é ¸®ÅÏ
+        // íŒ¨í„´ì´ ì—†ê±°ë‚˜, íƒ€ê²Ÿì´ ì—†ê±°ë‚˜, ì´ë¯¸ ê³µê²© ì¤‘ì´ë¼ë©´ ë¦¬í„´
         if (enemyPattern == null || enemyPattern.Count == 0 || enemyController.target == null || isAttacking) return;
 
         attackTimer += Time.deltaTime;
@@ -70,10 +70,10 @@ public class EnemyAttack : MonoBehaviour
         if (attackCheckTimer < attackCheckInterval) return;
         attackCheckTimer = 0f;
 
-        // Ã¹ ¹øÂ° ÆĞÅÏ Á¶°ÇÀ» °Ë»ç
+        // ì²« ë²ˆì§¸ íŒ¨í„´ ì¡°ê±´ì„ ê²€ì‚¬
         EnemyPatternData currentPattern = enemyPattern[0];
 
-        // Å¸°Ù±îÁöÀÇ °Å¸®¿Í ÆĞÅÏÀÇ »ç°Å¸®¸¦ ºñ±³ÇØ °ø°İ ¿©ºÎ ÆÇ´Ü
+        // íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬ì™€ íŒ¨í„´ì˜ ì‚¬ê±°ë¦¬ë¥¼ ë¹„êµí•´ ê³µê²© ì—¬ë¶€ íŒë‹¨
         Vector2 toTarget = enemyController.target.position - transform.position;
         float rangeSqr = currentPattern.triggerRange * currentPattern.triggerRange;
 
@@ -93,13 +93,13 @@ public class EnemyAttack : MonoBehaviour
         targetPlayer = null;
     }
 
-    // º¹ÇÕÀûÀÎ ÆĞÅÏÀ» ¼øÂ÷ÀûÀ¸·Î ½ÇÇàÇÏ´Â ÄÚ·çÆ¾
+    // ë³µí•©ì ì¸ íŒ¨í„´ì„ ìˆœì°¨ì ìœ¼ë¡œ ì‹¤í–‰í•˜ëŠ” ì½”ë£¨í‹´
     private IEnumerator ExecutePatternSequenceCo(EnemyPatternData pattern)
     {
         isAttacking = true;
         attackTimer = 0f;
 
-        // ÆĞÅÏ ¾È¿¡ µî·ÏµÈ °ø°İÀ» ¼ø¼­´ë·Î ½ÇÇà
+        // íŒ¨í„´ ì•ˆì— ë“±ë¡ëœ ê³µê²©ì„ ìˆœì„œëŒ€ë¡œ ì‹¤í–‰
         foreach (EnemyAttackData actionData in pattern.attackSequence)
         {
             hasHitDuringAction = false;
@@ -120,7 +120,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
 
-    #region °ø°İÅ¸ÀÔ ÄÚ·çÆ¾
+    #region ê³µê²©íƒ€ì… ì½”ë£¨í‹´
 
     private IEnumerator DashAttackCo(EnemyAttackData data)
     {
@@ -129,7 +129,7 @@ public class EnemyAttack : MonoBehaviour
             yield break;
         }
 
-        // ´ë½¬ Àü ´ë±â µ¿ÀÛ
+        // ëŒ€ì‰¬ ì „ ëŒ€ê¸° ë™ì‘
         enemyController.CanMove = false;
         Vector3 targetLastPos = enemyController.target.position;
         yield return dashWindUpWait;
@@ -137,7 +137,7 @@ public class EnemyAttack : MonoBehaviour
         Vector3 dashDir = targetLastPos - transform.position;
         dashDir.z = 0f;
 
-        // ÃÊ±ÙÁ¢ÀÌ¶ó¸é ´ë½¬ °ø°İ Ãë¼Ò
+        // ì´ˆê·¼ì ‘ì´ë¼ë©´ ëŒ€ì‰¬ ê³µê²© ì·¨ì†Œ
         if (dashDir.sqrMagnitude <= 0.001f)
         {
             enemyController.CanMove = true;
@@ -161,13 +161,13 @@ public class EnemyAttack : MonoBehaviour
         }
 
         yield return afterActionWait;
-        // ÃßÀû Àç°³
+        // ì¶”ì  ì¬ê°œ
         enemyController.CanMove = true;
     }
 
     private IEnumerator RangeAttackCo(EnemyAttackData data)
     {
-        enemyController.CanMove = false; // ¿ø°Å¸® °ø°İ ½Ã ÃßÀû ÀÏ½ÃÁ¤Áö
+        enemyController.CanMove = false; // ì›ê±°ë¦¬ ê³µê²© ì‹œ ì¶”ì  ì¼ì‹œì •ì§€
 
         yield return new WaitForSeconds(rangeWindUpTime);
 
@@ -176,7 +176,7 @@ public class EnemyAttack : MonoBehaviour
             enemyShooter.Fire(data, enemyController.target);
         }
 
-        yield return new WaitForSeconds(afterActionDealy); // ¹ß»ç ÈÄ µô·¹ÀÌ
+        yield return new WaitForSeconds(afterActionDealy); // ë°œì‚¬ í›„ ë”œë ˆì´
 
         enemyController.CanMove = true;
     }

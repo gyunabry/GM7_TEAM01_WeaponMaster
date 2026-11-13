@@ -1,7 +1,7 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /*
-- GameSceneData·ÎºÎÅÍ StageData¸¦ °¡Á®¿Í ÇØ´çÇÏ´Â Å¸ÀÏ¸Ê ÇÁ¸®ÆÕÀ» »ı¼º
+- GameSceneDataë¡œë¶€í„° StageDataë¥¼ ê°€ì ¸ì™€ í•´ë‹¹í•˜ëŠ” íƒ€ì¼ë§µ í”„ë¦¬íŒ¹ì„ ìƒì„±
  */
 
 public class StageManager : MonoBehaviour
@@ -11,13 +11,13 @@ public class StageManager : MonoBehaviour
         InitializeStage();
     }
 
-    // GameSceneData¿¡¼­ ÇöÀç ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ °¡Á®¿Í °ÔÀÓ¾À ÃÊ±âÈ­
+    // GameSceneDataì—ì„œ í˜„ì¬ ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ ê²Œì„ì”¬ ì´ˆê¸°í™”
     public void InitializeStage()
     {
         StageData currentStage = GameSceneData.SelectedStage;
         if (currentStage == null) return;
 
-        // ¼±ÅÃµÈ ½ºÅ×ÀÌÁöÀÇ Å¸ÀÏ¸Ê »ı¼º
+        // ì„ íƒëœ ìŠ¤í…Œì´ì§€ì˜ íƒ€ì¼ë§µ ìƒì„±
         GameObject tileMap = Instantiate(currentStage.mapPrefab, Vector3.zero, Quaternion.identity);
     }
 }

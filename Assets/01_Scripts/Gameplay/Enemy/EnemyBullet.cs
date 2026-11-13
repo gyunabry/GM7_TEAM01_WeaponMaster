@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [Header("Ãæµ¹ ÆÇÁ¤")]
+    [Header("ì¶©ëŒ íŒì •")]
     [SerializeField] private float hitRadius = 0.25f;
     [SerializeField] private float playerHitRadius = 0.5f;
 

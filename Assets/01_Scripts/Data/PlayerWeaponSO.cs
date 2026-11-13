@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,7 +71,7 @@ public class PlayerWeaponSO : ScriptableObject
     {
         return upgrades[i].upgradeSprite;
     }
-    //´Ü¼ø ½ºÅÈ ¾÷±×·¹ÀÌµå
+    //ë‹¨ìˆœ ìŠ¤íƒ¯ ì—…ê·¸ë ˆì´ë“œ
     public void AddStatUpgradeDamage(float i)
     {
         statUpgrades.nowUpgradeDamage += i;
@@ -96,7 +96,7 @@ public class PlayerWeaponSO : ScriptableObject
     {
         statUpgrades.nowUpgradeSize += i;
     }
-    //Áõ°¡ÇÑ ´Ü¼ø ½ºÅÈ °¡Á®¿À±â
+    //ì¦ê°€í•œ ë‹¨ìˆœ ìŠ¤íƒ¯ ê°€ì ¸ì˜¤ê¸°
     public float GetStatUpgradeDamage()
     {
         return statUpgrades.nowUpgradeDamage;
@@ -121,7 +121,7 @@ public class PlayerWeaponSO : ScriptableObject
     {
         return statUpgrades.nowUpgradeSize;
     }
-    public void ResetStatUpgrade() //°ÔÀÓ Àç½ÃÀÛ ÇÒ¶§ ¹«Á¶°Ç ½ÇÇà
+    public void ResetStatUpgrade() //ê²Œì„ ì¬ì‹œì‘ í• ë•Œ ë¬´ì¡°ê±´ ì‹¤í–‰
     {
         statUpgrades.nowUpgradeDamage = 0;
         statUpgrades.nowUpgradeArmorPiercing = 0;
@@ -133,7 +133,7 @@ public class PlayerWeaponSO : ScriptableObject
         weaponAttackSpeedUpgradeCount = 0;
         totalDamage = 0;
     }
-    //¾÷±×·¹ÀÌµå ¼öÄ¡ °¡Á®¿À±â
+    //ì—…ê·¸ë ˆì´ë“œ ìˆ˜ì¹˜ ê°€ì ¸ì˜¤ê¸°
     public float GetUpValueDamage()
     {
         return statUpValue.upgradeStatDamage;
